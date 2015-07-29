@@ -1,0 +1,11 @@
+<h1>Livres</h1>
+<ul>
+    {% for livre in object_list %}
+    <li>{{ livre.titre }}  :  
+    <a href="{% url "livre_modifie" livre.id %}">modifie</a>
+    <a href="{% url "livre_supprime" livre.id %}">supprime</a>
+    </li>
+    {% endfor %}
+</ul>
+
+<a href="{% url "livre_ajoute" %}">Ajoute</a>

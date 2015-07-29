@@ -6,6 +6,7 @@ from bibliotheque.models import Livre
 
 class LivreList(ListView):
     model = Livre
+    template_name="bibliotheque/livre_liste.html"
 
 class LivreCreate(CreateView):
     model = Livre

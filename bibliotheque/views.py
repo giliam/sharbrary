@@ -11,13 +11,14 @@ class LivreList(ListView):
 class LivreCreate(CreateView):
     model = Livre
     success_url = reverse_lazy('livre_liste')
-    fields = ['name', 'ip', 'order']
+    fields = ['titre', 'annee_parution']
 
 class LivreUpdate(UpdateView):
     model = Livre
     success_url = reverse_lazy('livre_liste')
-    fields = ['name', 'ip', 'order']
+    fields = ['titre', 'annee_parution']
 
 class LivreDelete(DeleteView):
     model = Livre
+    template_name="bibliotheque/livre_confirme_suppression.html"
     success_url = reverse_lazy('livre_liste')

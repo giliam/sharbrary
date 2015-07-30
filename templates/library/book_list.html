@@ -1,7 +1,7 @@
 <h1>Books</h1>
 <ul>
     {% for book in object_list %}
-    <li>{{ book.title }}  :  
+    <li>{{ book }}  :  
     <a href="{% url "book_edit" book.id %}">edit</a>
     <a href="{% url "book_delete" book.id %}">delete</a>
     </li>
@@ -9,3 +9,4 @@
 </ul>
 
 <a href="{% url "book_new" %}">new</a>
+<a href="{% url "author_list" %}">authors</a>

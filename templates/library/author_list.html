@@ -1,11 +1,12 @@
-<h1>Books</h1>
+<h1>Authors</h1>
 <ul>
-    {% for book in object_list %}
-    <li>{{ book.title }}  :  
-    <a href="{% url "author_edit" book.id %}">edit</a>
-    <a href="{% url "author_delete" book.id %}">delete</a>
+    {% for author in object_list %}
+    <li>{{ author }}  :  
+    <a href="{% url "author_edit" author.id %}">edit</a>
+    <a href="{% url "author_delete" author.id %}">delete</a>
     </li>
     {% endfor %}
 </ul>
 
 <a href="{% url "author_new" %}">new</a>
+<a href="{% url "book_list" %}">books</a>

@@ -11,12 +11,12 @@ class BookList(ListView):
 class BookCreate(CreateView):
     model = Book
     success_url = reverse_lazy('book_list')
-    fields = ['title', 'publishing_date']
+    fields = ['title', 'publishing_date', 'author']
 
 class BookUpdate(UpdateView):
     model = Book
     success_url = reverse_lazy('book_list')
-    fields = ['title', 'publishing_date']
+    fields = ['title', 'publishing_date', 'author']
 
 class BookDelete(DeleteView):
     model = Book

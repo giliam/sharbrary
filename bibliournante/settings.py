@@ -58,6 +58,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'APP_DIRS': True,
+        'DIRS': parameters.TEMPLATES_DIRS if parameters.TEMPLATES_DIRS else ["C:/Users/Dev/Documents/divers/wamp/www/15reservation/GitPortable/Data/home/biblib/bibliournante/templates"],
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -68,9 +69,6 @@ TEMPLATES = [
         },
     },
 ]
-
-TEMPLATES_DIRS = parameters.TEMPLATES_DIRS if parameters.TEMPLATES_DIRS else ( "C:/Users/Dev/Documents/divers/wamp/www/15reservation/GitPortable/Data/home/biblib/bibliournante/templates" )
-
 
 WSGI_APPLICATION = 'bibliournante.wsgi.application'
 

@@ -57,7 +57,6 @@ ROOT_URLCONF = 'bibliournante.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ["C:/Users/Dev/Documents/divers/wamp/www/15reservation/GitPortable/Data/home/biblib/bibliournante/templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -69,6 +68,8 @@ TEMPLATES = [
         },
     },
 ]
+
+TEMPLATES_DIRS = parameters.TEMPLATES_DIRS if parameters.TEMPLATES_DIRS else ( "C:/Users/Dev/Documents/divers/wamp/www/15reservation/GitPortable/Data/home/biblib/bibliournante/templates" )
 
 
 WSGI_APPLICATION = 'bibliournante.wsgi.application'

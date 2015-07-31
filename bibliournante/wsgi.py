@@ -8,7 +8,10 @@ https://docs.djangoproject.com/en/1.6/howto/deployment/wsgi/
 """
 
 import os
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "django_project.settings")
+import sys
+sys.path.append('/usr/local/django')
+sys.path.append('/home/django/projet/bibliournante')
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "bibliournante.settings")
 
 from django.core.wsgi import get_wsgi_application
 application = get_wsgi_application()

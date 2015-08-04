@@ -58,4 +58,4 @@ target/
 
 db.sqlite3
 bibli/
-bibliournante/parameters.py
+sharbrary/parameters.py

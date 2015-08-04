@@ -1,0 +1,14 @@
+<h1>Themes</h1>
+<ul>
+    {% for theme in object_list %}
+    <li>{{ theme }}  :  
+    <a href="{% url "theme_edit" theme.id %}">edit</a>
+    <a href="{% url "theme_delete" theme.id %}">delete</a>
+    </li>
+    {% endfor %}
+</ul>
+
+<a href="{% url "theme_new" %}">new</a>
+<a href="{% url "editor_list" %}">editors</a>
+<a href="{% url "book_list" %}">books</a>
+<a href="{% url "author_list" %}">authors</a>

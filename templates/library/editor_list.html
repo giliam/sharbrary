@@ -1,0 +1,13 @@
+<h1>Editors</h1>
+<ul>
+    {% for editor in object_list %}
+    <li>{{ editor }}  :  
+    <a href="{% url "editor_edit" editor.id %}">edit</a>
+    <a href="{% url "editor_delete" editor.id %}">delete</a>
+    </li>
+    {% endfor %}
+</ul>
+
+<a href="{% url "editor_new" %}">new</a>
+<a href="{% url "book_list" %}">books</a>
+<a href="{% url "author_list" %}">authors</a>

@@ -22,15 +22,17 @@
         <td>{{ book.editor|default:"Unknown" }}</td>
         <td>{{ book.publishing_date|default:"Unknown" }}</td>
         <td>
-            <ul>
-            {% for theme in book.themes.all %}
-                <li>{{theme}}</li>
-            {% empty %}
-                Empty
-            {% endfor %}
-            </ul>
+            {% if book.themes|length > 0 %}
+                <ul>
+                {% for theme in book.themes.all %}
+                    <li>{{theme}}</li>
+                {% endfor %}
+                </ul>
+            {% else %}
+                <p>Empty</p>
+            {% endif %}
         </td>
-        <td>{{ book.summary|default:"" }}</td>
+        <td>{{ book.summary|default:"Not filled yet" }}</td>
         <td><a class="pure-button" href="{% url "book_edit" book.id %}">edit</a></td>
         <td><a class="pure-button" href="{% url "book_delete" book.id %}">delete</a></td>
         </tr>

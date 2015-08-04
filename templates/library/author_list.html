@@ -1,3 +1,5 @@
+{% extends "layout.html" %}
+{% block body %} 
 <h1>Authors</h1>
 <ul>
     {% for author in object_list %}
@@ -10,3 +12,4 @@
 
 <a href="{% url "author_new" %}">new</a>
 <a href="{% url "book_list" %}">books</a>
+{% endblock %}

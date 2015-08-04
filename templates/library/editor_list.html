@@ -1,3 +1,5 @@
+{% extends "layout.html" %}
+{% block body %} 
 <h1>Editors</h1>
 <ul>
     {% for editor in object_list %}
@@ -11,3 +13,4 @@
 <a href="{% url "editor_new" %}">new</a>
 <a href="{% url "book_list" %}">books</a>
 <a href="{% url "author_list" %}">authors</a>
+{% endblock %}

@@ -30,8 +30,8 @@ class Book(models.Model):
     publishing_date = models.DateTimeField('date published')
     adding_date = models.DateTimeField('date added to the library',auto_now_add=True)
     author = models.ForeignKey(Author)
-    themes = models.ForeignKey(Theme)
-    summary = models.TextField()
+    themes = models.ManyToManyField(Theme)
+    summary = models.TextField(null=True)
 
     def __unicode__(self):
         return self.title

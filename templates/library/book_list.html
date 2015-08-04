@@ -4,7 +4,12 @@
 <table class="pure-table pure-table-bordered">
     <thead>
         <tr>
-            <th>Book</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Editor</th>
+            <th>Published</th>
+            <th>Themes</th>
+            <th>Summary</th>
             <th colspan="2"></th>
         </tr>
     </thead>
@@ -12,7 +17,20 @@
     <tbody>
         {% for book in object_list %}
         <tr>
-        <td>{{ book }}</td>
+        <td>{{ book.title }}</td>
+        <td>{{ book.author|default:"Unknown" }}</td>
+        <td>{{ book.editor|default:"Unknown" }}</td>
+        <td>{{ book.publishing_date|default:"Unknown" }}</td>
+        <td>
+            <ul>
+            {% for theme in book.themes.all %}
+                <li>{{theme}}</li>
+            {% empty %}
+                Empty
+            {% endfor %}
+            </ul>
+        </td>
+        <td>{{ book.summary|default:"" }}</td>
         <td><a class="pure-button" href="{% url "book_edit" book.id %}">edit</a></td>
         <td><a class="pure-button" href="{% url "book_delete" book.id %}">delete</a></td>
         </tr>

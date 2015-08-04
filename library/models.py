@@ -34,7 +34,8 @@ class Book(models.Model):
     publishing_date = models.DateTimeField('date published',blank=True)
     added_date = models.DateTimeField('date added to the library',auto_now_add=True)
     updated_date = models.DateTimeField('date updated to the database',auto_now=True)
-    author = models.ForeignKey(Author,blank=True)
+    author = models.ForeignKey(Author,blank=True,null=True)
+    editor = models.ForeignKey(Editor,blank=True,null=True)
     themes = models.ManyToManyField(Theme,blank=True)
     summary = models.TextField(blank=True,default="")
 

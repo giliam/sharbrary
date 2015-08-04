@@ -1,14 +1,26 @@
 {% extends "layout.html" %}
 {% block body %} 
 <h1>Authors</h1>
-<ul>
-    {% for author in object_list %}
-    <li>{{ author }}  :  
-    <a href="{% url "author_edit" author.id %}">edit</a>
-    <a href="{% url "author_delete" author.id %}">delete</a>
-    </li>
-    {% endfor %}
-</ul>
+<table class="pure-table pure-table-bordered">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Life</th>
+            <th colspan="2"></th>
+        </tr>
+    </thead>
 
-<a href="{% url "author_new" %}">new</a>
+    <tbody>
+        {% for author in object_list %}
+        <tr>
+        <td>{{ author }}</td>
+        <td>{{ author.birthdate|default:"?" }} - {{ author.death_date|default:"?" }}</td>
+        <td><a class="pure-button" href="{% url "author_edit" author.id %}">edit</a></td>
+        <td><a class="pure-button" href="{% url "author_delete" author.id %}">delete</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<p><a class="pure-button" href="{% url "author_new" %}">new</a></p>
 {% endblock %}

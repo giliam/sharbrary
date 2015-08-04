@@ -1,14 +1,24 @@
 {% extends "layout.html" %}
 {% block body %} 
 <h1>Books</h1>
-<ul>
-    {% for book in object_list %}
-    <li>{{ book }}  :  
-    <a href="{% url "book_edit" book.id %}">edit</a>
-    <a href="{% url "book_delete" book.id %}">delete</a>
-    </li>
-    {% endfor %}
-</ul>
+<table class="pure-table pure-table-bordered">
+    <thead>
+        <tr>
+            <th>Book</th>
+            <th colspan="2"></th>
+        </tr>
+    </thead>
 
-<a href="{% url "book_new" %}">new</a>
+    <tbody>
+        {% for book in object_list %}
+        <tr>
+        <td>{{ book }}</td>
+        <td><a class="pure-button" href="{% url "book_edit" book.id %}">edit</a></td>
+        <td><a class="pure-button" href="{% url "book_delete" book.id %}">delete</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<p><a class="pure-button" href="{% url "book_new" %}">new</a></p>
 {% endblock %}

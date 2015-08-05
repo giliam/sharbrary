@@ -17,6 +17,9 @@ import parameters
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_PATH = os.path.realpath(os.path.dirname(__file__))
 
+USE_X_FORWARDED_HOST = True
+FORCE_SCRIPT_NAME = "/sharbrary"
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
@@ -105,8 +108,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = FORCE_SCRIPT_NAME + '/static/'
+STATIC_ROOT = BASE_DIR + '/static/'
+
 STATICFILES_DIRS = parameters.STATICFILES_DIRS if parameters.STATICFILES_DIRS else (
-    "static/css/",
-    "static/js/",
+    "static/",
 )

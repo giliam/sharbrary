@@ -4,8 +4,8 @@ from datetime import datetime
 class Author(models.Model):
     firstname = models.CharField(max_length=200)
     lastname = models.CharField(max_length=200)
-    birthdate = models.DateTimeField('birthdate',blank=True)
-    death_date = models.DateTimeField('date of death',blank=True)
+    birthdate = models.DateTimeField('birthdate',blank=True,null=True)
+    death_date = models.DateTimeField('date of death',blank=True,null=True)
     added_date = models.DateTimeField('date added to the database',auto_now_add=True)
     updated_date = models.DateTimeField('date updated to the database',auto_now=True)
 
@@ -31,10 +31,11 @@ class Theme(models.Model):
 
 class Book(models.Model):
     title = models.CharField(max_length=200)
-    publishing_date = models.DateTimeField('date published',blank=True)
+    publishing_date = models.DateTimeField('date published',blank=True,null=True)
     added_date = models.DateTimeField('date added to the library',auto_now_add=True)
     updated_date = models.DateTimeField('date updated to the database',auto_now=True)
-    author = models.ForeignKey(Author,blank=True)
+    author = models.ForeignKey(Author,blank=True,null=True)
+    editor = models.ForeignKey(Editor,blank=True,null=True)
     themes = models.ManyToManyField(Theme,blank=True)
     summary = models.TextField(blank=True,default="")
 

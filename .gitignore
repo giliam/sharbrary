@@ -58,4 +58,7 @@ target/
 
 bibli/
 sharbrary/parameters.py
+sharbrary/settings_local.py
 static/*
+
+.secret

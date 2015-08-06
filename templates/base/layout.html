@@ -24,11 +24,18 @@
             <div class="pure-menu">
                 <a class="pure-menu-heading" href="{% url "book_list" %}">SHARBRARY</a>
 
+                <a class="pure-menu-heading" href="{% url "book_list" %}">Library</a>
                 <ul class="pure-menu-list">
                     <li class="pure-menu-item"><a href="{% url "book_list" %}" class="pure-menu-link">Books</a></li>
                     <li class="pure-menu-item"><a href="{% url "author_list" %}" class="pure-menu-link">Authors</a></li>
                     <li class="pure-menu-item"><a href="{% url "editor_list" %}" class="pure-menu-link">Editors</a></li>
                     <li class="pure-menu-item"><a href="{% url "theme_list" %}" class="pure-menu-link">Themes</a></li>
+                </ul>
+
+                <a class="pure-menu-heading" href="{% url "lending_list" %}">Sharing</a>
+
+                <ul class="pure-menu-list">
+                    <li class="pure-menu-item"><a href="{% url "lending_list" %}" class="pure-menu-link">Lendings</a></li>
                 </ul>
             </div>
         </div>

@@ -1,21 +1,24 @@
 from django.shortcuts import render
 from sharing.models import Lending
+from django.views.generic import TemplateView,ListView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.core.urlresolvers import reverse_lazy
 
-class BookList(ListView):
-    model = Book
-    template_name="sharing/book_list.html"
+class LendingList(ListView):
+    model = Lending
+    template_name="sharing/lending_list.html"
 
-class BookCreate(CreateView):
-    model = Book
-    success_url = reverse_lazy('book_list')
-    fields = ['title', 'publishing_date', 'author', 'themes', 'summary']
+class LendingCreate(CreateView):
+    model = Lending
+    success_url = reverse_lazy('lending_list')
+    fields = ['book','borrower','status','beginning_date','end_date']
 
-class BookUpdate(UpdateView):
-    model = Book
-    success_url = reverse_lazy('book_list')
-    fields = ['title', 'publishing_date', 'author', 'themes', 'summary']
+class LendingUpdate(UpdateView):
+    model = Lending
+    success_url = reverse_lazy('lending_list')
+    fields = ['book','borrower','status','beginning_date','end_date']
 
-class BookDelete(DeleteView):
-    model = Book
-    template_name="sharing/book_confirm_delete.html"
-    success_url = reverse_lazy('book_list')
+class LendingDelete(DeleteView):
+    model = Lending
+    template_name="sharing/lending_confirm_delete.html"
+    success_url = reverse_lazy('lending_list')

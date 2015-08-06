@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from library.models import Book
 
 class Lending(models.Model):
-    borrower = models.ForeignKey(User)
+    borrower = models.ForeignKey(User,blank=True)
     book = models.ForeignKey(Book)
     status = models.BooleanField(default=False)
     beginning_date = models.DateTimeField('beginning date of the lending',blank=True,null=True)

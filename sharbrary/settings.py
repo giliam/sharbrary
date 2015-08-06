@@ -17,14 +17,14 @@ import parameters
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_PATH = os.path.realpath(os.path.dirname(__file__))
 
-USE_X_FORWARDED_HOST = True
-FORCE_SCRIPT_NAME = "/sharbrary"
+USE_X_FORWARDED_HOST = False
+FORCE_SCRIPT_NAME = ""
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '_g+5y7(blylm00$=!ns4-=1$_iz3rxuuy-n*qqf$x-14+*ht0u'
+SECRET_KEY = 'IsOverridenBySomeLocalSettingsValue'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -81,12 +81,12 @@ WSGI_APPLICATION = 'sharbrary.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
-DATABASES = parameters.DATABASES if parameters.DATABASES else {
+DATABASES = {
   'default': {
     'ENGINE': 'django.db.backends.mysql',
-    'NAME': 'python', 
-    'USER': 'python', 
-    'PASSWORD': '8uG7hYhGns5H6Ut5',
+    'NAME': 'SomeDatabaseName', 
+    'USER': 'SomeUserName', 
+    'PASSWORD': 'SomePassword',
     'HOST': 'localhost',
     'PORT': '',
   }
@@ -110,9 +110,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
-STATIC_URL = FORCE_SCRIPT_NAME + '/static/'
+STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR + '/static/'
 
 STATICFILES_DIRS = parameters.STATICFILES_DIRS if parameters.STATICFILES_DIRS else (
-    "static/",
+    "assets/",
 )
+
+from settings_local import *

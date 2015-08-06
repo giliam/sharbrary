@@ -43,7 +43,8 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django_wysiwyg',
     'tinymce',
-    'library'
+    'library',
+    'sharing'
 )
 
 MIDDLEWARE_CLASSES = (

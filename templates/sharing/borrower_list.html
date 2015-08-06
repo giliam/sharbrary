@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block body %} 
+<h1>Borrowers</h1>
+<table class="pure-table pure-table-bordered">
+    <thead>
+        <tr>
+            <th>Borrower</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for borrower in object_list %}
+        <tr>
+        <td>{{ borrower }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -3,6 +3,7 @@ from sharing.models import Lending
 from django.views.generic import TemplateView,ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.core.urlresolvers import reverse_lazy
+from django.contrib.auth.models import User
 
 class LendingList(ListView):
     model = Lending
@@ -22,3 +23,7 @@ class LendingDelete(DeleteView):
     model = Lending
     template_name="sharing/lending_confirm_delete.html"
     success_url = reverse_lazy('lending_list')
+
+class BorrowerList(ListView):
+    model = User
+    template_name="sharing/borrower_list.html"

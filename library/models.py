@@ -1,7 +1,7 @@
 from django.db import models
 from datetime import datetime    
 from django.contrib.auth.models import User
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext_lazy as _
 
 class Author(models.Model):
     firstname = models.CharField(verbose_name=_('firstname'),max_length=200)
@@ -15,8 +15,8 @@ class Author(models.Model):
         return self.firstname + " " + self.lastname.upper()
 
     class Meta:
-        verbose_name = _("Author")
-        verbose_name_plural = _("Authors")
+        verbose_name = _("author")
+        verbose_name_plural = _("authors")
 
 class Editor(models.Model):
     name = models.CharField(verbose_name=_('name'),max_length=200)    
@@ -24,11 +24,11 @@ class Editor(models.Model):
     updated_date = models.DateTimeField(_('date updated to the database'),auto_now=True)
 
     def __unicode__(self):
-        return _("Editor: ") + self.name
+        return _("editor") + " : " + self.name
 
     class Meta:
-        verbose_name = _("Editor")
-        verbose_name_plural = _("Editors")
+        verbose_name = _("editor")
+        verbose_name_plural = _("editors")
 
 class Theme(models.Model):
     name = models.CharField(verbose_name=_('name'),max_length=200)
@@ -37,11 +37,11 @@ class Theme(models.Model):
     updated_date = models.DateTimeField(_('date updated to the database'),auto_now=True)
 
     def __unicode__(self):
-        return _("Theme: ") + self.name
+        return _("theme") + " : " + self.name
 
     class Meta:
-        verbose_name = _("Theme")
-        verbose_name_plural = _("Themes")
+        verbose_name = _("theme")
+        verbose_name_plural = _("themes")
 
 class Book(models.Model):
     title = models.CharField(verbose_name=_('title'),max_length=200)
@@ -58,5 +58,5 @@ class Book(models.Model):
         return self.title
 
     class Meta:
-        verbose_name = _("Book")
-        verbose_name_plural = _("Books")
+        verbose_name = _("book")
+        verbose_name_plural = _("books")

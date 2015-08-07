@@ -1,16 +1,16 @@
 {% extends "layout.html" %}
 {% block body %} 
-<h1>{% trans "Books" %}</h1>
+<h1>{% trans "books" %}</h1>
 <table class="pure-table pure-table-bordered">
     <thead>
         <tr>
-            <th>{% trans "Title" %}</th>
-            <th>{% trans "Author" %}</th>
-            <th>{% trans "Editor" %}</th>
-            <th>{% trans "Published" %}</th>
-            <th>{% trans "Themes" %}</th>
-            <th>{% trans "Summary" %}</th>
-            <th>{% trans "Owned by" %}</th>
+            <th>{% trans "title" %}</th>
+            <th>{% trans "author" %}</th>
+            <th>{% trans "editor" %}</th>
+            <th>{% trans "published" %}</th>
+            <th>{% trans "themes" %}</th>
+            <th>{% trans "summary" %}</th>
+            <th>{% trans "owned by" %}</th>
             <th colspan="2"></th>
         </tr>
     </thead>
@@ -19,9 +19,9 @@
         {% for book in object_list %}
         <tr>
         <td>{{ book.title }}</td>
-        <td>{{ book.author|default:_("Unknown") }}</td>
-        <td>{{ book.editor|default:_("Unknown") }}</td>
-        <td>{{ book.publishing_date|default:_("Unknown") }}</td>
+        <td>{{ book.author|default:_("unknown") }}</td>
+        <td>{{ book.editor|default:_("unknown") }}</td>
+        <td>{{ book.publishing_date|default:_("unknown") }}</td>
         <td>
             {% if book.themes|length > 0 %}
                 <ul>
@@ -30,11 +30,11 @@
                 {% endfor %}
                 </ul>
             {% else %}
-                <p>{% trans "Empty" %}</p>
+                <p>{% trans "empty" %}</p>
             {% endif %}
         </td>
-        <td>{{ book.summary|default:_("Not filled yet") }}</td>
-        <td>{{ book.owner|default:_("Unknown") }}</td>
+        <td>{{ book.summary|default:_("not filled yet") }}</td>
+        <td>{{ book.owner|default:_("unknown") }}</td>
         <td><a class="pure-button" href="{% url "book_edit" book.id %}">{% trans "edit" %}</a></td>
         <td><a class="pure-button" href="{% url "book_delete" book.id %}">{% trans "delete" %}</a></td>
         </tr>

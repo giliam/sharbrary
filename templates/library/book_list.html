@@ -4,7 +4,7 @@
 <table class="pure-table pure-table-bordered">
     <thead>
         <tr>
-            <th>{% trans "title"|capfirst %}</th>
+            <th><a href="?sort_by=title&order=asc" class="fa fa-sort-asc"></a> {% trans "title"|capfirst %} <a href="?sort_by=title&order=desc" class="fa fa-sort-desc"></a></th>
             <th>{% trans "author"|capfirst %}</th>
             <th>{% trans "editor"|capfirst %}</th>
             <th>{% trans "published"|capfirst %}</th>

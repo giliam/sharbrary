@@ -3,10 +3,19 @@ from django.views.generic import TemplateView,ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.core.urlresolvers import reverse_lazy
 from library.models import Book, Author, Editor, Theme
+from utils.models.sortmixin import SortMixin
 
-class BookList(ListView):
+class BookList(SortMixin):
+    default_sort_params = ('title', 'asc')    
     model = Book
     template_name="library/book_list.html"
+    
+    def sort_queryset(self, qs, sort_by, order):
+        if sort_by == 'title':
+            qs = qs.order_by('title')
+        if order == 'desc':
+            qs = qs.reverse()
+        return qs
 
 class BookCreate(CreateView):
     model = Book

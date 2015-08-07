@@ -19,9 +19,9 @@
         {% for book in object_list %}
         <tr>
         <td>{{ book.title }}</td>
-        <td>{{ book.author|default:"Unknown" }}</td>
-        <td>{{ book.editor|default:"Unknown" }}</td>
-        <td>{{ book.publishing_date|default:"Unknown" }}</td>
+        <td>{{ book.author|default:_("Unknown") }}</td>
+        <td>{{ book.editor|default:_("Unknown") }}</td>
+        <td>{{ book.publishing_date|default:_("Unknown") }}</td>
         <td>
             {% if book.themes|length > 0 %}
                 <ul>
@@ -33,8 +33,8 @@
                 <p>{% trans "Empty" %}</p>
             {% endif %}
         </td>
-        <td>{{ book.summary|default:"Not filled yet" }}</td>
-        <td>{{ book.owner|default:"Unknown" }}</td>
+        <td>{{ book.summary|default:_("Not filled yet") }}</td>
+        <td>{{ book.owner|default:_("Unknown") }}</td>
         <td><a class="pure-button" href="{% url "book_edit" book.id %}">{% trans "edit" %}</a></td>
         <td><a class="pure-button" href="{% url "book_delete" book.id %}">{% trans "delete" %}</a></td>
         </tr>

@@ -4,8 +4,21 @@
 <table class="pure-table pure-table-bordered">
     <thead>
         <tr>
-            <th>{% trans "name"|capfirst %}</th>
-            <th>{% trans "life"|capfirst %}</th>
+            <th>
+                <a href="?sort_by=lastname&order=asc" class="fa fa-sort-asc"></a> 
+                {% trans "name"|capfirst %}
+                <a href="?sort_by=lastname&order=desc" class="fa fa-sort-desc"></a>
+            </th>
+            <th>
+                <a href="?sort_by=birthdate&order=asc" class="fa fa-sort-asc"></a>
+                {% trans "birthdate"|capfirst %}
+                <a href="?sort_by=birthdate&order=desc" class="fa fa-sort-desc"></a>
+            </th>
+            <th>
+                <a href="?sort_by=death_date&order=asc" class="fa fa-sort-asc"></a>
+                {% trans "date of death"|capfirst %}
+                <a href="?sort_by=death_date&order=desc" class="fa fa-sort-desc"></a>
+            </th>
             <th colspan="2"></th>
         </tr>
     </thead>
@@ -14,7 +27,8 @@
         {% for author in object_list %}
         <tr>
         <td>{{ author }}</td>
-        <td>{{ author.birthdate|default:"?" }} - {{ author.death_date|default:"?" }}</td>
+        <td>{{ author.birthdate|default:"?" }}</td>
+        <td>{{ author.death_date|default:"?" }}</td>
         <td><a class="pure-button" href="{% url "author_edit" author.id %}">{% trans "edit"|capfirst %}</a></td>
         <td><a class="pure-button" href="{% url "author_delete" author.id %}">{% trans "delete"|capfirst %}</a></td>
         </tr>

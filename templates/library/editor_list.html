@@ -4,7 +4,11 @@
 <table class="pure-table pure-table-bordered">
     <thead>
         <tr>
-            <th>{% trans "editor"|capfirst %}</th>
+            <th>
+                <a href="?sort_by=name&order=asc" class="fa fa-sort-asc"></a> 
+                {% trans "editor"|capfirst %}
+                <a href="?sort_by=name&order=desc" class="fa fa-sort-desc"></a>
+            </th>
             <th colspan="2"></th>
         </tr>
     </thead>

@@ -26,7 +26,9 @@ class BookDelete(DeleteView):
     template_name="library/book_confirm_delete.html"
     success_url = reverse_lazy('book_list')
 
-class AuthorList(ListView):
+class AuthorList(SortMixin):
+    default_sort_params = ('lastname', 'asc')
+    allowed_sort_params = ['lastname', 'birthdate', 'death_date']
     model = Author
     template_name="library/author_list.html"
 
@@ -45,7 +47,9 @@ class AuthorDelete(DeleteView):
     template_name="library/author_confirm_delete.html"
     success_url = reverse_lazy('author_list')
 
-class EditorList(ListView):
+class EditorList(SortMixin):
+    default_sort_params = ('name', 'asc')
+    allowed_sort_params = ['name']
     model = Editor
     template_name="library/editor_list.html"
 
@@ -64,7 +68,9 @@ class EditorDelete(DeleteView):
     template_name="library/editor_confirm_delete.html"
     success_url = reverse_lazy('editor_list')
 
-class ThemeList(ListView):
+class ThemeList(SortMixin):
+    default_sort_params = ('name', 'asc')
+    allowed_sort_params = ['name','period']
     model = Theme
     template_name="library/theme_list.html"
 

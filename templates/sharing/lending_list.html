@@ -7,7 +7,7 @@
             <th>Book</th>
             <th>Borrower</th>
             <th>Dates</th>
-            <th colspan="2"></th>
+            <th colspan="3"></th>
         </tr>
     </thead>
 
@@ -17,6 +17,7 @@
         <td>{{ lending.book }}</td>
         <td>{{ lending.borrower }}</td>
         <td>{{ lending.beginning_date|default:"?" }} - {{ lending.end_date|default:"?" }}</td>
+        <td><a class="pure-button pure-button-primary" href="{% url "lending_end" lending.id %}">give back</a></td>
         <td><a class="pure-button" href="{% url "lending_edit" lending.id %}">edit</a></td>
         <td><a class="pure-button" href="{% url "lending_delete" lending.id %}">delete</a></td>
         </tr>

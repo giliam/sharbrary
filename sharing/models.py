@@ -12,4 +12,4 @@ class Lending(models.Model):
     updated_date = models.DateTimeField('date updated to the database',auto_now=True)
 
     def __unicode__(self):
-        return self.borrower + " borrowed " + self.book
+        return unicode(self.borrower) + u" borrowed " + unicode(self.book)

@@ -14,6 +14,8 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 import os
 import parameters
 
+from django.template.base import add_to_builtins
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_PATH = os.path.realpath(os.path.dirname(__file__))
 
@@ -99,7 +101,7 @@ DATABASES = {
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
-LANGUAGE_CODE = 'en-gb'
+LANGUAGE_CODE = 'fr-fr'
 
 TIME_ZONE = 'UTC'
 
@@ -130,4 +132,9 @@ STATICFILES_DIRS = parameters.STATICFILES_DIRS if parameters.STATICFILES_DIRS el
     "assets/",
 )
 
+# Adds auto loading of staticfiles and i18n tags.
+add_to_builtins('django.templatetags.i18n')
+add_to_builtins('django.contrib.staticfiles.templatetags.staticfiles')
+
+#Loads local settings that rewrite the settings SECRET_KEY and DATABASES.
 from settings_local import *

@@ -5,6 +5,7 @@ from django.core.urlresolvers import reverse_lazy
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
+from django.contrib import messages
 
 from sharing.models import Lending
 from sharing.forms import LendingForm
@@ -37,6 +38,7 @@ def end_lending(request, lending_id):
         form = LendingForm(request.POST,instance=lending)
         if form.is_valid():
             form.save()
+            messages.add_message(request, messages.SUCCESS, 'The lending has been updated and the new end date is now %s.' % lending.end_date)
             return redirect('lending_list')
     else:
         form = LendingForm(instance=lending)

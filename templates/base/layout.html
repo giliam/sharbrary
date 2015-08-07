@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="//yui.yahooapis.com/pure/0.6.0/pure-min.css">
     <!--[if gt IE 8]><!-->
          <link href="{% static 'css/side-menu.css' %}" rel="stylesheet">
+         <link href="{% static 'css/errors.css' %}" rel="stylesheet">
     <!--<![endif]-->
     <!--[if lt IE 9]>
         <script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.js"></script>
@@ -49,6 +50,13 @@
             </div>
 
             <div class="content">
+                {% if messages %}
+                    <div class="messages">
+                        {% for message in messages %}
+                        <div{% if message.tags %} class="msg_{{ message.tags }}"{% endif %}>{{ message }}</div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
                 {% block body %} 
                 <h2 class="content-subhead">How to use this layout</h2>
                 <p>

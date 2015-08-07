@@ -1,10 +1,10 @@
 {% extends "layout.html" %}
 {% block body %} 
-<h1>Editors</h1>
+<h1>{% trans "Editors" %}</h1>
 <table class="pure-table pure-table-bordered">
     <thead>
         <tr>
-            <th>Editor</th>
+            <th>{% trans "Editor" %}</th>
             <th colspan="2"></th>
         </tr>
     </thead>
@@ -13,12 +13,12 @@
         {% for editor in object_list %}
         <tr>
         <td>{{ editor }}</td>        
-        <td><a class="pure-button" href="{% url "editor_edit" editor.id %}">edit</a></td>
-        <td><a class="pure-button" href="{% url "editor_delete" editor.id %}">delete</a></td>
+        <td><a class="pure-button" href="{% url "editor_edit" editor.id %}">{% trans "edit" %}</a></td>
+        <td><a class="pure-button" href="{% url "editor_delete" editor.id %}">{% trans "delete" %}</a></td>
         </tr>
         {% endfor %}
     </tbody>
 </table>
 
-<p><a class="pure-button" href="{% url "editor_new" %}">new</a></p>
+<p><a class="pure-button" href="{% url "editor_new" %}">{% trans "new" %}</a></p>
 {% endblock %}

@@ -1,11 +1,11 @@
 {% extends "layout.html" %}
 {% block body %} 
-<h1>Themes</h1>
+<h1>{% trans "Themes" %}</h1>
 <table class="pure-table pure-table-bordered">
     <thead>
         <tr>
-            <th>Name</th>
-            <th>Period</th>
+            <th>{% trans "Name" %}</th>
+            <th>{% trans "Period" %}</th>
             <th colspan="2"></th>
         </tr>
     </thead>
@@ -15,12 +15,12 @@
         <tr>
         <td><strong>{{ theme.name }}</strong></td>
         <td>{{ theme.period }}</td>
-        <td><a class="pure-button" href="{% url "theme_edit" theme.id %}">edit</a></td>
-        <td><a class="pure-button" href="{% url "theme_delete" theme.id %}">delete</a></td>
+        <td><a class="pure-button" href="{% url "theme_edit" theme.id %}">{% trans "edit" %}</a></td>
+        <td><a class="pure-button" href="{% url "theme_delete" theme.id %}">{% trans "delete" %}</a></td>
         </tr>
         {% endfor %}
     </tbody>
 </table>
 
-<p><a class="pure-button" href="{% url "theme_new" %}">new</a></p>
+<p><a class="pure-button" href="{% url "theme_new" %}">{% trans "new" %}</a></p>
 {% endblock %}

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-07 13:48+0200\n"
+"POT-Creation-Date: 2015-08-07 14:25+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,11 +33,12 @@ msgid "date of death"
 msgstr "date de mort"
 
 #: .\library\models.py:11 .\library\models.py:23 .\library\models.py:36
+#: .\sharing\models.py:12
 msgid "date added to the database"
 msgstr "date d'ajout à la base de données"
 
 #: .\library\models.py:12 .\library\models.py:24 .\library\models.py:37
-#: .\library\models.py:50
+#: .\library\models.py:50 .\sharing\models.py:13
 msgid "date updated to the database"
 msgstr "date de mise-à-jour dans la base de données"
 
@@ -101,7 +102,8 @@ msgstr "propriétaire"
 msgid "summary"
 msgstr "résumé"
 
-#: .\library\models.py:61 .\templates\sharing\lending_list.html:7
+#: .\library\models.py:61 .\sharing\models.py:8
+#: .\templates\sharing\lending_list.html:7
 msgid "book"
 msgstr "livre"
 
@@ -117,6 +119,27 @@ msgstr "Français"
 #: .\sharbrary\settings.py:119
 msgid "English"
 msgstr "Anglais"
+
+#: .\sharing\models.py:7 .\templates\sharing\borrower_list.html:7
+#: .\templates\sharing\lending_list.html:8
+msgid "borrower"
+msgstr "emprunteurs"
+
+#: .\sharing\models.py:9
+msgid "status"
+msgstr "status"
+
+#: .\sharing\models.py:9
+msgid "is it lent now ?"
+msgstr "en prêt actuellement ?"
+
+#: .\sharing\models.py:10
+msgid "beginning date of the lending"
+msgstr "date de début du prêt"
+
+#: .\sharing\models.py:11
+msgid "end date of the lending"
+msgstr "date de fin du prêt"
 
 #: .\templates\base\lang_change.html:3 .\templates\base\layout.html:27
 msgid "change the language"
@@ -199,11 +222,6 @@ msgstr "vide"
 #: .\templates\library\book_list.html:36
 msgid "not filled yet"
 msgstr "pas encore rempli"
-
-#: .\templates\sharing\borrower_list.html:7
-#: .\templates\sharing\lending_list.html:8
-msgid "borrower"
-msgstr "emprunteurs"
 
 #: .\templates\sharing\lending_list.html:9
 msgid "dates"

@@ -10,7 +10,12 @@ from django.contrib import messages
 from sharing.models import Lending
 from sharing.forms import LendingForm
 
-class LendingList(ListView):
+from utils.models.sortmixin import SortMixin
+
+
+class LendingList(SortMixin):
+    default_sort_params = ('book__title', 'asc')
+    allowed_sort_params = ['book__title', 'borrower__username','status','beginning_date','end_date']
     model = Lending
     template_name="sharing/lending_list.html"
 
@@ -44,7 +49,9 @@ def end_lending(request, lending_id):
         form = LendingForm(instance=lending)
     return render(request, 'sharing/lending_form.html', {'form':form})
 
-class BorrowerList(ListView):
+class BorrowerList(SortMixin):
+    default_sort_params = ('username', 'asc')
+    allowed_sort_params = ['username']
     model = User
     template_name="sharing/borrower_list.html"
 

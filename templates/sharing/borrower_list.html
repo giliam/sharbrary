@@ -4,7 +4,11 @@
 <table class="pure-table pure-table-bordered">
     <thead>
         <tr>
-            <th>{% trans "borrower"|capfirst %}</th>
+            <th>
+                <a href="?sort_by=username&order=asc" class="fa fa-sort-asc"></a> 
+                {% trans "borrower"|capfirst %}
+                <a href="?sort_by=username&order=desc" class="fa fa-sort-desc"></a>
+            </th>
         </tr>
     </thead>
 

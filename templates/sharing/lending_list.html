@@ -4,9 +4,26 @@
 <table class="pure-table pure-table-bordered">
     <thead>
         <tr>
-            <th>{% trans "book"|capfirst %}</th>
-            <th>{% trans "borrower"|capfirst %}</th>
-            <th>{% trans "dates"|capfirst %}</th>
+            <th>
+            <a href="?sort_by=book__title&order=asc" class="fa fa-sort-asc"></a> 
+                {% trans "book"|capfirst %}
+<a href="?sort_by=book__title&order=desc" class="fa fa-sort-desc"></a>
+            </th>
+            <th>
+<a href="?sort_by=borrower__username&order=asc" class="fa fa-sort-asc"></a> 
+                {% trans "borrower"|capfirst %}
+<a href="?sort_by=borrower__username&order=desc" class="fa fa-sort-desc"></a>
+            </th>
+            <th>
+                <a href="?sort_by=beginning_date&order=asc" class="fa fa-sort-asc"></a> 
+                {% trans "dates"|capfirst %}
+                <a href="?sort_by=beginning_date&order=desc" class="fa fa-sort-desc"></a>
+            </th>
+            <th>
+                <a href="?sort_by=end_date&order=asc" class="fa fa-sort-asc"></a> 
+                {% trans "dates"|capfirst %}
+                <a href="?sort_by=end_date&order=desc" class="fa fa-sort-desc"></a>
+            </th>
             <th colspan="3"></th>
         </tr>
     </thead>
@@ -16,7 +33,9 @@
         <tr>
         <td>{{ lending.book }}</td>
         <td>{{ lending.borrower }}</td>
-        <td>{{ lending.beginning_date|default:"?" }} - {{ lending.end_date|default:"?" }}</td>
+        <td>{{ lending.beginning_date|default:"?" }}
+        </td>
+        <td>{{ lending.end_date|default:"?" }}</td>
         <td><a class="pure-button pure-button-primary" href="{% url "lending_end" lending.id %}">{% trans "give back"|capfirst %}</a></td>
         <td><a class="pure-button" href="{% url "lending_edit" lending.id %}">{% trans "edit"|capfirst %}</a></td>
         <td><a class="pure-button" href="{% url "lending_delete" lending.id %}">{% trans "delete"|capfirst %}</a></td>

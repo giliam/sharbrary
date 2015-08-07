@@ -1,5 +1,6 @@
 from django.db import models
 from datetime import datetime    
+from django.contrib.auth.models import User
 
 class Author(models.Model):
     firstname = models.CharField(max_length=200)
@@ -34,6 +35,7 @@ class Book(models.Model):
     publishing_date = models.DateTimeField('date published',blank=True,null=True)
     added_date = models.DateTimeField('date added to the library',auto_now_add=True)
     updated_date = models.DateTimeField('date updated to the database',auto_now=True)
+    owner = models.ForeignKey(User,blank=True,null=True)
     author = models.ForeignKey(Author,blank=True,null=True)
     editor = models.ForeignKey(Editor,blank=True,null=True)
     themes = models.ManyToManyField(Theme,blank=True)

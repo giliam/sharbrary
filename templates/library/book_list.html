@@ -10,6 +10,7 @@
             <th>Published</th>
             <th>Themes</th>
             <th>Summary</th>
+            <th>Owned by</th>
             <th colspan="2"></th>
         </tr>
     </thead>
@@ -33,6 +34,7 @@
             {% endif %}
         </td>
         <td>{{ book.summary|default:"Not filled yet" }}</td>
+        <td>{{ book.owner|default:"Unknown" }}</td>
         <td><a class="pure-button" href="{% url "book_edit" book.id %}">edit</a></td>
         <td><a class="pure-button" href="{% url "book_delete" book.id %}">delete</a></td>
         </tr>

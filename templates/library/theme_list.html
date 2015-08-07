@@ -1,11 +1,11 @@
 {% extends "layout.html" %}
 {% block body %} 
-<h1>{% trans "themes" %}</h1>
+<h1>{% trans "themes"|capfirst %}</h1>
 <table class="pure-table pure-table-bordered">
     <thead>
         <tr>
-            <th>{% trans "name" %}</th>
-            <th>{% trans "period" %}</th>
+            <th>{% trans "name"|capfirst %}</th>
+            <th>{% trans "period"|capfirst %}</th>
             <th colspan="2"></th>
         </tr>
     </thead>
@@ -15,12 +15,12 @@
         <tr>
         <td><strong>{{ theme.name }}</strong></td>
         <td>{{ theme.period }}</td>
-        <td><a class="pure-button" href="{% url "theme_edit" theme.id %}">{% trans "edit" %}</a></td>
-        <td><a class="pure-button" href="{% url "theme_delete" theme.id %}">{% trans "delete" %}</a></td>
+        <td><a class="pure-button" href="{% url "theme_edit" theme.id %}">{% trans "edit"|capfirst %}</a></td>
+        <td><a class="pure-button" href="{% url "theme_delete" theme.id %}">{% trans "delete"|capfirst %}</a></td>
         </tr>
         {% endfor %}
     </tbody>
 </table>
 
-<p><a class="pure-button" href="{% url "theme_new" %}">{% trans "new" %}</a></p>
+<p><a class="pure-button" href="{% url "theme_new" %}">{% trans "new"|capfirst %}</a></p>
 {% endblock %}

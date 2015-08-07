@@ -1,12 +1,12 @@
 {% extends "layout.html" %}
 {% block body %} 
-<h1>{% trans "lendings" %}</h1>
+<h1>{% trans "lendings"|capfirst %}</h1>
 <table class="pure-table pure-table-bordered">
     <thead>
         <tr>
-            <th>{% trans "book" %}</th>
-            <th>{% trans "borrower" %}</th>
-            <th>{% trans "dates" %}</th>
+            <th>{% trans "book"|capfirst %}</th>
+            <th>{% trans "borrower"|capfirst %}</th>
+            <th>{% trans "dates"|capfirst %}</th>
             <th colspan="3"></th>
         </tr>
     </thead>
@@ -17,13 +17,13 @@
         <td>{{ lending.book }}</td>
         <td>{{ lending.borrower }}</td>
         <td>{{ lending.beginning_date|default:"?" }} - {{ lending.end_date|default:"?" }}</td>
-        <td><a class="pure-button pure-button-primary" href="{% url "lending_end" lending.id %}">{% trans "give back" %}</a></td>
-        <td><a class="pure-button" href="{% url "lending_edit" lending.id %}">{% trans "edit" %}</a></td>
-        <td><a class="pure-button" href="{% url "lending_delete" lending.id %}">{% trans "delete" %}</a></td>
+        <td><a class="pure-button pure-button-primary" href="{% url "lending_end" lending.id %}">{% trans "give back"|capfirst %}</a></td>
+        <td><a class="pure-button" href="{% url "lending_edit" lending.id %}">{% trans "edit"|capfirst %}</a></td>
+        <td><a class="pure-button" href="{% url "lending_delete" lending.id %}">{% trans "delete"|capfirst %}</a></td>
         </tr>
         {% endfor %}
     </tbody>
 </table>
 
-<p><a class="pure-button" href="{% url "lending_new" %}">{% trans "new" %}</a></p>
+<p><a class="pure-button" href="{% url "lending_new" %}">{% trans "new"|capfirst %}</a></p>
 {% endblock %}

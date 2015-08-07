@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-07 13:33+0200\n"
+"POT-Creation-Date: 2015-08-07 13:48+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -46,7 +46,8 @@ msgstr "date de mise-à-jour dans la base de données"
 msgid "author"
 msgstr "auteur"
 
-#: .\library\models.py:19 .\templates\library\author_list.html:3
+#: .\library\models.py:19 .\templates\base\layout.html:32
+#: .\templates\library\author_list.html:3
 msgid "authors"
 msgstr "auteurs"
 
@@ -61,7 +62,8 @@ msgstr "nom"
 msgid "editor"
 msgstr "editeur"
 
-#: .\library\models.py:31 .\templates\library\editor_list.html:3
+#: .\library\models.py:31 .\templates\base\layout.html:33
+#: .\templates\library\editor_list.html:3
 msgid "editors"
 msgstr "editeurs"
 
@@ -74,7 +76,8 @@ msgid "theme"
 msgstr "thème"
 
 #: .\library\models.py:44 .\library\models.py:54
-#: .\templates\library\book_list.html:11 .\templates\library\theme_list.html:3
+#: .\templates\base\layout.html:34 .\templates\library\book_list.html:11
+#: .\templates\library\theme_list.html:3
 msgid "themes"
 msgstr "thème"
 
@@ -102,21 +105,42 @@ msgstr "résumé"
 msgid "book"
 msgstr "livre"
 
-#: .\library\models.py:62 .\templates\library\book_list.html:3
+#: .\library\models.py:62 .\templates\base\layout.html:31
+#: .\templates\library\book_list.html:3
 msgid "books"
 msgstr "livres"
 
-#: .\sharbrary\settings.py:117
-msgid "French"
+#: .\sharbrary\settings.py:118
+msgid "Français"
 msgstr "Français"
 
-#: .\sharbrary\settings.py:118
+#: .\sharbrary\settings.py:119
 msgid "English"
 msgstr "Anglais"
 
-#: .\templates\base\lang_change.html:3 .\templates\base\layout.html:28
+#: .\templates\base\lang_change.html:3 .\templates\base\layout.html:27
 msgid "change the language"
 msgstr "changer la langue"
+
+#: .\templates\base\layout.html:29
+msgid "library"
+msgstr "bibliothèque"
+
+#: .\templates\base\layout.html:37
+msgid "sharing"
+msgstr "partage"
+
+#: .\templates\base\layout.html:40 .\templates\sharing\lending_list.html:3
+msgid "lendings"
+msgstr "prêteurs"
+
+#: .\templates\base\layout.html:41 .\templates\sharing\borrower_list.html:3
+msgid "borrowers"
+msgstr "emprunteur"
+
+#: .\templates\base\layout.html:43
+msgid "admin"
+msgstr "admin"
 
 #: .\templates\library\author_confirm_delete.html:4
 #: .\templates\library\book_confirm_delete.html:4
@@ -125,7 +149,7 @@ msgstr "changer la langue"
 #: .\templates\sharing\lending_confirm_delete.html:4
 #, python-format
 msgid "Are you sure you want to delete \"%(object)s\" ?"
-msgstr ""
+msgstr "Êtes-vous certain que vous souhaitez supprimer \"%(object)s\" ?"
 
 #: .\templates\library\author_list.html:8
 msgid "life"
@@ -176,18 +200,10 @@ msgstr "vide"
 msgid "not filled yet"
 msgstr "pas encore rempli"
 
-#: .\templates\sharing\borrower_list.html:3
-msgid "borrowers"
-msgstr "emprunteur"
-
 #: .\templates\sharing\borrower_list.html:7
 #: .\templates\sharing\lending_list.html:8
 msgid "borrower"
 msgstr "emprunteurs"
-
-#: .\templates\sharing\lending_list.html:3
-msgid "lendings"
-msgstr "prêteurs"
 
 #: .\templates\sharing\lending_list.html:9
 msgid "dates"
@@ -196,6 +212,9 @@ msgstr "dates"
 #: .\templates\sharing\lending_list.html:20
 msgid "give back"
 msgstr "rendre"
+
+#~ msgid "French"
+#~ msgstr "Français"
 
 #~| msgid "owner"
 #~ msgid "Borrower"

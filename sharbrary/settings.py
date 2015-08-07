@@ -1,3 +1,4 @@
+# coding:utf-8
 """
 Django settings for sharbrary project.
 
@@ -114,7 +115,7 @@ USE_TZ = True
 gettext = lambda x: x
 
 LANGUAGES = (
-   ('fr', gettext('French')),
+   ('fr', gettext('Français')),
    ('en', gettext('English')),
 )
 

@@ -1,16 +1,16 @@
 {% extends "layout.html" %}
 {% block body %} 
-<h1>{% trans "books" %}</h1>
+<h1>{% trans "books"|capfirst %}</h1>
 <table class="pure-table pure-table-bordered">
     <thead>
         <tr>
-            <th>{% trans "title" %}</th>
-            <th>{% trans "author" %}</th>
-            <th>{% trans "editor" %}</th>
-            <th>{% trans "published" %}</th>
-            <th>{% trans "themes" %}</th>
-            <th>{% trans "summary" %}</th>
-            <th>{% trans "owned by" %}</th>
+            <th>{% trans "title"|capfirst %}</th>
+            <th>{% trans "author"|capfirst %}</th>
+            <th>{% trans "editor"|capfirst %}</th>
+            <th>{% trans "published"|capfirst %}</th>
+            <th>{% trans "themes"|capfirst %}</th>
+            <th>{% trans "summary"|capfirst %}</th>
+            <th>{% trans "owned by"|capfirst %}</th>
             <th colspan="2"></th>
         </tr>
     </thead>
@@ -30,17 +30,17 @@
                 {% endfor %}
                 </ul>
             {% else %}
-                <p>{% trans "empty" %}</p>
+                <p>{% trans "empty"|capfirst %}</p>
             {% endif %}
         </td>
         <td>{{ book.summary|default:_("not filled yet") }}</td>
         <td>{{ book.owner|default:_("unknown") }}</td>
-        <td><a class="pure-button" href="{% url "book_edit" book.id %}">{% trans "edit" %}</a></td>
-        <td><a class="pure-button" href="{% url "book_delete" book.id %}">{% trans "delete" %}</a></td>
+        <td><a class="pure-button" href="{% url "book_edit" book.id %}">{% trans "edit"|capfirst %}</a></td>
+        <td><a class="pure-button" href="{% url "book_delete" book.id %}">{% trans "delete"|capfirst %}</a></td>
         </tr>
         {% endfor %}
     </tbody>
 </table>
 
-<p><a class="pure-button" href="{% url "book_new" %}">{% trans "new" %}</a></p>
+<p><a class="pure-button" href="{% url "book_new" %}">{% trans "new"|capfirst %}</a></p>
 {% endblock %}

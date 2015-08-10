@@ -21,6 +21,7 @@ class Profile(models.Model):
             ("profile_edit", "Edit a profile"),
             ("profile_delete", "Delete a profile"),
             ("profile_list", "Show the list of profiles"),
+            ("profile_show", "Show a profile"),
         )
         default_permissions = []
 

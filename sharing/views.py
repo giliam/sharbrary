@@ -12,10 +12,10 @@ from django.utils.translation import ugettext_lazy as _
 
 from sharing.models import Lending, Profile
 from sharing.forms import LendingForm, LogInForm
+from library.models import Book
 
 from utils.models.sortmixin import SortMixin
-
-from datetime import datetime
+from utils.models.conditions import actual_lending
 
 class LendingAllList(SortMixin):
     default_sort_params = ('book__title', 'asc')
@@ -25,7 +25,7 @@ class LendingAllList(SortMixin):
     paginate_by = 50
 
 class LendingOnGoingList(LendingAllList):
-    queryset = Lending.objects.filter(beginning_date__lt=datetime.now(),end_date__gt=datetime.now())
+    queryset = Lending.objects.filter(actual_lending())
 
 class LendingCreate(SuccessMessageMixin, CreateView):
     model = Lending
@@ -44,6 +44,7 @@ class LendingDelete(DeleteView):
     template_name="sharing/lending_confirm_delete.html"
     success_url = reverse_lazy('lending_list')
 
+@login_required()
 def lending_end(request, lending_id):
     """
     Finishes the lending and adds a finish date.
@@ -83,13 +84,25 @@ def log_in(request):
 
     return render(request, 'base/login.html', locals())
 
-@login_required(login_url='login')
+@login_required()
 def log_out(request):
     """
     Log out a member.
     """
     logout(request)
     return redirect(reverse('book_list'))
+
+@login_required()
+def profile_show(request, profile_id):
+    """
+    Show a member profile and his sharing history.
+    """
+    profile = get_object_or_404(Profile, pk=profile_id)
+    borrowings = Lending.objects.filter(actual_lending(),borrower__id=profile.user.id)
+    lendings = Lending.objects.filter(actual_lending(),book__owner__id=profile.user.id)
+    books = Book.objects.filter(owner__id=profile.user.id)
+    
+    return render(request, 'sharing/profile_show.html', locals())
 
 class BorrowerList(SortMixin):
     default_sort_params = ('user__username', 'asc')

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-10 13:49+0200\n"
+"POT-Creation-Date: 2015-08-10 14:58+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,12 +33,12 @@ msgid "date of death"
 msgstr "date de mort"
 
 #: .\library\models.py:11 .\library\models.py:30 .\library\models.py:50
-#: .\sharing\models.py:33
+#: .\sharing\models.py:34
 msgid "date added to the database"
 msgstr "date d'ajout à la base de données"
 
 #: .\library\models.py:12 .\library\models.py:31 .\library\models.py:51
-#: .\library\models.py:71 .\sharing\models.py:34
+#: .\library\models.py:71 .\sharing\models.py:35
 msgid "date updated to the database"
 msgstr "date de mise-à-jour dans la base de données"
 
@@ -103,13 +103,14 @@ msgstr "propriétaire"
 msgid "summary"
 msgstr "résumé"
 
-#: .\library\models.py:82 .\sharing\models.py:29
+#: .\library\models.py:82 .\sharing\models.py:30
 #: .\templates\sharing\lending_list.html:15
 msgid "book"
 msgstr "livre"
 
 #: .\library\models.py:83 .\templates\base\layout.html:33
 #: .\templates\library\book_list.html:3
+#: .\templates\sharing\profile_show.html:8
 msgid "books"
 msgstr "livres"
 
@@ -165,6 +166,7 @@ msgid "password"
 msgstr "mot de passe"
 
 #: .\sharing\models.py:9 .\templates\sharing\borrower_list.html:13
+#: .\templates\sharing\profile_show.html:5
 msgid "informations"
 msgstr "informations"
 
@@ -177,10 +179,11 @@ msgstr ""
 "pouvez utiliser jusqu'à 15 chiffres."
 
 #: .\sharing\models.py:11 .\templates\sharing\borrower_list.html:17
+#: .\templates\sharing\profile_show.html:7
 msgid "phone number"
 msgstr "numéro de téléphone"
 
-#: .\sharing\models.py:17
+#: .\sharing\models.py:17 .\templates\sharing\profile_show.html:3
 msgid "profile"
 msgstr "profil"
 
@@ -188,41 +191,42 @@ msgstr "profil"
 msgid "profiles"
 msgstr "profils"
 
-#: .\sharing\models.py:28 .\templates\sharing\borrower_list.html:9
+#: .\sharing\models.py:29 .\templates\sharing\borrower_list.html:9
 #: .\templates\sharing\lending_list.html:20
 msgid "borrower"
 msgstr "emprunteur"
 
-#: .\sharing\models.py:30
+#: .\sharing\models.py:31
 msgid "status"
 msgstr "status"
 
-#: .\sharing\models.py:30
+#: .\sharing\models.py:31
 msgid "is it lent now ?"
 msgstr "en prêt actuellement ?"
 
-#: .\sharing\models.py:31
+#: .\sharing\models.py:32
 msgid "beginning date of the lending"
 msgstr "date de début du prêt"
 
-#: .\sharing\models.py:32
+#: .\sharing\models.py:33
 msgid "end date of the lending"
 msgstr "date de fin du prêt"
 
-#: .\sharing\models.py:40
+#: .\sharing\models.py:41
 msgid "lending"
 msgstr "prêts"
 
-#: .\sharing\models.py:41 .\templates\base\layout.html:42
+#: .\sharing\models.py:42 .\templates\base\layout.html:42
+#: .\templates\sharing\profile_show.html:50
 msgid "lendings"
 msgstr "prêts"
 
-#: .\sharing\views.py:33
+#: .\sharing\views.py:35
 #, python-format
 msgid "The lending of %(book)s to %(borrower)s was created successfully"
 msgstr "Le prêt de %(book)s à %(borrower)s a bien été créé !"
 
-#: .\sharing\views.py:39
+#: .\sharing\views.py:41
 #, python-format
 msgid "The lending of %(book)s to %(borrower)s was updated successfully"
 msgstr "Le prêt de %(book)s à %(borrower)s a bien été mis-à-jour !"
@@ -295,6 +299,9 @@ msgstr "Êtes-vous certain que vous souhaitez supprimer \"%(object)s\" ?"
 #: .\templates\library\editor_list.html:26
 #: .\templates\library\theme_list.html:31
 #: .\templates\sharing\lending_list.html:56
+#: .\templates\sharing\profile_show.html:15
+#: .\templates\sharing\profile_show.html:39
+#: .\templates\sharing\profile_show.html:63
 msgid "edit"
 msgstr "modifier"
 
@@ -303,6 +310,9 @@ msgstr "modifier"
 #: .\templates\library\editor_list.html:29
 #: .\templates\library\theme_list.html:34
 #: .\templates\sharing\lending_list.html:59
+#: .\templates\sharing\profile_show.html:18
+#: .\templates\sharing\profile_show.html:42
+#: .\templates\sharing\profile_show.html:66
 msgid "delete"
 msgstr "supprimer"
 
@@ -324,6 +334,7 @@ msgstr "détenu par"
 
 #: .\templates\library\book_list.html:48 .\templates\library\book_list.html:49
 #: .\templates\library\book_list.html:50 .\templates\library\book_list.html:63
+#: .\templates\sharing\profile_show.html:11
 msgid "unknown"
 msgstr "inconnu"
 
@@ -351,8 +362,48 @@ msgid "dates"
 msgstr "dates"
 
 #: .\templates\sharing\lending_list.html:51
+#: .\templates\sharing\profile_show.html:36
+#: .\templates\sharing\profile_show.html:60
 msgid "give back"
 msgstr "rendre"
+
+#: .\templates\sharing\profile_show.html:23
+msgid "no book in this library !"
+msgstr "pas de livre dans cette bibliothèque"
+
+#: .\templates\sharing\profile_show.html:26
+msgid "borrowings"
+msgstr "emprunts"
+
+#: .\templates\sharing\profile_show.html:30
+#, python-format
+msgid ""
+"\n"
+"            <strong>%(book)s</strong> from <em>%(owner)s</em>\n"
+"        "
+msgstr ""
+"\n"
+"            <strong>%(book)s</strong> appartenant à <em>%(owner)s</em>\n"
+"        "
+
+#: .\templates\sharing\profile_show.html:47
+msgid "no borrowings ongoing !"
+msgstr "pas d'emprunts en cours !"
+
+#: .\templates\sharing\profile_show.html:54
+#, python-format
+msgid ""
+"\n"
+"            <strong>%(book)s</strong> to <em>%(borrower)s</em>\n"
+"        "
+msgstr ""
+"\n"
+"            <strong>%(book)s</strong> à <em>%(borrower)s</em>\n"
+"        "
+
+#: .\templates\sharing\profile_show.html:71
+msgid "no lendings ongoing !"
+msgstr "pas de prêts en cours !"
 
 #~ msgid "life"
 #~ msgstr "vie"

@@ -23,7 +23,7 @@
     <tbody>
         {% for borrower in object_list %}
         <tr>
-        <td>{{ borrower.user.username }}</td>
+        <td><a href="{% url "profile_show" borrower.id %}">{{ borrower.user.username }}</a></td>
         <td>{{ borrower.informations }}</td>
         <td>{{ borrower.phone_number }}</td>
         </tr>

@@ -17,6 +17,13 @@ class Author(models.Model):
     class Meta:
         verbose_name = _("author")
         verbose_name_plural = _("authors")
+        permissions = (
+            ("author_new", "Add an author"),
+            ("author_edit", "Edit an author"),
+            ("author_delete", "Delete an author"),
+            ("author_list", "Show the list of authors"),
+        )
+        default_permissions = []
 
 class Editor(models.Model):
     name = models.CharField(verbose_name=_('name'),max_length=200)    
@@ -29,6 +36,13 @@ class Editor(models.Model):
     class Meta:
         verbose_name = _("editor")
         verbose_name_plural = _("editors")
+        permissions = (
+            ("editor_new", "Add an editor"),
+            ("editor_edit", "Edit an editor"),
+            ("editor_delete", "Delete an editor"),
+            ("editor_list", "Show the list of editors"),
+        )
+        default_permissions = []
 
 class Theme(models.Model):
     name = models.CharField(verbose_name=_('name'),max_length=200)
@@ -42,6 +56,13 @@ class Theme(models.Model):
     class Meta:
         verbose_name = _("theme")
         verbose_name_plural = _("themes")
+        permissions = (
+            ("theme_new", "Add a theme"),
+            ("theme_edit", "Edit a theme"),
+            ("theme_delete", "Delete a theme"),
+            ("theme_list", "Show the list of themes"),
+        )
+        default_permissions = []
 
 class Book(models.Model):
     title = models.CharField(verbose_name=_('title'),max_length=200)
@@ -60,3 +81,10 @@ class Book(models.Model):
     class Meta:
         verbose_name = _("book")
         verbose_name_plural = _("books")
+        permissions = (
+            ("book_new", "Add a book"),
+            ("book_edit", "Edit a book"),
+            ("book_delete", "Delete a book"),
+            ("book_list", "Show the list of books"),
+        )
+        default_permissions = []

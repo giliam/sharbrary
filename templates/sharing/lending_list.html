@@ -2,10 +2,10 @@
 {% block body %} 
 {% if request.resolver_match.url_name == 'lending_list' %}
 <h1>{% trans "lendings ongoing"|capfirst %}</h1>
-    <p><a class="pure-button" href="{% url "lending_list_all" %}">{% trans "all lendings"|capfirst %}</a></p>
+    <p><a class="pure-button pure-button-primary" href="{% url "lending_list_all" %}">{% trans "all lendings"|capfirst %}</a></p>
 {% else %}
 <h1>{% trans "all lendings"|capfirst %}</h1>
-    <p><a class="pure-button" href="{% url "lending_list" %}">{% trans "lendings ongoing"|capfirst %}</a></p>
+    <p><a class="pure-button pure-button-primary" href="{% url "lending_list" %}">{% trans "lendings ongoing"|capfirst %}</a></p>
 {% endif %}
 <table class="pure-table pure-table-bordered">
     <thead>
@@ -53,10 +53,10 @@
         {% if perms.sharing.lending_edit or perms.sharing.lending_delete %}
         <td>
             {% if perms.sharing.lending_edit %}
-            <a class="pure-button" href="{% url "lending_edit" lending.id %}">{% trans "edit"|capfirst %}</a>
+            <a class="pure-button pure-button-secondary" href="{% url "lending_edit" lending.id %}">{% trans "edit"|capfirst %}</a>
             {% endif %}
             {% if perms.sharing.lending_delete %}
-            <a class="pure-button" href="{% url "lending_delete" lending.id %}">{% trans "delete"|capfirst %}</a>
+            <a class="pure-button pure-button-error" href="{% url "lending_delete" lending.id %}">{% trans "delete"|capfirst %}</a>
             {% endif %}
         </td>
         {% endif %}
@@ -66,6 +66,6 @@
 </table>
 {% include "base/pagination.html" %}
 {% if perms.sharing.lending_new %}
-<p><a class="pure-button" href="{% url "lending_new" %}">{% trans "new"|capfirst %}</a></p>
+<p><a class="pure-button pure-button-success" href="{% url "lending_new" %}">{% trans "new"|capfirst %}</a></p>
 {% endif %}
 {% endblock %}

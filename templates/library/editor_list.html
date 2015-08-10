@@ -23,10 +23,10 @@
         {% if perms.library.editor_edit or perms.library.editor_delete %}
         <td>
             {% if perms.library.editor_edit %}
-            <a class="pure-button" href="{% url "editor_edit" editor.id %}">{% trans "edit"|capfirst %}</a>
+            <a class="pure-button pure-button-secondary" href="{% url "editor_edit" editor.id %}">{% trans "edit"|capfirst %}</a>
             {% endif %}
             {% if perms.library.editor_delete %}
-            <a class="pure-button" href="{% url "editor_delete" editor.id %}">{% trans "delete"|capfirst %}</a>
+            <a class="pure-button pure-button-error" href="{% url "editor_delete" editor.id %}">{% trans "delete"|capfirst %}</a>
             {% endif %}
         </td>
         {% endif %}
@@ -36,7 +36,7 @@
 </table>
 {% include "base/pagination.html" %}
 {% if perms.library.editor_new %}
-    <p><a class="pure-button" href="{% url "editor_new" %}">{% trans "new"|capfirst %}</a></p>
+    <p><a class="pure-button pure-button-success" href="{% url "editor_new" %}">{% trans "new"|capfirst %}</a></p>
 {% endif %}
 
 {% endblock %}

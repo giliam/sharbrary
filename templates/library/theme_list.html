@@ -28,10 +28,10 @@
         {% if perms.library.theme_edit or perms.library.theme_delete %}
         <td>
             {% if perms.library.theme_edit %}
-                <a class="pure-button" href="{% url "theme_edit" theme.id %}">{% trans "edit"|capfirst %}</a>
+                <a class="pure-button pure-button-secondary" href="{% url "theme_edit" theme.id %}">{% trans "edit"|capfirst %}</a>
             {% endif %}
             {% if perms.library.theme_delete %}
-                <a class="pure-button" href="{% url "theme_delete" theme.id %}">{% trans "delete"|capfirst %}</a>
+                <a class="pure-button pure-button-error" href="{% url "theme_delete" theme.id %}">{% trans "delete"|capfirst %}</a>
             {% endif %}
         </td>
         {% endif %}
@@ -41,6 +41,6 @@
 </table>
 {% include "base/pagination.html" %}
 {% if perms.library.theme_new %}
-    <p><a class="pure-button" href="{% url "theme_new" %}">{% trans "new"|capfirst %}</a></p>
+    <p><a class="pure-button pure-button-success" href="{% url "theme_new" %}">{% trans "new"|capfirst %}</a></p>
 {% endif %}
 {% endblock %}

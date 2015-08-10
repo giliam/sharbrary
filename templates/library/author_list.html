@@ -34,10 +34,10 @@
         {% if perms.library.author_edit or perms.library.author_delete %}
         <td>
             {% if perms.library.author_edit %}
-            <a class="pure-button" href="{% url "author_edit" author.id %}">{% trans "edit"|capfirst %}</a>
+            <a class="pure-button pure-button-secondary" href="{% url "author_edit" author.id %}">{% trans "edit"|capfirst %}</a>
             {% endif %}
             {% if perms.library.author_delete %}
-            <a class="pure-button" href="{% url "author_delete" author.id %}">{% trans "delete"|capfirst %}</a>
+            <a class="pure-button pure-button-error" href="{% url "author_delete" author.id %}">{% trans "delete"|capfirst %}</a>
             {% endif %}
         </td>
         {% endif %}
@@ -47,6 +47,6 @@
 </table>
 {% include "base/pagination.html" %}
 {% if perms.library.author_new %}
-<p><a class="pure-button" href="{% url "author_new" %}">{% trans "new"|capfirst %}</a></p>
+<p><a class="pure-button pure-button-success" href="{% url "author_new" %}">{% trans "new"|capfirst %}</a></p>
 {% endif %}
 {% endblock %}

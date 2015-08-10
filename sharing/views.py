@@ -8,6 +8,7 @@ from django.shortcuts import get_object_or_404
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.utils.translation import ugettext_lazy as _
 
 from sharing.models import Lending, Profile
 from sharing.forms import LendingForm, LogInForm
@@ -25,13 +26,13 @@ class LendingList(SortMixin):
 class LendingCreate(SuccessMessageMixin, CreateView):
     model = Lending
     success_url = reverse_lazy('lending_list')
-    success_message = "The lending of %(book)s to %(borrower)s was created successfully"
+    success_message = _("The lending of %(book)s to %(borrower)s was created successfully")
     fields = ['book','borrower','status','beginning_date','end_date']
 
 class LendingUpdate(SuccessMessageMixin, UpdateView):
     model = Lending
     success_url = reverse_lazy('lending_list')
-    success_message = "The lending of %(book)s to %(borrower)s was updated successfully"
+    success_message = _("The lending of %(book)s to %(borrower)s was updated successfully")
     fields = ['book','borrower','status','beginning_date','end_date']
 
 class LendingDelete(DeleteView):

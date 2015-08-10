@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-10 12:08+0200\n"
+"POT-Creation-Date: 2015-08-10 12:16+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -113,6 +113,41 @@ msgstr "livre"
 msgid "books"
 msgstr "livres"
 
+#: .\library\views.py:22
+#, python-format
+msgid "%(title)s was created successfully"
+msgstr "%(title)s a bien été créé !"
+
+#: .\library\views.py:28
+#, python-format
+msgid "%(title)s was updated successfully"
+msgstr "%(title)s a bien été mis-à-jour !"
+
+#: .\library\views.py:46
+#, python-format
+msgid "The author %(firstname)s %(lastname)s was added successfully"
+msgstr "L'auteur %(firstname)s %(lastname)s a bien été créé !"
+
+#: .\library\views.py:52
+#, python-format
+msgid "%(firstname)s %(lastname)s was updated successfully"
+msgstr "L'auteur %(firstname)s %(lastname)s a bien été mis-à-jour !"
+
+#: .\library\views.py:70
+#, python-format
+msgid "%(name)s was created successfully"
+msgstr "%(name)s a bien été créé !"
+
+#: .\library\views.py:76 .\library\views.py:100
+#, python-format
+msgid "%(name)s was updated successfully"
+msgstr "%(name)s a bien été mis-à-jour !"
+
+#: .\library\views.py:94
+#, python-format
+msgid "%(name)s was added successfully"
+msgstr "%(name)s a bien été créé !"
+
 #: .\sharbrary\settings.py:123
 msgid "Français"
 msgstr "Français"
@@ -186,6 +221,16 @@ msgstr "prêts"
 #: .\templates\sharing\lending_list.html:3
 msgid "lendings"
 msgstr "prêts"
+
+#: .\sharing\views.py:29
+#, python-format
+msgid "The lending of %(book)s to %(borrower)s was created successfully"
+msgstr "Le prêt de %(book)s à %(borrower)s a bien été créé !"
+
+#: .\sharing\views.py:35
+#, python-format
+msgid "The lending of %(book)s to %(borrower)s was updated successfully"
+msgstr "Le prêt de %(book)s à %(borrower)s a bien été mis-à-jour !"
 
 #: .\templates\base\lang_change.html:3 .\templates\base\layout.html:29
 msgid "change the language"

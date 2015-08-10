@@ -45,6 +45,7 @@
         {% endfor %}
     </tbody>
 </table>
+{% include "base/pagination.html" %}
 {% if perms.library.author_new %}
 <p><a class="pure-button" href="{% url "author_new" %}">{% trans "new"|capfirst %}</a></p>
 {% endif %}

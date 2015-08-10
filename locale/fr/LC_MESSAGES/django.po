@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-10 11:11+0200\n"
+"POT-Creation-Date: 2015-08-10 11:38+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -246,7 +246,7 @@ msgid "delete"
 msgstr "supprimer"
 
 #: .\templates\library\author_list.html:49
-#: .\templates\library\book_list.html:79
+#: .\templates\library\book_list.html:95
 #: .\templates\library\editor_list.html:39
 #: .\templates\library\theme_list.html:44
 #: .\templates\sharing\lending_list.html:63
@@ -273,6 +273,19 @@ msgstr "vide"
 #: .\templates\library\book_list.html:62
 msgid "not filled yet"
 msgstr "pas encore rempli"
+
+#: .\templates\library\book_list.html:83
+msgid "previous"
+msgstr "précédente"
+
+#: .\templates\library\book_list.html:86
+#, python-format
+msgid "Page %(page_number)s of %(num_pages)s"
+msgstr "Page %(page_number)s sur %(num_pages)s"
+
+#: .\templates\library\book_list.html:89
+msgid "next"
+msgstr "suivante"
 
 #: .\templates\sharing\lending_list.html:19
 #: .\templates\sharing\lending_list.html:24

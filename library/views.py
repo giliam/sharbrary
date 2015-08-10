@@ -12,6 +12,7 @@ class BookList(SortMixin):
     allowed_sort_params = ['title', 'author__lastname', 'editor__name', 'published', 'owner__username']
     model = Book
     template_name="library/book_list.html"
+    paginate_by = 20
 
 class BookCreate(CreateView):
     model = Book
@@ -33,6 +34,7 @@ class AuthorList(SortMixin):
     allowed_sort_params = ['lastname', 'birthdate', 'death_date']
     model = Author
     template_name="library/author_list.html"
+    paginate_by = 20
 
 class AuthorCreate(CreateView):
     model = Author
@@ -54,6 +56,7 @@ class EditorList(SortMixin):
     allowed_sort_params = ['name']
     model = Editor
     template_name="library/editor_list.html"
+    paginate_by = 20
 
 class EditorCreate(CreateView):
     model = Editor
@@ -75,6 +78,7 @@ class ThemeList(SortMixin):
     allowed_sort_params = ['name','period']
     model = Theme
     template_name="library/theme_list.html"
+    paginate_by = 20
 
 class ThemeCreate(CreateView):
     model = Theme

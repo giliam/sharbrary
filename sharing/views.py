@@ -20,6 +20,7 @@ class LendingList(SortMixin):
     allowed_sort_params = ['book__title', 'borrower__username','status','beginning_date','end_date']
     model = Lending
     template_name="sharing/lending_list.html"
+    paginate_by = 50
 
 class LendingCreate(CreateView):
     model = Lending
@@ -88,5 +89,5 @@ class BorrowerList(SortMixin):
     allowed_sort_params = ['username']
     model = User
     template_name="sharing/borrower_list.html"
-
+    paginate_by = 20
 

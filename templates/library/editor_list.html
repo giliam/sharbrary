@@ -34,7 +34,7 @@
         {% endfor %}
     </tbody>
 </table>
-
+{% include "base/pagination.html" %}
 {% if perms.library.editor_new %}
     <p><a class="pure-button" href="{% url "editor_new" %}">{% trans "new"|capfirst %}</a></p>
 {% endif %}

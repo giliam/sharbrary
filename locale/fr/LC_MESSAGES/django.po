@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-10 10:18+0200\n"
+"POT-Creation-Date: 2015-08-10 11:11+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -32,17 +32,17 @@ msgstr "date de naissance"
 msgid "date of death"
 msgstr "date de mort"
 
-#: .\library\models.py:11 .\library\models.py:23 .\library\models.py:36
-#: .\sharing\models.py:26
+#: .\library\models.py:11 .\library\models.py:30 .\library\models.py:50
+#: .\sharing\models.py:33
 msgid "date added to the database"
 msgstr "date d'ajout à la base de données"
 
-#: .\library\models.py:12 .\library\models.py:24 .\library\models.py:37
-#: .\library\models.py:50 .\sharing\models.py:27
+#: .\library\models.py:12 .\library\models.py:31 .\library\models.py:51
+#: .\library\models.py:71 .\sharing\models.py:34
 msgid "date updated to the database"
 msgstr "date de mise-à-jour dans la base de données"
 
-#: .\library\models.py:18 .\library\models.py:52
+#: .\library\models.py:18 .\library\models.py:73
 #: .\templates\library\book_list.html:14
 msgid "author"
 msgstr "auteur"
@@ -52,72 +52,72 @@ msgstr "auteur"
 msgid "authors"
 msgstr "auteurs"
 
-#: .\library\models.py:22 .\library\models.py:34
+#: .\library\models.py:29 .\library\models.py:48
 #: .\templates\library\author_list.html:9
 #: .\templates\library\theme_list.html:9
 msgid "name"
 msgstr "nom"
 
-#: .\library\models.py:27 .\library\models.py:30 .\library\models.py:53
+#: .\library\models.py:34 .\library\models.py:37 .\library\models.py:74
 #: .\templates\library\book_list.html:19
 #: .\templates\library\editor_list.html:9
 msgid "editor"
 msgstr "editeur"
 
-#: .\library\models.py:31 .\templates\base\layout.html:35
+#: .\library\models.py:38 .\templates\base\layout.html:35
 #: .\templates\library\editor_list.html:3
 msgid "editors"
 msgstr "editeurs"
 
-#: .\library\models.py:35 .\templates\library\theme_list.html:14
+#: .\library\models.py:49 .\templates\library\theme_list.html:14
 msgid "period"
 msgstr "période"
 
-#: .\library\models.py:40 .\library\models.py:43
+#: .\library\models.py:54 .\library\models.py:57
 msgid "theme"
 msgstr "thème"
 
-#: .\library\models.py:44 .\library\models.py:54
+#: .\library\models.py:58 .\library\models.py:75
 #: .\templates\base\layout.html:36 .\templates\library\book_list.html:28
 #: .\templates\library\theme_list.html:3
 msgid "themes"
 msgstr "thème"
 
-#: .\library\models.py:47 .\templates\library\book_list.html:9
+#: .\library\models.py:68 .\templates\library\book_list.html:9
 msgid "title"
 msgstr "titre"
 
-#: .\library\models.py:48
+#: .\library\models.py:69
 msgid "date published"
 msgstr "date de publication"
 
-#: .\library\models.py:49
+#: .\library\models.py:70
 msgid "date added to the library"
 msgstr "date d'ajout à la bibliothèque"
 
-#: .\library\models.py:51
+#: .\library\models.py:72
 msgid "owner"
 msgstr "propriétaire"
 
-#: .\library\models.py:55 .\templates\library\book_list.html:31
+#: .\library\models.py:76 .\templates\library\book_list.html:31
 msgid "summary"
 msgstr "résumé"
 
-#: .\library\models.py:61 .\sharing\models.py:22
+#: .\library\models.py:82 .\sharing\models.py:29
 #: .\templates\sharing\lending_list.html:9
 msgid "book"
 msgstr "livre"
 
-#: .\library\models.py:62 .\templates\base\layout.html:33
+#: .\library\models.py:83 .\templates\base\layout.html:33
 #: .\templates\library\book_list.html:3
 msgid "books"
 msgstr "livres"
 
-#: .\sharbrary\settings.py:118
+#: .\sharbrary\settings.py:122
 msgid "Français"
 msgstr "Français"
 
-#: .\sharbrary\settings.py:119
+#: .\sharbrary\settings.py:123
 msgid "English"
 msgstr "Anglais"
 
@@ -147,34 +147,34 @@ msgstr "profil"
 msgid "profiles"
 msgstr "profils"
 
-#: .\sharing\models.py:21 .\templates\sharing\borrower_list.html:9
+#: .\sharing\models.py:28 .\templates\sharing\borrower_list.html:9
 #: .\templates\sharing\lending_list.html:14
 msgid "borrower"
 msgstr "emprunteurs"
 
-#: .\sharing\models.py:23
+#: .\sharing\models.py:30
 msgid "status"
 msgstr "status"
 
-#: .\sharing\models.py:23
+#: .\sharing\models.py:30
 msgid "is it lent now ?"
 msgstr "en prêt actuellement ?"
 
-#: .\sharing\models.py:24
+#: .\sharing\models.py:31
 msgid "beginning date of the lending"
 msgstr "date de début du prêt"
 
-#: .\sharing\models.py:25
+#: .\sharing\models.py:32
 msgid "end date of the lending"
 msgstr "date de fin du prêt"
 
-#: .\sharing\models.py:33
+#: .\sharing\models.py:40
 #, fuzzy
 #| msgid "lendings"
 msgid "lending"
 msgstr "prêts"
 
-#: .\sharing\models.py:34 .\templates\base\layout.html:42
+#: .\sharing\models.py:41 .\templates\base\layout.html:42
 #: .\templates\sharing\lending_list.html:3
 msgid "lendings"
 msgstr "prêts"
@@ -229,27 +229,27 @@ msgstr "connexion"
 msgid "Are you sure you want to delete \"%(object)s\" ?"
 msgstr "Êtes-vous certain que vous souhaitez supprimer \"%(object)s\" ?"
 
-#: .\templates\library\author_list.html:32
-#: .\templates\library\book_list.html:63
-#: .\templates\library\editor_list.html:20
-#: .\templates\library\theme_list.html:26
-#: .\templates\sharing\lending_list.html:40
+#: .\templates\library\author_list.html:37
+#: .\templates\library\book_list.html:67
+#: .\templates\library\editor_list.html:26
+#: .\templates\library\theme_list.html:31
+#: .\templates\sharing\lending_list.html:50
 msgid "edit"
 msgstr "modifier"
 
-#: .\templates\library\author_list.html:33
-#: .\templates\library\book_list.html:64
-#: .\templates\library\editor_list.html:21
-#: .\templates\library\theme_list.html:27
-#: .\templates\sharing\lending_list.html:41
+#: .\templates\library\author_list.html:40
+#: .\templates\library\book_list.html:70
+#: .\templates\library\editor_list.html:29
+#: .\templates\library\theme_list.html:34
+#: .\templates\sharing\lending_list.html:53
 msgid "delete"
 msgstr "supprimer"
 
-#: .\templates\library\author_list.html:39
-#: .\templates\library\book_list.html:71
-#: .\templates\library\editor_list.html:27
-#: .\templates\library\theme_list.html:33
-#: .\templates\sharing\lending_list.html:47
+#: .\templates\library\author_list.html:49
+#: .\templates\library\book_list.html:79
+#: .\templates\library\editor_list.html:39
+#: .\templates\library\theme_list.html:44
+#: .\templates\sharing\lending_list.html:63
 msgid "new"
 msgstr "ajouter"
 
@@ -261,16 +261,16 @@ msgstr "publié"
 msgid "owned by"
 msgstr "détenu par"
 
-#: .\templates\library\book_list.html:46 .\templates\library\book_list.html:47
-#: .\templates\library\book_list.html:48 .\templates\library\book_list.html:61
+#: .\templates\library\book_list.html:48 .\templates\library\book_list.html:49
+#: .\templates\library\book_list.html:50 .\templates\library\book_list.html:63
 msgid "unknown"
 msgstr "inconnu"
 
-#: .\templates\library\book_list.html:57
+#: .\templates\library\book_list.html:59
 msgid "empty"
 msgstr "vide"
 
-#: .\templates\library\book_list.html:60
+#: .\templates\library\book_list.html:62
 msgid "not filled yet"
 msgstr "pas encore rempli"
 
@@ -279,7 +279,7 @@ msgstr "pas encore rempli"
 msgid "dates"
 msgstr "dates"
 
-#: .\templates\sharing\lending_list.html:39
+#: .\templates\sharing\lending_list.html:45
 msgid "give back"
 msgstr "rendre"
 

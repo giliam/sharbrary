@@ -16,6 +16,13 @@ class Profile(models.Model):
     class Meta:
         verbose_name = _("profile")
         verbose_name_plural = _("profiles")
+        permissions = (
+            ("profile_new", "Add a profile"),
+            ("profile_edit", "Edit a profile"),
+            ("profile_delete", "Delete a profile"),
+            ("profile_list", "Show the list of profiles"),
+        )
+        default_permissions = []
 
 class Lending(models.Model):
     borrower = models.ForeignKey(User,blank=True,verbose_name=_("borrower"))
@@ -32,3 +39,10 @@ class Lending(models.Model):
     class Meta:
         verbose_name = _("lending")
         verbose_name_plural = _("lendings")
+        permissions = (
+            ("lending_new", "Add a lending"),
+            ("lending_edit", "Edit a lending"),
+            ("lending_delete", "Delete a lending"),
+            ("lending_list", "Show the list of lendings"),
+        )
+        default_permissions = []

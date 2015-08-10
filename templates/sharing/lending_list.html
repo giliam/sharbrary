@@ -37,12 +37,12 @@
         </td>
         <td>{{ lending.end_date|default:"?" }}</td>
         <td><a class="pure-button pure-button-primary" href="{% url "lending_end" lending.id %}">{% trans "give back"|capfirst %}</a></td>
-        {% if perms.library.lending_edit or perms.library.lending_delete %}
+        {% if perms.sharing.lending_edit or perms.sharing.lending_delete %}
         <td>
-            {% if perms.library.lending_edit %}
+            {% if perms.sharing.lending_edit %}
             <a class="pure-button" href="{% url "lending_edit" author.id %}">{% trans "edit"|capfirst %}</a>
             {% endif %}
-            {% if perms.library.lending_delete %}
+            {% if perms.sharing.lending_delete %}
             <a class="pure-button" href="{% url "lending_delete" author.id %}">{% trans "delete"|capfirst %}</a>
             {% endif %}
         </td>
@@ -52,7 +52,7 @@
     </tbody>
 </table>
 
-{% if perms.library.lending_new %}
+{% if perms.sharing.lending_new %}
 <p><a class="pure-button" href="{% url "lending_new" %}">{% trans "new"|capfirst %}</a></p>
 {% endif %}
 {% endblock %}

@@ -2,14 +2,13 @@ from django.shortcuts import render, redirect
 from django.views.generic import TemplateView,ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.core.urlresolvers import reverse_lazy, reverse
-from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
-from sharing.models import Lending
+from sharing.models import Lending, Profile
 from sharing.forms import LendingForm, LogInForm
 
 from utils.models.sortmixin import SortMixin
@@ -85,9 +84,9 @@ def log_out(request):
     return redirect(reverse('book_list'))
 
 class BorrowerList(SortMixin):
-    default_sort_params = ('username', 'asc')
-    allowed_sort_params = ['username']
-    model = User
+    default_sort_params = ('user__username', 'asc')
+    allowed_sort_params = ['user__username','phone_number']
+    model = Profile
     template_name="sharing/borrower_list.html"
     paginate_by = 20
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-10 11:38+0200\n"
+"POT-Creation-Date: 2015-08-10 11:55+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -113,11 +113,11 @@ msgstr "livre"
 msgid "books"
 msgstr "livres"
 
-#: .\sharbrary\settings.py:122
+#: .\sharbrary\settings.py:123
 msgid "Français"
 msgstr "Français"
 
-#: .\sharbrary\settings.py:123
+#: .\sharbrary\settings.py:124
 msgid "English"
 msgstr "Anglais"
 
@@ -131,6 +131,10 @@ msgstr "nom"
 msgid "password"
 msgstr "mot de passe"
 
+#: .\sharing\models.py:9 .\templates\sharing\borrower_list.html:13
+msgid "informations"
+msgstr "informations"
+
 #: .\sharing\models.py:10
 msgid ""
 "Phone number must be entered in the format: '0123456789'. Up to 15 digits "
@@ -138,6 +142,10 @@ msgid ""
 msgstr ""
 "Le numéro de téléphone doit être entré avec le format : 0123456789.Vous "
 "pouvez utiliser jusqu'à 15 chiffres."
+
+#: .\sharing\models.py:11 .\templates\sharing\borrower_list.html:17
+msgid "phone number"
+msgstr "numéro de téléphone"
 
 #: .\sharing\models.py:17
 msgid "profile"
@@ -150,7 +158,7 @@ msgstr "profils"
 #: .\sharing\models.py:28 .\templates\sharing\borrower_list.html:9
 #: .\templates\sharing\lending_list.html:14
 msgid "borrower"
-msgstr "emprunteurs"
+msgstr "emprunteur"
 
 #: .\sharing\models.py:30
 msgid "status"
@@ -193,7 +201,7 @@ msgstr "partage"
 
 #: .\templates\base\layout.html:43 .\templates\sharing\borrower_list.html:3
 msgid "borrowers"
-msgstr "emprunteur"
+msgstr "emprunteurs"
 
 #: .\templates\base\layout.html:45
 msgid "log out"
@@ -220,6 +228,19 @@ msgstr "Vous êtes bien connecté, %(username)s !"
 msgid "login"
 msgstr "connexion"
 
+#: .\templates\base\pagination.html:5
+msgid "previous"
+msgstr "précédente"
+
+#: .\templates\base\pagination.html:8
+#, python-format
+msgid "Page %(page_number)s of %(num_pages)s"
+msgstr "Page %(page_number)s sur %(num_pages)s"
+
+#: .\templates\base\pagination.html:11
+msgid "next"
+msgstr "suivante"
+
 #: .\templates\library\author_confirm_delete.html:4
 #: .\templates\library\book_confirm_delete.html:4
 #: .\templates\library\editor_confirm_delete.html:4
@@ -245,8 +266,8 @@ msgstr "modifier"
 msgid "delete"
 msgstr "supprimer"
 
-#: .\templates\library\author_list.html:49
-#: .\templates\library\book_list.html:95
+#: .\templates\library\author_list.html:50
+#: .\templates\library\book_list.html:80
 #: .\templates\library\editor_list.html:39
 #: .\templates\library\theme_list.html:44
 #: .\templates\sharing\lending_list.html:63
@@ -273,19 +294,6 @@ msgstr "vide"
 #: .\templates\library\book_list.html:62
 msgid "not filled yet"
 msgstr "pas encore rempli"
-
-#: .\templates\library\book_list.html:83
-msgid "previous"
-msgstr "précédente"
-
-#: .\templates\library\book_list.html:86
-#, python-format
-msgid "Page %(page_number)s of %(num_pages)s"
-msgstr "Page %(page_number)s sur %(num_pages)s"
-
-#: .\templates\library\book_list.html:89
-msgid "next"
-msgstr "suivante"
 
 #: .\templates\sharing\lending_list.html:19
 #: .\templates\sharing\lending_list.html:24

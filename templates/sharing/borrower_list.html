@@ -9,13 +9,23 @@
                 {% trans "borrower"|capfirst %}
                 <a href="?sort_by=username&order=desc" class="fa fa-sort-desc"></a>
             </th>
+            <th>
+                {% trans "informations"|capfirst %}
+            </th>
+            <th>
+                <a href="?sort_by=phone_number&order=asc" class="fa fa-sort-asc"></a> 
+                {% trans "phone number"|capfirst %}
+                <a href="?sort_by=phone_number&order=desc" class="fa fa-sort-desc"></a>
+            </th>
         </tr>
     </thead>
 
     <tbody>
         {% for borrower in object_list %}
         <tr>
-        <td>{{ borrower.username }}</td>
+        <td>{{ borrower.user.username }}</td>
+        <td>{{ borrower.informations }}</td>
+        <td>{{ borrower.phone_number }}</td>
         </tr>
         {% endfor %}
     </tbody>

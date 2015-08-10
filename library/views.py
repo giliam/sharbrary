@@ -2,7 +2,9 @@ from django.shortcuts import render
 from django.views.generic import TemplateView,ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.core.urlresolvers import reverse_lazy
+
 from library.models import Book, Author, Editor, Theme
+
 from utils.models.sortmixin import SortMixin
 
 class BookList(SortMixin):

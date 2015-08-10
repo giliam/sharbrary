@@ -41,6 +41,11 @@
                 <ul class="pure-menu-list">
                     <li class="pure-menu-item"><a href="{% url "lending_list" %}" class="pure-menu-link">{% trans "lendings"|capfirst %}</a></li>
                     <li class="pure-menu-item"><a href="{% url "borrower_list" %}" class="pure-menu-link">{% trans "borrowers"|capfirst %}</a></li>
+                    {% if user.is_authenticated %}
+                    <li class="pure-menu-item"><a href="{% url "logout" %}" class="pure-menu-link">{% trans "log out"|capfirst %}</a></li>
+                    {% else %}
+                    <li class="pure-menu-item"><a href="{% url "login" %}" class="pure-menu-link">{% trans "log in"|capfirst %}</a></li>
+                    {% endif %}
                 </ul>
                 <a class="pure-menu-heading" href="{% url "admin:index" %}">{% trans "admin"|capfirst %}</a>
             </div>

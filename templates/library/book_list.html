@@ -35,7 +35,9 @@
                 {% trans "owned by"|capfirst %}
                 <a href="?sort_by=owner__username&order=desc" class="fa fa-sort-desc"></a>
             </th>
+            {% if perms.library.book_edit or perms.library.book_delete %}
             <th></th>
+            {% endif %}
         </tr>
     </thead>
 
@@ -59,14 +61,21 @@
         </td>
         <td>{{ book.summary|default:_("not filled yet") }}</td>
         <td>{{ book.owner|default:_("unknown") }}</td>
+        {% if perms.library.book_edit or perms.library.book_delete %}
         <td>
+            {% if perms.library.book_edit %}
             <a class="pure-button" href="{% url "book_edit" book.id %}">{% trans "edit"|capfirst %}</a>
+            {% endif %}
+            {% if perms.library.book_delete %}
             <a class="pure-button" href="{% url "book_delete" book.id %}">{% trans "delete"|capfirst %}</a>
+            {% endif %}
         </td>
+        {% endif %}
         </tr>
         {% endfor %}
     </tbody>
 </table>
-
+{% if perms.library.book_new %}
 <p><a class="pure-button" href="{% url "book_new" %}">{% trans "new"|capfirst %}</a></p>
+{% endif %}
 {% endblock %}

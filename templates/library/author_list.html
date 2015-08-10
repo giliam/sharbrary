@@ -19,7 +19,9 @@
                 {% trans "date of death"|capfirst %}
                 <a href="?sort_by=death_date&order=desc" class="fa fa-sort-desc"></a>
             </th>
-            <th colspan="2"></th>
+            {% if perms.library.author_edit or perms.library.author_delete %}
+            <th></th>
+            {% endif %}
         </tr>
     </thead>
 
@@ -29,12 +31,21 @@
         <td>{{ author }}</td>
         <td>{{ author.birthdate|default:"?" }}</td>
         <td>{{ author.death_date|default:"?" }}</td>
-        <td><a class="pure-button" href="{% url "author_edit" author.id %}">{% trans "edit"|capfirst %}</a></td>
-        <td><a class="pure-button" href="{% url "author_delete" author.id %}">{% trans "delete"|capfirst %}</a></td>
+        {% if perms.library.author_edit or perms.library.author_delete %}
+        <td>
+            {% if perms.library.author_edit %}
+            <a class="pure-button" href="{% url "author_edit" author.id %}">{% trans "edit"|capfirst %}</a>
+            {% endif %}
+            {% if perms.library.author_delete %}
+            <a class="pure-button" href="{% url "author_delete" author.id %}">{% trans "delete"|capfirst %}</a>
+            {% endif %}
+        </td>
+        {% endif %}
         </tr>
         {% endfor %}
     </tbody>
 </table>
-
+{% if perms.library.author_new %}
 <p><a class="pure-button" href="{% url "author_new" %}">{% trans "new"|capfirst %}</a></p>
+{% endif %}
 {% endblock %}

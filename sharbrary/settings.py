@@ -83,6 +83,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'sharbrary.wsgi.application'
 
+# Auth configuration
+
+LOGIN_URL = 'login'
+
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases

@@ -24,7 +24,12 @@
                 {% trans "dates"|capfirst %}
                 <a href="?sort_by=end_date&order=desc" class="fa fa-sort-desc"></a>
             </th>
-            <th colspan="3"></th>
+            {% if perms.sharing.lending_end %}
+            <th></th>
+            {% endif %}
+            {% if perms.sharing.lending_edit or perms.sharing.lending_delete %}
+            <th></th>
+            {% endif %}
         </tr>
     </thead>
 
@@ -36,13 +41,25 @@
         <td>{{ lending.beginning_date|default:"?" }}
         </td>
         <td>{{ lending.end_date|default:"?" }}</td>
-        <td><a class="pure-button pure-button-primary" href="{% url "lending_end" lending.id %}">{% trans "give back"|capfirst %}</a></td>
-        <td><a class="pure-button" href="{% url "lending_edit" lending.id %}">{% trans "edit"|capfirst %}</a></td>
-        <td><a class="pure-button" href="{% url "lending_delete" lending.id %}">{% trans "delete"|capfirst %}</a></td>
+        {% if perms.sharing.lending_end %}
+            <td><a class="pure-button pure-button-primary" href="{% url "lending_end" lending.id %}">{% trans "give back"|capfirst %}</a></td>
+        {% endif %}
+        {% if perms.sharing.lending_edit or perms.sharing.lending_delete %}
+        <td>
+            {% if perms.sharing.lending_edit %}
+            <a class="pure-button" href="{% url "lending_edit" lending.id %}">{% trans "edit"|capfirst %}</a>
+            {% endif %}
+            {% if perms.sharing.lending_delete %}
+            <a class="pure-button" href="{% url "lending_delete" lending.id %}">{% trans "delete"|capfirst %}</a>
+            {% endif %}
+        </td>
+        {% endif %}
         </tr>
         {% endfor %}
     </tbody>
 </table>
 
+{% if perms.sharing.lending_new %}
 <p><a class="pure-button" href="{% url "lending_new" %}">{% trans "new"|capfirst %}</a></p>
+{% endif %}
 {% endblock %}

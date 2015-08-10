@@ -13,8 +13,10 @@
                 <a href="?sort_by=period&order=asc" class="fa fa-sort-asc"></a> 
                 {% trans "period"|capfirst %}
                 <a href="?sort_by=period&order=desc" class="fa fa-sort-desc"></a>
-                </th>
-            <th colspan="2"></th>
+            </th>
+            {% if perms.library.editor_edit or perms.library.editor_delete %}
+            <th></th>
+            {% endif %}
         </tr>
     </thead>
 
@@ -23,12 +25,22 @@
         <tr>
         <td><strong>{{ theme.name }}</strong></td>
         <td>{{ theme.period }}</td>
-        <td><a class="pure-button" href="{% url "theme_edit" theme.id %}">{% trans "edit"|capfirst %}</a></td>
-        <td><a class="pure-button" href="{% url "theme_delete" theme.id %}">{% trans "delete"|capfirst %}</a></td>
+        {% if perms.library.theme_edit or perms.library.theme_delete %}
+        <td>
+            {% if perms.library.theme_edit %}
+                <a class="pure-button" href="{% url "theme_edit" theme.id %}">{% trans "edit"|capfirst %}</a>
+            {% endif %}
+            {% if perms.library.theme_delete %}
+                <a class="pure-button" href="{% url "theme_delete" theme.id %}">{% trans "delete"|capfirst %}</a>
+            {% endif %}
+        </td>
+        {% endif %}
         </tr>
         {% endfor %}
     </tbody>
 </table>
 
-<p><a class="pure-button" href="{% url "theme_new" %}">{% trans "new"|capfirst %}</a></p>
+{% if perms.library.theme_new %}
+    <p><a class="pure-button" href="{% url "theme_new" %}">{% trans "new"|capfirst %}</a></p>
+{% endif %}
 {% endblock %}

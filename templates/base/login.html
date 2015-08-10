@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block body %} 
+<h1>{% trans "log in"|capfirst %}</h1>
+
+{% if error %}
+<p><strong>{% trans "unknown user or wrong password. " %}</strong></p>
+{% endif %}
+
+{% if user.is_authenticated %}
+{% blocktrans with username=user.username %}You are successfully connected, {{ username }} !{% endblocktrans %}
+{% else %}
+<form class="pure-form pure-form-stacked" method="post" action="">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" class="pure-button pure-button-primary" value="{% trans "login" %}" />
+</form>
+{% endif %}
+{% endblock %}

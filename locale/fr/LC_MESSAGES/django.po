@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-10 10:12+0200\n"
+"POT-Creation-Date: 2015-08-10 10:18+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,12 +33,12 @@ msgid "date of death"
 msgstr "date de mort"
 
 #: .\library\models.py:11 .\library\models.py:23 .\library\models.py:36
-#: .\sharing\models.py:22
+#: .\sharing\models.py:26
 msgid "date added to the database"
 msgstr "date d'ajout à la base de données"
 
 #: .\library\models.py:12 .\library\models.py:24 .\library\models.py:37
-#: .\library\models.py:50 .\sharing\models.py:23
+#: .\library\models.py:50 .\sharing\models.py:27
 msgid "date updated to the database"
 msgstr "date de mise-à-jour dans la base de données"
 
@@ -103,7 +103,7 @@ msgstr "propriétaire"
 msgid "summary"
 msgstr "résumé"
 
-#: .\library\models.py:61 .\sharing\models.py:18
+#: .\library\models.py:61 .\sharing\models.py:22
 #: .\templates\sharing\lending_list.html:9
 msgid "book"
 msgstr "livre"
@@ -139,26 +139,45 @@ msgstr ""
 "Le numéro de téléphone doit être entré avec le format : 0123456789.Vous "
 "pouvez utiliser jusqu'à 15 chiffres."
 
-#: .\sharing\models.py:17 .\templates\sharing\borrower_list.html:9
+#: .\sharing\models.py:17
+msgid "profile"
+msgstr "profil"
+
+#: .\sharing\models.py:18
+msgid "profiles"
+msgstr "profils"
+
+#: .\sharing\models.py:21 .\templates\sharing\borrower_list.html:9
 #: .\templates\sharing\lending_list.html:14
 msgid "borrower"
 msgstr "emprunteurs"
 
-#: .\sharing\models.py:19
+#: .\sharing\models.py:23
 msgid "status"
 msgstr "status"
 
-#: .\sharing\models.py:19
+#: .\sharing\models.py:23
 msgid "is it lent now ?"
 msgstr "en prêt actuellement ?"
 
-#: .\sharing\models.py:20
+#: .\sharing\models.py:24
 msgid "beginning date of the lending"
 msgstr "date de début du prêt"
 
-#: .\sharing\models.py:21
+#: .\sharing\models.py:25
 msgid "end date of the lending"
 msgstr "date de fin du prêt"
+
+#: .\sharing\models.py:33
+#, fuzzy
+#| msgid "lendings"
+msgid "lending"
+msgstr "prêts"
+
+#: .\sharing\models.py:34 .\templates\base\layout.html:42
+#: .\templates\sharing\lending_list.html:3
+msgid "lendings"
+msgstr "prêts"
 
 #: .\templates\base\lang_change.html:3 .\templates\base\layout.html:29
 msgid "change the language"
@@ -172,23 +191,19 @@ msgstr "bibliothèque"
 msgid "sharing"
 msgstr "partage"
 
-#: .\templates\base\layout.html:42 .\templates\sharing\lending_list.html:3
-msgid "lendings"
-msgstr "prêts"
-
 #: .\templates\base\layout.html:43 .\templates\sharing\borrower_list.html:3
 msgid "borrowers"
 msgstr "emprunteur"
-
-#: .\templates\base\layout.html:44 .\templates\base\login.html:3
-msgid "log in"
-msgstr "se connecter"
 
 #: .\templates\base\layout.html:45
 msgid "log out"
 msgstr "se déconnecter"
 
-#: .\templates\base\layout.html:47
+#: .\templates\base\layout.html:47 .\templates\base\login.html:3
+msgid "log in"
+msgstr "se connecter"
+
+#: .\templates\base\layout.html:50
 msgid "admin"
 msgstr "admin"
 

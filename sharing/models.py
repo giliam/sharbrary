@@ -13,6 +13,10 @@ class Profile(models.Model):
     def __unicode__(self):
         return u"Profile of {0}".format(self.user.username)
 
+    class Meta:
+        verbose_name = _("profile")
+        verbose_name_plural = _("profiles")
+
 class Lending(models.Model):
     borrower = models.ForeignKey(User,blank=True,verbose_name=_("borrower"))
     book = models.ForeignKey(Book,verbose_name=_("book"))
@@ -24,3 +28,7 @@ class Lending(models.Model):
 
     def __unicode__(self):
         return unicode(self.borrower) + u" borrowed " + unicode(self.book)
+
+    class Meta:
+        verbose_name = _("lending")
+        verbose_name_plural = _("lendings")

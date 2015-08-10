@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-10 09:19+0200\n"
+"POT-Creation-Date: 2015-08-10 09:54+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -121,13 +121,23 @@ msgstr "Français"
 msgid "English"
 msgstr "Anglais"
 
+#: .\sharing\forms.py:11
+#, fuzzy
+#| msgid "name"
+msgid "username"
+msgstr "nom"
+
+#: .\sharing\forms.py:12
+msgid "password"
+msgstr "mot de passe"
+
 #: .\sharing\models.py:10
 msgid ""
 "Phone number must be entered in the format: '0123456789'. Up to 15 digits "
 "allowed."
 msgstr ""
-"Le numéro de téléphone doit être entré avec le format : 0123456789."
-"Vous pouvez utiliser jusqu'à 15 chiffres."
+"Le numéro de téléphone doit être entré avec le format : 0123456789.Vous "
+"pouvez utiliser jusqu'à 15 chiffres."
 
 #: .\sharing\models.py:17 .\templates\sharing\borrower_list.html:9
 #: .\templates\sharing\lending_list.html:14
@@ -173,6 +183,23 @@ msgstr "emprunteur"
 #: .\templates\base\layout.html:45
 msgid "admin"
 msgstr "admin"
+
+#: .\templates\base\login.html:3
+msgid "log in"
+msgstr "se connecter"
+
+#: .\templates\base\login.html:6
+msgid "unknown user or wrong password. "
+msgstr "utilisateur inconnu ou mot de passe incorrect."
+
+#: .\templates\base\login.html:10
+#, python-format
+msgid "You are successfully connected, %(username)s !"
+msgstr "Vous êtes bien connecté, %(username)s !"
+
+#: .\templates\base\login.html:15
+msgid "login"
+msgstr "connexion"
 
 #: .\templates\library\author_confirm_delete.html:4
 #: .\templates\library\book_confirm_delete.html:4

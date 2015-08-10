@@ -60,7 +60,7 @@
             {% endif %}
         </td>
         <td>{{ book.summary|default:_("not filled yet") }}</td>
-        <td>{{ book.owner|default:_("unknown") }}</td>
+        <td><a href="{% url "profile_show" book.owner.id %}">{{ book.owner|default:_("unknown") }}</a></td>
         {% if perms.library.book_edit or perms.library.book_delete %}
         <td>
             {% if perms.library.book_edit %}

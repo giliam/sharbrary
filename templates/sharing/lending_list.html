@@ -17,6 +17,11 @@
             </th>
             <th>
 <a href="?sort_by=borrower__username&order=asc" class="fa fa-sort-asc"></a> 
+                {% trans "owner"|capfirst %}
+<a href="?sort_by=borrower__username&order=desc" class="fa fa-sort-desc"></a>
+            </th>
+            <th>
+<a href="?sort_by=borrower__username&order=asc" class="fa fa-sort-asc"></a> 
                 {% trans "borrower"|capfirst %}
 <a href="?sort_by=borrower__username&order=desc" class="fa fa-sort-desc"></a>
             </th>
@@ -43,7 +48,8 @@
         {% for lending in object_list %}
         <tr>
         <td>{{ lending.book }}</td>
-        <td>{{ lending.borrower }}</td>
+        <td><a href="{% url "profile_show" lending.book.owner.id %}">{{ lending.book.owner }}</a></td>
+        <td><a href="{% url "profile_show" lending.borrower.id %}">{{ lending.borrower }}</a></td>
         <td>{{ lending.beginning_date|naturaltime|default:"?" }}
         </td>
         <td>{{ lending.end_date|naturaltime|default:"?" }}</td>

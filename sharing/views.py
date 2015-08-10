@@ -97,7 +97,7 @@ def profile_show(request, profile_id):
     """
     Show a member profile and his sharing history.
     """
-    profile = get_object_or_404(Profile, pk=profile_id)
+    profile = get_object_or_404(Profile, user__pk=profile_id)
     borrowings = Lending.objects.filter(actual_lending(),borrower__id=profile.user.id)
     lendings = Lending.objects.filter(actual_lending(),book__owner__id=profile.user.id)
     books = Book.objects.filter(owner__id=profile.user.id)

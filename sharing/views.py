@@ -36,7 +36,7 @@ class LendingDelete(DeleteView):
     template_name="sharing/lending_confirm_delete.html"
     success_url = reverse_lazy('lending_list')
 
-def end_lending(request, lending_id):
+def lending_end(request, lending_id):
     """
     Finishes the lending and adds a finish date.
     """

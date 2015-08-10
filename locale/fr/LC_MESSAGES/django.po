@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-10 09:54+0200\n"
+"POT-Creation-Date: 2015-08-10 10:12+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -180,13 +180,17 @@ msgstr "prêts"
 msgid "borrowers"
 msgstr "emprunteur"
 
-#: .\templates\base\layout.html:45
-msgid "admin"
-msgstr "admin"
-
-#: .\templates\base\login.html:3
+#: .\templates\base\layout.html:44 .\templates\base\login.html:3
 msgid "log in"
 msgstr "se connecter"
+
+#: .\templates\base\layout.html:45
+msgid "log out"
+msgstr "se déconnecter"
+
+#: .\templates\base\layout.html:47
+msgid "admin"
+msgstr "admin"
 
 #: .\templates\base\login.html:6
 msgid "unknown user or wrong password. "

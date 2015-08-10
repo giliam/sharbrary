@@ -67,7 +67,7 @@ def log_in(request):
                 login(request, user)
                 redirect_url = request.GET.get('next')
                 if redirect_url:
-                    return  redirect(redirect_url)
+                    return redirect(redirect_url)
             else:
                 error = True
     else:

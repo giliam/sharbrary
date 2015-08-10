@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-10 12:16+0200\n"
+"POT-Creation-Date: 2015-08-10 13:49+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -104,7 +104,7 @@ msgid "summary"
 msgstr "résumé"
 
 #: .\library\models.py:82 .\sharing\models.py:29
-#: .\templates\sharing\lending_list.html:9
+#: .\templates\sharing\lending_list.html:15
 msgid "book"
 msgstr "livre"
 
@@ -157,8 +157,6 @@ msgid "English"
 msgstr "Anglais"
 
 #: .\sharing\forms.py:11
-#, fuzzy
-#| msgid "name"
 msgid "username"
 msgstr "nom"
 
@@ -191,7 +189,7 @@ msgid "profiles"
 msgstr "profils"
 
 #: .\sharing\models.py:28 .\templates\sharing\borrower_list.html:9
-#: .\templates\sharing\lending_list.html:14
+#: .\templates\sharing\lending_list.html:20
 msgid "borrower"
 msgstr "emprunteur"
 
@@ -212,22 +210,19 @@ msgid "end date of the lending"
 msgstr "date de fin du prêt"
 
 #: .\sharing\models.py:40
-#, fuzzy
-#| msgid "lendings"
 msgid "lending"
 msgstr "prêts"
 
 #: .\sharing\models.py:41 .\templates\base\layout.html:42
-#: .\templates\sharing\lending_list.html:3
 msgid "lendings"
 msgstr "prêts"
 
-#: .\sharing\views.py:29
+#: .\sharing\views.py:33
 #, python-format
 msgid "The lending of %(book)s to %(borrower)s was created successfully"
 msgstr "Le prêt de %(book)s à %(borrower)s a bien été créé !"
 
-#: .\sharing\views.py:35
+#: .\sharing\views.py:39
 #, python-format
 msgid "The lending of %(book)s to %(borrower)s was updated successfully"
 msgstr "Le prêt de %(book)s à %(borrower)s a bien été mis-à-jour !"
@@ -299,7 +294,7 @@ msgstr "Êtes-vous certain que vous souhaitez supprimer \"%(object)s\" ?"
 #: .\templates\library\book_list.html:67
 #: .\templates\library\editor_list.html:26
 #: .\templates\library\theme_list.html:31
-#: .\templates\sharing\lending_list.html:50
+#: .\templates\sharing\lending_list.html:56
 msgid "edit"
 msgstr "modifier"
 
@@ -307,7 +302,7 @@ msgstr "modifier"
 #: .\templates\library\book_list.html:70
 #: .\templates\library\editor_list.html:29
 #: .\templates\library\theme_list.html:34
-#: .\templates\sharing\lending_list.html:53
+#: .\templates\sharing\lending_list.html:59
 msgid "delete"
 msgstr "supprimer"
 
@@ -315,7 +310,7 @@ msgstr "supprimer"
 #: .\templates\library\book_list.html:80
 #: .\templates\library\editor_list.html:39
 #: .\templates\library\theme_list.html:44
-#: .\templates\sharing\lending_list.html:63
+#: .\templates\sharing\lending_list.html:69
 msgid "new"
 msgstr "ajouter"
 
@@ -340,12 +335,22 @@ msgstr "vide"
 msgid "not filled yet"
 msgstr "pas encore rempli"
 
-#: .\templates\sharing\lending_list.html:19
-#: .\templates\sharing\lending_list.html:24
+#: .\templates\sharing\lending_list.html:4
+#: .\templates\sharing\lending_list.html:8
+msgid "lendings ongoing"
+msgstr "prêts en cours"
+
+#: .\templates\sharing\lending_list.html:5
+#: .\templates\sharing\lending_list.html:7
+msgid "all lendings"
+msgstr "tous les prêts"
+
+#: .\templates\sharing\lending_list.html:25
+#: .\templates\sharing\lending_list.html:30
 msgid "dates"
 msgstr "dates"
 
-#: .\templates\sharing\lending_list.html:45
+#: .\templates\sharing\lending_list.html:51
 msgid "give back"
 msgstr "rendre"
 

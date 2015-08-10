@@ -1,6 +1,12 @@
 {% extends "layout.html" %}
 {% block body %} 
-<h1>{% trans "lendings"|capfirst %}</h1>
+{% if request.resolver_match.url_name == 'lending_list' %}
+<h1>{% trans "lendings ongoing"|capfirst %}</h1>
+    <p><a class="pure-button" href="{% url "lending_list_all" %}">{% trans "all lendings"|capfirst %}</a></p>
+{% else %}
+<h1>{% trans "all lendings"|capfirst %}</h1>
+    <p><a class="pure-button" href="{% url "lending_list" %}">{% trans "lendings ongoing"|capfirst %}</a></p>
+{% endif %}
 <table class="pure-table pure-table-bordered">
     <thead>
         <tr>

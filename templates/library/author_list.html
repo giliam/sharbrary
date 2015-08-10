@@ -29,8 +29,8 @@
         {% for author in object_list %}
         <tr>
         <td>{{ author }}</td>
-        <td>{{ author.birthdate|default:"?" }}</td>
-        <td>{{ author.death_date|default:"?" }}</td>
+        <td>{{ author.birthdate|naturalday:"DATE_FORMAT"|default:"?" }}</td>
+        <td>{{ author.death_date|naturalday:"DATE_FORMAT"|default:"?" }}</td>
         {% if perms.library.author_edit or perms.library.author_delete %}
         <td>
             {% if perms.library.author_edit %}

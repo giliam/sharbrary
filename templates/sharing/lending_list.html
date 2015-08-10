@@ -38,9 +38,9 @@
         <tr>
         <td>{{ lending.book }}</td>
         <td>{{ lending.borrower }}</td>
-        <td>{{ lending.beginning_date|default:"?" }}
+        <td>{{ lending.beginning_date|naturaltime|default:"?" }}
         </td>
-        <td>{{ lending.end_date|default:"?" }}</td>
+        <td>{{ lending.end_date|naturaltime|default:"?" }}</td>
         {% if perms.sharing.lending_end %}
             <td><a class="pure-button pure-button-primary" href="{% url "lending_end" lending.id %}">{% trans "give back"|capfirst %}</a></td>
         {% endif %}

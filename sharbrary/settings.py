@@ -46,6 +46,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django_wysiwyg',
     'tinymce',
+    'django.contrib.humanize',
     'library',
     'sharing'
 )
@@ -139,6 +140,7 @@ STATICFILES_DIRS = parameters.STATICFILES_DIRS if parameters.STATICFILES_DIRS el
 
 # Adds auto loading of staticfiles and i18n tags.
 add_to_builtins('django.templatetags.i18n')
+add_to_builtins('django.contrib.humanize.templatetags.humanize')
 add_to_builtins('django.contrib.staticfiles.templatetags.staticfiles')
 
 #Loads local settings that rewrite the settings SECRET_KEY and DATABASES.

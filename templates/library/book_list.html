@@ -47,7 +47,7 @@
         <td>{{ book.title }}</td>
         <td>{{ book.author|default:_("unknown") }}</td>
         <td>{{ book.editor|default:_("unknown") }}</td>
-        <td>{{ book.publishing_date|default:_("unknown") }}</td>
+        <td>{{ book.publishing_date|naturalday:"DATE_FORMAT"|default:_("unknown") }}</td>
         <td>
             {% if book.themes|length > 0 %}
                 <ul>

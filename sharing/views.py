@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView,ListView
+from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.core.urlresolvers import reverse_lazy, reverse
 from django.http import HttpResponse
@@ -21,14 +22,16 @@ class LendingList(SortMixin):
     template_name="sharing/lending_list.html"
     paginate_by = 50
 
-class LendingCreate(CreateView):
+class LendingCreate(SuccessMessageMixin, CreateView):
     model = Lending
     success_url = reverse_lazy('lending_list')
+    success_message = "The lending of %(book)s to %(borrower)s was created successfully"
     fields = ['book','borrower','status','beginning_date','end_date']
 
-class LendingUpdate(UpdateView):
+class LendingUpdate(SuccessMessageMixin, UpdateView):
     model = Lending
     success_url = reverse_lazy('lending_list')
+    success_message = "The lending of %(book)s to %(borrower)s was updated successfully"
     fields = ['book','borrower','status','beginning_date','end_date']
 
 class LendingDelete(DeleteView):

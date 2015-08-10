@@ -15,13 +15,17 @@ from sharing.forms import LendingForm, LogInForm
 
 from utils.models.sortmixin import SortMixin
 
+from datetime import datetime
 
-class LendingList(SortMixin):
+class LendingAllList(SortMixin):
     default_sort_params = ('book__title', 'asc')
     allowed_sort_params = ['book__title', 'borrower__username','status','beginning_date','end_date']
     model = Lending
     template_name="sharing/lending_list.html"
     paginate_by = 50
+
+class LendingOnGoingList(LendingAllList):
+    queryset = Lending.objects.filter(beginning_date__lt=datetime.now(),end_date__gt=datetime.now())
 
 class LendingCreate(SuccessMessageMixin, CreateView):
     model = Lending

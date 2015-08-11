@@ -31,7 +31,12 @@ class LendingCreate(SuccessMessageMixin, CreateView):
     model = Lending
     success_url = reverse_lazy('lending_list')
     success_message = _("The lending of %(book)s to %(borrower)s was created successfully")
-    fields = ['book','borrower','status','beginning_date','end_date']
+    fields = ['book','borrower','status','beginning_date']
+
+class LendingBookCreate(LendingCreate):
+    fields = ['borrower','status','beginning_date']
+    def get_initial(self):
+        return { 'book': get_object_or_404(Book,pk=self.kwargs['book_id']) }
 
 class LendingUpdate(SuccessMessageMixin, UpdateView):
     model = Lending
@@ -103,6 +108,18 @@ def profile_show(request, profile_id):
     books = Book.objects.filter(owner__id=profile.user.id)
     
     return render(request, 'sharing/profile_show.html', locals())
+
+@login_required()
+def my_dashboard(request):
+    """
+    Show a member dashboard.
+    """
+    profile = get_object_or_404(Profile, user__pk=request.user.id)
+    borrowings = Lending.objects.filter(actual_lending(),borrower__id=profile.user.id)
+    lendings = Lending.objects.filter(actual_lending(),book__owner__id=profile.user.id)
+    books = Book.objects.filter(owner__id=profile.user.id)
+    
+    return render(request, 'sharing/dashboard.html', locals())
 
 class BorrowerList(SortMixin):
     default_sort_params = ('user__username', 'asc')

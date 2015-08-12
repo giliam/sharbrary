@@ -61,4 +61,7 @@ sharbrary/parameters.py
 sharbrary/settings_local.py
 static/*
 
+media/*
+!media/readme.md
+
 .secret

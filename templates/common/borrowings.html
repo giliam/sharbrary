@@ -1,0 +1,31 @@
+{% comment %}
+    Displays borrowings.
+    Parameters needed: 
+        * borrowings list named borrowings
+{% endcomment %}
+
+<h3>{% trans "borrowings"|capfirst %}</h3>
+<ul>
+{% for borrowing in borrowings %}
+    <li>
+        {% blocktrans with book=borrowing.book owner=borrowing.book.owner|default:_("unknown")|capfirst %}<strong>{{ book }}</strong> from <em>{{ owner }}</em>{% endblocktrans %}
+    {% if perms.library.lending_edit or perms.library.lending_delete %}
+    <br />
+        {% if perms.sharing.lending_end %}
+            <a class="pure-button pure-button-xsmall pure-button-primary" href="{% url "lending_end" borrowing.id %}">{% trans "give back"|capfirst %}</a>
+        {% endif %}
+        {% if perms.library.lending_edit %}
+        <a class="pure-button pure-button-xsmall pure-button-secondary" href="{% url "lending_edit" borrowing.id %}">{% trans "edit"|capfirst %}</a>
+        {% endif %}
+        {% if perms.library.lending_delete %}
+        <a class="pure-button-xsmall pure-button pure-button-error" href="{% url "lending_delete" borrowing.id %}">{% trans "delete"|capfirst %}</a>
+        {% endif %}
+    {% endif %}
+    </li>
+{% empty %}
+<p>{% trans "no borrowings ongoing !"|capfirst %}</p>
+{% endfor %}
+</ul>
+{% if perms.sharing.lending_new %}
+<p><a class="pure-button pure-button-success" href="{% url "lending_new" %}">{% trans "new"|capfirst %}</a></p>
+{% endif %}

@@ -29,9 +29,7 @@
 
 <div class="pure-g">
     <div class="pure-u-1-2">
-        {% with lendings=borrowings object_type="borrowings" no_object_message="no borrowings ongoing !" %}
-            {% include "common/lendings.html" %}
-        {% endwith %}
+        {% include "common/borrowings.html" %}
     </div>
     <div class="pure-u-1-2">
         {% include "common/lendings.html" %}

@@ -8,7 +8,7 @@
 <h3>{% trans "books"|capfirst %}</h3>
 <ul>
 {% for book in books %}
-    <li>{{ book.title }} ({{ book.author|default:_("unknown") }})
+    <li>{{ book.title }} ({{ book.author|default:_("unknown")|capfirst }})
     {% if perms.library.book_edit or perms.library.book_delete %}
     <br />
         {% if perms.library.book_edit %}

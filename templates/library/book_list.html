@@ -24,9 +24,9 @@
     {% for book in object_list %}
     <div class="book">
         <p class="cover"><a href="{% url "book_detail" book.id %}">{% if book.cover %}<img src="{{ book.cover.url }}" class="cover" />{% else %}<img src="{% static 'img/book_cover.png' %}" class="cover" />{% endif %}</a></p>
-        <br />
         <p><a href="{% url "book_detail" book.id %}">{{ book.title }}</a></p>
-        <p>{{ book.author|default:_("unknown") }}</p>
+        <p><a href="{% url "book_detail" book.id %}">{{ book.author|default:_("unknown")|capfirst }}</a> - {{ book.editor|default:_("unknown")|capfirst }}</p>
+        <p>{% if book.owner %}<a href="{% url "profile_show" book.owner.id %}">{% endif %}{{ book.owner|default:_("unknown")|capfirst }}{% if book.owner %}</a>{% endif %}</p>
         {% if perms.library.book_edit or perms.library.book_delete %}
         <p>
             {% if perms.library.book_edit %}

@@ -5,16 +5,16 @@
         <h1>{{ book.title }}</h1>
         <p><strong>{% trans "author"|capfirst %} : </strong></p>
         <p>
-        	{{ book.author|default:_("unknown") }}</p>
+        	{{ book.author|default:_("unknown")|capfirst }}</p>
         <p><strong>{% trans "cover"|capfirst %} : </strong></p>
         <p>
         	{% if book.cover %}<img src="{{ book.cover.url }}" class="cover" />{% else %}{% trans "empty" %}{% endif %}</p>
         <p><strong>{% trans "editor"|capfirst %} : </strong></p>
         <p>
-        	{{ book.editor|default:_("unknown") }}</p>
+        	{{ book.editor|default:_("unknown")|capfirst }}</p>
         <p><strong>{% trans "published"|capfirst %} : </strong></p>
         <p>
-        	{{ book.publishing_date|naturalday:"DATE_FORMAT"|default:_("unknown") }}</p>
+        	{{ book.publishing_date|naturalday:"DATE_FORMAT"|default:_("unknown")|capfirst }}</p>
         <p><strong>{% trans "themes"|capfirst %}</strong></p>
         <p>
             {% if book.themes.all|length > 0 %}
@@ -41,10 +41,10 @@
         </p>
         <p><strong>{% trans "summary"|capfirst %}</strong></p>
         <p>
-			{{ book.summary|default:_("not filled yet") }}</p>
+			{{ book.summary|default:_("not filled yet")|capfirst }}</p>
         <p><strong>{% trans "owned by"|capfirst %}</strong></p>
         <p>
-			{% if book.owner %}<a href="{% url "profile_show" book.owner.id %}">{% endif %}{{ book.owner|default:_("unknown") }}{% if book.owner %}</a>{% endif %}</p>
+			{% if book.owner %}<a href="{% url "profile_show" book.owner.id %}">{% endif %}{{ book.owner|default:_("unknown")|capfirst }}{% if book.owner %}</a>{% endif %}</p>
         
         {% if perms.library.book_edit or perms.library.book_delete %}
         <p>

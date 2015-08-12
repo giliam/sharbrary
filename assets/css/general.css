@@ -51,17 +51,36 @@ img.cover {
     max-width:250px;
     width: auto;
     height: auto;
+}
+
+.book_collection .book img.cover {
     margin:auto;
 }
 
-p.cover {
+.book_collection .book p.cover {
     height: 150px;
+    margin-bottom: 25px;
 }
 
-div.book {
+.book_collection .book p {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.book_collection .book a {
+    color: black;
+    text-decoration: none;
+}
+
+.book_collection .book a.pure-button {
+    color: white;
+    text-decoration: none;
+}
+
+.book_collection div.book {
     text-align: center;
     float:left;
-    width:250px;
+    min-width:250px;
     height: 350px;
     display: inline-block;
     margin: 15px 10px 0 10px;
@@ -82,3 +101,4 @@ div.book_collection {
         display:none;
     }
 }
+

@@ -93,7 +93,7 @@
         {% endfor %}
     </tbody>
 </table>
-{% include "base/pagination.html" %}
+{% include "common/pagination.html" %}
 {% if perms.library.book_new %}
 <p><a class="pure-button pure-button-success" href="{% url "book_new" %}">{% trans "new"|capfirst %}</a></p>
 {% endif %}

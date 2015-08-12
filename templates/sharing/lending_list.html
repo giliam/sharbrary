@@ -70,7 +70,7 @@
         {% endfor %}
     </tbody>
 </table>
-{% include "base/pagination.html" %}
+{% include "common/pagination.html" %}
 {% if perms.sharing.lending_new %}
 <p><a class="pure-button pure-button-success" href="{% url "lending_new" %}">{% trans "new"|capfirst %}</a></p>
 {% endif %}

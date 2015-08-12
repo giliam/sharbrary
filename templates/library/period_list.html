@@ -33,7 +33,7 @@
         {% endfor %}
     </tbody>
 </table>
-{% include "base/pagination.html" %}
+{% include "common/pagination.html" %}
 {% if perms.library.period_new %}
     <p><a class="pure-button pure-button-success" href="{% url "period_new" %}">{% trans "new"|capfirst %}</a></p>
 {% endif %}

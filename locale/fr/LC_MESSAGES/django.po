@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-12 14:26+0200\n"
+"POT-Creation-Date: 2015-08-12 14:45+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -235,8 +235,6 @@ msgid "lending"
 msgstr "prêts"
 
 #: .\sharing\models.py:42 .\templates\base\layout.html:43
-#: .\templates\library\book_detail.html:61
-#: .\templates\sharing\dashboard.html:61
 #: .\templates\sharing\profile_show.html:56
 msgid "lendings"
 msgstr "prêts"
@@ -307,18 +305,83 @@ msgstr "Vous êtes bien connecté, %(username)s !"
 msgid "login"
 msgstr "connexion"
 
-#: .\templates\base\pagination.html:5
+#: .\templates\base\pagination.html:5 .\templates\common\pagination.html:5
 msgid "previous"
 msgstr "précédente"
 
-#: .\templates\base\pagination.html:8
+#: .\templates\base\pagination.html:8 .\templates\common\pagination.html:8
 #, python-format
 msgid "Page %(page_number)s of %(num_pages)s"
 msgstr "Page %(page_number)s sur %(num_pages)s"
 
-#: .\templates\base\pagination.html:11
+#: .\templates\base\pagination.html:11 .\templates\common\pagination.html:11
 msgid "next"
 msgstr "suivante"
+
+#: .\templates\common\lendings.html:13
+#, fuzzy, python-format
+#| msgid ""
+#| "\n"
+#| "                    <strong>%(book)s</strong> to <em>%(borrower)s</em>\n"
+#| "                "
+msgid ""
+"\n"
+"                <strong>%(book)s</strong> to <em>%(borrower)s</em>\n"
+"            "
+msgstr ""
+"\n"
+"            <strong>%(book)s</strong> à <em>%(borrower)s</em>\n"
+"        "
+
+#: .\templates\common\lendings.html:19 .\templates\sharing\dashboard.html:42
+#: .\templates\sharing\lending_list.html:57
+#: .\templates\sharing\profile_show.html:40
+#: .\templates\sharing\profile_show.html:66
+msgid "give back"
+msgstr "rendre"
+
+#: .\templates\common\lendings.html:22 .\templates\library\author_list.html:37
+#: .\templates\library\book_detail.html:52
+#: .\templates\library\book_list.html:85
+#: .\templates\library\editor_list.html:26
+#: .\templates\library\period_list.html:25
+#: .\templates\library\theme_list.html:25
+#: .\templates\sharing\dashboard.html:14 .\templates\sharing\dashboard.html:45
+#: .\templates\sharing\lending_list.html:62
+#: .\templates\sharing\profile_show.html:15
+#: .\templates\sharing\profile_show.html:43
+#: .\templates\sharing\profile_show.html:69
+msgid "edit"
+msgstr "modifier"
+
+#: .\templates\common\lendings.html:25 .\templates\library\author_list.html:40
+#: .\templates\library\book_detail.html:55
+#: .\templates\library\book_list.html:88
+#: .\templates\library\editor_list.html:29
+#: .\templates\library\period_list.html:28
+#: .\templates\library\theme_list.html:28
+#: .\templates\sharing\dashboard.html:17 .\templates\sharing\dashboard.html:48
+#: .\templates\sharing\lending_list.html:65
+#: .\templates\sharing\profile_show.html:18
+#: .\templates\sharing\profile_show.html:46
+#: .\templates\sharing\profile_show.html:72
+msgid "delete"
+msgstr "supprimer"
+
+#: .\templates\common\lendings.html:30
+#, python-format
+msgid "No %(object_type)s ongoing !"
+msgstr "Pas %(object_type)s en cours !"
+
+#: .\templates\common\lendings.html:34 .\templates\library\author_list.html:50
+#: .\templates\library\book_list.html:98
+#: .\templates\library\editor_list.html:39
+#: .\templates\library\period_list.html:38
+#: .\templates\library\theme_list.html:38
+#: .\templates\sharing\dashboard.html:26 .\templates\sharing\dashboard.html:57
+#: .\templates\sharing\lending_list.html:75
+msgid "new"
+msgstr "ajouter"
 
 #: .\templates\library\author_confirm_delete.html:4
 #: .\templates\library\book_confirm_delete.html:4
@@ -329,50 +392,6 @@ msgstr "suivante"
 #, python-format
 msgid "Are you sure you want to delete \"%(object)s\" ?"
 msgstr "Êtes-vous certain que vous souhaitez supprimer \"%(object)s\" ?"
-
-#: .\templates\library\author_list.html:37
-#: .\templates\library\book_detail.html:52
-#: .\templates\library\book_detail.html:74
-#: .\templates\library\book_list.html:85
-#: .\templates\library\editor_list.html:26
-#: .\templates\library\period_list.html:25
-#: .\templates\library\theme_list.html:25
-#: .\templates\sharing\dashboard.html:14 .\templates\sharing\dashboard.html:45
-#: .\templates\sharing\dashboard.html:74
-#: .\templates\sharing\lending_list.html:62
-#: .\templates\sharing\profile_show.html:15
-#: .\templates\sharing\profile_show.html:43
-#: .\templates\sharing\profile_show.html:69
-msgid "edit"
-msgstr "modifier"
-
-#: .\templates\library\author_list.html:40
-#: .\templates\library\book_detail.html:55
-#: .\templates\library\book_detail.html:77
-#: .\templates\library\book_list.html:88
-#: .\templates\library\editor_list.html:29
-#: .\templates\library\period_list.html:28
-#: .\templates\library\theme_list.html:28
-#: .\templates\sharing\dashboard.html:17 .\templates\sharing\dashboard.html:48
-#: .\templates\sharing\dashboard.html:77
-#: .\templates\sharing\lending_list.html:65
-#: .\templates\sharing\profile_show.html:18
-#: .\templates\sharing\profile_show.html:46
-#: .\templates\sharing\profile_show.html:72
-msgid "delete"
-msgstr "supprimer"
-
-#: .\templates\library\author_list.html:50
-#: .\templates\library\book_detail.html:86
-#: .\templates\library\book_list.html:98
-#: .\templates\library\editor_list.html:39
-#: .\templates\library\period_list.html:38
-#: .\templates\library\theme_list.html:38
-#: .\templates\sharing\dashboard.html:26 .\templates\sharing\dashboard.html:57
-#: .\templates\sharing\dashboard.html:86
-#: .\templates\sharing\lending_list.html:75
-msgid "new"
-msgstr "ajouter"
 
 #: .\templates\library\book_detail.html:8
 #: .\templates\library\book_detail.html:14
@@ -410,32 +429,6 @@ msgstr "pas encore rempli"
 msgid "owned by"
 msgstr "détenu par"
 
-#: .\templates\library\book_detail.html:65
-#: .\templates\sharing\dashboard.html:65
-#: .\templates\sharing\profile_show.html:60
-msgid ""
-"\n"
-"                    <strong>%(book)s</strong> to <em>%(borrower)s</em>\n"
-"                "
-msgstr ""
-"\n"
-"            <strong>%(book)s</strong> à <em>%(borrower)s</em>\n"
-"        "
-
-#: .\templates\library\book_detail.html:71
-#: .\templates\sharing\dashboard.html:42 .\templates\sharing\dashboard.html:71
-#: .\templates\sharing\lending_list.html:57
-#: .\templates\sharing\profile_show.html:40
-#: .\templates\sharing\profile_show.html:66
-msgid "give back"
-msgstr "rendre"
-
-#: .\templates\library\book_detail.html:82
-#: .\templates\sharing\dashboard.html:82
-#: .\templates\sharing\profile_show.html:77
-msgid "no lendings ongoing !"
-msgstr "pas de prêts en cours !"
-
 #: .\templates\sharing\dashboard.html:11
 #, fuzzy
 #| msgid "lending"
@@ -454,6 +447,7 @@ msgstr "emprunts"
 
 #: .\templates\sharing\dashboard.html:36
 #: .\templates\sharing\profile_show.html:34
+#, python-format
 msgid ""
 "\n"
 "                    <strong>%(book)s</strong> from <em>%(owner)s</em>\n"
@@ -482,6 +476,21 @@ msgstr "tous les prêts"
 #: .\templates\sharing\lending_list.html:35
 msgid "dates"
 msgstr "dates"
+
+#: .\templates\sharing\profile_show.html:60
+#, python-format
+msgid ""
+"\n"
+"                    <strong>%(book)s</strong> to <em>%(borrower)s</em>\n"
+"                "
+msgstr ""
+"\n"
+"            <strong>%(book)s</strong> à <em>%(borrower)s</em>\n"
+"        "
+
+#: .\templates\sharing\profile_show.html:77
+msgid "no lendings ongoing !"
+msgstr "pas de prêts en cours !"
 
 #~ msgid "life"
 #~ msgstr "vie"

@@ -1,0 +1,15 @@
+{% if is_paginated %}
+    <p class="pagination">
+        <span class="page-links">
+            {% if page_obj.has_previous %}
+                <a class="pure-button" href="?page={{ page_obj.previous_page_number }}">{% trans "previous"|capfirst %}</a>
+            {% endif %}
+            <span class="page-current">
+                {% blocktrans with page_number=page_obj.number num_pages=page_obj.paginator.num_pages %}Page {{ page_number }} of {{ num_pages }}{% endblocktrans %}.
+            </span>
+            {% if page_obj.has_next %}
+                <a class="pure-button" href="?page={{ page_obj.next_page_number }}">{% trans "next"|capfirst %}</a>
+            {% endif %}
+        </span>
+    </p>
+{% endif %}

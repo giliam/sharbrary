@@ -51,8 +51,13 @@ def author_detail(request, author_id):
     """
     Shows author details.
     """
+    sort_by = request.GET.get('sort_by', "title")
+    order = request.GET.get('order', "asc")
+
     author = get_object_or_404(Author, pk=author_id)
-    books = Book.objects.filter(author=author)
+    books = Book.objects.filter(author=author).order_by(sort_by)
+    if order == 'desc':
+        books = books.reverse()
     return render(request, 'library/author_detail.html', {'author':author,'books':books})
 
 class AuthorList(SortMixin):

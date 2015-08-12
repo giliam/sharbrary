@@ -1,8 +1,17 @@
+a {
+    text-decoration: none;
+    font-style:italic;
+}
+
+a.pure-button {
+    text-decoration: none;
+    font-style:normal;
+}
+
 a.fa {
     text-decoration: none;
     color:inherit;
 }
-
 
 .pure-button-success,
 .pure-button-error,

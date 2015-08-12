@@ -10,7 +10,7 @@
     <ul>
     {% for lending in lendings %}
         <li>
-            {% blocktrans with book=lending.book borrower=lending.borrower %}
+            {% blocktrans with book=lending.book borrower=lending.borrower|default:_("unknown")|capfirst %}
                 <strong>{{ book }}</strong> to <em>{{ borrower }}</em>
             {% endblocktrans %}
         {% if perms.library.lending_edit or perms.library.lending_delete %}

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-12 14:45+0200\n"
+"POT-Creation-Date: 2015-08-12 16:04+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -44,7 +44,7 @@ msgstr "date de mise-à-jour dans la base de données"
 
 #: .\library\models.py:18 .\library\models.py:92
 #: .\templates\library\book_detail.html:6
-#: .\templates\library\book_list.html:14
+#: .\templates\library\book_list.html:10
 msgid "author"
 msgstr "auteur"
 
@@ -62,7 +62,7 @@ msgstr "nom"
 
 #: .\library\models.py:34 .\library\models.py:37 .\library\models.py:93
 #: .\templates\library\book_detail.html:12
-#: .\templates\library\book_list.html:22
+#: .\templates\library\book_list.html:13
 #: .\templates\library\editor_list.html:9
 msgid "editor"
 msgstr "editeur"
@@ -78,7 +78,7 @@ msgstr "thème"
 
 #: .\library\models.py:57 .\library\models.py:94
 #: .\templates\base\layout.html:36 .\templates\library\book_detail.html:18
-#: .\templates\library\book_list.html:31 .\templates\library\theme_list.html:3
+#: .\templates\library\theme_list.html:3
 msgid "themes"
 msgstr "thème"
 
@@ -88,12 +88,11 @@ msgstr "période"
 
 #: .\library\models.py:77 .\library\models.py:95
 #: .\templates\base\layout.html:37 .\templates\library\book_detail.html:30
-#: .\templates\library\book_list.html:34
 #: .\templates\library\period_list.html:3
 msgid "periods"
 msgstr "périodes"
 
-#: .\library\models.py:87 .\templates\library\book_list.html:9
+#: .\library\models.py:87 .\templates\library\book_list.html:7
 msgid "title"
 msgstr "titre"
 
@@ -110,12 +109,10 @@ msgid "owner"
 msgstr "propriétaire"
 
 #: .\library\models.py:96 .\templates\library\book_detail.html:42
-#: .\templates\library\book_list.html:37
 msgid "summary"
 msgstr "résumé"
 
 #: .\library\models.py:97 .\templates\library\book_detail.html:9
-#: .\templates\library\book_list.html:18
 #, fuzzy
 #| msgid "owner"
 msgid "cover"
@@ -235,7 +232,7 @@ msgid "lending"
 msgstr "prêts"
 
 #: .\sharing\models.py:42 .\templates\base\layout.html:43
-#: .\templates\sharing\profile_show.html:56
+#: .\templates\common\lendings.html:7 .\templates\sharing\profile_show.html:55
 msgid "lendings"
 msgstr "prêts"
 
@@ -292,6 +289,10 @@ msgstr "se connecter"
 msgid "admin"
 msgstr "admin"
 
+#: .\templates\base\layout.html:63
+msgid "A library online for sharing books between friends."
+msgstr "Une bibliothèque en ligne pour partager ses livres entre amis."
+
 #: .\templates\base\login.html:6
 msgid "unknown user or wrong password. "
 msgstr "utilisateur inconnu ou mot de passe incorrect."
@@ -318,6 +319,23 @@ msgstr "Page %(page_number)s sur %(num_pages)s"
 msgid "next"
 msgstr "suivante"
 
+#: .\templates\common\lendings.html:7 .\templates\sharing\profile_show.html:76
+msgid "no lendings ongoing !"
+msgstr "pas de prêts en cours !"
+
+#: .\templates\common\lendings.html:13 .\templates\library\book_detail.html:8
+#: .\templates\library\book_detail.html:14
+#: .\templates\library\book_detail.html:17
+#: .\templates\library\book_detail.html:47
+#: .\templates\library\book_list.html:28 .\templates\library\book_list.html:29
+#: .\templates\sharing\dashboard.html:7
+#: .\templates\sharing\lending_list.html:51
+#: .\templates\sharing\lending_list.html:52
+#: .\templates\sharing\profile_show.html:11
+#: .\templates\sharing\profile_show.html:33
+msgid "unknown"
+msgstr "inconnu"
+
 #: .\templates\common\lendings.html:13
 #, fuzzy, python-format
 #| msgid ""
@@ -333,52 +351,47 @@ msgstr ""
 "            <strong>%(book)s</strong> à <em>%(borrower)s</em>\n"
 "        "
 
-#: .\templates\common\lendings.html:19 .\templates\sharing\dashboard.html:42
+#: .\templates\common\lendings.html:19
 #: .\templates\sharing\lending_list.html:57
-#: .\templates\sharing\profile_show.html:40
-#: .\templates\sharing\profile_show.html:66
+#: .\templates\sharing\profile_show.html:39
+#: .\templates\sharing\profile_show.html:65
 msgid "give back"
 msgstr "rendre"
 
 #: .\templates\common\lendings.html:22 .\templates\library\author_list.html:37
 #: .\templates\library\book_detail.html:52
-#: .\templates\library\book_list.html:85
+#: .\templates\library\book_list.html:33
 #: .\templates\library\editor_list.html:26
 #: .\templates\library\period_list.html:25
 #: .\templates\library\theme_list.html:25
-#: .\templates\sharing\dashboard.html:14 .\templates\sharing\dashboard.html:45
+#: .\templates\sharing\dashboard.html:14
 #: .\templates\sharing\lending_list.html:62
 #: .\templates\sharing\profile_show.html:15
-#: .\templates\sharing\profile_show.html:43
-#: .\templates\sharing\profile_show.html:69
+#: .\templates\sharing\profile_show.html:42
+#: .\templates\sharing\profile_show.html:68
 msgid "edit"
 msgstr "modifier"
 
 #: .\templates\common\lendings.html:25 .\templates\library\author_list.html:40
 #: .\templates\library\book_detail.html:55
-#: .\templates\library\book_list.html:88
+#: .\templates\library\book_list.html:36
 #: .\templates\library\editor_list.html:29
 #: .\templates\library\period_list.html:28
 #: .\templates\library\theme_list.html:28
-#: .\templates\sharing\dashboard.html:17 .\templates\sharing\dashboard.html:48
+#: .\templates\sharing\dashboard.html:17
 #: .\templates\sharing\lending_list.html:65
 #: .\templates\sharing\profile_show.html:18
-#: .\templates\sharing\profile_show.html:46
-#: .\templates\sharing\profile_show.html:72
+#: .\templates\sharing\profile_show.html:45
+#: .\templates\sharing\profile_show.html:71
 msgid "delete"
 msgstr "supprimer"
 
-#: .\templates\common\lendings.html:30
-#, python-format
-msgid "No %(object_type)s ongoing !"
-msgstr "Pas %(object_type)s en cours !"
-
 #: .\templates\common\lendings.html:34 .\templates\library\author_list.html:50
-#: .\templates\library\book_list.html:98
+#: .\templates\library\book_list.html:5 .\templates\library\book_list.html:46
 #: .\templates\library\editor_list.html:39
 #: .\templates\library\period_list.html:38
 #: .\templates\library\theme_list.html:38
-#: .\templates\sharing\dashboard.html:26 .\templates\sharing\dashboard.html:57
+#: .\templates\sharing\dashboard.html:26
 #: .\templates\sharing\lending_list.html:75
 msgid "new"
 msgstr "ajouter"
@@ -393,39 +406,23 @@ msgstr "ajouter"
 msgid "Are you sure you want to delete \"%(object)s\" ?"
 msgstr "Êtes-vous certain que vous souhaitez supprimer \"%(object)s\" ?"
 
-#: .\templates\library\book_detail.html:8
-#: .\templates\library\book_detail.html:14
-#: .\templates\library\book_detail.html:17
-#: .\templates\library\book_detail.html:47
-#: .\templates\library\book_list.html:54 .\templates\library\book_list.html:56
-#: .\templates\library\book_list.html:57 .\templates\library\book_list.html:81
-#: .\templates\sharing\dashboard.html:7
-#: .\templates\sharing\lending_list.html:51
-#: .\templates\sharing\lending_list.html:52
-#: .\templates\sharing\profile_show.html:11
-msgid "unknown"
-msgstr "inconnu"
-
 #: .\templates\library\book_detail.html:11
 #: .\templates\library\book_detail.html:27
 #: .\templates\library\book_detail.html:39
-#: .\templates\library\book_list.html:55 .\templates\library\book_list.html:66
-#: .\templates\library\book_list.html:77
 msgid "empty"
 msgstr "vide"
 
 #: .\templates\library\book_detail.html:15
-#: .\templates\library\book_list.html:27
+#: .\templates\library\book_list.html:16
 msgid "published"
 msgstr "publié"
 
 #: .\templates\library\book_detail.html:44
-#: .\templates\library\book_list.html:80
 msgid "not filled yet"
 msgstr "pas encore rempli"
 
 #: .\templates\library\book_detail.html:45
-#: .\templates\library\book_list.html:41
+#: .\templates\library\book_list.html:19
 msgid "owned by"
 msgstr "détenu par"
 
@@ -439,28 +436,6 @@ msgstr "prêts"
 #: .\templates\sharing\profile_show.html:23
 msgid "no book in this library !"
 msgstr "pas de livre dans cette bibliothèque"
-
-#: .\templates\sharing\dashboard.html:32
-#: .\templates\sharing\profile_show.html:30
-msgid "borrowings"
-msgstr "emprunts"
-
-#: .\templates\sharing\dashboard.html:36
-#: .\templates\sharing\profile_show.html:34
-#, python-format
-msgid ""
-"\n"
-"                    <strong>%(book)s</strong> from <em>%(owner)s</em>\n"
-"                "
-msgstr ""
-"\n"
-"            <strong>%(book)s</strong> appartenant à <em>%(owner)s</em>\n"
-"        "
-
-#: .\templates\sharing\dashboard.html:53
-#: .\templates\sharing\profile_show.html:51
-msgid "no borrowings ongoing !"
-msgstr "pas d'emprunts en cours !"
 
 #: .\templates\sharing\lending_list.html:4
 #: .\templates\sharing\lending_list.html:8
@@ -477,7 +452,26 @@ msgstr "tous les prêts"
 msgid "dates"
 msgstr "dates"
 
-#: .\templates\sharing\profile_show.html:60
+#: .\templates\sharing\profile_show.html:29
+msgid "borrowings"
+msgstr "emprunts"
+
+#: .\templates\sharing\profile_show.html:33
+#, python-format
+msgid ""
+"\n"
+"                    <strong>%(book)s</strong> from <em>%(owner)s</em>\n"
+"                "
+msgstr ""
+"\n"
+"            <strong>%(book)s</strong> appartenant à <em>%(owner)s</em>\n"
+"        "
+
+#: .\templates\sharing\profile_show.html:50
+msgid "no borrowings ongoing !"
+msgstr "pas d'emprunts en cours !"
+
+#: .\templates\sharing\profile_show.html:59
 #, python-format
 msgid ""
 "\n"
@@ -488,9 +482,8 @@ msgstr ""
 "            <strong>%(book)s</strong> à <em>%(borrower)s</em>\n"
 "        "
 
-#: .\templates\sharing\profile_show.html:77
-msgid "no lendings ongoing !"
-msgstr "pas de prêts en cours !"
+#~ msgid "No %(object_type)s ongoing !"
+#~ msgstr "Pas %(object_type)s en cours !"
 
 #~ msgid "life"
 #~ msgstr "vie"

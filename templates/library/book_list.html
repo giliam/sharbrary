@@ -15,6 +15,9 @@
                 <a href="?sort_by=author__lastname&order=desc" class="fa fa-sort-desc"></a>
             </th>
             <th>
+                {% trans "cover"|capfirst %}
+            </th>
+            <th>
                 <a href="?sort_by=editor__name&order=asc" class="fa fa-sort-asc"></a> 
                 {% trans "editor"|capfirst %}
                 <a href="?sort_by=editor__name&order=desc" class="fa fa-sort-desc"></a>
@@ -46,6 +49,7 @@
         <tr>
         <td>{{ book.title }}</td>
         <td>{{ book.author|default:_("unknown") }}</td>
+        <td>{% if book.cover %}<img src="{{ book.cover.url }}" class="cover" />{% else %}{% trans "empty" %}{% endif %}</td>
         <td>{{ book.editor|default:_("unknown") }}</td>
         <td>{{ book.publishing_date|naturalday:"DATE_FORMAT"|default:_("unknown") }}</td>
         <td>
@@ -60,7 +64,7 @@
             {% endif %}
         </td>
         <td>{{ book.summary|default:_("not filled yet") }}</td>
-        <td><a href="{% url "profile_show" book.owner.id %}">{{ book.owner|default:_("unknown") }}</a></td>
+        <td>{% if book.owner %}<a href="{% url "profile_show" book.owner.id %}">{% endif %}{{ book.owner|default:_("unknown") }}{% if book.owner %}</a>{% endif %}</td>
         {% if perms.library.book_edit or perms.library.book_delete %}
         <td>
             {% if perms.library.book_edit %}

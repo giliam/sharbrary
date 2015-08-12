@@ -1,0 +1,90 @@
+{% extends "layout.html" %}
+{% block body %} 
+<h1>{% trans "dashboard"|capfirst %}</h1>
+<h3>{% trans "books"|capfirst %}</h3>
+<ul>
+{% for book in books %}
+    <li>{{ book.title }} ({{ book.author|default:_("unknown") }})
+    {% if perms.library.book_edit or perms.library.book_delete %}
+    <br />
+        {% if perms.sharing.lending_new %}
+        <a class="pure-button-xsmall pure-button" href="{% url "lend_book" book.id %}">{% trans "lend"|capfirst %}</a>
+        {% endif %}
+        {% if perms.library.book_edit %}
+        <a class="pure-button pure-button-xsmall pure-button-secondary" href="{% url "book_edit" book.id %}">{% trans "edit"|capfirst %}</a>
+        {% endif %}
+        {% if perms.library.book_delete %}
+        <a class="pure-button-xsmall pure-button pure-button-error" href="{% url "book_delete" book.id %}">{% trans "delete"|capfirst %}</a>
+        {% endif %}
+    {% endif %}
+    </li>
+{% empty %}
+<p>{% trans "no book in this library !"|capfirst %}</p>
+{% endfor %}
+</ul>
+{% if perms.library.book_new %}
+<p><a class="pure-button pure-button-success" href="{% url "book_new" %}">{% trans "new"|capfirst %}</a></p>
+{% endif %}
+
+
+<div class="pure-g">
+    <div class="pure-u-1-2">
+        <h3>{% trans "borrowings"|capfirst %}</h3>
+        <ul>
+        {% for borrowing in borrowings %}
+            <li>
+                {% blocktrans with book=borrowing.book owner=borrowing.book.owner %}
+                    <strong>{{ book }}</strong> from <em>{{ owner }}</em>
+                {% endblocktrans %}
+            {% if perms.library.lending_edit or perms.library.lending_delete %}
+            <br />
+                {% if perms.sharing.lending_end %}
+                    <a class="pure-button pure-button-xsmall pure-button-primary" href="{% url "lending_end" borrowing.id %}">{% trans "give back"|capfirst %}</a>
+                {% endif %}
+                {% if perms.library.lending_edit %}
+                <a class="pure-button pure-button-xsmall pure-button-secondary" href="{% url "lending_edit" borrowing.id %}">{% trans "edit"|capfirst %}</a>
+                {% endif %}
+                {% if perms.library.lending_delete %}
+                <a class="pure-button-xsmall pure-button pure-button-error" href="{% url "lending_delete" borrowing.id %}">{% trans "delete"|capfirst %}</a>
+                {% endif %}
+            {% endif %}
+            </li>
+        {% empty %}
+        <p>{% trans "no borrowings ongoing !"|capfirst %}</p>
+        {% endfor %}
+        </ul>
+        {% if perms.sharing.lending_new %}
+        <p><a class="pure-button pure-button-success" href="{% url "lending_new" %}">{% trans "new"|capfirst %}</a></p>
+        {% endif %}
+    </div>
+    <div class="pure-u-1-2">
+        <h3>{% trans "lendings"|capfirst %}</h3>
+        <ul>
+        {% for lending in lendings %}
+            <li>
+                {% blocktrans with book=lending.book borrower=lending.borrower %}
+                    <strong>{{ book }}</strong> to <em>{{ borrower }}</em>
+                {% endblocktrans %}
+            {% if perms.library.lending_edit or perms.library.lending_delete %}
+            <br />
+                {% if perms.sharing.lending_end %}
+                    <a class="pure-button pure-button-xsmall pure-button-primary" href="{% url "lending_end" lending.id %}">{% trans "give back"|capfirst %}</a>
+                {% endif %}
+                {% if perms.library.lending_edit %}
+                <a class="pure-button pure-button-xsmall pure-button-secondary" href="{% url "lending_edit" lending.id %}">{% trans "edit"|capfirst %}</a>
+                {% endif %}
+                {% if perms.library.lending_delete %}
+                <a class="pure-button-xsmall pure-button pure-button-error" href="{% url "lending_delete" lending.id %}">{% trans "delete"|capfirst %}</a>
+                {% endif %}
+            {% endif %}
+            </li>
+        {% empty %}
+        <p>{% trans "no lendings ongoing !"|capfirst %}</p>
+        {% endfor %}
+        </ul>
+        {% if perms.sharing.lending_new %}
+        <p><a class="pure-button pure-button-success" href="{% url "lending_new" %}">{% trans "new"|capfirst %}</a></p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

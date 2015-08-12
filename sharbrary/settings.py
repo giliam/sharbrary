@@ -138,6 +138,9 @@ STATICFILES_DIRS = parameters.STATICFILES_DIRS if parameters.STATICFILES_DIRS el
     "assets/",
 )
 
+MEDIA_ROOT = os.path.join(BASE_DIR, '/media/')
+MEDIA_URL = FORCE_SCRIPT_NAME + "/media/"
+
 # Adds auto loading of staticfiles and i18n tags.
 add_to_builtins('django.templatetags.i18n')
 add_to_builtins('django.contrib.humanize.templatetags.humanize')

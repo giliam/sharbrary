@@ -1,6 +1,6 @@
 a.fa {
-	text-decoration: none;
-	color:inherit;
+    text-decoration: none;
+    color:inherit;
 }
 
 
@@ -43,4 +43,12 @@ a.fa {
 
 .pure-button-xlarge {
     font-size: 125%;
+}
+
+img.cover {
+    display: block;
+    max-height:150px;
+    max-width:250px;
+    width: auto;
+    height: auto;
 }

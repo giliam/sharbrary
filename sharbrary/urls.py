@@ -16,6 +16,8 @@ Including another URLconf
 from django.conf.urls import include, url, patterns
 from django.contrib import admin
 from django.views.generic import TemplateView
+from django.conf.urls.static import static
+from sharbrary.settings import MEDIA_URL, MEDIA_ROOT
 
 urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
@@ -25,3 +27,5 @@ urlpatterns = patterns('',
     url(r'^i18n/', include('django.conf.urls.i18n')),
     url(r'^change_lang/', TemplateView.as_view(template_name='base/lang_change.html'), name="lang_change")
 )
+
+urlpatterns += static(MEDIA_URL, document_root=MEDIA_ROOT)

@@ -74,6 +74,7 @@ class Book(models.Model):
     editor = models.ForeignKey(Editor,blank=True,null=True,verbose_name=_('editor'))
     themes = models.ManyToManyField(Theme,verbose_name=_('themes'),blank=True)
     summary = models.TextField(verbose_name=_('summary'),blank=True,default="")
+    cover = models.ImageField(upload_to="cover/",verbose_name=_('cover'),null=True,blank=True)
 
     def __unicode__(self):
         return self.title

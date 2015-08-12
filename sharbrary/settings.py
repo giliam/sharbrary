@@ -138,7 +138,7 @@ STATICFILES_DIRS = parameters.STATICFILES_DIRS if parameters.STATICFILES_DIRS el
     "assets/",
 )
 
-MEDIA_ROOT = os.path.join(BASE_DIR, '/media/')
+MEDIA_ROOT = BASE_DIR + '/media/'
 MEDIA_URL = FORCE_SCRIPT_NAME + "/media/"
 
 # Adds auto loading of staticfiles and i18n tags.

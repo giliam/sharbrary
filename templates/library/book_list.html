@@ -31,6 +31,9 @@
                 {% trans "themes"|capfirst %}
             </th>
             <th>
+                {% trans "periods"|capfirst %}
+            </th>
+            <th>
                 {% trans "summary"|capfirst %}
             </th>
             <th>
@@ -53,10 +56,21 @@
         <td>{{ book.editor|default:_("unknown") }}</td>
         <td>{{ book.publishing_date|naturalday:"DATE_FORMAT"|default:_("unknown") }}</td>
         <td>
-            {% if book.themes|length > 0 %}
+            {% if book.themes.all|length > 0 %}
                 <ul>
                 {% for theme in book.themes.all %}
-                    <li>{{theme}}</li>
+                    <li>{{theme.name}}</li>
+                {% endfor %}
+                </ul>
+            {% else %}
+                <p>{% trans "empty"|capfirst %}</p>
+            {% endif %}
+        </td>
+        <td>
+            {% if book.periods.all|length > 0 %}
+                <ul>
+                {% for period in book.periods.all %}
+                    <li>{{period.name}}</li>
                 {% endfor %}
                 </ul>
             {% else %}

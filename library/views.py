@@ -30,13 +30,13 @@ class BookCreate(SuccessMessageMixin, CreateView):
     model = Book
     success_url = reverse_lazy('book_list')
     success_message = _("%(title)s was created successfully")
-    fields = ['title', 'publishing_date', 'author', 'owner', 'themes', 'summary', 'cover']
+    fields = ['title', 'publishing_date', 'author', 'owner', 'themes', 'periods', 'summary', 'cover']
 
 class BookUpdate(SuccessMessageMixin, UpdateView):
     model = Book
     success_url = reverse_lazy('book_list')
     success_message = _("%(title)s was updated successfully")
-    fields = ['title', 'publishing_date', 'author', 'owner', 'themes', 'summary', 'cover']
+    fields = ['title', 'publishing_date', 'author', 'owner', 'themes', 'periods', 'summary', 'cover']
 
 class BookDelete(DeleteView):
     model = Book

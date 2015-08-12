@@ -17,10 +17,22 @@
         	{{ book.publishing_date|naturalday:"DATE_FORMAT"|default:_("unknown") }}</p>
         <p><strong>{% trans "themes"|capfirst %}</strong></p>
         <p>
-            {% if book.themes|length > 0 %}
+            {% if book.themes.all|length > 0 %}
                 <ul>
                 {% for theme in book.themes.all %}
                     <li>{{theme}}</li>
+                {% endfor %}
+                </ul>
+            {% else %}
+                <p> {% trans "empty"|capfirst %}</p>
+            {% endif %}
+        </p>
+        <p><strong>{% trans "periods"|capfirst %}</strong></p>
+        <p>
+            {% if book.periods.all|length > 0 %}
+                <ul>
+                {% for period in book.periods.all %}
+                    <li>{{period}}</li>
                 {% endfor %}
                 </ul>
             {% else %}

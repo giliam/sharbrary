@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+{% block body %} 
+<h1>{% trans "periods"|capfirst %}</h1>
+<table class="pure-table pure-table-bordered">
+    <thead>
+        <tr>
+            <th>
+                <a href="?sort_by=name&order=asc" class="fa fa-sort-asc"></a> 
+                {% trans "name"|capfirst %}
+                <a href="?sort_by=name&order=desc" class="fa fa-sort-desc"></a>
+            </th>
+            {% if perms.library.period_edit or perms.library.period_delete %}
+            <th></th>
+            {% endif %}
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for period in object_list %}
+        <tr>
+        <td><strong>{{ period.name }}</strong></td>
+        {% if perms.library.period_edit or perms.library.period_delete %}
+        <td>
+            {% if perms.library.period_edit %}
+                <a class="pure-button pure-button-secondary" href="{% url "period_edit" period.id %}">{% trans "edit"|capfirst %}</a>
+            {% endif %}
+            {% if perms.library.period_delete %}
+                <a class="pure-button pure-button-error" href="{% url "period_delete" period.id %}">{% trans "delete"|capfirst %}</a>
+            {% endif %}
+        </td>
+        {% endif %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% include "base/pagination.html" %}
+{% if perms.library.period_new %}
+    <p><a class="pure-button pure-button-success" href="{% url "period_new" %}">{% trans "new"|capfirst %}</a></p>
+{% endif %}
+{% endblock %}

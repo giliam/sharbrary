@@ -21,4 +21,8 @@ urlpatterns = patterns('',
   url(r'^theme/new$', permission_required('library.theme_new')(views.ThemeCreate.as_view()), name='theme_new'),
   url(r'^theme/edit/(?P<pk>\d+)$', permission_required('library.theme_edit')(views.ThemeUpdate.as_view()), name='theme_edit'),
   url(r'^theme/delete/(?P<pk>\d+)$', permission_required('library.theme_delete')(views.ThemeDelete.as_view()), name='theme_delete'),
+  url(r'^period/$', permission_required('library.period_list')(views.PeriodList.as_view()), name='period_list'),
+  url(r'^period/new$', permission_required('library.period_new')(views.PeriodCreate.as_view()), name='period_new'),
+  url(r'^period/edit/(?P<pk>\d+)$', permission_required('library.period_edit')(views.PeriodUpdate.as_view()), name='period_edit'),
+  url(r'^period/delete/(?P<pk>\d+)$', permission_required('library.period_delete')(views.PeriodDelete.as_view()), name='period_delete'),
 )

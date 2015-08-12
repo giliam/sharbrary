@@ -6,7 +6,7 @@ from django.core.urlresolvers import reverse_lazy
 from django.utils.translation import ugettext_lazy as _
 from django.shortcuts import get_object_or_404
 
-from library.models import Book, Author, Editor, Theme
+from library.models import Book, Author, Editor, Theme, Period
 from sharing.models import Lending
 
 from utils.models.sortmixin import SortMixin
@@ -93,7 +93,7 @@ class EditorDelete(DeleteView):
 
 class ThemeList(SortMixin):
     default_sort_params = ('name', 'asc')
-    allowed_sort_params = ['name','period']
+    allowed_sort_params = ['name']
     model = Theme
     template_name="library/theme_list.html"
     paginate_by = 20
@@ -102,15 +102,39 @@ class ThemeCreate(SuccessMessageMixin, CreateView):
     model = Theme
     success_url = reverse_lazy('theme_list')
     success_message = _("%(name)s was added successfully")
-    fields = ['name', 'period']
+    fields = ['name']
 
 class ThemeUpdate(SuccessMessageMixin, UpdateView):
     model = Theme
     success_url = reverse_lazy('theme_list')
     success_message = _("%(name)s was updated successfully")
-    fields = ['name', 'period']
+    fields = ['name']
 
 class ThemeDelete(DeleteView):
     model = Theme
     template_name="library/theme_confirm_delete.html"
     success_url = reverse_lazy('theme_list')
+
+class PeriodList(SortMixin):
+    default_sort_params = ('name', 'asc')
+    allowed_sort_params = ['name']
+    model = Period
+    template_name="library/period_list.html"
+    paginate_by = 20
+
+class PeriodCreate(SuccessMessageMixin, CreateView):
+    model = Period
+    success_url = reverse_lazy('period_list')
+    success_message = _("%(name)s was added successfully")
+    fields = ['name']
+
+class PeriodUpdate(SuccessMessageMixin, UpdateView):
+    model = Period
+    success_url = reverse_lazy('period_list')
+    success_message = _("%(name)s was updated successfully")
+    fields = ['name']
+
+class PeriodDelete(DeleteView):
+    model = Period
+    template_name="library/period_confirm_delete.html"
+    success_url = reverse_lazy('period_list')

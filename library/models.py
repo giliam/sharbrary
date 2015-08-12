@@ -46,7 +46,6 @@ class Editor(models.Model):
 
 class Theme(models.Model):
     name = models.CharField(verbose_name=_('name'),max_length=200)
-    period = models.CharField(verbose_name=_('period'),max_length=200,blank=True)
     added_date = models.DateTimeField(_('date added to the database'),auto_now_add=True)
     updated_date = models.DateTimeField(_('date updated to the database'),auto_now=True)
 
@@ -61,6 +60,26 @@ class Theme(models.Model):
             ("theme_edit", "Edit a theme"),
             ("theme_delete", "Delete a theme"),
             ("theme_list", "Show the list of themes"),
+        )
+        default_permissions = []
+
+
+class Period(models.Model):
+    name = models.CharField(verbose_name=_('name'),max_length=200)
+    added_date = models.DateTimeField(_('date added to the database'),auto_now_add=True)
+    updated_date = models.DateTimeField(_('date updated to the database'),auto_now=True)
+
+    def __unicode__(self):
+        return _("period") + " : " + self.name
+
+    class Meta:
+        verbose_name = _("period")
+        verbose_name_plural = _("periods")
+        permissions = (
+            ("period_new", "Add a period"),
+            ("period_edit", "Edit a period"),
+            ("period_delete", "Delete a period"),
+            ("period_list", "Show the list of periods"),
         )
         default_permissions = []
 

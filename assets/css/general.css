@@ -51,4 +51,14 @@ img.cover {
     max-width:250px;
     width: auto;
     height: auto;
+    margin:auto;
+}
+
+p.cover {
+    height: 150px;
+}
+
+table.book_list td {
+    text-align: center;
+    padding:0 15px 0 15px;
 }

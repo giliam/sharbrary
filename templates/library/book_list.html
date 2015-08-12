@@ -15,9 +15,6 @@
                 <a href="?sort_by=author__lastname&order=desc" class="fa fa-sort-desc"></a>
             </th>
             <th>
-                {% trans "cover"|capfirst %}
-            </th>
-            <th>
                 <a href="?sort_by=editor__name&order=asc" class="fa fa-sort-asc"></a> 
                 {% trans "editor"|capfirst %}
                 <a href="?sort_by=editor__name&order=desc" class="fa fa-sort-desc"></a>
@@ -46,51 +43,33 @@
             {% endif %}
         </tr>
     </thead>
-
+</table>
+<table class="book_list">
     <tbody>
-        {% for book in object_list %}
         <tr>
-        <td><a href="{% url "book_detail" book.id %}">{{ book.title }}</a></td>
-        <td>{{ book.author|default:_("unknown") }}</td>
-        <td>{% if book.cover %}<img src="{{ book.cover.url }}" class="cover" />{% else %}{% trans "empty" %}{% endif %}</td>
-        <td>{{ book.editor|default:_("unknown") }}</td>
-        <td>{{ book.publishing_date|naturalday:"DATE_FORMAT"|default:_("unknown") }}</td>
-        <td>
-            {% if book.themes.all|length > 0 %}
-                <ul>
-                {% for theme in book.themes.all %}
-                    <li>{{theme.name}}</li>
-                {% endfor %}
-                </ul>
-            {% else %}
-                <p>{% trans "empty"|capfirst %}</p>
-            {% endif %}
-        </td>
-        <td>
-            {% if book.periods.all|length > 0 %}
-                <ul>
-                {% for period in book.periods.all %}
-                    <li>{{period.name}}</li>
-                {% endfor %}
-                </ul>
-            {% else %}
-                <p>{% trans "empty"|capfirst %}</p>
-            {% endif %}
-        </td>
-        <td>{{ book.summary|default:_("not filled yet") }}</td>
-        <td>{% if book.owner %}<a href="{% url "profile_show" book.owner.id %}">{% endif %}{{ book.owner|default:_("unknown") }}{% if book.owner %}</a>{% endif %}</td>
-        {% if perms.library.book_edit or perms.library.book_delete %}
-        <td>
-            {% if perms.library.book_edit %}
-            <a class="pure-button pure-button-secondary" href="{% url "book_edit" book.id %}">{% trans "edit"|capfirst %}</a>
-            {% endif %}
-            {% if perms.library.book_delete %}
-            <a class="pure-button pure-button-error" href="{% url "book_delete" book.id %}">{% trans "delete"|capfirst %}</a>
-            {% endif %}
-        </td>
-        {% endif %}
+    {% for book in object_list %}
+            {% if forloop.counter0|divisibleby:4 %}
         </tr>
+        <tr>
+            {% endif %}
+            <td>
+            <p class="cover">{% if book.cover %}<img src="{{ book.cover.url }}" class="cover" />{% else %}<img src="{% static 'img/book_cover.png' %}" class="cover" />{% endif %}</p>
+            <br />
+            <p><a href="{% url "book_detail" book.id %}">{{ book.title }}</a></p>
+            <p>{{ book.author|default:_("unknown") }}</p>
+            {% if perms.library.book_edit or perms.library.book_delete %}
+            <p>
+                {% if perms.library.book_edit %}
+                <a class="pure-button pure-button-secondary" href="{% url "book_edit" book.id %}">{% trans "edit"|capfirst %}</a>
+                {% endif %}
+                {% if perms.library.book_delete %}
+                <a class="pure-button pure-button-error" href="{% url "book_delete" book.id %}">{% trans "delete"|capfirst %}</a>
+                {% endif %}
+            </p>
+            {% endif %}
+            </td>
         {% endfor %}
+        </tr>
     </tbody>
 </table>
 {% include "common/pagination.html" %}

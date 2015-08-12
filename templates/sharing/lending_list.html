@@ -48,8 +48,8 @@
         {% for lending in object_list %}
         <tr>
         <td>{{ lending.book }}</td>
-        <td><a href="{% url "profile_show" lending.book.owner.id %}">{{ lending.book.owner }}</a></td>
-        <td><a href="{% url "profile_show" lending.borrower.id %}">{{ lending.borrower }}</a></td>
+        <td>{% if lending.book.owner %}<a href="{% url "profile_show" lending.book.owner.id %}">{% endif %}{{ lending.book.owner|default:_("unknown") }}{% if lending.book.owner %}</a>{% endif %}</td>
+        <td>{% if lending.borrower %}<a href="{% url "profile_show" lending.borrower.id %}">{% endif %}{{ lending.borrower|default:_("unknown") }}{% if lending.borrower %}</a>{% endif %}</td>
         <td>{{ lending.beginning_date|naturaltime|default:"?" }}
         </td>
         <td>{{ lending.end_date|naturaltime|default:"?" }}</td>

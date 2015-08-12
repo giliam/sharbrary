@@ -19,6 +19,7 @@ class Author(models.Model):
         verbose_name_plural = _("authors")
         permissions = (
             ("author_new", "Add an author"),
+            ("author_detail", "Show an author details"),
             ("author_edit", "Edit an author"),
             ("author_delete", "Delete an author"),
             ("author_list", "Show the list of authors"),
@@ -104,6 +105,7 @@ class Book(models.Model):
         verbose_name_plural = _("books")
         permissions = (
             ("book_new", "Add a book"),
+            ("book_detail", "Show a book page"),
             ("book_edit", "Edit a book"),
             ("book_delete", "Delete a book"),
             ("book_list", "Show the list of books"),

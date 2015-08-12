@@ -19,12 +19,16 @@ def book_detail(request, book_id):
     lendings = Lending.objects.filter(book__id=book_id)
     return render(request, 'library/book_detail.html', {'book':book,'lendings':lendings})
 
-class BookList(SortMixin):
+class BookEmbedList(SortMixin):
+    context_object_name = "books"
     default_sort_params = ('title', 'asc')
     allowed_sort_params = ['title', 'author__lastname', 'editor__name', 'published', 'owner__username']
     model = Book
-    template_name="library/book_list.html"
+    template_name="library/book_embed_list.html"
     paginate_by = 20
+
+class BookList(BookEmbedList):
+    template_name="library/book_list.html"
 
 class BookCreate(SuccessMessageMixin, CreateView):
     model = Book
@@ -43,7 +47,16 @@ class BookDelete(DeleteView):
     template_name="library/book_confirm_delete.html"
     success_url = reverse_lazy('book_list')
 
+def author_detail(request, author_id):
+    """
+    Shows author details.
+    """
+    author = get_object_or_404(Author, pk=author_id)
+    books = Book.objects.filter(author=author)
+    return render(request, 'library/author_detail.html', {'author':author,'books':books})
+
 class AuthorList(SortMixin):
+    context_object_name = "authors"
     default_sort_params = ('lastname', 'asc')
     allowed_sort_params = ['lastname', 'birthdate', 'death_date']
     model = Author
@@ -68,6 +81,7 @@ class AuthorDelete(DeleteView):
     success_url = reverse_lazy('author_list')
 
 class EditorList(SortMixin):
+    context_object_name = "editors"
     default_sort_params = ('name', 'asc')
     allowed_sort_params = ['name']
     model = Editor
@@ -92,6 +106,7 @@ class EditorDelete(DeleteView):
     success_url = reverse_lazy('editor_list')
 
 class ThemeList(SortMixin):
+    context_object_name = "themes"
     default_sort_params = ('name', 'asc')
     allowed_sort_params = ['name']
     model = Theme
@@ -116,6 +131,7 @@ class ThemeDelete(DeleteView):
     success_url = reverse_lazy('theme_list')
 
 class PeriodList(SortMixin):
+    context_object_name = "periods"
     default_sort_params = ('name', 'asc')
     allowed_sort_params = ['name']
     model = Period

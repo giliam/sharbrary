@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-12 16:14+0200\n"
+"POT-Creation-Date: 2015-08-12 16:48+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -32,17 +32,17 @@ msgstr "date de naissance"
 msgid "date of death"
 msgstr "date de mort"
 
-#: .\library\models.py:11 .\library\models.py:30 .\library\models.py:49
-#: .\library\models.py:69 .\sharing\models.py:34
+#: .\library\models.py:11 .\library\models.py:31 .\library\models.py:50
+#: .\library\models.py:70 .\sharing\models.py:34
 msgid "date added to the database"
 msgstr "date d'ajout à la base de données"
 
-#: .\library\models.py:12 .\library\models.py:31 .\library\models.py:50
-#: .\library\models.py:70 .\library\models.py:90 .\sharing\models.py:35
+#: .\library\models.py:12 .\library\models.py:32 .\library\models.py:51
+#: .\library\models.py:71 .\library\models.py:91 .\sharing\models.py:35
 msgid "date updated to the database"
 msgstr "date de mise-à-jour dans la base de données"
 
-#: .\library\models.py:18 .\library\models.py:92
+#: .\library\models.py:18 .\library\models.py:93
 #: .\templates\library\book_detail.html:6
 #: .\templates\library\book_list.html:10
 msgid "author"
@@ -53,77 +53,77 @@ msgstr "auteur"
 msgid "authors"
 msgstr "auteurs"
 
-#: .\library\models.py:29 .\library\models.py:48 .\library\models.py:68
+#: .\library\models.py:30 .\library\models.py:49 .\library\models.py:69
 #: .\templates\library\author_list.html:9
 #: .\templates\library\period_list.html:9
 #: .\templates\library\theme_list.html:9
 msgid "name"
 msgstr "nom"
 
-#: .\library\models.py:34 .\library\models.py:37 .\library\models.py:93
+#: .\library\models.py:35 .\library\models.py:38 .\library\models.py:94
 #: .\templates\library\book_detail.html:12
 #: .\templates\library\book_list.html:13
 #: .\templates\library\editor_list.html:9
 msgid "editor"
 msgstr "editeur"
 
-#: .\library\models.py:38 .\templates\base\layout.html:35
+#: .\library\models.py:39 .\templates\base\layout.html:35
 #: .\templates\library\editor_list.html:3
 msgid "editors"
 msgstr "editeurs"
 
-#: .\library\models.py:53 .\library\models.py:56
+#: .\library\models.py:54 .\library\models.py:57
 msgid "theme"
 msgstr "thème"
 
-#: .\library\models.py:57 .\library\models.py:94
+#: .\library\models.py:58 .\library\models.py:95
 #: .\templates\base\layout.html:36 .\templates\library\book_detail.html:18
 #: .\templates\library\theme_list.html:3
 msgid "themes"
 msgstr "thème"
 
-#: .\library\models.py:73 .\library\models.py:76
+#: .\library\models.py:74 .\library\models.py:77
 msgid "period"
 msgstr "période"
 
-#: .\library\models.py:77 .\library\models.py:95
+#: .\library\models.py:78 .\library\models.py:96
 #: .\templates\base\layout.html:37 .\templates\library\book_detail.html:30
 #: .\templates\library\period_list.html:3
 msgid "periods"
 msgstr "périodes"
 
-#: .\library\models.py:87 .\templates\library\book_list.html:7
+#: .\library\models.py:88 .\templates\library\book_list.html:7
 msgid "title"
 msgstr "titre"
 
-#: .\library\models.py:88
+#: .\library\models.py:89
 msgid "date published"
 msgstr "date de publication"
 
-#: .\library\models.py:89
+#: .\library\models.py:90
 msgid "date added to the library"
 msgstr "date d'ajout à la bibliothèque"
 
-#: .\library\models.py:91 .\templates\sharing\lending_list.html:20
+#: .\library\models.py:92 .\templates\sharing\lending_list.html:20
 msgid "owner"
 msgstr "propriétaire"
 
-#: .\library\models.py:96 .\templates\library\book_detail.html:42
+#: .\library\models.py:97 .\templates\library\book_detail.html:42
 msgid "summary"
 msgstr "résumé"
 
-#: .\library\models.py:97 .\templates\library\book_detail.html:9
+#: .\library\models.py:98 .\templates\library\book_detail.html:9
 #, fuzzy
 #| msgid "owner"
 msgid "cover"
 msgstr "propriétaire"
 
-#: .\library\models.py:103 .\sharing\models.py:30
+#: .\library\models.py:104 .\sharing\models.py:30
 #: .\templates\sharing\lending_list.html:15
 msgid "book"
 msgstr "livre"
 
-#: .\library\models.py:104 .\templates\base\layout.html:33
+#: .\library\models.py:105 .\templates\base\layout.html:33
 #: .\templates\library\book_list.html:3 .\templates\sharing\dashboard.html:4
 #: .\templates\sharing\profile_show.html:8
 msgid "books"
@@ -139,27 +139,27 @@ msgstr "%(title)s a bien été créé !"
 msgid "%(title)s was updated successfully"
 msgstr "%(title)s a bien été mis-à-jour !"
 
-#: .\library\views.py:56
+#: .\library\views.py:64
 #, python-format
 msgid "The author %(firstname)s %(lastname)s was added successfully"
 msgstr "L'auteur %(firstname)s %(lastname)s a bien été créé !"
 
-#: .\library\views.py:62
+#: .\library\views.py:70
 #, python-format
 msgid "%(firstname)s %(lastname)s was updated successfully"
 msgstr "L'auteur %(firstname)s %(lastname)s a bien été mis-à-jour !"
 
-#: .\library\views.py:80
+#: .\library\views.py:88
 #, python-format
 msgid "%(name)s was created successfully"
 msgstr "%(name)s a bien été créé !"
 
-#: .\library\views.py:86 .\library\views.py:110 .\library\views.py:134
+#: .\library\views.py:94 .\library\views.py:118 .\library\views.py:142
 #, python-format
 msgid "%(name)s was updated successfully"
 msgstr "%(name)s a bien été mis-à-jour !"
 
-#: .\library\views.py:104 .\library\views.py:128
+#: .\library\views.py:112 .\library\views.py:136
 #, python-format
 msgid "%(name)s was added successfully"
 msgstr "%(name)s a bien été créé !"
@@ -328,8 +328,8 @@ msgstr "emprunts"
 #: .\templates\library\book_detail.html:14
 #: .\templates\library\book_detail.html:17
 #: .\templates\library\book_detail.html:47
-#: .\templates\library\book_list.html:28 .\templates\library\book_list.html:29
-#: .\templates\sharing\dashboard.html:7
+#: .\templates\library\book_list.html:38 .\templates\library\book_list.html:40
+#: .\templates\library\book_list.html:41 .\templates\sharing\dashboard.html:7
 #: .\templates\sharing\lending_list.html:51
 #: .\templates\sharing\lending_list.html:52
 #: .\templates\sharing\profile_show.html:11
@@ -337,6 +337,7 @@ msgid "unknown"
 msgstr "inconnu"
 
 #: .\templates\common\borrowings.html:11
+#, python-format
 msgid "<strong>%(book)s</strong> from <em>%(owner)s</em>"
 msgstr "<strong>%(book)s</strong> appartenant à <em>%(owner)s</em>"
 
@@ -346,9 +347,10 @@ msgid "give back"
 msgstr "rendre"
 
 #: .\templates\common\borrowings.html:18 .\templates\common\lendings.html:18
-#: .\templates\library\author_list.html:37
+#: .\templates\library\author_detail.html:9
+#: .\templates\library\author_list.html:44
 #: .\templates\library\book_detail.html:52
-#: .\templates\library\book_list.html:33
+#: .\templates\library\book_list.html:45
 #: .\templates\library\editor_list.html:26
 #: .\templates\library\period_list.html:25
 #: .\templates\library\theme_list.html:25
@@ -359,9 +361,10 @@ msgid "edit"
 msgstr "modifier"
 
 #: .\templates\common\borrowings.html:21 .\templates\common\lendings.html:21
-#: .\templates\library\author_list.html:40
+#: .\templates\library\author_detail.html:12
+#: .\templates\library\author_list.html:47
 #: .\templates\library\book_detail.html:55
-#: .\templates\library\book_list.html:36
+#: .\templates\library\book_list.html:48
 #: .\templates\library\editor_list.html:29
 #: .\templates\library\period_list.html:28
 #: .\templates\library\theme_list.html:28
@@ -376,8 +379,8 @@ msgid "no borrowings ongoing !"
 msgstr "pas d'emprunts en cours !"
 
 #: .\templates\common\borrowings.html:30 .\templates\common\lendings.html:30
-#: .\templates\library\author_list.html:50
-#: .\templates\library\book_list.html:5 .\templates\library\book_list.html:46
+#: .\templates\library\author_list.html:57
+#: .\templates\library\book_list.html:5 .\templates\library\book_list.html:58
 #: .\templates\library\editor_list.html:39
 #: .\templates\library\period_list.html:38
 #: .\templates\library\theme_list.html:38
@@ -387,6 +390,7 @@ msgid "new"
 msgstr "ajouter"
 
 #: .\templates\common\lendings.html:11
+#, python-format
 msgid "<strong>%(book)s</strong> to <em>%(borrower)s</em>"
 msgstr "<strong>%(book)s</strong> à <em>%(borrower)s</em>"
 
@@ -403,6 +407,10 @@ msgstr "pas de prêts en cours !"
 #, python-format
 msgid "Are you sure you want to delete \"%(object)s\" ?"
 msgstr "Êtes-vous certain que vous souhaitez supprimer \"%(object)s\" ?"
+
+#: .\templates\library\author_list.html:41
+msgid "detail"
+msgstr "détails"
 
 #: .\templates\library\book_detail.html:11
 #: .\templates\library\book_detail.html:27

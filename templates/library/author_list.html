@@ -26,13 +26,20 @@
     </thead>
 
     <tbody>
-        {% for author in object_list %}
+        {% for author in authors %}
         <tr>
-        <td>{{ author }}</td>
+        <td>
+            {% if perms.library.author_detail %}<a class="black_link" href="{% url "author_detail" author.id %}">{% endif %}
+            {{ author }}
+            {% if perms.library.author_detail %}</a>{% endif %}
+        </td>
         <td>{{ author.birthdate|naturalday:"DATE_FORMAT"|default:"?" }}</td>
         <td>{{ author.death_date|naturalday:"DATE_FORMAT"|default:"?" }}</td>
         {% if perms.library.author_edit or perms.library.author_delete %}
         <td>
+            {% if perms.library.author_detail %}
+            <a class="pure-button pure-button-primary" href="{% url "author_detail" author.id %}">{% trans "detail"|capfirst %}</a>
+            {% endif %}
             {% if perms.library.author_edit %}
             <a class="pure-button pure-button-secondary" href="{% url "author_edit" author.id %}">{% trans "edit"|capfirst %}</a>
             {% endif %}

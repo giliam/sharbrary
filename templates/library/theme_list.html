@@ -16,7 +16,7 @@
     </thead>
 
     <tbody>
-        {% for theme in object_list %}
+        {% for theme in themes %}
         <tr>
         <td><strong>{{ theme.name }}</strong></td>
         {% if perms.library.theme_edit or perms.library.theme_delete %}

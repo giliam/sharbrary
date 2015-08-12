@@ -16,7 +16,7 @@
     </thead>
 
     <tbody>
-        {% for period in object_list %}
+        {% for period in periods %}
         <tr>
         <td><strong>{{ period.name }}</strong></td>
         {% if perms.library.period_edit or perms.library.period_delete %}

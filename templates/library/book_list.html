@@ -1,48 +1,4 @@
 {% extends "layout.html" %}
 {% block body %} 
-<h1>{% trans "books"|capfirst %}</h1>
-{% if perms.library.book_new %}
-<p><a class="pure-button pure-button-success" href="{% url "book_new" %}">{% trans "new"|capfirst %}</a> 
-<span class="right_buttons"><span class="pure-button pure-button-primary"><a href="?sort_by=title&order=asc" class="fa fa-sort-asc"></a> 
-    {% trans "title"|capfirst %} 
-    <a href="?sort_by=title&order=desc" class="fa fa-sort-desc"></a></span>
-<span class="pure-button pure-button-primary"><a href="?sort_by=author__lastname&order=asc" class="fa fa-sort-asc"></a> 
-    {% trans "author"|capfirst %}
-    <a href="?sort_by=author__lastname&order=desc" class="fa fa-sort-desc"></a></span>
-<span class="pure-button pure-button-primary"><a href="?sort_by=editor__name&order=asc" class="fa fa-sort-asc"></a> 
-    {% trans "editor"|capfirst %}
-    <a href="?sort_by=editor__name&order=desc" class="fa fa-sort-desc"></a></span>
-<span class="pure-button pure-button-primary"><a href="?sort_by=publishing_date&order=asc" class="fa fa-sort-asc"></a> 
-    {% trans "published"|capfirst %}
-    <a href="?sort_by=publishing_date&order=desc" class="fa fa-sort-desc"></a></span>
-<span class="pure-button pure-button-primary"><a href="?sort_by=owner__username&order=asc" class="fa fa-sort-asc"></a> 
-    {% trans "owned by"|capfirst %}
-    <a href="?sort_by=owner__username&order=desc" class="fa fa-sort-desc"></a></span></span>
-</p>
-{% endif %}
-<div class="book_collection">
-    {% for book in object_list %}
-    <div class="book">
-        <p class="cover"><a href="{% url "book_detail" book.id %}">{% if book.cover %}<img src="{{ book.cover.url }}" class="cover" />{% else %}<img src="{% static 'img/book_cover.png' %}" class="cover" />{% endif %}</a></p>
-        <p><a href="{% url "book_detail" book.id %}">{{ book.title }}</a></p>
-        <p><a href="{% url "book_detail" book.id %}">{{ book.author|default:_("unknown")|capfirst }}</a> - {{ book.editor|default:_("unknown")|capfirst }}</p>
-        <p>{% if book.owner %}<a href="{% url "profile_show" book.owner.id %}">{% endif %}{{ book.owner|default:_("unknown")|capfirst }}{% if book.owner %}</a>{% endif %}</p>
-        {% if perms.library.book_edit or perms.library.book_delete %}
-        <p>
-            {% if perms.library.book_edit %}
-            <a class="pure-button pure-button-xsmall pure-button-secondary" href="{% url "book_edit" book.id %}">{% trans "edit"|capfirst %}</a>
-            {% endif %}
-            {% if perms.library.book_delete %}
-            <a class="pure-button pure-button-xsmall pure-button-error" href="{% url "book_delete" book.id %}">{% trans "delete"|capfirst %}</a>
-            {% endif %}
-        </p>
-        {% endif %}
-    </div>
-    {% endfor %}
-</div>
-<div style="clear: both;"></div>
-{% include "common/pagination.html" %}
-{% if perms.library.book_new %}
-<p><a class="pure-button pure-button-success" href="{% url "book_new" %}">{% trans "new"|capfirst %}</a></p>
-{% endif %}
+{% include "library/book_embed_list.html" %}
 {% endblock %}

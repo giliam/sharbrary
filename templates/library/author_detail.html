@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block body %} 
+<h1>{{ author }}</h1>
+<p>{{ author.birthdate|naturalday:"DATE_FORMAT"|default:"?" }}</p>
+<p>{{ author.death_date|naturalday:"DATE_FORMAT"|default:"?" }}</p>
+{% if perms.library.author_edit or perms.library.author_delete %}
+<p>
+    {% if perms.library.author_edit %}
+    <a class="pure-button pure-button-secondary" href="{% url "author_edit" author.id %}">{% trans "edit"|capfirst %}</a>
+    {% endif %}
+    {% if perms.library.author_delete %}
+    <a class="pure-button pure-button-error" href="{% url "author_delete" author.id %}">{% trans "delete"|capfirst %}</a>
+    {% endif %}
+</p>
+{% endif %}
+{% include "library/book_embed_list.html" %}
+{% endblock %}

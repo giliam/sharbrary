@@ -6,7 +6,7 @@ from library import views
 urlpatterns = patterns('',
   url(r'^$', permission_required('library.book_list')(views.BookList.as_view()), name='book_list'),
   url(r'^book/new$', permission_required('library.book_new')(views.BookCreate.as_view()), name='book_new'),
-  url(r'^book/detail/(?P<pk>\d+)$', permission_required('library.book_detail')(views.BookDetail.as_view()), name='book_detail'),
+  url(r'^book/detail/(?P<book_id>\d+)$', permission_required('library.book_detail')(views.book_detail), name='book_detail'),
   url(r'^book/edit/(?P<pk>\d+)$', permission_required('library.book_edit')(views.BookUpdate.as_view()), name='book_edit'),
   url(r'^book/delete/(?P<pk>\d+)$', permission_required('library.book_delete')(views.BookDelete.as_view()), name='book_delete'),
   url(r'^author/$', permission_required('library.author_list')(views.AuthorList.as_view()), name='author_list'),

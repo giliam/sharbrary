@@ -4,15 +4,20 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.core.urlresolvers import reverse_lazy
 from django.utils.translation import ugettext_lazy as _
+from django.shortcuts import get_object_or_404
 
 from library.models import Book, Author, Editor, Theme
+from sharing.models import Lending
 
 from utils.models.sortmixin import SortMixin
 
-class BookDetail(DetailView):
-    context_object_name = "book"
-    model = Book
-    template_name = "library/book_detail.html"
+def book_detail(request, book_id):
+    """
+    Shows book details.
+    """
+    book = get_object_or_404(Book, pk=book_id)
+    lendings = Lending.objects.filter(book__id=book_id)
+    return render(request, 'library/book_detail.html', {'book':book,'lendings':lendings})
 
 class BookList(SortMixin):
     default_sort_params = ('title', 'asc')

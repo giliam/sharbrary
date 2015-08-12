@@ -56,6 +56,8 @@ def author_detail(request, author_id):
 
     author = get_object_or_404(Author, pk=author_id)
     books = Book.objects.filter(author=author).order_by(sort_by)
+    for book in books:
+        print book.publishing_date
     if order == 'desc':
         books = books.reverse()
     return render(request, 'library/author_detail.html', {'author':author,'books':books})

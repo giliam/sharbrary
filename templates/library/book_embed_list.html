@@ -35,7 +35,10 @@
             {% if book.author and perms.library.author_detail %}<a class="black_link" href="{% url "author_detail" book.author.id %}">{% endif %}
             {{ book.author|default:_("unknown")|capfirst }}
             {% if book.author and perms.library.author_detail %}</a>{% endif %}
-             - {{ book.editor|default:_("unknown")|capfirst }}</p>
+        </p>
+        <p>
+             {{ book.editor|default:_("unknown")|capfirst }}
+             ({{ book.publishing_date|naturalday:"DATE_FORMAT"|default:_("unknown") }})</p>
         <p>{% if book.owner %}<a href="{% url "profile_show" book.owner.id %}">{% endif %}{{ book.owner|default:_("unknown")|capfirst }}{% if book.owner %}</a>{% endif %}</p>
         {% if perms.library.book_edit or perms.library.book_delete %}
         <p>

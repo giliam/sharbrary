@@ -58,7 +58,27 @@ p.cover {
     height: 150px;
 }
 
-table.book_list td {
+div.book {
     text-align: center;
-    padding:0 15px 0 15px;
+    float:left;
+    width:250px;
+    height: 350px;
+    display: inline-block;
+    margin: 15px 10px 0 10px;
+}
+
+div.book_collection {
+    display: block;
+    margin-top: 50px;
+    width: 100%;
+}
+
+.right_buttons{
+    float:right;
+}
+
+@media (max-width: 980px) {
+    .right_buttons{
+        display:none;
+    }
 }

@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+{% block body %} 
+<div class="pure-g">
+    <div class="pure-u-1-2">
+        <h1>{{ book.title }}</h1>
+        <p><strong>{% trans "author"|capfirst %} : </strong></p>
+        <p>
+        	{{ book.author|default:_("unknown") }}</p>
+        <p><strong>{% trans "cover"|capfirst %} : </strong></p>
+        <p>
+        	{% if book.cover %}<img src="{{ book.cover.url }}" class="cover" />{% else %}{% trans "empty" %}{% endif %}</p>
+        <p><strong>{% trans "editor"|capfirst %} : </strong></p>
+        <p>
+        	{{ book.editor|default:_("unknown") }}</p>
+        <p><strong>{% trans "published"|capfirst %} : </strong></p>
+        <p>
+        	{{ book.publishing_date|naturalday:"DATE_FORMAT"|default:_("unknown") }}</p>
+        <p><strong>{% trans "themes"|capfirst %}</strong></p>
+        <p>
+            {% if book.themes|length > 0 %}
+                <ul>
+                {% for theme in book.themes.all %}
+                    <li>{{theme}}</li>
+                {% endfor %}
+                </ul>
+            {% else %}
+                <p> {% trans "empty"|capfirst %}</p>
+            {% endif %}
+        </p>
+        <p><strong>{% trans "summary"|capfirst %}</strong></p>
+        <p>
+			{{ book.summary|default:_("not filled yet") }}</p>
+        <p><strong>{% trans "owned by"|capfirst %}</strong></p>
+        <p>
+			{% if book.owner %}<a href="{% url "profile_show" book.owner.id %}">{% endif %}{{ book.owner|default:_("unknown") }}{% if book.owner %}</a>{% endif %}</p>
+        
+        {% if perms.library.book_edit or perms.library.book_delete %}
+        <p>
+            {% if perms.library.book_edit %}
+            <a class="pure-button pure-button-secondary" href="{% url "book_edit" book.id %}">{% trans "edit"|capfirst %}</a>
+            {% endif %}
+            {% if perms.library.book_delete %}
+            <a class="pure-button pure-button-error" href="{% url "book_delete" book.id %}">{% trans "delete"|capfirst %}</a>
+            {% endif %}
+        </p>
+        {% endif %}
+    </div>
+    <div class="pure-u-1-2">
+    	
+    </div>
+</div>
+{% endblock %}

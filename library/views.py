@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView,ListView
+from django.views.generic import TemplateView,ListView, DetailView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.core.urlresolvers import reverse_lazy
@@ -8,6 +8,11 @@ from django.utils.translation import ugettext_lazy as _
 from library.models import Book, Author, Editor, Theme
 
 from utils.models.sortmixin import SortMixin
+
+class BookDetail(DetailView):
+    context_object_name = "book"
+    model = Book
+    template_name = "library/book_detail.html"
 
 class BookList(SortMixin):
     default_sort_params = ('title', 'asc')

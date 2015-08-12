@@ -47,7 +47,7 @@
     <tbody>
         {% for book in object_list %}
         <tr>
-        <td>{{ book.title }}</td>
+        <td><a href="{% url "book_detail" book.id %}">{{ book.title }}</a></td>
         <td>{{ book.author|default:_("unknown") }}</td>
         <td>{% if book.cover %}<img src="{{ book.cover.url }}" class="cover" />{% else %}{% trans "empty" %}{% endif %}</td>
         <td>{{ book.editor|default:_("unknown") }}</td>

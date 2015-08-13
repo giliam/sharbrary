@@ -89,7 +89,7 @@ class Book(models.Model):
     publishing_date = models.DateTimeField(_('date published'),blank=True,null=True)
     added_date = models.DateTimeField(_('date added to the library'),auto_now_add=True)
     updated_date = models.DateTimeField(_('date updated to the database'),auto_now=True)
-    owner = models.ForeignKey(User,blank=True,null=True,verbose_name=_('owner'))
+    owners = models.ManyToManyField(User,blank=True,verbose_name=_('owner'))
     author = models.ForeignKey(Author,blank=True,null=True,verbose_name=_('author'))
     editor = models.ForeignKey(Editor,blank=True,null=True,verbose_name=_('editor'))
     themes = models.ManyToManyField(Theme,verbose_name=_('themes'),blank=True)

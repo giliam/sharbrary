@@ -13,9 +13,6 @@
 <span class="pure-button pure-button-primary"><a href="?sort_by=publishing_date&order=asc" class="fa fa-sort-asc"></a> 
     {% trans "published"|capfirst %}
     <a href="?sort_by=publishing_date&order=desc" class="fa fa-sort-desc"></a></span>
-<span class="pure-button pure-button-primary"><a href="?sort_by=owner__username&order=asc" class="fa fa-sort-asc"></a> 
-    {% trans "owned by"|capfirst %}
-    <a href="?sort_by=owner__username&order=desc" class="fa fa-sort-desc"></a></span></span>
 </p>
 {% endif %}
 <div class="book_collection">
@@ -39,7 +36,13 @@
         <p>
              {{ book.editor|default:_("unknown")|capfirst }}
              ({{ book.publishing_date|naturalday:"DATE_FORMAT"|default:_("unknown") }})</p>
-        <p>{% if book.owner %}<a href="{% url "profile_show" book.owner.id %}">{% endif %}{{ book.owner|default:_("unknown")|capfirst }}{% if book.owner %}</a>{% endif %}</p>
+        <p>
+            {% for owner in book.owners.all %}
+                <a href="{% url "profile_show" owner.id %}">{{ owner|default:_("unknown")|capfirst }}</a>
+            {% empty %}
+                {% trans "unknown"|capfirst %}
+            {% endfor %}
+        </p>
         {% if perms.library.book_edit or perms.library.book_delete %}
         <p>
             {% if perms.library.book_edit %}

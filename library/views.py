@@ -22,7 +22,7 @@ def book_detail(request, book_id):
 class BookEmbedList(SortMixin):
     context_object_name = "books"
     default_sort_params = ('title', 'asc')
-    allowed_sort_params = ['title', 'author__lastname', 'editor__name', 'published', 'owner__username']
+    allowed_sort_params = ['title', 'author__lastname', 'editor__name', 'published']
     model = Book
     template_name="library/book_embed_list.html"
     paginate_by = 20
@@ -34,13 +34,13 @@ class BookCreate(SuccessMessageMixin, CreateView):
     model = Book
     success_url = reverse_lazy('book_list')
     success_message = _("%(title)s was created successfully")
-    fields = ['title', 'publishing_date', 'author', 'owner', 'themes', 'periods', 'summary', 'cover']
+    fields = ['title', 'publishing_date', 'author', 'owners', 'themes', 'periods', 'summary', 'cover']
 
 class BookUpdate(SuccessMessageMixin, UpdateView):
     model = Book
     success_url = reverse_lazy('book_list')
     success_message = _("%(title)s was updated successfully")
-    fields = ['title', 'publishing_date', 'author', 'owner', 'themes', 'periods', 'summary', 'cover']
+    fields = ['title', 'publishing_date', 'author', 'owners', 'themes', 'periods', 'summary', 'cover']
 
 class BookDelete(DeleteView):
     model = Book

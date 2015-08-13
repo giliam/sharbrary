@@ -104,8 +104,8 @@ def profile_show(request, profile_id):
     """
     profile = get_object_or_404(Profile, user__pk=profile_id)
     borrowings = Lending.objects.filter(actual_lending(),borrower__id=profile.user.id)
-    lendings = Lending.objects.filter(actual_lending(),book__owner__id=profile.user.id)
-    books = Book.objects.filter(owner__id=profile.user.id)
+    lendings = Lending.objects.filter(actual_lending(),book__owners__id=profile.user.id)
+    books = Book.objects.filter(owners__id=profile.user.id)
     
     return render(request, 'sharing/profile_show.html', locals())
 
@@ -116,8 +116,8 @@ def my_dashboard(request):
     """
     profile = get_object_or_404(Profile, user__pk=request.user.id)
     borrowings = Lending.objects.filter(actual_lending(),borrower__id=profile.user.id)
-    lendings = Lending.objects.filter(actual_lending(),book__owner__id=profile.user.id)
-    books = Book.objects.filter(owner__id=profile.user.id)
+    lendings = Lending.objects.filter(actual_lending(),book__owners__id=profile.user.id)
+    books = Book.objects.filter(owners__id=profile.user.id)
     
     return render(request, 'sharing/dashboard.html', locals())
 

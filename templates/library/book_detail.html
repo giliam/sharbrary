@@ -44,8 +44,8 @@
 			{{ book.summary|default:_("not filled yet")|capfirst }}</p>
         <p><strong>{% trans "owned by"|capfirst %}</strong></p>
         <p>
-			{% for owner in book.owners.all %}
-                <a href="{% url "profile_show" owner.id %}">{{ owner|default:_("unknown")|capfirst }}</a>
+			{% for owner in ownerships.all %}
+                <a href="{% url "profile_show" owner.id %}">{% blocktrans with owner=owner.owner.username|default:_("unknown")|capfirst nbcopies=owner.copies %}{{owner}} ({{nbcopies}}){% endblocktrans %}</a>
             {% empty %}
                 {% trans "unknown"|capfirst %}
             {% endfor %}

@@ -92,11 +92,11 @@ class Book(models.Model):
     author = models.ForeignKey(Author,blank=True,null=True,verbose_name=_('author'))
     themes = models.ManyToManyField(Theme,verbose_name=_('themes'),blank=True)
     periods = models.ManyToManyField(Period,verbose_name=_('periods'),blank=True)
-    cover = models.ImageField(upload_to="cover/",verbose_name=_('cover'),null=True,blank=True)
-    owners = models.ManyToManyField(User,blank=True,verbose_name=_('owner'), through='Ownership')
     editor = models.ForeignKey(Editor,blank=True,null=True,verbose_name=_('editor'))
     cover = models.ImageField(upload_to="cover/",verbose_name=_('cover'),null=True,blank=True)
     summary = models.TextField(verbose_name=_('summary'),blank=True,default="")
+
+    owners = models.ManyToManyField(User,blank=True,verbose_name=_('owner'), through='Ownership')
 
     def __unicode__(self):
         return self.title
@@ -119,7 +119,7 @@ class Book(models.Model):
 class Ownership(models.Model):
     book = models.ForeignKey(Book,verbose_name=_('book'))
     owner = models.ForeignKey(User,verbose_name=_('owner'))
-    copies = models.PositiveIntegerField(verbose_name=_('number of copies'),blank=True)
+    copies = models.PositiveIntegerField(default=1,verbose_name=_('number of copies'),blank=True)
 
     added_date = models.DateTimeField(_('date added to the library'),auto_now_add=True)
     updated_date = models.DateTimeField(_('date updated to the database'),auto_now=True)
@@ -140,3 +140,4 @@ class Ownership(models.Model):
             ("ownership_delete", "Delete a ownership"),
         )
         default_permissions = []
+        auto_created = True

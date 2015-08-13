@@ -8,7 +8,7 @@ from django.shortcuts import get_object_or_404
 from django.contrib import messages
 from django.http import Http404
 
-from library.models import Book, Author, Editor, Theme, Period
+from library.models import Book, Author, Editor, Theme, Period, Ownership
 from library.forms import SelectOwnerForm
 from sharing.models import Lending
 
@@ -19,8 +19,9 @@ def book_detail(request, book_id):
     Shows book details.
     """
     book = get_object_or_404(Book, pk=book_id)
+    ownerships = Ownership.objects.filter(book__id=book_id)
     lendings = Lending.objects.filter(book__id=book_id)
-    return render(request, 'library/book_detail.html', {'book':book,'lendings':lendings})
+    return render(request, 'library/book_detail.html', {'book':book,'lendings':lendings,'ownerships':ownerships})
 
 class BookEmbedList(SortMixin):
     context_object_name = "books"

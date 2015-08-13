@@ -55,6 +55,7 @@ def book_remove_from_my_library(request, book):
     """
     Removes a book from my own library.
     """
+    raise DeprecationWarning(_("This method is broken. Need to be fixed !"))
     if not request.user in book.owners.all():
         # Mistakenly arrived here.
         messages.add_message(request, messages.ERROR, _('This book is not in your library and you have no right to remove it from someone else library.'))
@@ -70,6 +71,7 @@ def book_remove_from_library(request, book_id):
     """
     Removes a book from someone's library.
     """
+    raise DeprecationWarning(_("This method is broken. Need to be fixed !"))
     # First get the book.
     book = get_object_or_404(Book, pk=book_id)
     
@@ -96,6 +98,12 @@ def book_remove_from_library(request, book_id):
         # Has no permission so calls remove from my own library function which only implements a confirmation.
         book_remove_from_my_library(request,book)
     return render(request, 'library/book_confirm_delete.html', {'object':book})
+
+class BookCreate(SuccessMessageMixin, CreateView):
+    model = Book
+    success_url = reverse_lazy('book_list')
+    success_message = _("%(title)s was created successfully")
+    fields = ['title', 'publishing_date', 'author', 'owners', 'themes', 'periods', 'summary', 'cover']
 
 
 def author_detail(request, author_id):

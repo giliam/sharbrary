@@ -61,7 +61,7 @@
                 {% endif %}
             {% endif %}
             {% if not request.user in book.owners.all %}
-                <a class="pure-button pure-button-xsmall pure-button-success" href="{% url "book_add_this_to_my_library" book.id %}">{% trans "add to my library"|capfirst %}</a> 
+                <a class="pure-button pure-button-xsmall pure-button-success" href="{% url "book_add_this_to_my_library" book.id %}">{% trans "add"|capfirst %}</a> 
             {% endif %}
             {% if perms.library.book_delete %}
             <a class="pure-button pure-button-xsmall pure-button-error" href="{% url "book_delete" book.id %}">{% trans "delete"|capfirst %}</a>

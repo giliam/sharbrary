@@ -9,4 +9,4 @@ TODO
 
 * *Make multi-ownership for books. Many people could have the same book.*
 
-* Use profile instead of user for book ownership.
+* Adds ownership so that someone can have the same book twice (or more).

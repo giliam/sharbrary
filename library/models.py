@@ -108,6 +108,8 @@ class Book(models.Model):
             ("book_detail", "Show a book page"),
             ("book_edit", "Edit a book"),
             ("book_delete", "Delete a book"),
+            ("book_remove_from_library", "Remove a book from your library"),
+            ("book_remove_from_all_libraries", "Remove a book from all libraries"),
             ("book_list", "Show the list of books"),
         )
         default_permissions = []

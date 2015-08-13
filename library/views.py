@@ -1,12 +1,15 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import TemplateView,ListView, DetailView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.core.urlresolvers import reverse_lazy
 from django.utils.translation import ugettext_lazy as _
 from django.shortcuts import get_object_or_404
+from django.contrib import messages
+from django.http import Http404
 
 from library.models import Book, Author, Editor, Theme, Period
+from library.forms import SelectOwnerForm
 from sharing.models import Lending
 
 from utils.models.sortmixin import SortMixin
@@ -46,6 +49,53 @@ class BookDelete(DeleteView):
     model = Book
     template_name="library/book_confirm_delete.html"
     success_url = reverse_lazy('book_list')
+
+def book_remove_from_my_library(request, book):
+    """
+    Removes a book from my own library.
+    """
+    if not request.user in book.owners.all():
+        # Mistakenly arrived here.
+        messages.add_message(request, messages.ERROR, _('This book is not in your library and you have no right to remove it from someone else library.'))
+        return redirect('book_list')
+    if request.method == 'POST':
+        book.owners.remove(request.user)
+        book.save()
+        messages.add_message(request, messages.SUCCESS, _('The book has been successfully removed from your library.'))
+        return redirect('book_list')
+
+
+def book_remove_from_library(request, book_id):
+    """
+    Removes a book from someone's library.
+    """
+    # First get the book.
+    book = get_object_or_404(Book, pk=book_id)
+    
+    # If not owners at all, no need to remove anyone
+    if not book.owners.all(): 
+        raise Http404
+    # If can remove from all libraries, then display the form with all current owners.
+    if request.user.has_perm('library.book_remove_from_all_libraries'):
+        if request.method == 'POST':
+            # Creates a form hydrated with current owners of book.
+            form = SelectOwnerForm(request.POST,owners=book.owners.all())
+            if form.is_valid():
+                # Then applies the modifications
+                for owner in form.cleaned_data['owners']:
+                    book.owners.remove(owner)
+                book.save()
+                messages.add_message(request, messages.SUCCESS, _('The book has been successfully removed from the library of %(owners)s.') % {'owners':', '.join([owner.username for owner in form.cleaned_data['owners']])})
+                return redirect('book_list')
+        else:
+            form = SelectOwnerForm(owners=book.owners.all())        
+        messages.add_message(request, messages.WARNING, _('You are going to remove the book from someone\'s library.'))
+        return render(request, 'library/book_remove_from_library.html', {'object':book,'form':form})
+    else:
+        # Has no permission so calls remove from my own library function which only implements a confirmation.
+        book_remove_from_my_library(request,book)
+    return render(request, 'library/book_confirm_delete.html', {'object':book})
+
 
 def author_detail(request, author_id):
     """

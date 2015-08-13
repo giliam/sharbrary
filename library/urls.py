@@ -9,6 +9,7 @@ urlpatterns = patterns('',
   url(r'^book/detail/(?P<book_id>\d+)$', permission_required('library.book_detail')(views.book_detail), name='book_detail'),
   url(r'^book/edit/(?P<pk>\d+)$', permission_required('library.book_edit')(views.BookUpdate.as_view()), name='book_edit'),
   url(r'^book/delete/(?P<pk>\d+)$', permission_required('library.book_delete')(views.BookDelete.as_view()), name='book_delete'),
+  url(r'^book/remove/from/library/(?P<book_id>\d+)$', permission_required('library.book_remove_from_library')(views.book_remove_from_library), name='book_remove_from_library'),
  
   url(r'^author/$', permission_required('library.author_list')(views.AuthorList.as_view()), name='author_list'),
   url(r'^author/detail/(?P<author_id>\d+)$', permission_required('library.author_detail')(views.author_detail), name='author_detail'),

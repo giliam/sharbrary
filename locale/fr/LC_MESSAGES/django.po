@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-13 14:26+0200\n"
+"POT-Creation-Date: 2015-08-13 15:04+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,12 +33,12 @@ msgid "date of death"
 msgstr "date de mort"
 
 #: .\library\models.py:11 .\library\models.py:31 .\library\models.py:50
-#: .\library\models.py:70 .\sharing\models.py:34
+#: .\library\models.py:70 .\sharing\models.py:33
 msgid "date added to the database"
 msgstr "date d'ajout à la base de données"
 
 #: .\library\models.py:12 .\library\models.py:32 .\library\models.py:51
-#: .\library\models.py:71 .\library\models.py:91 .\sharing\models.py:35
+#: .\library\models.py:71 .\library\models.py:91 .\sharing\models.py:34
 msgid "date updated to the database"
 msgstr "date de mise-à-jour dans la base de données"
 
@@ -151,12 +151,15 @@ msgid "The book has been successfully removed from your library."
 msgstr "Le livre a bien été retiré de votre bibliothèque."
 
 #: .\library\views.py:88
+#, python-format
 msgid "The book has been successfully removed from the library of %(owners)s."
 msgstr "Le livre a bien été retiré de la bibliothèque de %(owners)s."
 
 #: .\library\views.py:92
 msgid "You are going to remove the book from someone's library."
-msgstr "Vous allez retirer (peut-être) le livre de la bibliothèque de quelqu'un d'autre !"
+msgstr ""
+"Vous allez retirer (peut-être) le livre de la bibliothèque de quelqu'un "
+"d'autre !"
 
 #: .\library\views.py:126
 #, python-format
@@ -231,22 +234,18 @@ msgid "borrower"
 msgstr "emprunteur"
 
 #: .\sharing\models.py:31
-msgid "is it lent now ?"
-msgstr "en prêt actuellement ?"
-
-#: .\sharing\models.py:32
 msgid "beginning date of the lending"
 msgstr "date de début du prêt"
 
-#: .\sharing\models.py:33
+#: .\sharing\models.py:32
 msgid "end date of the lending"
 msgstr "date de fin du prêt"
 
-#: .\sharing\models.py:41
+#: .\sharing\models.py:40
 msgid "lending"
 msgstr "prêts"
 
-#: .\sharing\models.py:42 .\templates\base\layout.html:43
+#: .\sharing\models.py:41 .\templates\base\layout.html:43
 #: .\templates\common\lendings.html:7
 msgid "lendings"
 msgstr "prêts"
@@ -256,7 +255,7 @@ msgstr "prêts"
 msgid "The lending of %(book)s to %(borrower)s was created successfully"
 msgstr "Le prêt de %(book)s à %(borrower)s a bien été créé !"
 
-#: .\sharing\views.py:44
+#: .\sharing\views.py:54
 #, python-format
 msgid "The lending of %(book)s to %(borrower)s was updated successfully"
 msgstr "Le prêt de %(book)s à %(borrower)s a bien été mis-à-jour !"
@@ -340,7 +339,8 @@ msgstr "emprunts"
 #: .\templates\library\book_detail.html:8
 #: .\templates\library\book_detail.html:14
 #: .\templates\library\book_detail.html:17
-#: .\templates\library\book_detail.html:47
+#: .\templates\library\book_detail.html:48
+#: .\templates\library\book_detail.html:50
 #: .\templates\library\book_embed_list.html:33
 #: .\templates\library\book_embed_list.html:37
 #: .\templates\library\book_embed_list.html:38
@@ -366,7 +366,7 @@ msgstr "rendre"
 #: .\templates\common\borrowings.html:18 .\templates\common\lendings.html:18
 #: .\templates\library\author_detail.html:9
 #: .\templates\library\author_list.html:44
-#: .\templates\library\book_detail.html:52
+#: .\templates\library\book_detail.html:56
 #: .\templates\library\book_embed_list.html:49
 #: .\templates\library\editor_list.html:26
 #: .\templates\library\period_list.html:25
@@ -380,7 +380,7 @@ msgstr "modifier"
 #: .\templates\common\borrowings.html:21 .\templates\common\lendings.html:21
 #: .\templates\library\author_detail.html:12
 #: .\templates\library\author_list.html:47
-#: .\templates\library\book_detail.html:55
+#: .\templates\library\book_detail.html:59
 #: .\templates\library\book_embed_list.html:59
 #: .\templates\library\editor_list.html:29
 #: .\templates\library\period_list.html:28

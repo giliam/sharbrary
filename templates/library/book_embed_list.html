@@ -46,6 +46,9 @@
         {% if perms.library.book_edit or perms.library.book_delete %}
         <p>
             {% if perms.library.book_edit %}
+            <a class="pure-button pure-button-xsmall" href="{% url "borrowing_this_book_create" book.id %}">{% trans "borrow"|capfirst %}</a>
+            {% endif %}
+            {% if perms.library.book_edit %}
             <a class="pure-button pure-button-xsmall pure-button-secondary" href="{% url "book_edit" book.id %}">{% trans "edit"|capfirst %}</a>
             {% endif %}
             {% if book.owners.all %}

@@ -72,12 +72,10 @@ img.cover {
 }
 
 .book_collection .book a {
-    color: black;
     text-decoration: none;
 }
 
 .book_collection .book a.pure-button {
-    color: white;
     text-decoration: none;
 }
 

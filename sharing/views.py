@@ -9,6 +9,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.utils.translation import ugettext_lazy as _
+from django.contrib.auth.models import User
 
 from sharing.models import Lending, Profile
 from sharing.forms import LendingForm, LogInForm
@@ -35,18 +36,29 @@ class LendingCreate(SuccessMessageMixin, CreateView):
 
 class LendingBookCreate(LendingCreate):
     fields = ['borrower','beginning_date']
-    def get_initial(self):
-        return { 'book': get_object_or_404(Book,pk=self.kwargs['book_id']) }
+    def form_valid(self, form):
+        lending = form.save(commit=False)
+        lending.book = get_object_or_404(Book,pk=self.kwargs['book_id'])
+        lending.save()
+        return redirect('book_list')
 
-class LendingMeCreate(LendingCreate):
+class BorrowingCreate(LendingCreate):
     fields = ['book','beginning_date']
-    def get_initial(self):
-        return { 'borrower': self.request.user }
+    def form_valid(self, form):
+        lending = form.save(commit=False)
+        lending.borrower = self.request.user
+        lending.save()
+        return redirect('book_list')
 
-class LendingMeBookCreate(LendingCreate):
-    fields = ,'beginning_date']
-    def get_initial(self):
-        return { 'borrower': self.request.user, 'book': get_object_or_404(Book,pk=self.kwargs['book_id']) }
+class BorrowingBookCreate(LendingCreate):
+    fields = ['beginning_date']
+    
+    def form_valid(self, form):
+        lending = form.save(commit=False)
+        lending.borrower = self.request.user
+        lending.book = get_object_or_404(Book,pk=self.kwargs['book_id'])
+        lending.save()
+        return redirect('book_list')
 
 class LendingUpdate(SuccessMessageMixin, UpdateView):
     model = Lending

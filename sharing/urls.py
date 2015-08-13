@@ -14,7 +14,10 @@ urlpatterns = patterns('',
   url(r'^borrowers/$', permission_required('sharing.borrower_list')(views.BorrowerList.as_view()), name='borrower_list'),
   url(r'^profile/show/(?P<profile_id>\d+)$', permission_required('sharing.profile_show')(views.profile_show), name='profile_show'),
   url(r'^dashboard/$', login_required(views.my_dashboard), name='dashboard'),
+  
   url(r'^lend/book/(?P<book_id>\d+)$', permission_required('sharing.lending_new')(views.LendingBookCreate.as_view()), name='lend_book'),
+  url(r'^borrow/a/book/$', permission_required('sharing.lending_new')(views.BorrowingCreate.as_view()), name='borrowing_create'),
+  url(r'^borrow/this/book/(?P<book_id>\d+)$', permission_required('sharing.lending_new')(views.BorrowingBookCreate.as_view()), name='borrowing_this_book_create'),
 
   url(r'^login/$', views.log_in, name='login'),
   url(r'^logout/$', views.log_out, name='logout'),

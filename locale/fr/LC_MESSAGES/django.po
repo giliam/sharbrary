@@ -231,10 +231,6 @@ msgid "borrower"
 msgstr "emprunteur"
 
 #: .\sharing\models.py:31
-msgid "status"
-msgstr "status"
-
-#: .\sharing\models.py:31
 msgid "is it lent now ?"
 msgstr "en prêt actuellement ?"
 

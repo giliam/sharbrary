@@ -19,7 +19,7 @@ from utils.models.conditions import actual_lending
 
 class LendingAllList(SortMixin):
     default_sort_params = ('book__title', 'asc')
-    allowed_sort_params = ['book__title', 'borrower__username','status','beginning_date','end_date']
+    allowed_sort_params = ['book__title', 'borrower__username','beginning_date','end_date']
     model = Lending
     template_name="sharing/lending_list.html"
     paginate_by = 50
@@ -31,18 +31,28 @@ class LendingCreate(SuccessMessageMixin, CreateView):
     model = Lending
     success_url = reverse_lazy('lending_list')
     success_message = _("The lending of %(book)s to %(borrower)s was created successfully")
-    fields = ['book','borrower','status','beginning_date']
+    fields = ['book','borrower','beginning_date']
 
 class LendingBookCreate(LendingCreate):
-    fields = ['borrower','status','beginning_date']
+    fields = ['borrower','beginning_date']
     def get_initial(self):
         return { 'book': get_object_or_404(Book,pk=self.kwargs['book_id']) }
+
+class LendingMeCreate(LendingCreate):
+    fields = ['book','beginning_date']
+    def get_initial(self):
+        return { 'borrower': self.request.user }
+
+class LendingMeBookCreate(LendingCreate):
+    fields = ,'beginning_date']
+    def get_initial(self):
+        return { 'borrower': self.request.user, 'book': get_object_or_404(Book,pk=self.kwargs['book_id']) }
 
 class LendingUpdate(SuccessMessageMixin, UpdateView):
     model = Lending
     success_url = reverse_lazy('lending_list')
     success_message = _("The lending of %(book)s to %(borrower)s was updated successfully")
-    fields = ['book','borrower','status','beginning_date','end_date']
+    fields = ['book','borrower','beginning_date','end_date']
 
 class LendingDelete(DeleteView):
     model = Lending

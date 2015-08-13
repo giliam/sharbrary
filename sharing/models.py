@@ -28,7 +28,6 @@ class Profile(models.Model):
 class Lending(models.Model):
     borrower = models.ForeignKey(User,blank=True,verbose_name=_("borrower"))
     book = models.ForeignKey(Book,verbose_name=_("book"))
-    status = models.BooleanField(default=False,verbose_name=_("status"),help_text=_("is it lent now ?"))
     beginning_date = models.DateTimeField(_('beginning date of the lending'),blank=True,null=True)
     end_date = models.DateTimeField(_('end date of the lending'),blank=True,null=True)
     added_date = models.DateTimeField(_('date added to the database'),auto_now_add=True)

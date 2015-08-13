@@ -46,7 +46,7 @@
             {% endfor %}
         </p>
         {% if perms.library.book_edit or perms.library.book_delete %}
-        <p>
+        <p class="buttons">
             {% if perms.library.book_edit %}
             <a class="pure-button pure-button-xsmall" href="{% url "borrowing_this_book_create" book.id %}">{% trans "borrow"|capfirst %}</a>
             {% endif %}

@@ -104,3 +104,15 @@ div.book_collection {
     }
 }
 
+
+div.book p.buttons {
+    width:250px;
+}
+
+div.book p.buttons a.pure-button {
+    display:inline-block;
+    width:75px;
+    margin-right: 0px;
+    margin-left: 0px;
+    margin-bottom: 3px;
+}

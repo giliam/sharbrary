@@ -7,4 +7,6 @@ TODO
 
 * *Make an author profile.*
 
-* Make multi-ownership for books. Many people could have the same book.
+* *Make multi-ownership for books. Many people could have the same book.*
+
+* Use profile instead of user for book ownership.

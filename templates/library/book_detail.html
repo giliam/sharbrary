@@ -49,19 +49,29 @@
             {% empty %}
                 {% trans "unknown"|capfirst %}
             {% endfor %}
-        
+    </div>
+    <div class="pure-u-1-2">
+    <h2>{% trans "options"|capfirst %}</h2>
+    <p>
+        {% if book.owners.all %}
+                {% if perms.library.book_remove_from_all_libraries %}
+                    <a class="pure-button pure-button-warning" href="{% url "book_remove_from_library" book.id %}">{% trans "remove"|capfirst %}</a>
+                {% elif perms.library.book_remove_from_library and request.user in book.owners.all %}
+                    <a class="pure-button pure-button-xsmall pure-button-warning" href="{% url "book_remove_from_library" book.id %}">{% trans "remove"|capfirst %}</a>
+                {% endif %}
+        {% endif %}
+        {% if not request.user in book.owners.all %}
+            <a class="pure-button pure-button-success" href="{% url "book_add_this_to_my_library" book.id %}">{% trans "add"|capfirst %}</a> 
+        {% endif %}
         {% if perms.library.book_edit or perms.library.book_delete %}
-        <p>
             {% if perms.library.book_edit %}
             <a class="pure-button pure-button-secondary" href="{% url "book_edit" book.id %}">{% trans "edit"|capfirst %}</a>
             {% endif %}
             {% if perms.library.book_delete %}
             <a class="pure-button pure-button-error" href="{% url "book_delete" book.id %}">{% trans "delete"|capfirst %}</a>
             {% endif %}
-        </p>
         {% endif %}
-    </div>
-    <div class="pure-u-1-2">
+        </p>
     	{% include "common/lendings.html" %}
     </div>
 </div>

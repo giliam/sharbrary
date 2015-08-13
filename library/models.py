@@ -89,13 +89,14 @@ class Book(models.Model):
     publishing_date = models.DateTimeField(_('date published'),blank=True,null=True)
     added_date = models.DateTimeField(_('date added to the library'),auto_now_add=True)
     updated_date = models.DateTimeField(_('date updated to the database'),auto_now=True)
-    owners = models.ManyToManyField(User,blank=True,verbose_name=_('owner'))
     author = models.ForeignKey(Author,blank=True,null=True,verbose_name=_('author'))
-    editor = models.ForeignKey(Editor,blank=True,null=True,verbose_name=_('editor'))
     themes = models.ManyToManyField(Theme,verbose_name=_('themes'),blank=True)
     periods = models.ManyToManyField(Period,verbose_name=_('periods'),blank=True)
-    summary = models.TextField(verbose_name=_('summary'),blank=True,default="")
     cover = models.ImageField(upload_to="cover/",verbose_name=_('cover'),null=True,blank=True)
+    owners = models.ManyToManyField(User,blank=True,verbose_name=_('owner'), through='Ownership')
+    editor = models.ForeignKey(Editor,blank=True,null=True,verbose_name=_('editor'))
+    cover = models.ImageField(upload_to="cover/",verbose_name=_('cover'),null=True,blank=True)
+    summary = models.TextField(verbose_name=_('summary'),blank=True,default="")
 
     def __unicode__(self):
         return self.title
@@ -111,5 +112,31 @@ class Book(models.Model):
             ("book_remove_from_library", "Remove a book from your library"),
             ("book_remove_from_all_libraries", "Remove a book from all libraries"),
             ("book_list", "Show the list of books"),
+        )
+        default_permissions = []
+
+
+class Ownership(models.Model):
+    book = models.ForeignKey(Book,verbose_name=_('book'))
+    owner = models.ForeignKey(User,verbose_name=_('owner'))
+    copies = models.PositiveIntegerField(verbose_name=_('number of copies'),blank=True)
+
+    added_date = models.DateTimeField(_('date added to the library'),auto_now_add=True)
+    updated_date = models.DateTimeField(_('date updated to the database'),auto_now=True)
+    
+    editor = models.ForeignKey(Editor,blank=True,null=True,verbose_name=_('editor'))
+    comments = models.TextField(verbose_name=_('comments'),blank=True,default="")
+    cover = models.ImageField(upload_to="cover/",verbose_name=_('cover'),null=True,blank=True)
+
+    def __unicode__(self):
+        return _("%(book)s owned by %(owner)s") % {'book':self.book, 'owner':self.owner.username} 
+
+    class Meta:
+        verbose_name = _("ownership")
+        verbose_name_plural = _("ownerships")
+        permissions = (
+            ("ownership_new", "Have a book"),
+            ("ownership_edit", "Edit a ownership"),
+            ("ownership_delete", "Delete a ownership"),
         )
         default_permissions = []

@@ -1,6 +1,8 @@
 <h1>{% trans "books"|capfirst %}</h1>
+<p>
 {% if perms.library.book_new %}
-<p><a class="pure-button pure-button-success" href="{% url "book_new" %}">{% trans "new"|capfirst %}</a> 
+<a class="pure-button pure-button-success" href="{% url "book_new" %}">{% trans "new"|capfirst %}</a> 
+{% endif %}
 <span class="right_buttons"><span class="pure-button pure-button-primary"><a href="?sort_by=title&order=asc" class="fa fa-sort-asc"></a> 
     {% trans "title"|capfirst %} 
     <a href="?sort_by=title&order=desc" class="fa fa-sort-desc"></a></span>
@@ -14,7 +16,6 @@
     {% trans "published"|capfirst %}
     <a href="?sort_by=publishing_date&order=desc" class="fa fa-sort-desc"></a></span>
 </p>
-{% endif %}
 <div class="book_collection">
     {% for book in books %}
     <div class="book">

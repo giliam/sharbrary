@@ -1,7 +1,8 @@
 <h1>{% trans "books"|capfirst %}</h1>
 <p>
 {% if perms.library.book_new %}
-<a class="pure-button pure-button-success" href="{% url "book_new" %}">{% trans "new"|capfirst %}</a> 
+<a class="pure-button pure-button-success" href="{% url "book_new" %}">{% trans "new book"|capfirst %}</a> 
+<a class="pure-button pure-button-success" href="{% url "book_add_to_my_library" %}">{% trans "add to my library"|capfirst %}</a> 
 {% endif %}
 <span class="right_buttons"><span class="pure-button pure-button-primary"><a href="?sort_by=title&order=asc" class="fa fa-sort-asc"></a> 
     {% trans "title"|capfirst %} 
@@ -72,5 +73,6 @@
 <div style="clear: both;"></div>
 {% include "common/pagination.html" %}
 {% if perms.library.book_new %}
-<p><a class="pure-button pure-button-success" href="{% url "book_new" %}">{% trans "new"|capfirst %}</a></p>
+<a class="pure-button pure-button-success" href="{% url "book_new" %}">{% trans "new book"|capfirst %}</a> 
+<a class="pure-button pure-button-success" href="{% url "book_add_to_my_library" %}">{% trans "add to my library"|capfirst %}</a> 
 {% endif %}

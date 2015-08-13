@@ -99,11 +99,43 @@ def book_remove_from_library(request, book_id):
         book_remove_from_my_library(request,book)
     return render(request, 'library/book_confirm_delete.html', {'object':book})
 
-class BookCreate(SuccessMessageMixin, CreateView):
-    model = Book
+class OwnershipCreate(SuccessMessageMixin, CreateView):
+    model = Ownership
     success_url = reverse_lazy('book_list')
-    success_message = _("%(title)s was created successfully")
-    fields = ['title', 'publishing_date', 'author', 'owners', 'themes', 'periods', 'summary', 'cover']
+    success_message = _("%(book)s was added successfully to your library")
+    fields = ['book', 'copies', 'editor', 'comments', 'cover']
+    def form_valid(self, form):
+        ownership = form.save(commit=False)
+        existing_ownership = Ownership.objects.get(owner__id=self.request.user.id)
+        if existing_ownership:
+            modified_fields = []
+
+            existing_ownership.copies += ownership.copies
+            modified_fields.append(_("copies"))
+            if not existing_ownership.comments and ownership.comments:
+                existing_ownership.comments = ownership.comments
+                modified_fields.append(_("comments"))
+            if not existing_ownership.editor and ownership.editor:
+                existing_ownership.editor = ownership.editor
+                modified_fields.append(_("editor"))
+            if not existing_ownership.cover and ownership.cover:
+                existing_ownership.cover = ownership.cover
+                modified_fields.append(_("cover"))
+            messages.add_message(self.request, messages.WARNING, _('You already had this book in your library so your previous ownership was updated. More precisely, these fields - %(fields)s - where updated.') % {'fields':(', '.join(str(s) for s in modified_fields))})
+            existing_ownership.save()
+        else:
+            ownership.owner = self.request.user
+            ownership.save()
+        return redirect('book_list')
+
+class BookOwnershipCreate(OwnershipCreate):
+    fields = ['copies', 'editor', 'comments', 'cover']
+    def form_valid(self, form):
+        ownership = form.save(commit=False)
+        ownership.owner = self.request.user
+        ownership.book = get_object_or_404(Book,pk=self.kwargs['book_id'])
+        ownership.save()
+        return redirect('book_list')
 
 
 def author_detail(request, author_id):

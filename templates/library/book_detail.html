@@ -44,7 +44,11 @@
 			{{ book.summary|default:_("not filled yet")|capfirst }}</p>
         <p><strong>{% trans "owned by"|capfirst %}</strong></p>
         <p>
-			{% if book.owner %}<a href="{% url "profile_show" book.owner.id %}">{% endif %}{{ book.owner|default:_("unknown")|capfirst }}{% if book.owner %}</a>{% endif %}</p>
+			{% for owner in book.owners.all %}
+                <a href="{% url "profile_show" owner.id %}">{{ owner|default:_("unknown")|capfirst }}</a>
+            {% empty %}
+                {% trans "unknown"|capfirst %}
+            {% endfor %}
         
         {% if perms.library.book_edit or perms.library.book_delete %}
         <p>

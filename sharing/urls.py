@@ -1,5 +1,6 @@
 from django.conf.urls import patterns, url
 from django.contrib.auth.decorators import permission_required, login_required
+from django.views.generic import TemplateView 
 
 from sharing import views
 

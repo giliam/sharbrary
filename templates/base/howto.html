@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block body %} 
+<h1>{% trans "How to use this online library" %}</h1>
+<h2 class="content-subhead">{% trans "General informations" %}</h2>
+<p>
+    {% blocktrans %}This library is divided in two parts: the real library on the one hand and the sharing system on the other hand. Both part do interact and you probably can not use one without the other one. The ownership system could seem a little bit tricky but once explained, you will find it naturally simple.{% endblocktrans %}
+</p>
+<h2 class="content-subhead">{% trans "The library" %}</h2>
+<p>
+	{% url "book_list" as book_list_url %}
+    {% blocktrans %}<p>The library contains books. These books have a title<span class="required_symbol">*</span>, a published date, an author. You can also link the book with general themes or with periods of literature history. Each book can be possessed by many people and each people can have several copies of a same book. When you go onto <a href="{{ book_list_url }}">the book list</a>, you can see different options (depending on your permission level).</p><p></p>{% endblocktrans %}
+</p>
+<h2 class="content-subhead">{% trans "The sharing system" %}</h2>
+<p>
+    {% blocktrans %}{% endblocktrans %}
+</p>
+{% endblock %}

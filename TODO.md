@@ -16,3 +16,9 @@ TODO
 * Make it possible to edit your ownerships.
 
 * Make a better display of different ownerships on book detail page.
+
+* Adds verification of book's availability during the creation of a lending.
+
+* Adds default beginning date to lending creation.
+
+* Fix book publishing date sorting

@@ -13,3 +13,6 @@ class SelectOwnerForm(forms.Form):
 
         if owners:
             self.fields['owners'].queryset = owners
+
+class ResearchForm(forms.Form):
+    research = forms.CharField(max_length=100)

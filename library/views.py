@@ -7,9 +7,10 @@ from django.utils.translation import ugettext_lazy as _
 from django.shortcuts import get_object_or_404
 from django.contrib import messages
 from django.http import Http404
+from django.db.models import Q
 
 from library.models import Book, Author, Editor, Theme, Period, Ownership
-from library.forms import SelectOwnerForm
+from library.forms import SelectOwnerForm, ResearchForm
 from sharing.models import Lending
 
 from utils.models.sortmixin import SortMixin
@@ -145,8 +146,6 @@ def author_detail(request, author_id):
 
     author = get_object_or_404(Author, pk=author_id)
     books = Book.objects.filter(author=author).order_by(sort_by)
-    for book in books:
-        print book.publishing_date
     if order == 'desc':
         books = books.reverse()
     return render(request, 'library/author_detail.html', {'author':author,'books':books})
@@ -250,3 +249,26 @@ class PeriodDelete(DeleteView):
     model = Period
     template_name="library/period_confirm_delete.html"
     success_url = reverse_lazy('period_list')
+
+
+def book_research(request):
+    """
+    Looks for something in the library
+    """
+    sort_by = request.GET.get('sort_by', "title")
+    order = request.GET.get('order', "asc")
+    ResearchForm
+    if request.method == 'POST':
+        form = ResearchForm(request.POST)
+        if form.is_valid():
+            research = form.cleaned_data['research']
+            books = Book.objects.filter(Q(title__icontains=research)|Q(editor__name__icontains=research)|Q(author__firstname__icontains=research)|Q(author__lastname__icontains=research)|Q(summary__icontains=research)).order_by(sort_by)
+        else:
+            messages.add_message(request, messages.ERROR, _('The research was not successfully done.'))
+            books = Book.objects.all()
+    else:
+        form = ResearchForm()
+        books = Book.objects.all()
+    if order == 'desc':
+        books = books.reverse()
+    return render(request, 'library/book_research.html', {'form':form,'books':books})

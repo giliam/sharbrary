@@ -116,3 +116,11 @@ div.book p.buttons a.pure-button {
     margin-left: 0px;
     margin-bottom: 3px;
 }
+
+.pure-menu-item form input {
+    margin-left:12px;
+}
+
+.pure-menu-item form button {
+    margin-left: 5px;
+}

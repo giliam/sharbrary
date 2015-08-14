@@ -1,5 +1,7 @@
 from sharing.models import Profile
 
+from library.forms import ResearchForm
+
 from sharbrary.settings import MEDIA_URL, STATIC_URL
 
 def urls_processor(request):
@@ -12,3 +14,6 @@ def profiles_processor(request):
 	except:
 		profile = None
 	return {'request_profile': profile}
+
+def research_form_processor(request):
+	return {'form_research': ResearchForm()}

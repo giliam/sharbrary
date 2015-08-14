@@ -32,7 +32,18 @@
                 <a class="pure-menu-heading" href="{% url "book_list" %}">{% trans "library"|capfirst %}</a>
                 <ul class="pure-menu-list">
                     <li class="pure-menu-item"><a href="{% url "book_list" %}" class="pure-menu-link">{% trans "books"|capfirst %}</a></li>
-                    <li class="pure-menu-item"><a href="{% url "book_research" %}" class="pure-menu-link">{% trans "research"|capfirst %}</a></li>
+                    <li class="pure-menu-item">
+                        <form method="post" action="{% url "book_research" %}">
+                            {% csrf_token %}
+                                {{ form.non_field_errors }}
+                                {{ form.research.errors }}
+                                {{ form.research }}
+                                            <button type="submit" class="pure-button pure-button-primary pure-button-xsmall">
+                <i class="fa fa-search"></i>
+            </button>
+
+                        </form>
+                    </li>
                     <li class="pure-menu-item"><a href="{% url "author_list" %}" class="pure-menu-link">{% trans "authors"|capfirst %}</a></li>
                     <li class="pure-menu-item"><a href="{% url "editor_list" %}" class="pure-menu-link">{% trans "editors"|capfirst %}</a></li>
                     <li class="pure-menu-item"><a href="{% url "theme_list" %}" class="pure-menu-link">{% trans "themes"|capfirst %}</a></li>

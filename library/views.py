@@ -34,7 +34,10 @@ class BookEmbedList(SortMixin):
 
 class BookList(BookEmbedList):
     template_name="library/book_list.html"
-
+    def get_context_data(self, **kwargs):
+        context = super(BookList, self).get_context_data(**kwargs)
+        context['form'] = ResearchForm()
+        return context
 class BookCreate(SuccessMessageMixin, CreateView):
     model = Book
     success_url = reverse_lazy('book_list')
@@ -271,4 +274,4 @@ def book_research(request):
         books = Book.objects.all()
     if order == 'desc':
         books = books.reverse()
-    return render(request, 'library/book_research.html', {'form':form,'books':books})
+    return render(request, 'library/book_list.html', {'form':form,'books':books})

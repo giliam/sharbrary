@@ -22,3 +22,5 @@ TODO
 * Adds default beginning date to lending creation.
 
 * Fix book publishing date sorting
+
+* Adds Wysiwyg text editor.

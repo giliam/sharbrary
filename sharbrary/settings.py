@@ -45,7 +45,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_wysiwyg',
-    'tinymce',
+#     'tinymce',
     'django.contrib.humanize',
     'library',
     'sharing'

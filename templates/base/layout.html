@@ -35,9 +35,9 @@
                     <li class="pure-menu-item">
                         <form method="post" action="{% url "book_research" %}">
                             {% csrf_token %}
-                                {{ form.non_field_errors }}
-                                {{ form.research.errors }}
-                                {{ form.research }}
+                                {{ form_research.non_field_errors }}
+                                {{ form_research.research.errors }}
+                                {{ form_research.research }}
                                             <button type="submit" class="pure-button pure-button-primary pure-button-xsmall">
                 <i class="fa fa-search"></i>
             </button>

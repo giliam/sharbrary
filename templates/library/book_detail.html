@@ -43,12 +43,6 @@
         <p>
 			{{ book.summary|default:_("not filled yet")|capfirst }}</p>
         <p><strong>{% trans "owned by"|capfirst %}</strong></p>
-        <p>
-			{% for owner in ownerships.all %}
-                <a href="{% url "profile_show" owner.id %}">{% blocktrans with owner=owner.owner.username|default:_("unknown")|capfirst nbcopies=owner.copies %}{{owner}} ({{nbcopies}}){% endblocktrans %}</a>
-            {% empty %}
-                {% trans "unknown"|capfirst %}
-            {% endfor %}
     </div>
     <div class="pure-u-1-2">
     <h2>{% trans "options"|capfirst %}</h2>
@@ -74,5 +68,29 @@
         </p>
     	{% include "common/lendings.html" %}
     </div>
+</div>
+<div class="pure-g book_collection">
+    {% for ownership in ownerships.all %}
+        <div class="pure-u-1-3 book">
+            <p class="cover">    
+                {% if ownership.cover %}<img src="{{ ownership.cover.url }}" class="cover" />{% else %}<img src="{% static 'img/book_cover.png' %}" class="cover" />{% endif %}
+            </p>
+            <p>
+             {{ book.editor|default:_("unknown")|capfirst }}
+             ({{ book.publishing_date|naturalday:"DATE_FORMAT"|default:_("unknown") }})</p>
+            <p><a href="{% url "profile_show" ownership.id %}">{% blocktrans with owner=ownership.owner.username|default:_("unknown")|capfirst nbcopies=ownership.copies %}{{owner}} ({{nbcopies}}){% endblocktrans %}</a></p>
+        </div>
+        <div class="pure-u-2-3">
+            <p>
+                {% if ownership.comments and ownership.comments.strip %}
+                    {{ ownership.comments }}                
+                {% else %}
+                    {% trans "no comment on this book"|capfirst %}
+                {% endif %}
+            </p>
+        </div>
+    {% empty %}
+        {% trans "unknown"|capfirst %}
+    {% endfor %}
 </div>
 {% endblock %}

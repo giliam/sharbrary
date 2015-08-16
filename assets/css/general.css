@@ -88,6 +88,10 @@ img.cover {
     margin: 15px 10px 0 10px;
 }
 
+.pure-g div.book {
+    margin: 0;
+}
+
 div.book_collection {
     display: block;
     margin-top: 50px;

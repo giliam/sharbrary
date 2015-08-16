@@ -130,6 +130,17 @@ class OwnershipCreate(SuccessMessageMixin, CreateView):
             ownership.save()
         return redirect('book_list')
 
+class OwnershipUpdate(SuccessMessageMixin, UpdateView):
+    model = Ownership
+    success_url = reverse_lazy('book_list')
+    success_message = _("%(book)s from your library was modified successfully.")
+    fields = ['copies', 'editor', 'comments', 'cover']
+
+class OwnershipDelete(SuccessMessageMixin, DeleteView):
+    model = Ownership
+    success_url = reverse_lazy('book_list')
+    success_message = _("%(book)s was deleted successfully from your library")
+
 class BookOwnershipCreate(OwnershipCreate):
     fields = ['copies', 'editor', 'comments', 'cover']
     def form_valid(self, form):

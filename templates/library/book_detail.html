@@ -69,6 +69,7 @@
     	{% include "common/lendings.html" %}
     </div>
 </div>
+{% if ownerships.all %}
 <div class="pure-g book_collection">
     {% for ownership in ownerships.all %}
         <div class="pure-u-1-3 book">
@@ -83,14 +84,31 @@
         <div class="pure-u-2-3">
             <p>
                 {% if ownership.comments and ownership.comments.strip %}
-                    {{ ownership.comments }}                
+                    {{ ownership.comments }}
                 {% else %}
                     {% trans "no comment on this book"|capfirst %}
                 {% endif %}
             </p>
+            <p>
+                {% if perms.library.ownership_edit or perms.library.ownership_delete %}
+                    {% if perms.library.ownership_edit %}
+                    <a class="pure-button pure-button-secondary" href="{% url "owernship_edit" ownership.id %}">{% trans "edit"|capfirst %}</a>
+                    {% endif %}
+                    {% if perms.library.ownership_delete %}
+                    <a class="pure-button pure-button-error" href="{% url "owernship_delete" ownership.id %}">{% trans "delete"|capfirst %}</a>
+                    {% endif %}
+                {% endif %}
+            </p>
         </div>
-    {% empty %}
-        {% trans "unknown"|capfirst %}
     {% endfor %}
+    {% if perms.library.ownership_new %}
+        <p><a class="pure-button pure-button-primary" href="{% url "book_add_this_to_my_library" book.id %}">{% trans "new"|capfirst %}</a></p>
+    {% endif %}
 </div>
+{% else %}
+        <p>{% trans "unknown"|capfirst %}</p>
+        {% if perms.library.ownership_new %}
+        <p><a class="pure-button pure-button-primary" href="{% url "book_add_this_to_my_library" book.id %}">{% trans "new"|capfirst %}</a></p>
+    {% endif %}
+{% endif %}
 {% endblock %}

@@ -24,3 +24,8 @@ TODO
 * Fix book publishing date sorting
 
 * Adds Wysiwyg text editor.
+
+* Write unit tests:
+	
+	* Author: birthdate before deathdate.
+	

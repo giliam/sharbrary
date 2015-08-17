@@ -97,10 +97,10 @@
             <p>
                 {% if perms.library.ownership_edit or perms.library.ownership_delete %}
                     {% if perms.library.ownership_edit %}
-                    <a class="pure-button pure-button-secondary" href="{% url "owernship_edit" ownership.id %}">{% trans "edit"|capfirst %}</a>
+                    <a class="pure-button pure-button-secondary" href="{% url "ownership_edit" ownership.id %}">{% trans "edit"|capfirst %}</a>
                     {% endif %}
                     {% if perms.library.ownership_delete %}
-                    <a class="pure-button pure-button-error" href="{% url "owernship_delete" ownership.id %}">{% trans "delete"|capfirst %}</a>
+                    <a class="pure-button pure-button-error" href="{% url "ownership_delete" ownership.id %}">{% trans "delete"|capfirst %}</a>
                     {% endif %}
                 {% endif %}
             </p>

@@ -45,6 +45,17 @@ class BookCreate(SuccessMessageMixin, CreateView):
     success_message = _("%(title)s was created successfully")
     fields = ['title', 'publishing_date', 'author', 'owners', 'themes', 'periods', 'summary', 'cover']
 
+    def form_valid(self, form):
+        book = form.save(commit=False)
+        book.save()
+        for owner in form.cleaned_data['owners']:
+            ownership = Ownership()
+            ownership.book = book
+            ownership.owner = owner
+            ownership.save()
+        return redirect('book_detail',book_id=book.id)
+
+
 class BookUpdate(SuccessMessageMixin, UpdateView):
     model = Book
     success_url = reverse_lazy('book_list')
@@ -65,8 +76,8 @@ def book_remove_from_my_library(request, book):
         messages.add_message(request, messages.ERROR, _('This book is not in your library and you have no right to remove it from someone else library.'))
         return redirect('book_list')
     if request.method == 'POST':
-        book.owners.remove(request.user)
-        book.save()
+        Ownership.objects.filter(owner__id=request.user.id).clear()
+        # book.save()
         messages.add_message(request, messages.SUCCESS, _('The book has been successfully removed from your library.'))
         return redirect('book_list')
 
@@ -85,16 +96,22 @@ def book_remove_from_library(request, book_id):
     if request.user.has_perm('library.book_remove_from_all_libraries'):
         if request.method == 'POST':
             # Creates a form hydrated with current owners of book.
-            form = SelectOwnerForm(request.POST,owners=book.owners.all())
+            this_book_ownerships = Ownership.objects.filter(book__id=book_id).all()
+            form = SelectOwnerForm(request.POST,owners=this_book_ownerships)
             if form.is_valid():
+                # Makes a list of all ownership on this book.
+                authorized_ids = [ownership.id for ownership in this_book_ownerships]
+
                 # Then applies the modifications
-                for owner in form.cleaned_data['owners']:
-                    book.owners.remove(owner)
-                book.save()
-                messages.add_message(request, messages.SUCCESS, _('The book has been successfully removed from the library of %(owners)s.') % {'owners':', '.join([owner.username for owner in form.cleaned_data['owners']])})
+                for ownership in form.cleaned_data['owners']:
+                    # If the ownership concerns this book
+                    if ownership.id in authorized_ids:
+                        ownership.delete()
+                
+                messages.add_message(request, messages.SUCCESS, _('The book has been successfully removed from the library of %(owners)s.') % {'owners':', '.join([owner.owner.username for owner in form.cleaned_data['owners']])})
                 return redirect('book_list')
         else:
-            form = SelectOwnerForm(owners=book.owners.all())        
+            form = SelectOwnerForm(owners=Ownership.objects.filter(book__id=book_id).all())        
         messages.add_message(request, messages.WARNING, _('You are going to remove the book from someone\'s library.'))
         return render(request, 'library/book_remove_from_library.html', {'object':book,'form':form})
     else:
@@ -183,7 +200,7 @@ class OwnershipCreate(SuccessMessageMixin, CreateView):
     def form_valid(self, form):
         ownership = form.save(commit=False)       
         add_book_to_library(self.request,ownership)
-        return redirect('book_detail',{'book_id':ownership.book.id})
+        return redirect('book_detail',book_id=ownership.book.id)
 
 class OwnershipUpdate(SuccessMessageMixin, UpdateView):
     model = Ownership

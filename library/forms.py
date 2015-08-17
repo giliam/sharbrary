@@ -1,11 +1,10 @@
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 
-from library.models import Book
-from django.contrib.auth.models import User
+from library.models import Book, Ownership
 
 class SelectOwnerForm(forms.Form):
-    owners = forms.ModelMultipleChoiceField(queryset=User.objects.all())
+    owners = forms.ModelMultipleChoiceField(queryset=Ownership.objects.all())
 
     def __init__(self, *args, **kwargs):
         owners = kwargs.pop('owners', None)

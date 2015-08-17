@@ -1,9 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import User
-from library.models import Book
 from django.utils.translation import ugettext_lazy as _
 from django.core.validators import RegexValidator
 from django.utils import timezone
+
+from library.models import Book
 
 class Profile(models.Model):
     user = models.OneToOneField(User)

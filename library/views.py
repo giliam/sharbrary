@@ -111,12 +111,15 @@ def determine_new_ownership_necessary(new_ownership,existing_ownership):
         * an existing ownership with a different cover
     """
     if existing_ownership:
+        # an existing ownership with a different editor than the new one
         if existing_ownership.editor and new_ownership.editor and new_ownership.editor != existing_ownership.editor:
             print "New editor"
             return True
+        # an existing ownership without editor
         if existing_ownership.editor and not new_ownership.editor:
             print "No editor specified"
             return True
+        # an existing ownership with a different cover
         if new_ownership.cover and existing_ownership.cover and new_ownership.cover != existing_ownership.cover:            
             print "New cover"
             return True
@@ -125,19 +128,29 @@ def determine_new_ownership_necessary(new_ownership,existing_ownership):
         return True
 
 def add_book_to_library(request,ownership):
+    """
+    Manages to add a book to someone's library.
+    """
     existing_ownerships = Ownership.objects.filter(owner__id=request.user.id)
+    # If we are editing an existing ownership.
+    if ownership.id:
+        existing_ownerships.exclude(id=ownership.id)
+    
     should_create_new = True
     for existing_ownership in existing_ownerships.all():
+        # If there is an ownership that corresponds to this one, than we have to edit it.
         if not determine_new_ownership_necessary(ownership,existing_ownership):
             should_create_new = False
             break
+    # If we should create a new one
     if should_create_new:
-        existing_ownership = None
-    if not existing_ownership:
         ownership.owner = request.user
         ownership.save()
+        return True
+    # Else, we update the existing ownership that matches our inputs.
     else:
         modified_fields = []
+        # Adds copies and gets which fieldswere modified
         existing_ownership.copies += ownership.copies
         modified_fields.append(_("copies"))
         if not existing_ownership.comments and ownership.comments:
@@ -151,6 +164,15 @@ def add_book_to_library(request,ownership):
             modified_fields.append(_("cover"))
         messages.add_message(request, messages.WARNING, _('You already had this book in your library so your previous ownership was updated. More precisely, these fields - %(fields)s - where updated.') % {'fields':(', '.join(str(s) for s in modified_fields))})
         existing_ownership.save()
+        return False
+
+def update_book_of_library(request,ownership):
+    """
+    Manages to update a book to someone's library.
+    """
+    # If an existing ownership was created, then you can remove this one.
+    if not add_book_to_library(request,ownership):
+        ownership.delete()
 
 class OwnershipCreate(SuccessMessageMixin, CreateView):
     model = Ownership
@@ -167,6 +189,11 @@ class OwnershipUpdate(SuccessMessageMixin, UpdateView):
     success_url = reverse_lazy('book_list')
     success_message = _("%(book)s from your library was modified successfully.")
     fields = ['copies', 'editor', 'comments', 'cover']
+    def form_valid(self, form):
+        ownership = form.save(commit=False)
+        ownership.book = self.get_object().book
+        update_book_of_library(self.request,ownership)
+        return redirect('book_detail',book_id=ownership.book.id)
 
 class OwnershipDelete(SuccessMessageMixin, DeleteView):
     model = Ownership

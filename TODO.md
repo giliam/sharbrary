@@ -30,6 +30,12 @@ TODO
 * Write unit tests:
 	
 	* Author: birthdate before deathdate.
+
+	* Books: Ownerships:
+
+		* Tests determine_new_ownership_necessary
+
+		* Remove book from library.
 	
 * Adds pictures to profiles.
 

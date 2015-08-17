@@ -101,34 +101,66 @@ def book_remove_from_library(request, book_id):
         book_remove_from_my_library(request,book)
     return render(request, 'library/book_confirm_delete.html', {'object':book})
 
+def determine_new_ownership_necessary(new_ownership,existing_ownership):
+    """
+    Determine wether a new ownership should be created or if an existing ownership can be updated.
+    Cases that create a new ownership:
+        * no existing ownership
+        * an existing ownership with a different editor than the new one
+        * an existing ownership without editor
+        * an existing ownership with a different cover
+    """
+    if existing_ownership:
+        if existing_ownership.editor and new_ownership.editor and new_ownership.editor != existing_ownership.editor:
+            print "New editor"
+            return True
+        if existing_ownership.editor and not new_ownership.editor:
+            print "No editor specified"
+            return True
+        if new_ownership.cover and existing_ownership.cover and new_ownership.cover != existing_ownership.cover:            
+            print "New cover"
+            return True
+        return False
+    else:
+        return True
+
+def add_book_to_library(request,ownership):
+    existing_ownerships = Ownership.objects.filter(owner__id=request.user.id)
+    should_create_new = True
+    for existing_ownership in existing_ownerships.all():
+        if not determine_new_ownership_necessary(ownership,existing_ownership):
+            should_create_new = False
+            break
+    if should_create_new:
+        existing_ownership = None
+    if not existing_ownership:
+        ownership.owner = request.user
+        ownership.save()
+    else:
+        modified_fields = []
+        existing_ownership.copies += ownership.copies
+        modified_fields.append(_("copies"))
+        if not existing_ownership.comments and ownership.comments:
+            existing_ownership.comments = ownership.comments
+            modified_fields.append(_("comments"))
+        if not existing_ownership.editor and ownership.editor:
+            existing_ownership.editor = ownership.editor
+            modified_fields.append(_("editor"))
+        if not existing_ownership.cover and ownership.cover:
+            existing_ownership.cover = ownership.cover
+            modified_fields.append(_("cover"))
+        messages.add_message(request, messages.WARNING, _('You already had this book in your library so your previous ownership was updated. More precisely, these fields - %(fields)s - where updated.') % {'fields':(', '.join(str(s) for s in modified_fields))})
+        existing_ownership.save()
+
 class OwnershipCreate(SuccessMessageMixin, CreateView):
     model = Ownership
     success_url = reverse_lazy('book_list')
     success_message = _("%(book)s was added successfully to your library")
     fields = ['book', 'copies', 'editor', 'comments', 'cover']
     def form_valid(self, form):
-        ownership = form.save(commit=False)
-        existing_ownership = Ownership.objects.get(owner__id=self.request.user.id)
-        if existing_ownership:
-            modified_fields = []
-
-            existing_ownership.copies += ownership.copies
-            modified_fields.append(_("copies"))
-            if not existing_ownership.comments and ownership.comments:
-                existing_ownership.comments = ownership.comments
-                modified_fields.append(_("comments"))
-            if not existing_ownership.editor and ownership.editor:
-                existing_ownership.editor = ownership.editor
-                modified_fields.append(_("editor"))
-            if not existing_ownership.cover and ownership.cover:
-                existing_ownership.cover = ownership.cover
-                modified_fields.append(_("cover"))
-            messages.add_message(self.request, messages.WARNING, _('You already had this book in your library so your previous ownership was updated. More precisely, these fields - %(fields)s - where updated.') % {'fields':(', '.join(str(s) for s in modified_fields))})
-            existing_ownership.save()
-        else:
-            ownership.owner = self.request.user
-            ownership.save()
-        return redirect('book_list')
+        ownership = form.save(commit=False)       
+        add_book_to_library(self.request,ownership)
+        return redirect('book_detail',{'book_id':ownership.book.id})
 
 class OwnershipUpdate(SuccessMessageMixin, UpdateView):
     model = Ownership
@@ -147,8 +179,8 @@ class BookOwnershipCreate(OwnershipCreate):
         ownership = form.save(commit=False)
         ownership.owner = self.request.user
         ownership.book = get_object_or_404(Book,pk=self.kwargs['book_id'])
-        ownership.save()
-        return redirect('book_list')
+        add_book_to_library(self.request,ownership)
+        return redirect('book_detail',book_id=ownership.book.id)
 
 
 def author_detail(request, author_id):

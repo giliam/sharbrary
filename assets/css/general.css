@@ -90,6 +90,10 @@ img.cover {
 
 .pure-g div.book {
     margin: 0;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    float:none;
+    height: auto;
 }
 
 div.book_collection {

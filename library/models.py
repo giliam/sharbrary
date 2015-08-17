@@ -92,6 +92,7 @@ class Book(models.Model):
     author = models.ForeignKey(Author,blank=True,null=True,verbose_name=_('author'))
     themes = models.ManyToManyField(Theme,verbose_name=_('themes'),blank=True)
     periods = models.ManyToManyField(Period,verbose_name=_('periods'),blank=True)
+    
     editor = models.ForeignKey(Editor,blank=True,null=True,verbose_name=_('editor'))
     cover = models.ImageField(upload_to="cover/",verbose_name=_('cover'),null=True,blank=True)
     summary = models.TextField(verbose_name=_('summary'),blank=True,default="")

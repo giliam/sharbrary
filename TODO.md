@@ -32,3 +32,5 @@ TODO
 	* Author: birthdate before deathdate.
 	
 * Adds pictures to profiles.
+
+* Adds a form to create user.

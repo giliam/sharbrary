@@ -4,6 +4,7 @@ from library.models import Book
 from django.utils.translation import ugettext_lazy as _
 from django.core.validators import RegexValidator
 from django.utils import timezone
+
 class Profile(models.Model):
     user = models.OneToOneField(User)
     informations = models.TextField(blank=True,verbose_name=_("informations"))

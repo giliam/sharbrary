@@ -12,7 +12,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
 
 from sharing.models import Lending, Profile
-from sharing.forms import LendingForm, LogInForm
+from sharing.forms import LendingEndForm, LogInForm
 from library.models import Book
 
 from utils.models.sortmixin import SortMixin
@@ -78,13 +78,13 @@ def lending_end(request, lending_id):
     """
     lending = get_object_or_404(Lending, pk=lending_id)
     if request.method == 'POST':
-        form = LendingForm(request.POST,instance=lending)
+        form = LendingEndForm(request.POST,instance=lending)
         if form.is_valid():
             form.save()
             messages.add_message(request, messages.SUCCESS, 'The lending has been updated and the new end date is now %s.' % lending.end_date)
             return redirect('lending_list')
     else:
-        form = LendingForm(instance=lending)
+        form = LendingEndForm(instance=lending)
     return render(request, 'sharing/lending_form.html', {'form':form})
 
 

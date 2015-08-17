@@ -11,6 +11,12 @@ class Author(models.Model):
     added_date = models.DateTimeField(_('date added to the database'),auto_now_add=True)
     updated_date = models.DateTimeField(_('date updated to the database'),auto_now=True)
 
+    def save(self, *args, **kwargs):
+        if(not self.birthdate or not self.death_date or self.birthdate >= self.death_date):
+            super(Lending, self).save(*args, **kwargs)
+        else:
+            raise Exception, _("Death date should be greater than birthdate")
+
     def __unicode__(self):
         return self.firstname + " " + self.lastname.upper()
 

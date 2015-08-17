@@ -97,7 +97,7 @@ class Book(models.Model):
     cover = models.ImageField(upload_to="cover/",verbose_name=_('cover'),null=True,blank=True)
     summary = models.TextField(verbose_name=_('summary'),blank=True,default="")
 
-    owners = models.ManyToManyField(User,blank=True,verbose_name=_('owner'), through='Ownership')
+    owners = models.ManyToManyField(User,blank=True,verbose_name=_('owner'),through="Ownership",related_name="+")
 
     def __unicode__(self):
         return self.title
@@ -141,4 +141,3 @@ class Ownership(models.Model):
             ("ownership_delete", "Delete a ownership"),
         )
         default_permissions = []
-        auto_created = True

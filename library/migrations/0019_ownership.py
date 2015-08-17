@@ -17,11 +17,14 @@ class Migration(migrations.Migration):
             name='Ownership',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('copies', models.PositiveIntegerField(verbose_name='number of copies', blank=True)),
+                ('copies', models.PositiveIntegerField(default=1, verbose_name='number of copies', blank=True)),
                 ('added_date', models.DateTimeField(auto_now_add=True, verbose_name='date added to the library')),
                 ('updated_date', models.DateTimeField(auto_now=True, verbose_name='date updated to the database')),
                 ('comments', models.TextField(default=b'', verbose_name='comments', blank=True)),
                 ('cover', models.ImageField(upload_to=b'cover/', null=True, verbose_name='cover', blank=True)),
+                ('book', models.ForeignKey(verbose_name='book', to='library.Book')),
+                ('editor', models.ForeignKey(verbose_name='editor', blank=True, to='library.Editor', null=True)),
+                ('owner', models.ForeignKey(verbose_name='owner', to=settings.AUTH_USER_MODEL)),
             ],
             options={
                 'default_permissions': [],
@@ -29,30 +32,5 @@ class Migration(migrations.Migration):
                 'verbose_name_plural': 'ownerships',
                 'permissions': (('ownership_new', 'Have a book'), ('ownership_edit', 'Edit a ownership'), ('ownership_delete', 'Delete a ownership')),
             },
-        ),
-        migrations.AlterField(
-            model_name='book',
-            name='owners',
-            field=models.ManyToManyField(related_name='+', verbose_name='owner', to=settings.AUTH_USER_MODEL, blank=True),
-        ),
-        migrations.AddField(
-            model_name='ownership',
-            name='book',
-            field=models.ForeignKey(verbose_name='book', to='library.Book'),
-        ),
-        migrations.AddField(
-            model_name='ownership',
-            name='editor',
-            field=models.ForeignKey(verbose_name='editor', blank=True, to='library.Editor', null=True),
-        ),
-        migrations.AddField(
-            model_name='ownership',
-            name='owner',
-            field=models.ForeignKey(verbose_name='owner', to=settings.AUTH_USER_MODEL),
-        ),
-        migrations.AddField(
-            model_name='book',
-            name='owners1',
-            field=models.ManyToManyField(to=settings.AUTH_USER_MODEL, verbose_name='owner', through='library.Ownership', blank=True),
         ),
     ]

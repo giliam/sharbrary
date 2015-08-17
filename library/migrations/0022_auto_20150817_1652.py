@@ -7,7 +7,7 @@ from django.db import models, migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('library', '0020_remove_book_owners'),
+        ('library', '0021_remove_book_owners'),
     ]
 
     operations = [

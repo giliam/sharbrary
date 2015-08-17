@@ -11,11 +11,11 @@ TODO
 
 * *Adds ownership so that someone can have the same book twice (or more).*
 
+* *Make it possible to edit your ownerships.*
+
+* *Make a better display of different ownerships on book detail page.*
+
 * Adds the possibility to have the same book twice with two different covers/editors (edit book creation).
-
-* Make it possible to edit your ownerships.
-
-* Make a better display of different ownerships on book detail page.
 
 * Adds verification of book's availability during the creation of a lending.
 
@@ -29,3 +29,4 @@ TODO
 	
 	* Author: birthdate before deathdate.
 	
+* Adds pictures to profiles.

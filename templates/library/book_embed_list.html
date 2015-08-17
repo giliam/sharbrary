@@ -39,7 +39,7 @@
              {{ book.editor|default:_("unknown")|capfirst }}
              ({{ book.publishing_date|naturalday:"DATE_FORMAT"|default:_("unknown") }})</p>
         <p>
-            {% for owner in book.owners.all %}
+            {% for owner in book.owners.distinct.all %}
                 <a href="{% url "profile_show" owner.id %}">{{ owner|default:_("unknown")|capfirst }}</a>
             {% empty %}
                 {% trans "unknown"|capfirst %}

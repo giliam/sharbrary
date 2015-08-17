@@ -38,6 +38,7 @@ class BookList(BookEmbedList):
         context = super(BookList, self).get_context_data(**kwargs)
         context['form'] = ResearchForm()
         return context
+
 class BookCreate(SuccessMessageMixin, CreateView):
     model = Book
     success_url = reverse_lazy('book_list')

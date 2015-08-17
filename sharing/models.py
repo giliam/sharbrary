@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from library.models import Book
 from django.utils.translation import ugettext_lazy as _
 from django.core.validators import RegexValidator
-
+from django.utils import timezone
 class Profile(models.Model):
     user = models.OneToOneField(User)
     informations = models.TextField(blank=True,verbose_name=_("informations"))
@@ -28,7 +28,7 @@ class Profile(models.Model):
 class Lending(models.Model):
     borrower = models.ForeignKey(User,blank=True,verbose_name=_("borrower"))
     book = models.ForeignKey(Book,verbose_name=_("book"))
-    beginning_date = models.DateTimeField(_('beginning date of the lending'),blank=True,null=True)
+    beginning_date = models.DateTimeField(_('beginning date of the lending'),blank=True,null=True,default=timezone.now)
     end_date = models.DateTimeField(_('end date of the lending'),blank=True,null=True)
     added_date = models.DateTimeField(_('date added to the database'),auto_now_add=True)
     updated_date = models.DateTimeField(_('date updated to the database'),auto_now=True)

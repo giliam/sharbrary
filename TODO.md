@@ -21,7 +21,7 @@ TODO
 
 * *Adds the possibility to have the same book twice with two different covers/editors (edit book creation).*
 
-* Adds verification of book's availability during the creation of a lending.
+* *Adds verification of book's availability during the creation of a lending.*
 
 * Adds Wysiwyg text editor.
 

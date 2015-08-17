@@ -15,13 +15,13 @@ TODO
 
 * *Make a better display of different ownerships on book detail page.*
 
+* *Fix book publishing date sorting*
+
 * Adds the possibility to have the same book twice with two different covers/editors (edit book creation).
 
 * Adds verification of book's availability during the creation of a lending.
 
 * Adds default beginning date to lending creation.
-
-* Fix book publishing date sorting
 
 * Adds Wysiwyg text editor.
 

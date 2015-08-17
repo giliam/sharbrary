@@ -27,7 +27,7 @@ def book_detail(request, book_id):
 class BookEmbedList(SortMixin):
     context_object_name = "books"
     default_sort_params = ('title', 'asc')
-    allowed_sort_params = ['title', 'author__lastname', 'editor__name', 'published']
+    allowed_sort_params = ['title', 'author__lastname', 'editor__name', 'publishing_date']
     model = Book
     template_name="library/book_embed_list.html"
     paginate_by = 20

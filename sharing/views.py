@@ -12,7 +12,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
 
 from sharing.models import Lending, Profile
-from sharing.forms import LendingEndForm, LogInForm
+from sharing.forms import LendingEndForm, LogInForm, LendingForm
 from library.models import Book
 
 from utils.models.sortmixin import SortMixin
@@ -30,9 +30,10 @@ class LendingOnGoingList(LendingAllList):
 
 class LendingCreate(SuccessMessageMixin, CreateView):
     model = Lending
+    form_class = LendingForm
     success_url = reverse_lazy('lending_list')
     success_message = _("The lending of %(book)s to %(borrower)s was created successfully")
-    fields = ['book','borrower','beginning_date']
+    
 
 class LendingBookCreate(LendingCreate):
     fields = ['borrower','beginning_date']

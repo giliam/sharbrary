@@ -39,7 +39,7 @@ class Lending(models.Model):
         if(not self.end_date or self.end_date >= self.beginning_date):
             super(Lending, self).save(*args, **kwargs)
         else:
-            raise Exception, _("End date should be greater than startdate")
+            raise Exception, _("The end date must be after the beginning date.")
 
     def __unicode__(self):
         return unicode(self.borrower) + u" borrowed " + unicode(self.book)

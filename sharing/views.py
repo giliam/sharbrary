@@ -7,16 +7,17 @@ from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import permission_required, login_required
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
 
 from sharing.models import Lending, Profile
-from sharing.forms import LendingEndForm, LogInForm, LendingForm
+from sharing.forms import LendingEndForm, LogInForm, LendingForm, ProfileForm, UserForm
 from library.models import Book
 
 from utils.models.sortmixin import SortMixin
 from utils.models.conditions import actual_lending
+from utils.models.availability import determine_book_availability
 
 class LendingAllList(SortMixin):
     default_sort_params = ('book__title', 'asc')
@@ -36,28 +37,37 @@ class LendingCreate(SuccessMessageMixin, CreateView):
     
 
 class LendingBookCreate(LendingCreate):
+    form_class = None
     fields = ['borrower','beginning_date']
     def form_valid(self, form):
         lending = form.save(commit=False)
         lending.book = get_object_or_404(Book,pk=self.kwargs['book_id'])
+        if determine_book_availability(lending.beginning_date,lending.book):
+            raise forms.ValidationError(_("This book is already borrowed !"))
         lending.save()
         return redirect('book_list')
 
 class BorrowingCreate(LendingCreate):
+    form_class = None
     fields = ['book','beginning_date']
     def form_valid(self, form):
         lending = form.save(commit=False)
         lending.borrower = self.request.user
+        if determine_book_availability(lending.beginning_date,lending.book):
+            raise forms.ValidationError(_("This book is already borrowed !"))
         lending.save()
         return redirect('book_list')
 
 class BorrowingBookCreate(LendingCreate):
+    form_class = None
     fields = ['beginning_date']
     
     def form_valid(self, form):
         lending = form.save(commit=False)
         lending.borrower = self.request.user
         lending.book = get_object_or_404(Book,pk=self.kwargs['book_id'])
+        if determine_book_availability(lending.beginning_date,lending.book):
+            raise forms.ValidationError(_("This book is already borrowed !"))
         lending.save()
         return redirect('book_list')
 
@@ -71,6 +81,31 @@ class LendingDelete(DeleteView):
     model = Lending
     template_name="sharing/lending_confirm_delete.html"
     success_url = reverse_lazy('lending_list')
+
+@permission_required('add_user')
+def member_add(request):
+    """
+    Show a member profile and his sharing history.
+    """
+    if request.method == "POST":
+        profile = Profile()
+        form_user = UserForm(request.POST)
+        form_profile = ProfileForm(request.POST)
+        if form_user.is_valid() and form_profile.is_valid():
+            confirm_password = form_user.cleaned_data['confirm_password']
+            if confirm_password == form_user.cleaned_data['password']:
+                user = User.objects.create_user(form_user.cleaned_data['username'], form_user.cleaned_data['email'], form_user.cleaned_data['password'])
+                profile.user = user
+                profile.save()
+                messages.add_message(request, messages.SUCCESS, 'The new user has been successfully added !')
+                form_user = UserForm()
+                form_profile = ProfileForm()
+            else:
+                messages.add_message(request, messages.ERROR, 'The two passwords are different.')
+    else:
+        form_user = UserForm()
+        form_profile = ProfileForm()
+    return render(request, 'sharing/member_form.html', {'form_user':form_user,'form_profile':form_profile})
 
 @login_required()
 def lending_end(request, lending_id):

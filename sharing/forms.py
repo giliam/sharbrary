@@ -1,9 +1,14 @@
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 from django.db.models import Q
+from django.contrib.auth.models import User
+from django.contrib.admin import widgets
+from django.shortcuts import get_object_or_404
 
-from sharing.models import Lending
+from sharing.models import Lending, Profile
+from library.models import Book
 
+from utils.models.availability import determine_book_availability
 
 class LendingEndForm(forms.ModelForm):
     class Meta:
@@ -24,14 +29,24 @@ class LendingForm(forms.ModelForm):
     def clean(self):
         beginning_date = self.cleaned_data['beginning_date']
         book = self.cleaned_data['book']
-        lendings = Lending.objects.filter(Q(beginning_date__lte=beginning_date,end_date__gte=beginning_date,book__id=book.id)|
-        Q(beginning_date__lte=beginning_date,end_date=None,book__id=book.id))
-        print lendings.all()
-        if lendings:
+        if determine_book_availability(beginning_date,book):
             raise forms.ValidationError(_("This book is already borrowed !"))
-        return beginning_date
-
+        return self.cleaned_data
 
 class LogInForm(forms.Form):
     username = forms.CharField(label=_("username").capitalize(), max_length=30)
     password = forms.CharField(label=_("password").capitalize(), widget=forms.PasswordInput)
+
+class UserForm(forms.ModelForm):
+    confirm_password = forms.CharField(widget=forms.PasswordInput())
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'password',)
+        widgets = {
+            'password': forms.PasswordInput(),
+        }
+
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ('informations', 'phone_number',)

@@ -32,6 +32,7 @@ class Author(models.Model):
             ("author_list", "Show the list of authors"),
         )
         default_permissions = []
+        ordering = ['lastname', 'firstname']
 
 class Editor(models.Model):
     name = models.CharField(verbose_name=_('name'),max_length=200)    
@@ -51,6 +52,7 @@ class Editor(models.Model):
             ("editor_list", "Show the list of editors"),
         )
         default_permissions = []
+        ordering = ['name']
 
 class Theme(models.Model):
     name = models.CharField(verbose_name=_('name'),max_length=200)
@@ -70,6 +72,7 @@ class Theme(models.Model):
             ("theme_list", "Show the list of themes"),
         )
         default_permissions = []
+        ordering = ['name']
 
 
 class Period(models.Model):
@@ -90,6 +93,7 @@ class Period(models.Model):
             ("period_list", "Show the list of periods"),
         )
         default_permissions = []
+        ordering = ['name']
 
 class Book(models.Model):
     title = models.CharField(verbose_name=_('title'),max_length=200)
@@ -122,6 +126,7 @@ class Book(models.Model):
             ("book_list", "Show the list of books"),
         )
         default_permissions = []
+        ordering = ['title']
 
 
 class Ownership(models.Model):
@@ -148,3 +153,4 @@ class Ownership(models.Model):
             ("ownership_delete", "Delete a ownership"),
         )
         default_permissions = []
+        ordering = ['book__title','owner__username']

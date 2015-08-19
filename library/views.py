@@ -1,3 +1,4 @@
+# coding: utf-8
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView,ListView, DetailView
 from django.contrib.messages.views import SuccessMessageMixin

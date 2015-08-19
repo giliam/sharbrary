@@ -1,3 +1,4 @@
+# coding: utf-8
 from django.db import models
 from datetime import datetime    
 from django.contrib.auth.models import User
@@ -13,7 +14,7 @@ class Author(models.Model):
 
     def save(self, *args, **kwargs):
         if(not self.birthdate or not self.death_date or self.birthdate >= self.death_date):
-            super(Lending, self).save(*args, **kwargs)
+            super(Author, self).save(*args, **kwargs)
         else:
             raise Exception, _("Death date should be greater than birthdate")
 

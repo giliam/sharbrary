@@ -1,3 +1,4 @@
+# coding: utf-8
 from sharing.models import Profile
 
 from library.forms import ResearchForm

@@ -23,6 +23,8 @@ TODO
 
 * *Adds verification of book's availability during the creation of a lending.*
 
+* *Adds a form to create user.*
+
 * Adds Wysiwyg text editor.
 
 * Adds Time widget for date fields.
@@ -38,5 +40,3 @@ TODO
 		* Remove book from library.
 	
 * Adds pictures to profiles.
-
-* Adds a form to create user.

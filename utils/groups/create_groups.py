@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from django.db.models import Q
-from django.contrib.auth.models import Group, Permission
 from django.db import models, migrations
 
 # Mode of permissing
@@ -44,19 +43,22 @@ def associate_perms(group,perms,perms_authorized):
                 group.permissions.add(perm)
     group.save()
 
-def add_groups(*args,**kargs):
+def add_groups(apps,*args,**kargs):
+    ContentType.objects.get_for_model
+    Group = apps.get_model("auth", "Group")
+    Permission = apps.get_model("auth", "Permission")
     perms = Permission.objects.filter(Q(content_type__app_label='library')|Q(content_type__app_label='sharing'))
-    created = True
+
     #READ ONLY Group
     # Which can display but not do anything.
     group, created = Group.objects.get_or_create(name='read_only')   
-    if created:
-        associate_perms(group,perms,AUTHORIZED_READONLY_MODELS)
-        print 'read_only_user group has been successfully created'
+    associate_perms(group,perms,AUTHORIZED_READONLY_MODELS)
+    print 'read_only_user group has been successfully created'
+    perms = Permission.objects.filter(Q(content_type__app_label='library')|Q(content_type__app_label='sharing'))
 
     #STANDARD Group
     # Which can do almost everything.
     group, created = Group.objects.get_or_create(name='standard_user') 
-    if created:
-        associate_perms(group,perms,AUTHORIZED_STANDARD_MODELS)
-        print 'standard_user group has been successfully created'
+    associate_perms(group,perms,AUTHORIZED_STANDARD_MODELS)
+    print 'standard_user group has been successfully created'
+    raise Exception

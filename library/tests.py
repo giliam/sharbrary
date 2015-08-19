@@ -3,8 +3,11 @@ from django.test import TestCase
 from django.contrib.auth.models import User
 from django.utils import timezone
 from django.core.urlresolvers import reverse
+from django.contrib.auth.models import Group
 
-from library.models import Author
+from utils.groups.create_groups import add_groups
+
+from library.models import Book, Author, Ownership
 import datetime
 
 class AuthorTestCase(TestCase):
@@ -38,11 +41,13 @@ class AuthorTestCase(TestCase):
 
 class OwnershipTestCase(TestCase):
     def setUp(self):
+
         self.bob = User.objects.create_superuser('bob', 'bob@test.fr', 'blob')
         self.bib = User.objects.create_user('bib', 'bib@test.fr', 'blib')
         self.bab = User.objects.create_user('bab', 'bab@test.fr', 'blab')
-        self.bub = User.objects.create_user('bub', 'bub@test.fr', 'blub')
-        self.beb = User.objects.create_user('beb', 'beb@test.fr', 'bleb')
+
+        add_groups()
+        raise Exception
 
     def test_book_new_owners(self):
         """Test if the creation of a book creates the ownerships associated"""
@@ -56,10 +61,58 @@ class OwnershipTestCase(TestCase):
 
         response = self.client.post(reverse('book_new'), data)
         self.assertEqual(response.status_code, 302)
+        # self.assertRedirects(response, reverse('book_detail',args=[1]))
         # Then check if the book has been created
         response = self.client.get(response.url)
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response,'An interesting test book')
+        self.assertContains(response,data['title'])
         self.assertQuerysetEqual(response.context['book'].owners.order_by('id').all(),[repr(self.bob), repr(self.bib), repr(self.bab)])
         self.client.logout()
         
+    def test_ownership_new(self):
+        """Test if the ownership works"""
+
+        pass
+
+    def test_book_remove_from_my_library_not_mine(self):
+        self.client.login(username='bib', password='blib')
+        
+        book = Book(title="The Hitchhiker's guide to Django Unit Tests")
+        book.save()
+
+        ownership = Ownership(book=book,owner=self.bob)
+        ownership.save()
+
+        response = self.client.get(reverse('book_remove_from_library',kwargs={'book_id':book.id}))
+        print response.url
+        self.assertEqual(response.status_code, 200)
+
+        self.client.logout()
+
+    def test_book_remove_from_my_library(self):
+        self.client.login(username='bib', password='blib')
+        
+        book = Book(title="The Hitchhiker's guide to bloblob Tests")
+        book.save()
+
+        ownership = Ownership(book=book,owner=self.bob)
+        ownership.save()
+        ownership = Ownership(book=book,owner=self.bib)
+        ownership.save()
+
+        response = self.client.get(reverse('book_remove_from_library',kwargs={'book_id':book.id}))
+        print response.url
+        self.assertEqual(response.status_code, 302)
+
+        self.client.logout()
+
+    def test_book_no_owners(self):
+        self.client.login(username='bib', password='blib')
+        
+        book = Book(title="The Bloubiboulga's guide to bloblob Tests")
+        book.save()
+
+        response = self.client.get(reverse('book_remove_from_library',kwargs={'book_id':book.id}))
+        print response.url
+        self.assertEqual(response.status_code, 404)
+        self.client.logout()

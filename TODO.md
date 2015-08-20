@@ -29,14 +29,18 @@ TODO
 
 * Adds Time widget for date fields.
 
-* Write unit tests:
+* **Write unit tests:**
 	
-	* Author: birthdate before deathdate.
+	* *Author: birthdate before deathdate.*
 
-	* Books: Ownerships:
+	* **Books: Ownerships:**
 
-		* Tests determine_new_ownership_necessary
+		* *Tests determine_new_ownership_necessary*
 
-		* Remove book from library.
-	
+        * **Tests ownership creation**
+
+		* **Remove book from library.**
+    
 * Adds pictures to profiles.
+    
+* Adds discussion system.

@@ -47,6 +47,16 @@ class UserForm(forms.ModelForm):
             'password': forms.PasswordInput(),
         }
 
+class UserEditForm(forms.ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput(),required=False)
+    confirm_password = forms.CharField(widget=forms.PasswordInput(),required=False)
+    class Meta:
+        model = User
+        fields = ('email', 'password',)
+        widgets = {
+            'password': forms.PasswordInput(),
+        }
+
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile

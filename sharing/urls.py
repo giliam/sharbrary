@@ -16,6 +16,8 @@ urlpatterns = patterns('',
   url(r'^new/member$', permission_required('add_user')(views.member_add), name='member_add'),
   
   url(r'^borrowers/$', permission_required('sharing.borrower_list')(views.BorrowerList.as_view()), name='borrower_list'),
+
+  url(r'^edit/profile/$', permission_required('sharing.profile_edit')(views.profile_edit), name='profile_edit'),
   url(r'^profile/show/(?P<profile_id>\d+)$', permission_required('sharing.profile_show')(views.profile_show), name='profile_show'),
   url(r'^dashboard/$', login_required(views.my_dashboard), name='dashboard'),
   

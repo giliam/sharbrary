@@ -11,9 +11,10 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import permission_required, login_required
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate
 
 from sharing.models import Lending, Profile
-from sharing.forms import LendingEndForm, LogInForm, LendingForm, ProfileForm, UserForm
+from sharing.forms import LendingEndForm, LogInForm, LendingForm, ProfileForm, UserForm,UserEditForm
 from library.models import Book
 
 from utils.models.sortmixin import SortMixin
@@ -98,11 +99,11 @@ def member_add(request):
                 user = User.objects.create_user(form_user.cleaned_data['username'], form_user.cleaned_data['email'], form_user.cleaned_data['password'])
                 profile.user = user
                 profile.save()
-                messages.add_message(request, messages.SUCCESS, 'The new user has been successfully added !')
+                messages.add_message(request, messages.SUCCESS, _('The new user has been successfully added !'))
                 form_user = UserForm()
                 form_profile = ProfileForm()
             else:
-                messages.add_message(request, messages.ERROR, 'The two passwords are different.')
+                messages.add_message(request, messages.ERROR, _('The two passwords are different.'))
     else:
         form_user = UserForm()
         form_profile = ProfileForm()
@@ -118,7 +119,7 @@ def lending_end(request, lending_id):
         form = LendingEndForm(request.POST,instance=lending)
         if form.is_valid():
             form.save()
-            messages.add_message(request, messages.SUCCESS, 'The lending has been updated and the new end date is now %s.' % lending.end_date)
+            messages.add_message(request, messages.SUCCESS, _('The lending has been updated and the new end date is now %s.' % lending.end_date))
             return redirect('lending_list')
     else:
         form = LendingEndForm(instance=lending)
@@ -155,6 +156,41 @@ def log_out(request):
     """
     logout(request)
     return redirect(reverse('book_list'))
+
+@login_required()
+def profile_edit(request):
+    """
+    Show a member's profile and allows him to edit it.
+    """
+    profile = get_object_or_404(Profile, user__id=request.user.id)
+    if request.method == "POST":
+        form_user = UserEditForm(request.POST,instance=request.user)
+        form_profile = ProfileForm(request.POST,instance=profile)
+        if form_user.is_valid() and form_profile.is_valid():
+            confirm_password = form_user.cleaned_data['confirm_password']
+            password = form_user.cleaned_data['password']
+            # Either both passwords have been sent and are equal
+            # Or none has been sent
+            if ( not confirm_password and not password ) or confirm_password == password:
+                user = form_user.save(commit=False)
+                # Only update password if both have been sent otherwise it will logout the user.
+                if confirm_password and password:
+                    user.set_password(password)
+                    user.save()
+                    user = authenticate(username=user.username, password=password)
+                    if user is not None:
+                        if user.is_active:
+                            login(request, user)
+                profile = form_profile.save()
+
+                messages.add_message(request, messages.SUCCESS, _('Your profile has been successfully updated !'))
+                return redirect(reverse('profile_show',args=[request.user.id]))
+            else:
+                messages.add_message(request, messages.ERROR, _('The two passwords are different or you forgot one.'))
+    else:
+        form_user = UserEditForm(instance=request.user)
+        form_profile = ProfileForm(instance=profile)
+    return render(request, 'sharing/member_form.html', {'form_user':form_user,'form_profile':form_profile})
 
 @login_required()
 def profile_show(request, profile_id):

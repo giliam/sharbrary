@@ -1,8 +1,11 @@
 {% extends "layout.html" %}
+{% load wysiwyg %}
+{% wysiwyg_setup %}
 {% block body %} 
 <form class="pure-form pure-form-stacked" method="post" enctype="multipart/form-data"><fieldset>{% csrf_token %}
     {{ form_user.as_p }}
     {{ form_profile.as_p }}
+    {% wysiwyg_editor "id_informations" %}
     <input type="submit" class="pure-button pure-button-primary" value="Submit" />
 </fieldset></form>
 {% endblock %}

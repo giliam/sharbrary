@@ -45,7 +45,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_wysiwyg',
-#     'tinymce',
+    'ckeditor',
     'django.contrib.humanize',
     'library',
     'sharing'
@@ -130,6 +130,10 @@ LANGUAGES = (
 LOCALE_PATHS = (
     os.path.join(BASE_DIR, '/locale/'),
 )
+
+DJANGO_WYSIWYG_FLAVOR = "ckeditor"
+CKEDITOR_UPLOAD_PATH = "media/uploads/"
+CKEDITOR_JQUERY_URL = '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/

@@ -78,9 +78,9 @@ def book_remove_from_my_library(request, book):
         return redirect('book_list')
     if request.method == 'POST':
         Ownership.objects.filter(owner__id=request.user.id).clear()
-        # book.save()
         messages.add_message(request, messages.SUCCESS, _('The book has been successfully removed from your library.'))
         return redirect('book_list')
+    return None
 
 
 def book_remove_from_library(request, book_id):
@@ -117,7 +117,9 @@ def book_remove_from_library(request, book_id):
         return render(request, 'library/book_remove_from_library.html', {'object':book,'form':form})
     else:
         # Has no permission so calls remove from my own library function which only implements a confirmation.
-        book_remove_from_my_library(request,book)
+        response = book_remove_from_my_library(request,book)
+        if response:
+            return response
     return render(request, 'library/book_confirm_delete.html', {'object':book})
 
 def determine_new_ownership_necessary(new_ownership,existing_ownership):

@@ -5,6 +5,7 @@ from django.utils import timezone
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import Group
 from django.db.models import Q
+from django.utils import translation
 
 from utils.groups.create_groups import add_perms_to_person, AUTHORIZED_READONLY_MODELS, AUTHORIZED_STANDARD_MODELS
 
@@ -42,6 +43,8 @@ class AuthorTestCase(TestCase):
 
 class OwnershipTestCase(TestCase):
     def setUp(self):
+        translation.activate("en")
+
         perms = Permission.objects.filter(Q(content_type__app_label='library')|Q(content_type__app_label='sharing'))
         self.bob = User.objects.create_superuser('bob', 'bob@test.fr', 'blob')
         self.bib = User.objects.create_user('bib', 'bib@test.fr', 'blib')
@@ -64,7 +67,14 @@ class OwnershipTestCase(TestCase):
 
         response = self.client.post(reverse('book_new'), data)
         self.assertEqual(response.status_code, 302)
-        # self.assertRedirects(response, reverse('book_detail',args=[1]))
+
+        try:
+            book = Book.objects.get(title="An interesting test book")
+        except Book.DoesNotExist:
+            book = None    
+        self.assertIsNotNone(book)
+        self.assertRedirects(response, reverse('book_detail',args=[book.id]))
+        
         # Then check if the book has been created
         response = self.client.get(response.url)
         self.assertEqual(response.status_code, 200)
@@ -80,22 +90,23 @@ class OwnershipTestCase(TestCase):
     def test_book_remove_from_my_library_not_mine(self):
         self.client.login(username='bib', password='blib')
         
-        book = Book(title="The Hitchhiker's guide to Django Unit Tests")
+        book = Book(title="The Hitchhikers guide to Django Unit Tests without special caracter")
         book.save()
 
+        book.owners.clear()
         ownership = Ownership(book=book,owner=self.bob)
         ownership.save()
 
         response = self.client.get(reverse('book_remove_from_library',kwargs={'book_id':book.id}))
-        print response.url
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response, reverse('book_list'))
 
         self.client.logout()
 
     def test_book_remove_from_my_library(self):
         self.client.login(username='bib', password='blib')
         
-        book = Book(title="The Hitchhiker's guide to bloblob Tests")
+        book = Book(title="The Hitchhikers guide to bloblob Tests without special caracter")
         book.save()
 
         ownership = Ownership(book=book,owner=self.bob)
@@ -104,8 +115,8 @@ class OwnershipTestCase(TestCase):
         ownership.save()
 
         response = self.client.get(reverse('book_remove_from_library',kwargs={'book_id':book.id}))
-        print response.url
-        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Are you sure you want to delete \"%(object)s\" ?" % {'object':book.title})
 
         self.client.logout()
 
@@ -116,6 +127,5 @@ class OwnershipTestCase(TestCase):
         book.save()
 
         response = self.client.get(reverse('book_remove_from_library',kwargs={'book_id':book.id}))
-        print response.url
         self.assertEqual(response.status_code, 404)
         self.client.logout()

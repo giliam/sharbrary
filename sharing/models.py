@@ -10,6 +10,7 @@ from library.models import Book
 class Profile(models.Model):
     user = models.OneToOneField(User)
     informations = models.TextField(blank=True,verbose_name=_("informations"))
+    picture = models.ImageField(upload_to="profile_picture/",verbose_name=_('picture'),null=True,blank=True)
     phone_regex = RegexValidator(regex=r'^(\d{2}( |-)?){5}$', message=_("Phone number must be entered in the format: '0123456789'. Up to 10 digits allowed."))
     phone_number = models.CharField(validators=[phone_regex], blank=True, max_length=25,verbose_name=_("phone number"))
 

@@ -61,7 +61,7 @@ class BookUpdate(SuccessMessageMixin, UpdateView):
     model = Book
     success_url = reverse_lazy('book_list')
     success_message = _("%(title)s was updated successfully")
-    fields = ['title', 'publishing_date', 'author', 'owners', 'themes', 'periods', 'summary', 'cover']
+    fields = ['title', 'publishing_date', 'author', 'themes', 'periods', 'summary', 'cover']
 
 class BookDelete(DeleteView):
     model = Book

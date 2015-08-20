@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.db.models import Q
 from django.db import models, migrations
+from django.contrib.auth.models import User, Group, Permission
 
 # Mode of permissing
 INCLUDING_MODE = "including"
@@ -43,10 +44,19 @@ def associate_perms(group,perms,perms_authorized):
                 group.permissions.add(perm)
     group.save()
 
-def add_groups(apps,*args,**kargs):
-    ContentType.objects.get_for_model
-    Group = apps.get_model("auth", "Group")
-    Permission = apps.get_model("auth", "Permission")
+def add_perms_to_person(person,perms,perms_authorized):
+    permissing_mode = perms_authorized["__mode__"]
+    for perm in perms.all(): 
+        parts = perm.codename.split("_",1)
+        if len(parts) > 1:
+            model = parts[0]
+            action = parts[1]
+            if ( permissing_mode == EXCLUDING_MODE and model in perms_authorized.keys() and not action in perms_authorized[model] ) or ( permissing_mode == INCLUDING_MODE and model in perms_authorized.keys() and action in perms_authorized[model] ):
+                person.user_permissions.add(perm)
+    person.save()
+
+
+def add_groups():
     perms = Permission.objects.filter(Q(content_type__app_label='library')|Q(content_type__app_label='sharing'))
 
     #READ ONLY Group
@@ -61,4 +71,3 @@ def add_groups(apps,*args,**kargs):
     group, created = Group.objects.get_or_create(name='standard_user') 
     associate_perms(group,perms,AUTHORIZED_STANDARD_MODELS)
     print 'standard_user group has been successfully created'
-    raise Exception

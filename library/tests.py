@@ -1,11 +1,12 @@
 # coding: utf-8
 from django.test import TestCase
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Permission
 from django.utils import timezone
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import Group
+from django.db.models import Q
 
-from utils.groups.create_groups import add_groups
+from utils.groups.create_groups import add_perms_to_person, AUTHORIZED_READONLY_MODELS, AUTHORIZED_STANDARD_MODELS
 
 from library.models import Book, Author, Ownership
 import datetime
@@ -41,13 +42,15 @@ class AuthorTestCase(TestCase):
 
 class OwnershipTestCase(TestCase):
     def setUp(self):
-
+        perms = Permission.objects.filter(Q(content_type__app_label='library')|Q(content_type__app_label='sharing'))
         self.bob = User.objects.create_superuser('bob', 'bob@test.fr', 'blob')
         self.bib = User.objects.create_user('bib', 'bib@test.fr', 'blib')
         self.bab = User.objects.create_user('bab', 'bab@test.fr', 'blab')
+        self.bub = User.objects.create_user('bub', 'bub@test.fr', 'blub')
 
-        add_groups()
-        raise Exception
+        add_perms_to_person(self.bib,perms,AUTHORIZED_STANDARD_MODELS)
+        add_perms_to_person(self.bab,perms,AUTHORIZED_STANDARD_MODELS)
+        add_perms_to_person(self.bub,perms,AUTHORIZED_READONLY_MODELS)
 
     def test_book_new_owners(self):
         """Test if the creation of a book creates the ownerships associated"""

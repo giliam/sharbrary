@@ -1,7 +1,6 @@
 {% extends "layout.html" %}
-{% load wysiwyg %}
-{% wysiwyg_setup %}
 {% block body %} 
+{% load wysiwyg %}
 <form class="pure-form pure-form-stacked" method="post" enctype="multipart/form-data"><fieldset>{% csrf_token %}
     {{ form_user.as_p }}
     {{ form_profile.as_p }}

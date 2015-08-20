@@ -4,7 +4,7 @@
 <p>{{ profile.user.username }}</p>
 <h3>{% trans "informations"|capfirst %}</h3>
 <div>{% if profile.picture %}<img src="{{ profile.picture.url }}" class="picture" />{% else %}<img src="{% static 'img/unknown_person.jpg' %}" class="picture" />{% endif %}</div>
-<p>{{ profile.informations }}</p>
+<blockquote>{{ profile.informations|safe }}</blockquote>
 <p><em>{% trans "phone number"|capfirst %}</em> {{ profile.phone_number }}</p>
 <h3>{% trans "books"|capfirst %}</h3>
 <ul>

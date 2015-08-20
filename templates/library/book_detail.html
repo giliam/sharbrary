@@ -8,7 +8,7 @@
         	{{ book.author|default:_("unknown")|capfirst }}</p>
         <p><strong>{% trans "cover"|capfirst %} : </strong></p>
         <p>
-        	{% if book.cover %}<img src="{{ book.cover.url }}" class="cover" />{% else %}{% trans "empty" %}{% endif %}</p>
+        	{% if book.cover %}<img src="{{ book.cover.url }}" class="cover" />{% else %}<img src="{% static 'img/book_cover.png' %}" class="cover" />{% endif %}</p>
         <p><strong>{% trans "editor"|capfirst %} : </strong></p>
         <p>
         	{{ book.editor|default:_("unknown")|capfirst }}</p>

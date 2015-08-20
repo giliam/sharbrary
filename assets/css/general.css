@@ -134,3 +134,8 @@ div.book p.buttons a.pure-button {
     margin-left: 5px;
 }
 
+div .picture {
+    display:block;
+    background-color: red;
+    float:right;
+}

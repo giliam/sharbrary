@@ -165,7 +165,7 @@ def profile_edit(request):
     profile = get_object_or_404(Profile, user__id=request.user.id)
     if request.method == "POST":
         form_user = UserEditForm(request.POST,instance=request.user)
-        form_profile = ProfileForm(request.POST,instance=profile)
+        form_profile = ProfileForm(request.POST, request.FILES,instance=profile)
         if form_user.is_valid() and form_profile.is_valid():
             confirm_password = form_user.cleaned_data['confirm_password']
             password = form_user.cleaned_data['password']
@@ -182,6 +182,7 @@ def profile_edit(request):
                         if user.is_active:
                             login(request, user)
                 profile = form_profile.save()
+                
 
                 messages.add_message(request, messages.SUCCESS, _('Your profile has been successfully updated !'))
                 return redirect(reverse('profile_show',args=[request.user.id]))

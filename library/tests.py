@@ -10,6 +10,8 @@ from django.utils import translation
 from utils.groups.create_groups import add_perms_to_person, AUTHORIZED_READONLY_MODELS, AUTHORIZED_STANDARD_MODELS
 
 from library.models import Book, Author, Ownership
+from library.views import determine_new_ownership_necessary
+
 import datetime
 
 class AuthorTestCase(TestCase):
@@ -82,10 +84,114 @@ class OwnershipTestCase(TestCase):
         self.assertQuerysetEqual(response.context['book'].owners.order_by('id').all(),[repr(self.bob), repr(self.bib), repr(self.bab)])
         self.client.logout()
         
-    def test_ownership_new(self):
-        """Test if the ownership works"""
+    def test_ownership_new_no_ownership(self):
+        """Test the algorithm determining if a new ownership is necessary"""
+        book = Book(title="Some annoying book")
+        book.save()
+        ownership = Ownership(book=book,owner=self.bib)
+        self.assertTrue(determine_new_ownership_necessary(ownership,None))
 
-        pass
+    def test_ownership_new_other_ownership_someone_else(self):
+        """Test the algorithm determining if a new ownership is necessary"""
+        book = Book(title="Some annoying book")
+        book.save()
+        ownership = Ownership(book=book,owner=self.bib)
+        existing_ownership = Ownership(book=book,owner=self.bob)
+        self.assertTrue(determine_new_ownership_necessary(ownership,existing_ownership))
+
+    def test_ownership_new_other_ownership(self):
+        """Test the algorithm determining if a new ownership is necessary"""
+        book = Book(title="Some annoying book")
+        book.save()
+        ownership = Ownership(book=book,owner=self.bib)
+        existing_ownership = Ownership(book=book,owner=self.bib,copies=15)
+        existing_ownership.save()
+        self.assertFalse(determine_new_ownership_necessary(ownership,existing_ownership))
+
+    def test_add_book_no_ownership(self):
+        """Test the view adding a book to a library"""
+        self.client.login(username='bib', password='blib')
+        book = Book(title="Some really annoying book")
+        book.save()
+
+        data = {
+            'copies':10,
+        }
+
+        response = self.client.post(reverse('book_add_this_to_my_library',kwargs={'book_id':book.id}),data)
+        
+        self.assertEqual(response.status_code, 302)     
+        
+        try:
+            ownership = Ownership.objects.get(owner__id=self.bib.id,book__id=book.id)
+        except Ownership.DoesNotExist:
+            ownership = None
+
+        self.assertIsNotNone(ownership)
+        self.assertRedirects(response, reverse('book_detail',args=[book.id]))
+
+        self.client.logout()
+
+    def test_add_book_other_ownership_someone_else(self):
+        """Test the view adding a book to a library"""
+        self.client.login(username='bib', password='blib')
+        book = Book(title="Some really annoying book")
+        book.save()
+        existing_ownership = Ownership(owner=self.bob,book=book,copies=10)
+        existing_ownership.save()
+
+        data = {
+            'copies':42,
+        }
+
+        response = self.client.post(reverse('book_add_this_to_my_library',kwargs={'book_id':book.id}),data)
+        
+        self.assertEqual(response.status_code, 302)     
+        
+        try:
+            ownership = Ownership.objects.get(owner__id=self.bib.id,book__id=book.id)
+        except Ownership.DoesNotExist:
+            ownership = None
+
+        self.assertIsNotNone(ownership)
+        self.assertRedirects(response, reverse('book_detail',args=[book.id]))
+
+        response = self.client.get(reverse('book_detail',args=[book.id]))
+        self.assertContains(response, self.bob.username.title() + " (" + str(existing_ownership.copies) + ")")
+        self.assertContains(response, self.bib.username.title() + " (" + str(data['copies']) + ")")
+        
+        self.client.logout()
+
+    def test_add_book_new_other_ownership(self):
+        """Test the view adding a book to a library"""
+        self.client.login(username='bib', password='blib')
+        book = Book(title="Some really annoying book")
+        book.save()
+        existing_ownership = Ownership(owner=self.bib,book=book,copies=10)
+        existing_ownership.save()
+
+        data = {
+            'copies':42,
+        }
+
+        response = self.client.post(reverse('book_add_this_to_my_library',kwargs={'book_id':book.id}),data)
+        
+        self.assertEqual(response.status_code, 302)     
+        
+        try:
+            ownership = Ownership.objects.get(owner__id=self.bib.id,book__id=book.id)
+        except Ownership.DoesNotExist:
+            ownership = None
+
+        self.assertIsNotNone(ownership)
+        self.assertEqual(ownership.id,existing_ownership.id)
+        self.assertRedirects(response, reverse('book_detail',args=[book.id]))
+
+        response = self.client.get(reverse('book_detail',args=[book.id]))
+        self.assertContains(response, self.bib.username.title() + " (" + str(existing_ownership.copies+data['copies']) + ")")
+        
+        self.client.logout()
+
 
     def test_book_remove_from_my_library_not_mine(self):
         self.client.login(username='bib', password='blib')

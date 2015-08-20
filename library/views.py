@@ -131,7 +131,8 @@ def determine_new_ownership_necessary(new_ownership,existing_ownership):
         * an existing ownership without editor
         * an existing ownership with a different cover
     """
-    if existing_ownership:
+    # We only edit the ownership from the same owner.
+    if existing_ownership and existing_ownership.owner == new_ownership.owner:
         # an existing ownership with a different editor than the new one
         if existing_ownership.editor and new_ownership.editor and new_ownership.editor != existing_ownership.editor:
             print "New editor"
@@ -152,7 +153,7 @@ def add_book_to_library(request,ownership):
     """
     Manages to add a book to someone's library.
     """
-    existing_ownerships = Ownership.objects.filter(owner__id=request.user.id)
+    existing_ownerships = Ownership.objects.filter(book__id=ownership.book.id,owner__id=request.user.id)
     # If we are editing an existing ownership.
     if ownership.id:
         existing_ownerships.exclude(id=ownership.id)

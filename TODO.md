@@ -25,6 +25,8 @@ TODO
 
 * *Adds a form to create user.*
 
+* *Adds pictures to profiles.*
+
 * Adds Wysiwyg text editor.
 
 * Adds Time widget for date fields.
@@ -41,13 +43,11 @@ TODO
 
 		* **Remove book from library.**
     
-* Adds pictures to profiles.
-    
 * Adds discussion system.
 
 * Discussion forum, by theme and by book: one topic is created each time a book or a theme is added. Not deleted when the element is removed.
 
-* User profile
+* *User profile*
 
 * Homepage
 

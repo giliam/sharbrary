@@ -40,8 +40,8 @@
             {% endif %}
         </p>
         <p><strong>{% trans "summary"|capfirst %}</strong></p>
-        <p>
-			{{ book.summary|default:_("not filled yet")|capfirst }}</p>
+        <blockquote>
+			{{ book.summary|default:_("not filled yet")|capfirst|safe }}</blockquote>
         <p><strong>{% trans "owned by"|capfirst %}</strong></p>
     </div>
     <div class="pure-u-1-2">
@@ -89,7 +89,7 @@
         <div class="pure-u-2-3">
             <p>
                 {% if ownership.comments and ownership.comments.strip %}
-                    {{ ownership.comments }}
+                    {{ ownership.comments|safe }}
                 {% else %}
                     {% trans "no comment on this book"|capfirst %}
                 {% endif %}

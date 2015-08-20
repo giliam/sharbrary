@@ -1,4 +1,10 @@
 {% extends "layout.html" %}
+
+{% block header_addons %}
+    {% load wysiwyg %}
+    {% wysiwyg_setup %}
+{% endblock %}
+
 {% block body %} 
 {% load wysiwyg %}
 <form class="pure-form pure-form-stacked" method="post" enctype="multipart/form-data"><fieldset>{% csrf_token %}

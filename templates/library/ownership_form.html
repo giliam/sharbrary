@@ -1,7 +1,13 @@
 {% extends "layout.html" %}
+{% block header_addons %}
+    {% load wysiwyg %}
+    {% wysiwyg_setup %}
+{% endblock %}
 {% block body %} 
+{% load wysiwyg %}
 <form class="pure-form pure-form-stacked" method="post" enctype="multipart/form-data"><fieldset>{% csrf_token %}
     {{ form.as_p }}
+    {% wysiwyg_editor "id_comments" %}
     <input type="submit" class="pure-button pure-button-primary" value="Submit" />
 </fieldset></form>
 {% endblock %}

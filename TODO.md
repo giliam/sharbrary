@@ -44,3 +44,11 @@ TODO
 * Adds pictures to profiles.
     
 * Adds discussion system.
+
+* Discussion forum, by theme and by book: one topic is created each time a book or a theme is added. Not deleted when the element is removed.
+
+* User profile
+
+* Homepage
+
+* Rules and CGV pages

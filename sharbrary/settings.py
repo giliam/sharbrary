@@ -48,7 +48,8 @@ INSTALLED_APPS = (
     'ckeditor',
     'django.contrib.humanize',
     'library',
-    'sharing'
+    'sharing',
+    'discussion'
 )
 
 MIDDLEWARE_CLASSES = (

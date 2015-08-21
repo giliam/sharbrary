@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-21 11:09+0200\n"
+"POT-Creation-Date: 2015-08-21 13:39+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -124,7 +124,7 @@ msgstr "résumé"
 msgid "owner"
 msgstr "propriétaire"
 
-#: .\library\models.py:117 .\library\models.py:133 .\sharing\models.py:34
+#: .\library\models.py:117 .\library\models.py:133
 #: .\templates\sharing\lending_list.html:15
 msgid "book"
 msgstr "livre"
@@ -312,6 +312,10 @@ msgstr "profils"
 msgid "borrower"
 msgstr "emprunteur"
 
+#: .\sharing\models.py:34
+msgid "book copy"
+msgstr "exemplaire"
+
 #: .\sharing\models.py:35
 msgid "beginning date of the lending"
 msgstr "date de début du prêt"
@@ -331,13 +335,15 @@ msgstr "prêts"
 
 #: .\sharing\views.py:38
 #, python-format
-msgid "The lending of %(book)s to %(borrower)s was created successfully"
-msgstr "Le prêt de %(book)s à %(borrower)s a bien été créé !"
+#| msgid "The lending of %(book)s to %(borrower)s was created successfully"
+msgid "The lending of %(book_copy)s to %(borrower)s was created successfully"
+msgstr "Le prêt de %(book_copy)s à %(borrower)s a bien été créé !"
 
 #: .\sharing\views.py:79
 #, python-format
-msgid "The lending of %(book)s to %(borrower)s was updated successfully"
-msgstr "Le prêt de %(book)s à %(borrower)s a bien été mis-à-jour !"
+#| msgid "The lending of %(book)s to %(borrower)s was updated successfully"
+msgid "The lending of %(book_copy)s to %(borrower)s was updated successfully"
+msgstr "Le prêt de %(book_copy)s à %(borrower)s a bien été mis-à-jour !"
 
 #: .\sharing\views.py:102
 msgid "The new user has been successfully added !"

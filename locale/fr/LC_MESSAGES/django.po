@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-21 13:39+0200\n"
+"POT-Creation-Date: 2015-08-21 14:12+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,13 +33,13 @@ msgid "date of death"
 msgstr "date de mort"
 
 #: .\library\models.py:12 .\library\models.py:39 .\library\models.py:59
-#: .\library\models.py:80 .\sharing\models.py:37
+#: .\library\models.py:80 .\sharing\models.py:38
 msgid "date added to the database"
 msgstr "date d'ajout à la base de données"
 
 #: .\library\models.py:13 .\library\models.py:40 .\library\models.py:60
 #: .\library\models.py:81 .\library\models.py:102 .\library\models.py:138
-#: .\sharing\models.py:38
+#: .\sharing\models.py:39
 msgid "date updated to the database"
 msgstr "date de mise-à-jour dans la base de données"
 
@@ -256,37 +256,47 @@ msgstr "Français"
 msgid "English"
 msgstr "Anglais"
 
-#: .\sharing\forms.py:22 .\sharing\models.py:44
+#: .\sharing\forms.py:22 .\sharing\models.py:45
 msgid "The end date must be after the beginning date."
 msgstr "La date de fin de prêt doit être après celle de début."
 
-#: .\sharing\forms.py:34 .\sharing\views.py:48 .\sharing\views.py:59
-#: .\sharing\views.py:72
-msgid "This book is already borrowed !"
-msgstr "Ce livre est déjà emprunté par quelqu'un !"
+#: .\sharing\forms.py:35
+#, python-format
+#| msgid "This book is already borrowed !"
+msgid "This book is already borrowed ! (borrowed by %(lendings)s)"
+msgstr "Ce livre est déjà emprunté par %(lendings)s !"
 
-#: .\sharing\forms.py:38
+#: .\sharing\forms.py:39
+#, python-format
+msgid ""
+"You chose a past date whereas the book is now borrowed which is not "
+"possible ! (borrowed by %(lendings)s)"
+msgstr ""
+"Vous avez choisi une date passée alors que cet exemplaire est déjà "
+"prêté (ou sera prêté) à %(lendings)s !"
+
+#: .\sharing\forms.py:43
 msgid "Username"
 msgstr "Nom d'utilisateur"
 
-#: .\sharing\forms.py:39 .\sharing\forms.py:51
+#: .\sharing\forms.py:44 .\sharing\forms.py:56
 msgid "Password"
 msgstr "Mot de passe"
 
-#: .\sharing\forms.py:42 .\sharing\forms.py:52
+#: .\sharing\forms.py:47 .\sharing\forms.py:57
 msgid "Confirm password"
 msgstr "Confirmation du mot de passe"
 
-#: .\sharing\models.py:12 .\templates\sharing\borrower_list.html:13
+#: .\sharing\models.py:13 .\templates\sharing\borrower_list.html:13
 #: .\templates\sharing\profile_show.html:5
 msgid "informations"
 msgstr "informations"
 
-#: .\sharing\models.py:13
+#: .\sharing\models.py:14
 msgid "picture"
 msgstr "image"
 
-#: .\sharing\models.py:14
+#: .\sharing\models.py:15
 msgid ""
 "Phone number must be entered in the format: '0123456789'. Up to 10 digits "
 "allowed."
@@ -294,54 +304,56 @@ msgstr ""
 "Le numéro de téléphone doit être entré avec le format : 0123456789.Vous "
 "pouvez utiliser jusqu'à 10 chiffres."
 
-#: .\sharing\models.py:15 .\templates\sharing\borrower_list.html:17
+#: .\sharing\models.py:16 .\templates\sharing\borrower_list.html:17
 #: .\templates\sharing\profile_show.html:8
 msgid "phone number"
 msgstr "numéro de téléphone"
 
-#: .\sharing\models.py:21 .\templates\sharing\profile_show.html:3
+#: .\sharing\models.py:22 .\templates\sharing\profile_show.html:3
 msgid "profile"
 msgstr "profil"
 
-#: .\sharing\models.py:22
+#: .\sharing\models.py:23
 msgid "profiles"
 msgstr "profils"
 
-#: .\sharing\models.py:33 .\templates\sharing\borrower_list.html:9
+#: .\sharing\models.py:34 .\templates\sharing\borrower_list.html:9
 #: .\templates\sharing\lending_list.html:25
 msgid "borrower"
 msgstr "emprunteur"
 
-#: .\sharing\models.py:34
+#: .\sharing\models.py:35
 msgid "book copy"
 msgstr "exemplaire"
 
-#: .\sharing\models.py:35
+#: .\sharing\models.py:36
 msgid "beginning date of the lending"
 msgstr "date de début du prêt"
 
-#: .\sharing\models.py:36
+#: .\sharing\models.py:37
 msgid "end date of the lending"
 msgstr "date de fin du prêt"
 
-#: .\sharing\models.py:50
+#: .\sharing\models.py:51
 msgid "lending"
 msgstr "prêts"
 
-#: .\sharing\models.py:51 .\templates\base\layout.html:58
+#: .\sharing\models.py:52 .\templates\base\layout.html:58
 #: .\templates\common\lendings.html:7
 msgid "lendings"
 msgstr "prêts"
 
 #: .\sharing\views.py:38
 #, python-format
-#| msgid "The lending of %(book)s to %(borrower)s was created successfully"
 msgid "The lending of %(book_copy)s to %(borrower)s was created successfully"
 msgstr "Le prêt de %(book_copy)s à %(borrower)s a bien été créé !"
 
+#: .\sharing\views.py:48 .\sharing\views.py:59 .\sharing\views.py:72
+msgid "This book is already borrowed !"
+msgstr "Ce livre est déjà emprunté par quelqu'un !"
+
 #: .\sharing\views.py:79
 #, python-format
-#| msgid "The lending of %(book)s to %(borrower)s was updated successfully"
 msgid "The lending of %(book_copy)s to %(borrower)s was updated successfully"
 msgstr "Le prêt de %(book_copy)s à %(borrower)s a bien été mis-à-jour !"
 

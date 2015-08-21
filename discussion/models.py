@@ -65,4 +65,4 @@ class Message(models.Model):
             ("message_list", "Show the list of messages"),
         )
         default_permissions = []
-        ordering = ['-added_date']
+        ordering = ['added_date']

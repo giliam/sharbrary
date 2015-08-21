@@ -43,9 +43,9 @@ TODO
 
 		* **Remove book from library.**
     
-* Adds discussion system.
+* Adds discussion system. Discussion forum, by theme and by book: one topic is created each time a book or a theme is added. Not deleted when the element is removed.
 
-* Discussion forum, by theme and by book: one topic is created each time a book or a theme is added. Not deleted when the element is removed.
+* *Sets lending depending on ownership and not book anymore.*
 
 * Homepage
 

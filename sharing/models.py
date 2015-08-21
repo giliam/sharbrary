@@ -5,7 +5,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.core.validators import RegexValidator
 from django.utils import timezone
 
-from library.models import Book
+from library.models import Ownership
 
 class Profile(models.Model):
     user = models.OneToOneField(User)
@@ -31,7 +31,7 @@ class Profile(models.Model):
 
 class Lending(models.Model):
     borrower = models.ForeignKey(User,blank=True,verbose_name=_("borrower"))
-    book = models.ForeignKey(Book,verbose_name=_("book"))
+    book_copy = models.ForeignKey(Ownership,verbose_name=_("book copy"))
     beginning_date = models.DateTimeField(_('beginning date of the lending'),blank=True,null=True,default=timezone.now)
     end_date = models.DateTimeField(_('end date of the lending'),blank=True,null=True)
     added_date = models.DateTimeField(_('date added to the database'),auto_now_add=True)
@@ -44,7 +44,7 @@ class Lending(models.Model):
             raise Exception, _("The end date must be after the beginning date.")
 
     def __unicode__(self):
-        return unicode(self.borrower) + u" borrowed " + unicode(self.book)
+        return unicode(self.borrower) + u" borrowed " + unicode(self.book_copy.book)
 
     class Meta:
         verbose_name = _("lending")

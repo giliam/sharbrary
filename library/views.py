@@ -22,7 +22,7 @@ def book_detail(request, book_id):
     """
     book = get_object_or_404(Book, pk=book_id)
     ownerships = Ownership.objects.filter(book__id=book_id)
-    lendings = Lending.objects.filter(book__id=book_id)
+    lendings = Lending.objects.filter(book_copy__id=book_id)
     return render(request, 'library/book_detail.html', {'book':book,'lendings':lendings,'ownerships':ownerships})
 
 class BookEmbedList(SortMixin):

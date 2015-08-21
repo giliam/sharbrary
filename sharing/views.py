@@ -15,15 +15,15 @@ from django.contrib.auth import authenticate
 
 from sharing.models import Lending, Profile
 from sharing.forms import LendingEndForm, LogInForm, LendingForm, ProfileForm, UserForm,UserEditForm
-from library.models import Book
+from library.models import Book, Ownership
 
 from utils.models.sortmixin import SortMixin
 from utils.models.conditions import actual_lending
 from utils.models.availability import determine_book_availability
 
 class LendingAllList(SortMixin):
-    default_sort_params = ('book__title', 'asc')
-    allowed_sort_params = ['book__title', 'borrower__username','beginning_date','end_date']
+    default_sort_params = ('book_copy__book__title', 'asc')
+    allowed_sort_params = ['book_copy__book__title', 'borrower__username','beginning_date','end_date']
     model = Lending
     template_name="sharing/lending_list.html"
     paginate_by = 50
@@ -35,7 +35,7 @@ class LendingCreate(SuccessMessageMixin, CreateView):
     model = Lending
     form_class = LendingForm
     success_url = reverse_lazy('lending_list')
-    success_message = _("The lending of %(book)s to %(borrower)s was created successfully")
+    success_message = _("The lending of %(book_copy)s to %(borrower)s was created successfully")
     
 
 class LendingBookCreate(LendingCreate):
@@ -43,19 +43,19 @@ class LendingBookCreate(LendingCreate):
     fields = ['borrower','beginning_date']
     def form_valid(self, form):
         lending = form.save(commit=False)
-        lending.book = get_object_or_404(Book,pk=self.kwargs['book_id'])
-        if determine_book_availability(lending.beginning_date,lending.book):
+        lending.book_copy = get_object_or_404(Ownership,pk=self.kwargs['book_id'])
+        if determine_book_availability(lending.beginning_date,lending.book_copy):
             raise forms.ValidationError(_("This book is already borrowed !"))
         lending.save()
         return redirect('book_list')
 
 class BorrowingCreate(LendingCreate):
     form_class = None
-    fields = ['book','beginning_date']
+    fields = ['book_copy','beginning_date']
     def form_valid(self, form):
         lending = form.save(commit=False)
         lending.borrower = self.request.user
-        if determine_book_availability(lending.beginning_date,lending.book):
+        if determine_book_availability(lending.beginning_date,lending.book_copy):
             raise forms.ValidationError(_("This book is already borrowed !"))
         lending.save()
         return redirect('book_list')
@@ -67,8 +67,8 @@ class BorrowingBookCreate(LendingCreate):
     def form_valid(self, form):
         lending = form.save(commit=False)
         lending.borrower = self.request.user
-        lending.book = get_object_or_404(Book,pk=self.kwargs['book_id'])
-        if determine_book_availability(lending.beginning_date,lending.book):
+        lending.book_copy = get_object_or_404(Ownership,pk=self.kwargs['book_id'])
+        if determine_book_availability(lending.beginning_date,lending.book_copy):
             raise forms.ValidationError(_("This book is already borrowed !"))
         lending.save()
         return redirect('book_list')
@@ -76,8 +76,8 @@ class BorrowingBookCreate(LendingCreate):
 class LendingUpdate(SuccessMessageMixin, UpdateView):
     model = Lending
     success_url = reverse_lazy('lending_list')
-    success_message = _("The lending of %(book)s to %(borrower)s was updated successfully")
-    fields = ['book','borrower','beginning_date','end_date']
+    success_message = _("The lending of %(book_copy)s to %(borrower)s was updated successfully")
+    fields = ['book_copy','borrower','beginning_date','end_date']
 
 class LendingDelete(DeleteView):
     model = Lending
@@ -200,7 +200,7 @@ def profile_show(request, profile_id):
     """
     profile = get_object_or_404(Profile, user__pk=profile_id)
     borrowings = Lending.objects.filter(actual_lending(),borrower__id=profile.user.id)
-    lendings = Lending.objects.filter(actual_lending(),book__owners__id=profile.user.id)
+    lendings = Lending.objects.filter(actual_lending(),book_copy__owner__id=profile.user.id)
     books = Book.objects.filter(owners__id=profile.user.id)
     
     return render(request, 'sharing/profile_show.html', locals())
@@ -212,7 +212,7 @@ def my_dashboard(request):
     """
     profile = get_object_or_404(Profile, user__pk=request.user.id)
     borrowings = Lending.objects.filter(actual_lending(),borrower__id=profile.user.id)
-    lendings = Lending.objects.filter(actual_lending(),book__owners__id=profile.user.id)
+    lendings = Lending.objects.filter(actual_lending(),book_copy__owner__id=profile.user.id)
     books = Book.objects.filter(owners__id=profile.user.id)
     
     return render(request, 'sharing/dashboard.html', locals())

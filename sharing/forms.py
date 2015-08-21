@@ -25,12 +25,12 @@ class LendingEndForm(forms.ModelForm):
 class LendingForm(forms.ModelForm):
     class Meta:
         model = Lending
-        fields = ('book', 'borrower', 'beginning_date',)
+        fields = ('book_copy', 'borrower', 'beginning_date',)
 
     def clean(self):
         beginning_date = self.cleaned_data['beginning_date']
-        book = self.cleaned_data['book']
-        if determine_book_availability(beginning_date,book):
+        book_copy = self.cleaned_data['book_copy']
+        if determine_book_availability(beginning_date,book_copy):
             raise forms.ValidationError(_("This book is already borrowed !"))
         return self.cleaned_data
 

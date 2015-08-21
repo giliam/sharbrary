@@ -9,7 +9,7 @@ from django.shortcuts import get_object_or_404
 from sharing.models import Lending, Profile
 from library.models import Book
 
-from utils.models.availability import determine_book_availability, determine_conflicts_with_next_lendings
+from utils.models.availability import is_lending_possible
 
 class LendingEndForm(forms.ModelForm):
     class Meta:
@@ -30,13 +30,7 @@ class LendingForm(forms.ModelForm):
     def clean(self):
         beginning_date = self.cleaned_data['beginning_date']
         book_copy = self.cleaned_data['book_copy']
-        current_lendings = determine_book_availability(beginning_date,book_copy)
-        if current_lendings:
-            raise forms.ValidationError(_("This book is already borrowed ! (borrowed by %(lendings)s)") % { 'lendings': ' ,'.join([flending.borrower.username for flending in current_lendings.all()])} )
-
-        future_lendings = determine_conflicts_with_next_lendings(beginning_date,book_copy)
-        if future_lendings:
-            raise forms.ValidationError(_("You chose a past date whereas the book is now borrowed which is not possible ! (borrowed by %(lendings)s)") % { 'lendings': ' ,'.join([flending.borrower.username for flending in future_lendings.all()])} )
+        is_lending_possible(beginning_date,book_copy)
         return self.cleaned_data
 
 class LogInForm(forms.Form):

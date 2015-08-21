@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-21 14:12+0200\n"
+"POT-Creation-Date: 2015-08-21 14:19+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -260,30 +260,15 @@ msgstr "Anglais"
 msgid "The end date must be after the beginning date."
 msgstr "La date de fin de prêt doit être après celle de début."
 
-#: .\sharing\forms.py:35
-#, python-format
-#| msgid "This book is already borrowed !"
-msgid "This book is already borrowed ! (borrowed by %(lendings)s)"
-msgstr "Ce livre est déjà emprunté par %(lendings)s !"
-
-#: .\sharing\forms.py:39
-#, python-format
-msgid ""
-"You chose a past date whereas the book is now borrowed which is not "
-"possible ! (borrowed by %(lendings)s)"
-msgstr ""
-"Vous avez choisi une date passée alors que cet exemplaire est déjà "
-"prêté (ou sera prêté) à %(lendings)s !"
-
-#: .\sharing\forms.py:43
+#: .\sharing\forms.py:37
 msgid "Username"
 msgstr "Nom d'utilisateur"
 
-#: .\sharing\forms.py:44 .\sharing\forms.py:56
+#: .\sharing\forms.py:38 .\sharing\forms.py:50
 msgid "Password"
 msgstr "Mot de passe"
 
-#: .\sharing\forms.py:47 .\sharing\forms.py:57
+#: .\sharing\forms.py:41 .\sharing\forms.py:51
 msgid "Confirm password"
 msgstr "Confirmation du mot de passe"
 
@@ -348,33 +333,36 @@ msgstr "prêts"
 msgid "The lending of %(book_copy)s to %(borrower)s was created successfully"
 msgstr "Le prêt de %(book_copy)s à %(borrower)s a bien été créé !"
 
-#: .\sharing\views.py:48 .\sharing\views.py:59 .\sharing\views.py:72
-msgid "This book is already borrowed !"
-msgstr "Ce livre est déjà emprunté par quelqu'un !"
+#: .\sharing\views.py:50 .\sharing\views.py:63 .\sharing\views.py:78
+msgid ""
+"This lending is not possible and you should have had errors on the form!"
+msgstr ""
+"Cet emprunt n'est pas possible et vous devriez avoir des erreurs sur le "
+"formulaire !"
 
-#: .\sharing\views.py:79
+#: .\sharing\views.py:85
 #, python-format
 msgid "The lending of %(book_copy)s to %(borrower)s was updated successfully"
 msgstr "Le prêt de %(book_copy)s à %(borrower)s a bien été mis-à-jour !"
 
-#: .\sharing\views.py:102
+#: .\sharing\views.py:108
 msgid "The new user has been successfully added !"
 msgstr "Le nouvel utilisateur a bien été créé !"
 
-#: .\sharing\views.py:106
+#: .\sharing\views.py:112
 msgid "The two passwords are different."
 msgstr "Les deux mots de passe sont différents."
 
-#: .\sharing\views.py:122
+#: .\sharing\views.py:128
 #, python-format
 msgid "The lending has been updated and the new end date is now %s."
 msgstr "L'emprunt a été mis-à-jour et la nouvelle date de fin est %s."
 
-#: .\sharing\views.py:187
+#: .\sharing\views.py:193
 msgid "Your profile has been successfully updated !"
 msgstr "Votre profil a bien été mis-à-jour !"
 
-#: .\sharing\views.py:190
+#: .\sharing\views.py:196
 msgid "The two passwords are different or you forgot one."
 msgstr "Les deux mots de passe sont différents ou vous en avez oublié un."
 
@@ -739,6 +727,23 @@ msgstr "tous les prêts"
 #: .\templates\sharing\lending_list.html:35
 msgid "dates"
 msgstr "dates"
+
+#: .\utils\models\availability.py:20
+#, python-format
+msgid "This book is already borrowed ! (borrowed by %(lendings)s)"
+msgstr "Ce livre est déjà emprunté par %(lendings)s !"
+
+#: .\utils\models\availability.py:25
+#, python-format
+msgid ""
+"You chose a past date whereas the book is now borrowed which is not "
+"possible ! (borrowed by %(lendings)s)"
+msgstr ""
+"Vous avez choisi une date passée alors que cet exemplaire est déjà prêté (ou "
+"sera prêté) à %(lendings)s !"
+
+#~ msgid "This book is already borrowed !"
+#~ msgstr "Ce livre est déjà emprunté par quelqu'un !"
 
 #~ msgid "No %(object_type)s ongoing !"
 #~ msgstr "Pas %(object_type)s en cours !"

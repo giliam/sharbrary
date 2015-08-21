@@ -44,9 +44,11 @@ class LendingBookCreate(LendingCreate):
     def form_valid(self, form):
         lending = form.save(commit=False)
         lending.book_copy = get_object_or_404(Ownership,pk=self.kwargs['book_id'])
-        if determine_book_availability(lending.beginning_date,lending.book_copy):
-            raise forms.ValidationError(_("This book is already borrowed !"))
-        lending.save()
+        if is_lending_possible(lending.beginning_date,lending.book_copy):
+            lending.save()
+        else:
+            messages.add_message(request,messages.ERROR,_("This lending is not possible and you should have had errors on the form!"))
+
         return redirect('book_list')
 
 class BorrowingCreate(LendingCreate):
@@ -55,9 +57,11 @@ class BorrowingCreate(LendingCreate):
     def form_valid(self, form):
         lending = form.save(commit=False)
         lending.borrower = self.request.user
-        if determine_book_availability(lending.beginning_date,lending.book_copy):
-            raise forms.ValidationError(_("This book is already borrowed !"))
-        lending.save()
+        if is_lending_possible(lending.beginning_date,lending.book_copy):
+            lending.save()
+        else:
+            messages.add_message(request,messages.ERROR,_("This lending is not possible and you should have had errors on the form!"))
+
         return redirect('book_list')
 
 class BorrowingBookCreate(LendingCreate):
@@ -68,9 +72,11 @@ class BorrowingBookCreate(LendingCreate):
         lending = form.save(commit=False)
         lending.borrower = self.request.user
         lending.book_copy = get_object_or_404(Ownership,pk=self.kwargs['book_id'])
-        if determine_book_availability(lending.beginning_date,lending.book_copy):
-            raise forms.ValidationError(_("This book is already borrowed !"))
-        lending.save()
+        if is_lending_possible(lending.beginning_date,lending.book_copy):
+            lending.save()
+        else:
+            messages.add_message(request,messages.ERROR,_("This lending is not possible and you should have had errors on the form!"))
+
         return redirect('book_list')
 
 class LendingUpdate(SuccessMessageMixin, UpdateView):

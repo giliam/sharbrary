@@ -51,7 +51,7 @@ TODO
 
         * End date before beginning date ?
     
-* Add discussion system. Discussion forum, by theme and by book: one topic is created each time a book or a theme is added. Not deleted when the element is removed.
+* **Add discussion system. Discussion forum, by theme and by book: one topic is created each time a book or a theme is added. Not deleted when the element is removed.**
 
 * Homepage
 

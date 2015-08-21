@@ -99,11 +99,11 @@ def member_add(request):
                 user = User.objects.create_user(form_user.cleaned_data['username'], form_user.cleaned_data['email'], form_user.cleaned_data['password'])
                 profile.user = user
                 profile.save()
-                messages.add_message(request, messages.SUCCESS, _('The new user has been successfully added !'))
+                messages.add_message(request, messages.SUCCESS, _("The new user has been successfully added !"))
                 form_user = UserForm()
                 form_profile = ProfileForm()
             else:
-                messages.add_message(request, messages.ERROR, _('The two passwords are different.'))
+                messages.add_message(request, messages.ERROR, _("The two passwords are different."))
     else:
         form_user = UserForm()
         form_profile = ProfileForm()

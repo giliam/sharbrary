@@ -136,6 +136,9 @@ div.book p.buttons a.pure-button {
 
 div .picture {
     display:block;
-    background-color: red;
     float:right;
+}
+
+.required_symbol {
+    color:red;
 }

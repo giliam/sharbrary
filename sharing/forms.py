@@ -35,11 +35,11 @@ class LendingForm(forms.ModelForm):
         return self.cleaned_data
 
 class LogInForm(forms.Form):
-    username = forms.CharField(label=_("username").capitalize(), max_length=30)
-    password = forms.CharField(label=_("password").capitalize(), widget=forms.PasswordInput)
+    username = forms.CharField(label=_("Username"), max_length=30)
+    password = forms.CharField(label=_("Password"), widget=forms.PasswordInput)
 
 class UserForm(forms.ModelForm):
-    confirm_password = forms.CharField(widget=forms.PasswordInput())
+    confirm_password = forms.CharField(label=_("Confirm password"),widget=forms.PasswordInput())
     class Meta:
         model = User
         fields = ('username', 'email', 'password',)
@@ -48,8 +48,8 @@ class UserForm(forms.ModelForm):
         }
 
 class UserEditForm(forms.ModelForm):
-    password = forms.CharField(widget=forms.PasswordInput(),required=False)
-    confirm_password = forms.CharField(widget=forms.PasswordInput(),required=False)
+    password = forms.CharField(label=_("Password"),widget=forms.PasswordInput(),required=False)
+    confirm_password = forms.CharField(label=_("Confirm password"),widget=forms.PasswordInput(),required=False)
     class Meta:
         model = User
         fields = ('email', 'password',)

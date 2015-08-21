@@ -31,6 +31,8 @@ TODO
 
 * *User profile*
 
+* *Sets lending depending on ownership and not book anymore.*
+
 * **Write unit tests:**
 	
 	* *Author: birthdate before deathdate.*
@@ -42,10 +44,14 @@ TODO
         * **Tests ownership creation**
 
 		* **Remove book from library.**
+
+    * Lendings:
+
+        * Availability of book copies.
+
+        * End date before beginning date ?
     
 * Adds discussion system. Discussion forum, by theme and by book: one topic is created each time a book or a theme is added. Not deleted when the element is removed.
-
-* *Sets lending depending on ownership and not book anymore.*
 
 * Homepage
 

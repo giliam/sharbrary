@@ -27,9 +27,9 @@ TODO
 
 * *Adds pictures to profiles.*
 
-* Adds Wysiwyg text editor.
+* *Adds Wysiwyg text editor.*
 
-* Adds Time widget for date fields.
+* *User profile*
 
 * **Write unit tests:**
 	
@@ -47,8 +47,8 @@ TODO
 
 * Discussion forum, by theme and by book: one topic is created each time a book or a theme is added. Not deleted when the element is removed.
 
-* *User profile*
-
 * Homepage
 
 * Rules and CGV pages
+
+* Adds Time widget for date fields.

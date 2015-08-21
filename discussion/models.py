@@ -43,7 +43,7 @@ class Discussion(models.Model):
         ordering = ['-updated_date', 'title']
 
 class Message(models.Model):
-    discussion = models.ManyToManyField(Discussion, related_name="messages")
+    discussion = models.ForeignKey(Discussion, related_name="messages")
     message = models.TextField(verbose_name=_('message'))
     
     added_date = models.DateTimeField(_('date added'),auto_now_add=True)

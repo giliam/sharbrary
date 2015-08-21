@@ -24,7 +24,7 @@
                 {% trans "date updated"|capfirst %}
                 <a href="?sort_by=updated_date&order=desc" class="fa fa-sort-desc"></a>
             </th>
-            {% if perms.library.discussion_edit or perms.library.discussion_delete %}
+            {% if perms.discussion.discussion_edit or perms.discussion.discussion_delete %}
             <th></th>
             {% endif %}
         </tr>
@@ -34,21 +34,21 @@
         {% for discussion in discussions %}
         <tr>
         <td>
-            {% if perms.library.discussion_detail %}<a class="black_link" href="{% url "discussion_detail" discussion.id %}">{% endif %}
+            {% if perms.discussion.discussion_detail %}<a class="black_link" href="{% url "discussion_detail" discussion.id %}">{% endif %}
             {{ discussion.title }}
-            {% if perms.library.discussion_detail %}</a>{% endif %}
+            {% if perms.discussion.discussion_detail %}</a>{% endif %}
         </td>
         <td>{{ discussion.added_date|naturalday:"DATE_FORMAT"|default:"?" }}</td>
         <td>{{ discussion.updated_date|naturalday:"DATE_FORMAT"|default:"?" }}</td>
-        {% if perms.library.discussion_edit or perms.library.discussion_delete %}
+        {% if perms.discussion.discussion_edit or perms.discussion.discussion_delete %}
         <td>
-            {% if perms.library.discussion_detail %}
+            {% if perms.discussion.discussion_detail %}
             <a class="pure-button pure-button-primary" href="{% url "discussion_detail" discussion.id %}">{% trans "detail"|capfirst %}</a>
             {% endif %}
-            {% if perms.library.discussion_edit %}
+            {% if perms.discussion.discussion_edit %}
             <a class="pure-button pure-button-secondary" href="{% url "discussion_edit" discussion.id %}">{% trans "edit"|capfirst %}</a>
             {% endif %}
-            {% if perms.library.discussion_delete %}
+            {% if perms.discussion.discussion_delete %}
             <a class="pure-button pure-button-error" href="{% url "discussion_delete" discussion.id %}">{% trans "delete"|capfirst %}</a>
             {% endif %}
         </td>
@@ -58,7 +58,7 @@
     </tbody>
 </table>
 {% include "common/pagination.html" %}
-{% if perms.library.discussion_new %}
+{% if perms.discussion.discussion_new %}
 <p><a class="pure-button pure-button-success" href="{% url "discussion_new" %}">{% trans "new"|capfirst %}</a></p>
 {% endif %}
 {% endblock %}

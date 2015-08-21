@@ -1,18 +1,35 @@
 {% extends "layout.html" %}
 {% block body %} 
 <h1>{% trans "discussion"|capfirst %} - {{ discussion.title }}</h1>
+{% if perms.discussion.message_new %}
+<p><a class="pure-button pure-button-success" href="{% url "message_new" discussion.id %}">{% trans "new"|capfirst %}</a></p>
+{% endif %}
 <div class="pure-g">
-        {% for message in messages %}
+    {% for message in messages_discussion %}
         <div class="pure-u-1-3">
-            {{ message.title }}
-        </p>
-        <p>{{ message.added_date|naturalday:"DATE_FORMAT"|default:"?" }}</p>
-        <p>{{ message.updated_date|naturalday:"DATE_FORMAT"|default:"?" }}</p></div>
-        <div class="pure-u-1-3">
-            <p>{{ message.message }}</p>
+            <p>{% trans "written by: "|capfirst %}<strong>{{ message.author.username }}</strong></p>
+            <p>{% trans "at: "|capfirst %}{{ message.added_date|naturalday:"DATE_FORMAT"|default:"?" }}</p>
+            {% if message.updated_date != message.added_date %}
+                <p>{% trans "last update: "|capfirst %}{{ message.updated_date|naturalday:"DATE_FORMAT"|default:"?" }}</p>
+            {% endif %}
+            {% if perms.discussion.message_edit or perms.discussion.message_delete %}
+            <p>
+                {% if perms.discussion.message_edit %}
+                <a class="pure-button pure-button-secondary" href="{% url "message_edit" message.id %}">{% trans "edit"|capfirst %}</a>
+                {% endif %}
+                {% if perms.discussion.message_delete %}
+                <a class="pure-button pure-button-error" href="{% url "message_delete" message.id %}">{% trans "delete"|capfirst %}</a>
+                {% endif %}
+            </p>
+            {% endif %}
+        </div>
+        <div class="pure-u-2-3">
+            {{ message.message|safe }}
         </div>
         {% endfor %}
-    </tbody>
-</table>
+</div>
 {% include "common/pagination.html" %}
+{% if perms.discussion.message_new %}
+<p><a class="pure-button pure-button-success" href="{% url "message_new" discussion.id %}">{% trans "new"|capfirst %}</a></p>
+{% endif %}
 {% endblock %}

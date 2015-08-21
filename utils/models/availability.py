@@ -16,12 +16,12 @@ def determine_conflicts_with_next_lendings(beginning_date,book_copy):
 
 def is_lending_possible(beginning_date,book_copy):
     current_lendings = determine_book_availability(beginning_date,book_copy)
-    if current_lendings:
+    if current_lendings and len(current_lendings.all()) == book_copy.copies:
         raise ValidationError(_("This book is already borrowed ! (borrowed by %(lendings)s)") % { 'lendings': ' ,'.join([flending.borrower.username for flending in current_lendings.all()])} )
         return False
 
     future_lendings = determine_conflicts_with_next_lendings(beginning_date,book_copy)
-    if future_lendings:
+    if future_lendings and len(future_lendings.all()) == book_copy.copies:
         raise ValidationError(_("You chose a past date whereas the book is now borrowed which is not possible ! (borrowed by %(lendings)s)") % { 'lendings': ' ,'.join([flending.borrower.username for flending in future_lendings.all()])} )
         return False
     

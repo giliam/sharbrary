@@ -9,7 +9,7 @@ TODO
 
 * *Make multi-ownership for books. Many people could have the same book.*
 
-* *Adds ownership so that someone can have the same book twice (or more).*
+* *Add ownership so that someone can have the same book twice (or more).*
 
 * *Make it possible to edit your ownerships.*
 
@@ -17,21 +17,21 @@ TODO
 
 * *Fix book publishing date sorting*
 
-* *Adds default beginning date to lending creation.*
+* *Add default beginning date to lending creation.*
 
-* *Adds the possibility to have the same book twice with two different covers/editors (edit book creation).*
+* *Add the possibility to have the same book twice with two different covers/editors (edit book creation).*
 
-* *Adds verification of book's availability during the creation of a lending.*
+* *Add verification of book's availability during the creation of a lending.*
 
-* *Adds a form to create user.*
+* *Add a form to create user.*
 
-* *Adds pictures to profiles.*
+* *Add pictures to profiles.*
 
-* *Adds Wysiwyg text editor.*
+* *Add Wysiwyg text editor.*
 
 * *User profile*
 
-* *Sets lending depending on ownership and not book anymore.*
+* *Set lending depending on ownership and not book anymore.*
 
 * **Write unit tests:**
 	
@@ -51,10 +51,12 @@ TODO
 
         * End date before beginning date ?
     
-* Adds discussion system. Discussion forum, by theme and by book: one topic is created each time a book or a theme is added. Not deleted when the element is removed.
+* Add discussion system. Discussion forum, by theme and by book: one topic is created each time a book or a theme is added. Not deleted when the element is removed.
 
 * Homepage
 
 * Rules and CGV pages
 
-* Adds Time widget for date fields.
+* Add Time widget for date fields.
+
+* Add a waiting list.

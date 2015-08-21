@@ -9,7 +9,7 @@ from django.shortcuts import get_object_or_404
 from sharing.models import Lending, Profile
 from library.models import Book
 
-from utils.models.availability import is_lending_possible
+from utils.models.availability import is_lending_possible, is_returning_possible
 
 class LendingEndForm(forms.ModelForm):
     class Meta:
@@ -20,6 +20,7 @@ class LendingEndForm(forms.ModelForm):
         end_date = self.cleaned_data['end_date']
         if self.instance.beginning_date > end_date:
             raise forms.ValidationError(_("The end date must be after the beginning date."))
+        is_returning_possible(end_date,self.instance)
         return end_date
 
 class LendingForm(forms.ModelForm):

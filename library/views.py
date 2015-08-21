@@ -22,7 +22,7 @@ def book_detail(request, book_id):
     """
     book = get_object_or_404(Book, pk=book_id)
     ownerships = Ownership.objects.filter(book__id=book_id)
-    lendings = Lending.objects.filter(book_copy__id=book_id)
+    lendings = Lending.objects.filter(book_copy__book__id=book_id)
     return render(request, 'library/book_detail.html', {'book':book,'lendings':lendings,'ownerships':ownerships})
 
 class BookEmbedList(SortMixin):
@@ -156,16 +156,16 @@ def add_book_to_library(request,ownership):
     existing_ownerships = Ownership.objects.filter(book__id=ownership.book.id,owner__id=request.user.id)
     # If we are editing an existing ownership.
     if ownership.id:
-        existing_ownerships.exclude(id=ownership.id)
+        existing_ownerships = existing_ownerships.exclude(id=ownership.id)
     
-    should_create_new = True
+    should_save_this_one = True
     for existing_ownership in existing_ownerships.all():
         # If there is an ownership that corresponds to this one, than we have to edit it.
         if not determine_new_ownership_necessary(ownership,existing_ownership):
-            should_create_new = False
+            should_save_this_one = False
             break
-    # If we should create a new one
-    if should_create_new:
+    # If we should create a new one or at least edit the one existing
+    if should_save_this_one:
         ownership.owner = request.user
         ownership.save()
         return True

@@ -26,3 +26,13 @@ def is_lending_possible(beginning_date,book_copy):
         return False
     
     return True
+
+def is_returning_possible(end_date,lending):
+    other_lendings = Lending.objects.filter(
+            Q(beginning_date__lt=lending.beginning_date,end_date__gt=lending.beginning_date,book_copy__id=lending.book_copy.id)|
+            Q(beginning_date__lt=end_date,end_date__gt=lending.beginning_date,book_copy__id=lending.book_copy.id)|
+            Q(end_date__lt=end_date,beginning_date__gt=lending.beginning_date,book_copy__id=lending.book_copy.id)).exclude(id=lending.id)
+    if other_lendings and len(other_lendings) == lending.book_copy.copies:
+        raise ValidationError(_("You chose a past date whereas the book is now borrowed which is not possible ! (borrowed by %(lendings)s)") % { 'lendings': ' ,'.join([flending.borrower.username for flending in other_lendings.all()])} )
+        return False
+    return True

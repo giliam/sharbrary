@@ -142,3 +142,12 @@ div .picture {
 .required_symbol {
     color:red;
 }
+
+.discussion_message {
+    border-top: solid 1px #CCC;
+}
+
+.discussion_message img.picture{
+    float:none;
+    max-height: 150px;
+}

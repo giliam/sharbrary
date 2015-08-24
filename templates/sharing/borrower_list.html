@@ -24,8 +24,8 @@
         {% for borrower in object_list %}
         <tr>
         <td><a href="{% url "profile_show" borrower.user.id %}">{{ borrower.user.username }}</a></td>
-        <td>{{ borrower.informations }}</td>
-        <td>{{ borrower.phone_number }}</td>
+        <td>{{ borrower.informations|default:_("empty")|capfirst }}</td>
+        <td>{{ borrower.phone_number|default:_("unknown")|capfirst }}</td>
         </tr>
         {% endfor %}
     </tbody>

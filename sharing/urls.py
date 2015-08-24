@@ -25,6 +25,13 @@ urlpatterns = patterns('',
   url(r'^borrow/a/book/$', permission_required('sharing.lending_new')(views.BorrowingCreate.as_view()), name='borrowing_create'),
   url(r'^borrow/this/book/(?P<book_id>\d+)$', permission_required('sharing.lending_new')(views.BorrowingBookCreate.as_view()), name='borrowing_this_book_create'),
 
+
+  url(r'^queue/$', permission_required('sharing.queue_list')(views.QueueList.as_view()), name='queue_list'),
+  url(r'^queue/new$', permission_required('sharing.queue_new')(views.QueueCreate.as_view()), name='queue_new'),
+  url(r'^queue/edit/(?P<pk>\d+)$', permission_required('sharing.queue_edit')(views.QueueUpdate.as_view()), name='queue_edit'),
+  url(r'^queue/delete/(?P<pk>\d+)$', permission_required('sharing.queue_delete')(views.QueueDelete.as_view()), name='queue_delete'),
+
+
   url(r'^login/$', views.log_in, name='login'),
   url(r'^logout/$', views.log_out, name='logout'),
 )

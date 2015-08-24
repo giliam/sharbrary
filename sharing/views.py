@@ -13,7 +13,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 
-from sharing.models import Lending, Profile
+from sharing.models import Lending, Profile, Queue
 from sharing.forms import LendingEndForm, LogInForm, LendingForm, ProfileForm, UserForm,UserEditForm
 from library.models import Book, Ownership
 
@@ -230,3 +230,30 @@ class BorrowerList(SortMixin):
     template_name="sharing/borrower_list.html"
     paginate_by = 20
 
+
+
+
+class QueueList(SortMixin):
+    context_object_name = "queues"
+    default_sort_params = ('updated_date', 'desc')
+    allowed_sort_params = ['title', 'author__lastname', 'added_date', 'updated_date']
+    model = Queue
+    template_name="sharing/queue_list.html"
+    paginate_by = 30
+
+class QueueCreate(SuccessMessageMixin, CreateView):
+    model = Queue
+    success_url = reverse_lazy('queue_list')
+    success_message = _("%(book_copy)s was added successfully")
+    fields = ['book_copy','borrower']
+
+class QueueUpdate(SuccessMessageMixin, UpdateView):
+    model = Queue
+    success_url = reverse_lazy('queue_list')
+    success_message = _("%(book_copy)s was updated successfully")
+    fields = ['book_copy','borrower']
+
+class QueueDelete(DeleteView):
+    model = Queue
+    template_name="sharing/queue_confirm_delete.html"
+    success_url = reverse_lazy('queue_list')

@@ -57,3 +57,27 @@ class Lending(models.Model):
             ("lending_list", "Show the list of lendings"),
         )
         default_permissions = []
+
+class Queue(models.Model):
+    borrower = models.ForeignKey(User,blank=True,verbose_name=_("borrower"))
+    book_copy = models.ForeignKey(Ownership,verbose_name=_("book copy"))
+    
+    fulfilled = models.BooleanField(default=False)
+    lending = models.ForeignKey(Lending,null=True,blank=True,verbose_name=_("lending"))
+
+    added_date = models.DateTimeField(_('date added to the database'),auto_now_add=True)
+    updated_date = models.DateTimeField(_('date updated to the database'),auto_now=True)
+
+    def __unicode__(self):
+        return unicode(self.borrower) + u" would like to borrow " + unicode(self.book_copy.book)
+    
+    class Meta:
+        verbose_name = _("queue")
+        verbose_name_plural = _("queues")
+        permissions = (
+            ("queue_new", "Add a queue"),
+            ("queue_edit", "Edit a queue"),
+            ("queue_delete", "Delete a queue"),
+            ("queue_list", "Show the list of queues"),
+        )
+        default_permissions = []

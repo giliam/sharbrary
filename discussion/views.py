@@ -60,7 +60,7 @@ class MessageCreate(SuccessMessageMixin, CreateView):
 class MessageUpdate(SuccessMessageMixin, UpdateView):
     model = Message
     success_url = reverse_lazy('discussion_list')
-    success_message = _("%(title)s was updated successfully")
+    success_message = _("The message was updated successfully")
     fields = ['message']
 
 class MessageDelete(DeleteView):

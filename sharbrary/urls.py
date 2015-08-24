@@ -29,6 +29,8 @@ urlpatterns = patterns('',
     url(r'^i18n/', include('django.conf.urls.i18n')),
     url(r'^change_lang/', TemplateView.as_view(template_name='base/lang_change.html'), name="lang_change"),
     url(r'^howto/', TemplateView.as_view(template_name='base/howto.html'), name="how_to"),
+    url(r'^convention/', TemplateView.as_view(template_name='base/convention.html'), name="convention"),
+    url(r'^$', TemplateView.as_view(template_name='base/convention.html'), name="convention"),
 )
 
 urlpatterns += static(MEDIA_URL, document_root=MEDIA_ROOT)

@@ -147,7 +147,15 @@ div .picture {
     border-top: solid 1px #CCC;
 }
 
+.border {
+    border-top: solid 1px #CCC;
+}
+
 .discussion_message img.picture{
     float:none;
     max-height: 150px;
+}
+
+.font_smaller{
+    font-size: 0.7em;
 }

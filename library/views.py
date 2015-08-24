@@ -15,6 +15,7 @@ from library.forms import SelectOwnerForm, ResearchForm
 from sharing.models import Lending
 
 from utils.models.sortmixin import SortMixin
+from utils.models.conditions import actual_lending
 
 def book_detail(request, book_id):
     """
@@ -22,8 +23,11 @@ def book_detail(request, book_id):
     """
     book = get_object_or_404(Book, pk=book_id)
     ownerships = Ownership.objects.filter(book__id=book_id)
-    lendings = Lending.objects.filter(book_copy__book__id=book_id)
-    return render(request, 'library/book_detail.html', {'book':book,'lendings':lendings,'ownerships':ownerships})
+    lendings = Lending.objects.filter(actual_lending(),book_copy__book__id=book_id)
+    lendings_ordered = {ownership.id:[] for ownership in ownerships}
+    for lending in lendings.all():
+        lendings_ordered[lending.book_copy.id].append(lending)
+    return render(request, 'library/book_detail.html', {'book':book,'lendings':lendings,'lendings_ordered':lendings_ordered,'ownerships':ownerships})
 
 class BookEmbedList(SortMixin):
     context_object_name = "books"

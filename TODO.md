@@ -37,9 +37,9 @@ TODO
 
 	* **Library**
 
-		* *Tests determine_new_ownership_necessary*
+		* *Test determine_new_ownership_necessary*
 
-        * **Tests ownership creation**
+        * **Test ownership creation**
 
 		* *Remove book from library.*
 
@@ -68,3 +68,17 @@ TODO
 * **Add a waiting list.**
 
 * Add a borrowing button on book list that display different copies existing.
+
+* Queue:
+    
+    * Sort and display queue on book page.
+
+    * Add alert when book given back and queue status changed.
+
+    * Add buttons to leave the status queue
+
+    * Remove from status queue when borrowing !
+
+* Security:
+
+    * Display and allow actions only for your books/ownerships/lendings unless certain permission.

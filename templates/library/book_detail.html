@@ -87,7 +87,7 @@
              ({{ book.publishing_date|naturalday:"DATE_FORMAT"|default:_("unknown") }})</p>
             <p><a href="{% url "profile_show" ownership.id %}">{% blocktrans with owner=ownership.owner.username|default:_("unknown")|capfirst nbcopies=ownership.copies %}{{owner}} ({{nbcopies}}){% endblocktrans %}</a></p>
         </div>
-        <div class="pure-u-2-3">
+        <div class="pure-u-1-2">
             <p>
                 {% if ownership.comments and ownership.comments.strip %}
                     {{ ownership.comments|safe }}
@@ -96,7 +96,12 @@
                 {% endif %}
             </p>
             <p>
-                {% if perms.library.ownership_edit or perms.library.ownership_delete %}
+                {% if perms.sharing.lending_new or perms.sharing.queue_new or perms.library.ownership_edit or perms.library.ownership_delete %}
+                    {% if perms.sharing.queue_new and lendings_ordered|keyvalue:ownership.id|length == ownership.copies %}
+                        <a class="pure-button" href="{% url "queue_new_book" ownership.id %}">{% trans "add to queue"|capfirst %}</a>
+                    {% elif perms.sharing.lending_new %}
+                        <a class="pure-button" href="{% url "borrowing_this_book_create" ownership.id %}">{% trans "borrow"|capfirst %}</a>
+                    {% endif %}
                     {% if perms.library.ownership_edit %}
                     <a class="pure-button pure-button-secondary" href="{% url "ownership_edit" ownership.id %}">{% trans "edit"|capfirst %}</a>
                     {% endif %}
@@ -107,9 +112,30 @@
             </p>
         </div>
         <div class="pure-u-1-6 font_smaller">
-        {% with lendings=lendings_ordered|keyvalue:ownership.id %}
+        {% with lendings=lendings_ordered|keyvalue:ownership.id ownership_id=ownership.id %}
             {% include "common/lendings.html" %}
         {% endwith %}
+        </div>
+        <div class="pure-u-1-6 font_smaller">
+            <h3>{% trans "queue"|capfirst %}</h3>
+            <ul>
+                {% for queue in queues_ordered|keyvalue:ownership.id %}
+                    <li>
+                        {% blocktrans with book=queue.book borrower=queue.borrower|default:_("unknown")|capfirst %}<strong>{{ book }}</strong> to <em>{{ borrower }}</em>{% endblocktrans %}
+                    {% if perms.sharing.queue_edit or perms.sharing.queue_delete %}
+                        {% if perms.sharing.queue_edit %}
+                        <a class="pure-button pure-button-xsmall pure-button-secondary" href="{% url "queue_edit" queue.id %}">{% trans "edit"|capfirst %}</a>
+                        {% endif %}
+                        {% if perms.sharing.queue_delete %}
+                        <a class="pure-button-xsmall pure-button pure-button-error" href="{% url "queue_delete" queue.id %}">{% trans "delete"|capfirst %}</a>
+                        {% endif %}
+                    {% endif %}
+                    </li>
+                {% empty %}
+                <p>{% trans "no queue ongoing !"|capfirst %}</p>
+                {% endfor %}
+
+            </ul>
         </div>
     </div>
     {% endfor %}

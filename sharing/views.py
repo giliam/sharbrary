@@ -19,7 +19,7 @@ from library.models import Book, Ownership
 
 from utils.models.sortmixin import SortMixin
 from utils.models.conditions import actual_lending
-from utils.models.availability import determine_book_availability
+from utils.models.availability import is_lending_possible
 
 class LendingAllList(SortMixin):
     default_sort_params = ('book_copy__book__title', 'asc')
@@ -47,7 +47,7 @@ class LendingBookCreate(LendingCreate):
         if is_lending_possible(lending.beginning_date,lending.book_copy):
             lending.save()
         else:
-            messages.add_message(request,messages.ERROR,_("This lending is not possible and you should have had errors on the form!"))
+            messages.add_message(self.request,messages.ERROR,_("This lending is not possible and you should have had errors on the form!"))
 
         return redirect('book_list')
 
@@ -60,7 +60,7 @@ class BorrowingCreate(LendingCreate):
         if is_lending_possible(lending.beginning_date,lending.book_copy):
             lending.save()
         else:
-            messages.add_message(request,messages.ERROR,_("This lending is not possible and you should have had errors on the form!"))
+            messages.add_message(self.request,messages.ERROR,_("This lending is not possible and you should have had errors on the form!"))
 
         return redirect('book_list')
 
@@ -75,7 +75,7 @@ class BorrowingBookCreate(LendingCreate):
         if is_lending_possible(lending.beginning_date,lending.book_copy):
             lending.save()
         else:
-            messages.add_message(request,messages.ERROR,_("This lending is not possible and you should have had errors on the form!"))
+            messages.add_message(self.request,messages.ERROR,_("This lending is not possible and you should have had errors on the form!"))
 
         return redirect('book_list')
 
@@ -246,6 +246,19 @@ class QueueCreate(SuccessMessageMixin, CreateView):
     success_url = reverse_lazy('queue_list')
     success_message = _("%(book_copy)s was added successfully")
     fields = ['book_copy','borrower']
+
+class QueueToBookCreate(SuccessMessageMixin, CreateView):
+    model = Queue
+    success_url = reverse_lazy('queue_list')
+    success_message = _("%(book_copy)s was added successfully")
+    fields = []
+    def form_valid(self, form):
+        queue = form.save(commit=False)
+        queue.borrower = self.request.user
+        queue.book_copy = get_object_or_404(Ownership,pk=self.kwargs['ownership_id'])
+        queue.save()
+        messages.add_message(self.request,messages.SUCCESS,_("You have been successfully added to the queue for this book!"))
+        return redirect('book_detail',book_id=queue.book_copy.book.id)
 
 class QueueUpdate(SuccessMessageMixin, UpdateView):
     model = Queue

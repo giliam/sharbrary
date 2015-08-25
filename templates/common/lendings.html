@@ -9,15 +9,14 @@
 {% for lending in lendings %}
     <li>
         {% blocktrans with book=lending.book borrower=lending.borrower|default:_("unknown")|capfirst %}<strong>{{ book }}</strong> to <em>{{ borrower }}</em>{% endblocktrans %}
-    {% if perms.library.lending_edit or perms.library.lending_delete %}
-    <br />
+    {% if perms.sharing.lending_edit or perms.sharing.lending_delete %}
         {% if perms.sharing.lending_end %}
             <a class="pure-button pure-button-xsmall pure-button-primary" href="{% url "lending_end" lending.id %}">{% trans "give back"|capfirst %}</a>
         {% endif %}
-        {% if perms.library.lending_edit %}
+        {% if perms.sharing.lending_edit %}
         <a class="pure-button pure-button-xsmall pure-button-secondary" href="{% url "lending_edit" lending.id %}">{% trans "edit"|capfirst %}</a>
         {% endif %}
-        {% if perms.library.lending_delete %}
+        {% if perms.sharing.lending_delete %}
         <a class="pure-button-xsmall pure-button pure-button-error" href="{% url "lending_delete" lending.id %}">{% trans "delete"|capfirst %}</a>
         {% endif %}
     {% endif %}
@@ -27,5 +26,9 @@
 {% endfor %}
 </ul>
 {% if perms.sharing.lending_new %}
-<p><a class="pure-button pure-button-success" href="{% url "lending_new" %}">{% trans "new"|capfirst %}</a></p>
+    {% if ownership_id %}
+        <p><a class="pure-button pure-button-success" href="{% url "lend_book" ownership_id %}">{% trans "new"|capfirst %}</a></p>
+    {% else %}
+        <p><a class="pure-button pure-button-success" href="{% url "lending_new" %}">{% trans "new"|capfirst %}</a></p>
+    {% endif %}
 {% endif %}

@@ -59,4 +59,6 @@ TODO
 
 * Add Time widget for date fields.
 
-* Add a waiting list.
+* **Add a waiting list.**
+
+* Add a borrowing button on book list that display different copies existing.

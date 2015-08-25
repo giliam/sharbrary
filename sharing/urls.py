@@ -27,7 +27,8 @@ urlpatterns = patterns('',
 
 
   url(r'^queue/$', permission_required('sharing.queue_list')(views.QueueList.as_view()), name='queue_list'),
-  url(r'^queue/new$', permission_required('sharing.queue_new')(views.QueueCreate.as_view()), name='queue_new'),
+  url(r'^queue/new/$', permission_required('sharing.queue_new')(views.QueueCreate.as_view()), name='queue_new'),
+  url(r'^queue/new/(?P<ownership_id>\d+)$', permission_required('sharing.queue_new')(views.QueueToBookCreate.as_view()), name='queue_new_book'),
   url(r'^queue/edit/(?P<pk>\d+)$', permission_required('sharing.queue_edit')(views.QueueUpdate.as_view()), name='queue_edit'),
   url(r'^queue/delete/(?P<pk>\d+)$', permission_required('sharing.queue_delete')(views.QueueDelete.as_view()), name='queue_delete'),
 

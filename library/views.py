@@ -12,7 +12,7 @@ from django.db.models import Q
 
 from library.models import Book, Author, Editor, Theme, Period, Ownership
 from library.forms import SelectOwnerForm, ResearchForm
-from sharing.models import Lending
+from sharing.models import Lending, Queue
 
 from utils.models.sortmixin import SortMixin
 from utils.models.conditions import actual_lending
@@ -23,11 +23,18 @@ def book_detail(request, book_id):
     """
     book = get_object_or_404(Book, pk=book_id)
     ownerships = Ownership.objects.filter(book__id=book_id)
+    queues = Queue.objects.filter(book_copy__book__id=book_id,fulfilled=False)
     lendings = Lending.objects.filter(actual_lending(),book_copy__book__id=book_id)
+    
+    queues_ordered = {ownership.id:[] for ownership in ownerships}
+    # copy is not enough here, because of lists probably
     lendings_ordered = {ownership.id:[] for ownership in ownerships}
+    # group them by ownership id
+    for queue in queues.all():
+        queues_ordered[queue.book_copy.id].append(queue)
     for lending in lendings.all():
         lendings_ordered[lending.book_copy.id].append(lending)
-    return render(request, 'library/book_detail.html', {'book':book,'lendings':lendings,'lendings_ordered':lendings_ordered,'ownerships':ownerships})
+    return render(request, 'library/book_detail.html', {'book':book,'lendings':lendings,'lendings_ordered':lendings_ordered,'queues_ordered':queues_ordered,'ownerships':ownerships})
 
 class BookEmbedList(SortMixin):
     context_object_name = "books"

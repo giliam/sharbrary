@@ -172,6 +172,139 @@ class EditorTestCase(TestCase):
         self.assertIsNotNone(editor)
         self.client.logout()
 
+
+
+
+class ThemeTestCase(TestCase):
+    def setUp(self):
+        self.bob = User.objects.create_superuser('bob', 'bob@test.fr', 'blob')
+
+    def test_creation(self):
+        self.client.login(username='bob', password='blob')
+        data = {
+            'name': 'Romantisme',
+        }
+
+        response = self.client.post(reverse('theme_new'), data)
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response, reverse('theme_list'))
+
+        try:
+            theme = Theme.objects.get(**data)
+        except Theme.DoesNotExist:
+            theme = None    
+        self.assertIsNotNone(theme)
+        # Then check if the book has been created
+        response = self.client.get(reverse('theme_list'))
+        self.assertQuerysetEqual(response.context['themes'].all(),[repr(theme)])
+        self.client.logout()
+
+    def test_deletion(self):
+        self.client.login(username='bob', password='blob')
+        theme = Theme.objects.create(name='Romantisme')
+        
+        response = self.client.get(reverse('theme_list'))
+        self.assertQuerysetEqual(response.context['themes'].all(),[repr(theme)])
+        
+        response = self.client.post(reverse('theme_delete',args=[theme.id]),{})
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response, reverse('theme_list'))
+        try:
+            theme = Theme.objects.get(name="Romantisme")
+        except Theme.DoesNotExist:
+            theme = None    
+        self.assertIsNone(theme)
+        # Then check if the book has been created
+        response = self.client.get(reverse('theme_list'))
+        self.assertQuerysetEqual(response.context['themes'].all(),[])
+        self.client.logout()
+
+    def test_update(self):
+        self.client.login(username='bob', password='blob')
+        theme = Theme.objects.create(name='Romantisme')
+        data = {
+            'name': 'Les Lumieres',
+        }
+       
+        response = self.client.post(reverse('theme_edit',args=[theme.id]),data)
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response, reverse('theme_list'))
+        try:
+            theme = Theme.objects.get(**data)
+        except Theme.DoesNotExist:
+            theme = None    
+        self.assertIsNotNone(theme)
+        self.client.logout()
+
+
+
+
+
+class PeriodTestCase(TestCase):
+    def setUp(self):
+        self.bob = User.objects.create_superuser('bob', 'bob@test.fr', 'blob')
+
+    def test_creation(self):
+        self.client.login(username='bob', password='blob')
+        data = {
+            'name': 'Romantisme',
+        }
+
+        response = self.client.post(reverse('period_new'), data)
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response, reverse('period_list'))
+
+        try:
+            period = Period.objects.get(**data)
+        except Period.DoesNotExist:
+            period = None    
+        self.assertIsNotNone(period)
+        # Then check if the book has been created
+        response = self.client.get(reverse('period_list'))
+        self.assertQuerysetEqual(response.context['periods'].all(),[repr(period)])
+        self.client.logout()
+
+    def test_deletion(self):
+        self.client.login(username='bob', password='blob')
+        period = Period.objects.create(name='Romantisme')
+        
+        response = self.client.get(reverse('period_list'))
+        self.assertQuerysetEqual(response.context['periods'].all(),[repr(period)])
+        
+        response = self.client.post(reverse('period_delete',args=[period.id]),{})
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response, reverse('period_list'))
+        try:
+            period = Period.objects.get(name="Romantisme")
+        except Period.DoesNotExist:
+            period = None    
+        self.assertIsNone(period)
+        # Then check if the book has been created
+        response = self.client.get(reverse('period_list'))
+        self.assertQuerysetEqual(response.context['periods'].all(),[])
+        self.client.logout()
+
+    def test_update(self):
+        self.client.login(username='bob', password='blob')
+        period = Period.objects.create(name='Romantisme')
+        data = {
+            'name': 'Les Lumieres',
+        }
+       
+        response = self.client.post(reverse('period_edit',args=[period.id]),data)
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response, reverse('period_list'))
+        try:
+            period = Period.objects.get(**data)
+        except Period.DoesNotExist:
+            period = None    
+        self.assertIsNotNone(period)
+        self.client.logout()
+
+
+
+
+
 class OwnershipTestCase(TestCase):
     def setUp(self):
         translation.activate("en")

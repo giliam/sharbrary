@@ -34,16 +34,22 @@ TODO
 * *Set lending depending on ownership and not book anymore.*
 
 * **Write unit tests:**
-	
-	* *Author: birthdate before deathdate.*
 
-	* **Books: Ownerships:**
+	* **Library**
 
 		* *Tests determine_new_ownership_necessary*
 
         * **Tests ownership creation**
 
 		* *Remove book from library.*
+
+        * *Test CRUD on library.*
+
+        * *Author: birthdate before deathdate.*
+
+    * **Discussion**
+
+        * **Test CRUD on library.**
 
     * Lendings:
 

@@ -43,7 +43,7 @@ TODO
 
         * **Tests ownership creation**
 
-		* **Remove book from library.**
+		* *Remove book from library.*
 
     * Lendings:
 

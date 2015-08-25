@@ -9,18 +9,16 @@ from django.utils import translation
 
 from utils.groups.create_groups import add_perms_to_person, AUTHORIZED_READONLY_MODELS, AUTHORIZED_STANDARD_MODELS
 
-from library.models import Book, Author, Ownership
+from library.models import Book, Author, Ownership, Editor, Theme, Period
 from library.views import determine_new_ownership_necessary
 
 import datetime
 
 class AuthorTestCase(TestCase):
     def setUp(self):
-        Author.objects.create(firstname="John", lastname="Keats")
-        Author.objects.create(firstname="Victor", lastname="Hugo")
-        Author.objects.create(firstname="Honoré", lastname="Balzac")
-        Author.objects.create(firstname="Gustave", lastname="Flaubert")
-        Author.objects.create(firstname="Emile", lastname="Zola")
+        self.bob = User.objects.create_superuser('bob', 'bob@test.fr', 'blob')
+        self.author_keats = Author.objects.create(firstname="John", lastname="Keats")
+        self.author_zola = Author.objects.create(firstname="Emile", lastname="Zola")
 
     def test_birthdate_before_deathdate(self):
         """Author birthdate must be before deathdate"""
@@ -42,6 +40,137 @@ class AuthorTestCase(TestCase):
         author.birthdate = timezone.make_aware(datetime.datetime(1952,11,03))
         author.deathdate = None
         self.assertRaises(Exception, author.save())
+
+    def test_creation(self):
+        self.client.login(username='bob', password='blob')
+        data = {
+            'firstname': 'Robert',
+            'lastname': 'Dure',
+            'birthdate': '1950-06-01',
+            'death_date': '1979-01-02',
+        }
+
+        response = self.client.post(reverse('author_new'), data)
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response, reverse('author_list'))
+
+        try:
+            author = Author.objects.get(**data)
+        except Author.DoesNotExist:
+            author = None    
+        self.assertIsNotNone(author)
+        # Then check if the book has been created
+        response = self.client.get(reverse('author_list'))
+        self.assertQuerysetEqual(response.context['authors'].all(),[repr(author), repr(self.author_keats), repr(self.author_zola)])
+        self.client.logout()
+
+    def test_deletion(self):
+        self.client.login(username='bob', password='blob')
+        data = {
+            'firstname': 'Robert',
+            'lastname': 'Dure',
+            'birthdate': '1950-06-01',
+            'death_date': '1979-01-02',
+        }
+        author = Author.objects.create(**data)
+        
+        response = self.client.get(reverse('author_list'))
+        self.assertQuerysetEqual(response.context['authors'].all(),[repr(author),repr(self.author_keats), repr(self.author_zola)])
+        
+        response = self.client.post(reverse('author_delete',args=[author.id]),{})
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response, reverse('author_list'))
+        try:
+            author = Author.objects.get(**data)
+        except Author.DoesNotExist:
+            author = None    
+        self.assertIsNone(author)
+        # Then check if the book has been created
+        response = self.client.get(reverse('author_list'))
+        self.assertQuerysetEqual(response.context['authors'].all(),[repr(self.author_keats), repr(self.author_zola)])
+        self.client.logout()
+
+    def test_update(self):
+        self.client.login(username='bob', password='blob')
+        data = {
+            'firstname': 'Robert',
+            'lastname': 'Dure',
+            'birthdate': '1950-06-01',
+            'death_date': '1979-01-02',
+        }
+       
+        response = self.client.post(reverse('author_edit',args=[self.author_keats.id]),data)
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response, reverse('author_list'))
+        try:
+            author = Author.objects.get(**data)
+        except Author.DoesNotExist:
+            author = None    
+        self.assertIsNotNone(author)
+        self.client.logout()
+
+
+
+class EditorTestCase(TestCase):
+    def setUp(self):
+        self.bob = User.objects.create_superuser('bob', 'bob@test.fr', 'blob')
+
+    def test_creation(self):
+        self.client.login(username='bob', password='blob')
+        data = {
+            'name': 'Gallimard',
+        }
+
+        response = self.client.post(reverse('editor_new'), data)
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response, reverse('editor_list'))
+
+        try:
+            editor = Editor.objects.get(**data)
+        except Editor.DoesNotExist:
+            editor = None    
+        self.assertIsNotNone(editor)
+        # Then check if the book has been created
+        response = self.client.get(reverse('editor_list'))
+        self.assertQuerysetEqual(response.context['editors'].all(),[repr(editor)])
+        self.client.logout()
+
+    def test_deletion(self):
+        self.client.login(username='bob', password='blob')
+        editor = Editor.objects.create(name='Dargaud')
+        
+        response = self.client.get(reverse('editor_list'))
+        self.assertQuerysetEqual(response.context['editors'].all(),[repr(editor)])
+        
+        response = self.client.post(reverse('editor_delete',args=[editor.id]),{})
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response, reverse('editor_list'))
+        try:
+            editor = Editor.objects.get(name="Dargaud")
+        except Editor.DoesNotExist:
+            editor = None    
+        self.assertIsNone(editor)
+        # Then check if the book has been created
+        response = self.client.get(reverse('editor_list'))
+        self.assertQuerysetEqual(response.context['editors'].all(),[])
+        self.client.logout()
+
+    def test_update(self):
+        self.client.login(username='bob', password='blob')
+        editor = Editor.objects.create(name='Dargaud')
+        data = {
+            'name': 'La pleiade',
+        }
+       
+        response = self.client.post(reverse('editor_edit',args=[editor.id]),data)
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response, reverse('editor_list'))
+        try:
+            editor = Editor.objects.get(**data)
+        except Editor.DoesNotExist:
+            editor = None    
+        self.assertIsNotNone(editor)
+        self.client.logout()
 
 class OwnershipTestCase(TestCase):
     def setUp(self):

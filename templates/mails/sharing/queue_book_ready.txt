@@ -1,0 +1,1 @@
+Hello ! Your book, {{book_copy.book}}, from {{book_copy.owner}}, is ready !

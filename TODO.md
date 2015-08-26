@@ -69,15 +69,19 @@ TODO
 
 * Add a borrowing button on book list that display different copies existing.
 
-* Queue:
+* **Queue:**
     
-    * Sort and display queue on book page.
+    * **Sort and display queue on book page.**
 
-    * Add alert when book given back and queue status changed.
+    * *Add alert when book given back and queue status changed.*
 
     * Add buttons to leave the status queue
 
     * Remove from status queue when borrowing !
+
+    * People should appear only once in the queue.
+
+    * Send mail in user locale.
 
 * Security:
 

@@ -154,5 +154,14 @@ add_to_builtins('django.templatetags.i18n')
 add_to_builtins('django.contrib.humanize.templatetags.humanize')
 add_to_builtins('django.contrib.staticfiles.templatetags.staticfiles')
 
-#Loads local settings that rewrite the settings SECRET_KEY and DATABASES.
+# Email configuration
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'noreplybiblio@gmail.com'
+EMAIL_HOST_PASSWORD = 'TOPSECRET'
+# DO NOT FORGET TO ADD PASSWORD
+
+#Loads local settings that rewrite the settings SECRET_KEY, DATABASES, LOCALE_PATHS and EMAIL_HOST_PASSWORD.
 from settings_local import *

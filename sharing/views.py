@@ -12,6 +12,9 @@ from django.contrib.auth.decorators import permission_required, login_required
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
+from django.core.mail import send_mail
+from django.template.loader import get_template
+from django.template import Context
 
 from sharing.models import Lending, Profile, Queue
 from sharing.forms import LendingEndForm, LogInForm, LendingForm, ProfileForm, UserForm,UserEditForm
@@ -124,6 +127,17 @@ def lending_end(request, lending_id):
     if request.method == 'POST':
         form = LendingEndForm(request.POST,instance=lending)
         if form.is_valid():
+            queues = Queue.objects.filter(book_copy__id=lending.book_copy.id).order_by('added_date').all()
+            if len(queues) > 0:
+                # send an email to queue 0
+                if queues[0].borrower.email:
+                    
+                    d = Context({ 'book_copy': lending.book_copy })
+                    plaintext_mail = get_template('mails/sharing/queue_book_ready.txt').render(d)
+                    html_mail = get_template('mails/sharing/queue_book_ready.html').render(d)
+                    print html_mail
+
+                    send_mail('Your book is ready !','no-reply@bibl-io.fr',plaintext_mail.replace("\n",""),[queues[0].borrower.email],html_message=html_mail, fail_silently=False)
             form.save()
             messages.add_message(request, messages.SUCCESS, _('The lending has been updated and the new end date is now %s.' % lending.end_date))
             return redirect('lending_list')
@@ -187,6 +201,9 @@ def profile_edit(request):
                     if user is not None:
                         if user.is_active:
                             login(request, user)
+                # We otherwise save the email modifications.
+                else:
+                    user.save()
                 profile = form_profile.save()
                 
 

@@ -3,7 +3,18 @@
 <h1>{% trans "Welcome !" %}</h1>
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam a convallis nisi. Curabitur placerat neque vitae luctus iaculis. Proin at porttitor sapien. Duis sed justo justo. Vivamus maximus nisi non nibh euismod ullamcorper. Nullam pharetra tellus nec lorem tincidunt pretium. In cursus dignissim libero in accumsan. Nunc et erat porta, mattis ex vel, consectetur nisi. Phasellus ultricies massa vitae consequat ultricies. Sed mi nisi, egestas vitae mi nec, sodales lobortis purus. Sed dictum enim non leo porta tincidunt. Vestibulum sagittis, ex ut volutpat aliquet, ex erat consequat urna, quis pulvinar metus nulla sed justo. Proin euismod augue id leo tincidunt maximus. Nam cursus ligula iaculis finibus tincidunt.</p>
 <p>Ut suscipit sagittis sapien, nec suscipit libero pretium id. Vivamus vel mollis neque. Aenean fermentum, quam ut semper tristique, velit eros lacinia est, in pretium urna ligula et enim. Aliquam tristique suscipit sapien id rhoncus. Donec quis consequat nisi. Suspendisse ornare semper leo, eget ultricies nisl tempor eu. Suspendisse venenatis mi enim, eget rutrum nunc fermentum at. Etiam id ipsum id nibh euismod convallis id et erat. Aenean lorem lectus, accumsan ac tempus nec, pulvinar at tellus. Mauris eget massa consequat dui elementum imperdiet. Nullam ac elementum dolor. Curabitur condimentum velit sit amet pulvinar consequat. Ut ullamcorper pharetra neque sit amet tincidunt. In sem est, vulputate eget diam non, dignissim interdum augue.</p>
-<h1>{% trans "Again !" %}</h1>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam a convallis nisi. Curabitur placerat neque vitae luctus iaculis. Proin at porttitor sapien. Duis sed justo justo. Vivamus maximus nisi non nibh euismod ullamcorper. Nullam pharetra tellus nec lorem tincidunt pretium. In cursus dignissim libero in accumsan. Nunc et erat porta, mattis ex vel, consectetur nisi. Phasellus ultricies massa vitae consequat ultricies. Sed mi nisi, egestas vitae mi nec, sodales lobortis purus. Sed dictum enim non leo porta tincidunt. Vestibulum sagittis, ex ut volutpat aliquet, ex erat consequat urna, quis pulvinar metus nulla sed justo. Proin euismod augue id leo tincidunt maximus. Nam cursus ligula iaculis finibus tincidunt.</p>
-<p>Ut suscipit sagittis sapien, nec suscipit libero pretium id. Vivamus vel mollis neque. Aenean fermentum, quam ut semper tristique, velit eros lacinia est, in pretium urna ligula et enim. Aliquam tristique suscipit sapien id rhoncus. Donec quis consequat nisi. Suspendisse ornare semper leo, eget ultricies nisl tempor eu. Suspendisse venenatis mi enim, eget rutrum nunc fermentum at. Etiam id ipsum id nibh euismod convallis id et erat. Aenean lorem lectus, accumsan ac tempus nec, pulvinar at tellus. Mauris eget massa consequat dui elementum imperdiet. Nullam ac elementum dolor. Curabitur condimentum velit sit amet pulvinar consequat. Ut ullamcorper pharetra neque sit amet tincidunt. In sem est, vulputate eget diam non, dignissim interdum augue.</p>
+<div class="pure-g">
+    <div class="pure-u-1-2">
+        <h2>Last books added</h2>
+        {% with books=latest_books display_only_list=True %}
+            {% include "library/book_embed_list.html" %}
+        {% endwith %}
+    </div>
+    <div class="pure-u-1-2">
+        <h2>Best books</h2>
+        {% with books=best_books display_only_list=True %}
+            {% include "library/book_embed_list.html" %}
+        {% endwith %}
+    </div>
+</div>
 {% endblock %}

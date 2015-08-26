@@ -17,6 +17,16 @@ from sharing.models import Lending, Queue
 from utils.models.sortmixin import SortMixin
 from utils.models.conditions import actual_lending
 
+class HomePageView(TemplateView):
+    template_name = "base/index.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(HomePageView, self).get_context_data(**kwargs)
+        context['latest_books'] = Book.objects.order_by('-added_date').all()[:5]
+        context['best_books'] = Book.objects.order_by('-added_date').all()[:5]
+        return context
+
+
 def book_detail(request, book_id):
     """
     Shows book details.
@@ -378,3 +388,5 @@ def book_research(request):
     if order == 'desc':
         books = books.reverse()
     return render(request, 'library/book_list.html', {'form':form,'books':books})
+
+

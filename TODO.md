@@ -59,9 +59,9 @@ TODO
     
 * **Add discussion system. Discussion forum, by theme and by book: one topic is created each time a book or a theme is added. Not deleted when the element is removed.**
 
-* Homepage
+* **Homepage**
 
-* Rules and CGV pages
+* *Rules and CGV pages*
 
 * Add Time widget for date fields.
 

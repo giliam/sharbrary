@@ -9,7 +9,7 @@ from django.shortcuts import get_object_or_404
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import permission_required, login_required
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext_lazy as _, activate as translation_activate, LANGUAGE_SESSION_KEY
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from django.core.mail import send_mail
@@ -172,6 +172,11 @@ def log_in(request):
             user = authenticate(username=username, password=password)
             if user:
                 login(request, user)
+
+                profile = Profile.objects.get(user=user)
+                translation_activate(profile.locale)
+                request.session[LANGUAGE_SESSION_KEY] = profile.locale
+
                 redirect_url = request.GET.get('next')
                 if redirect_url:
                     return redirect(redirect_url)
@@ -218,6 +223,8 @@ def profile_edit(request):
                 else:
                     user.save()
                 profile = form_profile.save()
+                translation_activate(profile.locale)
+                request.session[LANGUAGE_SESSION_KEY] = profile.locale
                 
 
                 messages.add_message(request, messages.SUCCESS, _('Your profile has been successfully updated !'))

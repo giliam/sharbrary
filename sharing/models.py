@@ -7,6 +7,7 @@ from django.utils import timezone
 from django.contrib import messages
 
 from library.models import Ownership
+from sharbrary.settings import LANGUAGES, LANGUAGE_CODE
 
 class Profile(models.Model):
     user = models.OneToOneField(User)
@@ -14,6 +15,7 @@ class Profile(models.Model):
     picture = models.ImageField(upload_to="profile_picture/",verbose_name=_('picture'),null=True,blank=True)
     phone_regex = RegexValidator(regex=r'^(\d{2}( |-)?){5}$', message=_("Phone number must be entered in the format: '0123456789'. Up to 10 digits allowed."))
     phone_number = models.CharField(validators=[phone_regex], blank=True, max_length=25,verbose_name=_("phone number"))
+    locale = models.CharField(max_length=6,choices=LANGUAGES,default=LANGUAGE_CODE,verbose_name=_("locale language"))
 
     def __unicode__(self):
         return u"Profile of {0}".format(self.user.username)

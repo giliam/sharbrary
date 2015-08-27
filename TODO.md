@@ -75,7 +75,7 @@ TODO
 
     * *Add alert when book given back and queue status changed.*
 
-    * Add buttons to leave the status queue
+    * *Add buttons to leave the status queue*
 
     * *Remove from status queue when borrowing !*
 

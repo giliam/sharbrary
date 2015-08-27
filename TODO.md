@@ -77,7 +77,7 @@ TODO
 
     * Add buttons to leave the status queue
 
-    * Remove from status queue when borrowing !
+    * *Remove from status queue when borrowing !*
 
     * *People should appear only once in the queue.*
 

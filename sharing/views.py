@@ -24,6 +24,14 @@ from utils.models.sortmixin import SortMixin
 from utils.models.conditions import actual_lending
 from utils.models.availability import is_lending_possible, is_queueing_possible
 
+def remove_from_queue(book_copy,borrower,lending=None):
+    queues = Queue.objects.filter(book_copy=book_copy,borrower=borrower,fulfilled=0)
+    for queue in queues.all():
+        queue.fulfilled = 1
+        if lending:
+            queue.lending = lending
+        queue.save()
+
 class LendingAllList(SortMixin):
     default_sort_params = ('book_copy__book__title', 'asc')
     allowed_sort_params = ['book_copy__book__title', 'borrower__username','beginning_date','end_date']
@@ -39,7 +47,10 @@ class LendingCreate(SuccessMessageMixin, CreateView):
     form_class = LendingForm
     success_url = reverse_lazy('lending_list')
     success_message = _("The lending of %(book_copy)s to %(borrower)s was created successfully")
-    
+    def form_valid(self, form):
+        lending = form.save()
+        remove_from_queue(lending.book_copy,lending.borrower,lending)
+        return redirect('book_detail',book_id=lending.book_copy.book.id)
 
 class LendingBookCreate(LendingCreate):
     form_class = None
@@ -49,10 +60,11 @@ class LendingBookCreate(LendingCreate):
         lending.book_copy = get_object_or_404(Ownership,pk=self.kwargs['book_id'])
         if is_lending_possible(lending.beginning_date,lending.book_copy):
             lending.save()
+            remove_from_queue(lending.book_copy,lending.borrower,lending)
         else:
             messages.add_message(self.request,messages.ERROR,_("This lending is not possible and you should have had errors on the form!"))
 
-        return redirect('book_list')
+        return redirect('book_detail',book_id=lending.book_copy.book.id)
 
 class BorrowingCreate(LendingCreate):
     form_class = None
@@ -62,10 +74,11 @@ class BorrowingCreate(LendingCreate):
         lending.borrower = self.request.user
         if is_lending_possible(lending.beginning_date,lending.book_copy):
             lending.save()
+            remove_from_queue(lending.book_copy,lending.borrower,lending)
         else:
             messages.add_message(self.request,messages.ERROR,_("This lending is not possible and you should have had errors on the form!"))
 
-        return redirect('book_list')
+        return redirect('book_detail',book_id=lending.book_copy.book.id)
 
 class BorrowingBookCreate(LendingCreate):
     form_class = None
@@ -77,10 +90,11 @@ class BorrowingBookCreate(LendingCreate):
         lending.book_copy = get_object_or_404(Ownership,pk=self.kwargs['book_id'])
         if is_lending_possible(lending.beginning_date,lending.book_copy):
             lending.save()
+            remove_from_queue(lending.book_copy,lending.borrower,lending)
         else:
             messages.add_message(self.request,messages.ERROR,_("This lending is not possible and you should have had errors on the form!"))
 
-        return redirect('book_list')
+        return redirect('book_detail',book_id=lending.book_copy.book.id)
 
 class LendingUpdate(SuccessMessageMixin, UpdateView):
     model = Lending
@@ -135,12 +149,11 @@ def lending_end(request, lending_id):
                     d = Context({ 'book_copy': lending.book_copy })
                     plaintext_mail = get_template('mails/sharing/queue_book_ready.txt').render(d)
                     html_mail = get_template('mails/sharing/queue_book_ready.html').render(d)
-                    print html_mail
 
                     send_mail('Your book is ready !','no-reply@bibl-io.fr',plaintext_mail.replace("\n",""),[queues[0].borrower.email],html_message=html_mail, fail_silently=False)
             form.save()
             messages.add_message(request, messages.SUCCESS, _('The lending has been updated and the new end date is now %s.' % lending.end_date))
-            return redirect('lending_list')
+            return redirect('book_detail',book_id=lending.book_copy.book.id)
     else:
         form = LendingEndForm(instance=lending)
     return render(request, 'sharing/lending_form.html', {'form':form})

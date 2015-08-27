@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-27 17:07+0200\n"
+"POT-Creation-Date: 2015-08-27 17:43+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -611,14 +611,22 @@ msgstr "Une bibliothèque en ligne pour partager ses livres entre amis."
 msgid "unknown user or wrong password. "
 msgstr "utilisateur inconnu ou mot de passe incorrect."
 
-#: .\templates\base\login.html:10
+#: .\templates\base\login.html:10 .\templates\base\password_reset.html:6
+#: .\templates\base\password_reset_complete.html:6
+#: .\templates\base\password_reset_done.html:6
 #, python-format
 msgid "You are successfully connected, %(username)s !"
 msgstr "Vous êtes bien connecté, %(username)s !"
 
-#: .\templates\base\login.html:15
+#: .\templates\base\login.html:15 .\templates\base\password_reset.html:11
 msgid "login"
 msgstr "connexion"
+
+#: .\templates\base\login.html:17 .\templates\base\password_reset.html:4
+#: .\templates\base\password_reset_complete.html:4
+#: .\templates\base\password_reset_done.html:4
+msgid "reset your password"
+msgstr "Mot de passe oublié ?"
 
 #: .\templates\base\pagination.html:5 .\templates\common\pagination.html:5
 msgid "previous"
@@ -632,6 +640,14 @@ msgstr "Page %(page_number)s sur %(num_pages)s"
 #: .\templates\base\pagination.html:11 .\templates\common\pagination.html:11
 msgid "next"
 msgstr "suivante"
+
+#: .\templates\base\password_reset_complete.html:8
+msgid "Your password has successfully been changed! You can now log in!"
+msgstr "Votre mot de passe a bien été modifié ! Vous pouvez vous connecter !"
+
+#: .\templates\base\password_reset_done.html:8
+msgid "An email has been sent to you with all the instructions!"
+msgstr "Un message vous a été envoyé pour changer votre mot de passe !"
 
 #: .\templates\common\borrowings.html:7
 msgid "borrowings"

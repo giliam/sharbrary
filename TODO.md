@@ -79,7 +79,7 @@ TODO
 
     * Remove from status queue when borrowing !
 
-    * People should appear only once in the queue.
+    * *People should appear only once in the queue.*
 
     * Send mail in user locale.
 

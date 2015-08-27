@@ -22,7 +22,7 @@ from library.models import Book, Ownership
 
 from utils.models.sortmixin import SortMixin
 from utils.models.conditions import actual_lending
-from utils.models.availability import is_lending_possible
+from utils.models.availability import is_lending_possible, is_queueing_possible
 
 class LendingAllList(SortMixin):
     default_sort_params = ('book_copy__book__title', 'asc')
@@ -263,6 +263,14 @@ class QueueCreate(SuccessMessageMixin, CreateView):
     success_url = reverse_lazy('queue_list')
     success_message = _("%(book_copy)s was added successfully")
     fields = ['book_copy','borrower']
+    def form_valid(self, form):
+        queue = form.save(commit=False)
+        if is_queueing_possible(queue.book_copy,queue.borrower):
+            messages.add_message(self.request,messages.ERROR,_("You are already waiting for this book. Delete your previous demand before doing a new one!"))
+        else:
+            queue.save()
+            messages.add_message(self.request,messages.SUCCESS,_("You have been successfully added to the queue for this book!"))
+        return redirect('book_detail',book_id=queue.book_copy.book.id)
 
 class QueueToBookCreate(SuccessMessageMixin, CreateView):
     model = Queue
@@ -273,15 +281,18 @@ class QueueToBookCreate(SuccessMessageMixin, CreateView):
         queue = form.save(commit=False)
         queue.borrower = self.request.user
         queue.book_copy = get_object_or_404(Ownership,pk=self.kwargs['ownership_id'])
-        queue.save()
-        messages.add_message(self.request,messages.SUCCESS,_("You have been successfully added to the queue for this book!"))
+        if is_queueing_possible(queue.book_copy,queue.borrower):
+            messages.add_message(self.request,messages.ERROR,_("You are already waiting for this book. Delete your previous demand before doing a new one!"))
+        else:
+            queue.save()
+            messages.add_message(self.request,messages.SUCCESS,_("You have been successfully added to the queue for this book!"))
         return redirect('book_detail',book_id=queue.book_copy.book.id)
 
 class QueueUpdate(SuccessMessageMixin, UpdateView):
     model = Queue
     success_url = reverse_lazy('queue_list')
     success_message = _("%(book_copy)s was updated successfully")
-    fields = ['book_copy','borrower']
+    fields = ['book_copy','borrower', 'fulfilled', 'lending']
 
 class QueueDelete(DeleteView):
     model = Queue

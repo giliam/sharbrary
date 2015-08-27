@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-26 17:17+0200\n"
+"POT-Creation-Date: 2015-08-27 17:07+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 
 #: .\discussion\models.py:20 .\library\models.py:99
 #: .\templates\discussion\discussion_list.html:9
-#: .\templates\library\book_embed_list.html:8
+#: .\templates\library\book_embed_list.html:9
 #: .\templates\sharing\queue_list.html:9
 msgid "title"
 msgstr "titre"
@@ -36,8 +36,8 @@ msgid "date updated"
 msgstr "dernière modification"
 
 #: .\discussion\models.py:25 .\discussion\models.py:52 .\library\models.py:25
-#: .\library\models.py:103 .\templates\library\book_detail.html:7
-#: .\templates\library\book_embed_list.html:11
+#: .\library\models.py:103 .\templates\library\book_detail.html:8
+#: .\templates\library\book_embed_list.html:12
 msgid "author"
 msgstr "auteur"
 
@@ -67,7 +67,7 @@ msgstr "messages"
 msgid "%(title)s was added successfully"
 msgstr "%(title)s a bien été créé !"
 
-#: .\discussion\views.py:39 .\library\views.py:74
+#: .\discussion\views.py:39 .\library\views.py:84
 #, python-format
 msgid "%(title)s was updated successfully"
 msgstr "%(title)s a bien été mis-à-jour !"
@@ -93,13 +93,13 @@ msgid "date of death"
 msgstr "date de mort"
 
 #: .\library\models.py:12 .\library\models.py:39 .\library\models.py:59
-#: .\library\models.py:80 .\sharing\models.py:38 .\sharing\models.py:68
+#: .\library\models.py:80 .\sharing\models.py:40 .\sharing\models.py:70
 msgid "date added to the database"
 msgstr "date d'ajout à la base de données"
 
 #: .\library\models.py:13 .\library\models.py:40 .\library\models.py:60
 #: .\library\models.py:81 .\library\models.py:102 .\library\models.py:138
-#: .\sharing\models.py:39 .\sharing\models.py:69
+#: .\sharing\models.py:41 .\sharing\models.py:71
 msgid "date updated to the database"
 msgstr "date de mise-à-jour dans la base de données"
 
@@ -120,9 +120,9 @@ msgid "name"
 msgstr "nom"
 
 #: .\library\models.py:43 .\library\models.py:46 .\library\models.py:107
-#: .\library\models.py:140 .\library\views.py:194
-#: .\templates\library\book_detail.html:13
-#: .\templates\library\book_embed_list.html:14
+#: .\library\models.py:140 .\library\views.py:204
+#: .\templates\library\book_detail.html:14
+#: .\templates\library\book_embed_list.html:15
 #: .\templates\library\editor_list.html:9
 msgid "editor"
 msgstr "editeur"
@@ -137,7 +137,7 @@ msgid "theme"
 msgstr "thème"
 
 #: .\library\models.py:67 .\library\models.py:104
-#: .\templates\base\layout.html:51 .\templates\library\book_detail.html:19
+#: .\templates\base\layout.html:51 .\templates\library\book_detail.html:20
 #: .\templates\library\theme_list.html:3
 msgid "themes"
 msgstr "thème"
@@ -147,7 +147,7 @@ msgid "period"
 msgstr "période"
 
 #: .\library\models.py:88 .\library\models.py:105
-#: .\templates\base\layout.html:52 .\templates\library\book_detail.html:31
+#: .\templates\base\layout.html:52 .\templates\library\book_detail.html:32
 #: .\templates\library\period_list.html:3
 msgid "periods"
 msgstr "périodes"
@@ -160,12 +160,12 @@ msgstr "date de publication"
 msgid "date added to the library"
 msgstr "date d'ajout à la bibliothèque"
 
-#: .\library\models.py:108 .\library\models.py:142 .\library\views.py:197
-#: .\templates\library\book_detail.html:10
+#: .\library\models.py:108 .\library\models.py:142 .\library\views.py:207
+#: .\templates\library\book_detail.html:11
 msgid "cover"
 msgstr "couverture"
 
-#: .\library\models.py:109 .\templates\library\book_detail.html:43
+#: .\library\models.py:109 .\templates\library\book_detail.html:44
 msgid "summary"
 msgstr "résumé"
 
@@ -180,7 +180,7 @@ msgid "book"
 msgstr "livre"
 
 #: .\library\models.py:118 .\templates\base\layout.html:36
-#: .\templates\library\book_embed_list.html:1
+#: .\templates\library\book_embed_list.html:2
 #: .\templates\sharing\dashboard.html:4
 #: .\templates\sharing\profile_show.html:9
 msgid "books"
@@ -190,7 +190,7 @@ msgstr "livres"
 msgid "number of copies"
 msgstr "nombre d'exemplaires"
 
-#: .\library\models.py:141 .\library\views.py:191
+#: .\library\models.py:141 .\library\views.py:201
 msgid "comments"
 msgstr "commentaires"
 
@@ -207,12 +207,12 @@ msgstr "propriété"
 msgid "ownerships"
 msgstr "propriétés"
 
-#: .\library\views.py:57
+#: .\library\views.py:67
 #, python-format
 msgid "%(title)s was created successfully"
 msgstr "%(title)s a bien été créé !"
 
-#: .\library\views.py:88
+#: .\library\views.py:98
 msgid ""
 "This book is not in your library and you have no right to remove it from "
 "someone else library."
@@ -220,26 +220,26 @@ msgstr ""
 "Ce livre n'est pas dans votre bibliothèque et vous n'avez pas le droit de le "
 "retirer d'une autre bibliothèque."
 
-#: .\library\views.py:92
+#: .\library\views.py:102
 msgid "The book has been successfully removed from your library."
 msgstr "Le livre a bien été retiré de votre bibliothèque."
 
-#: .\library\views.py:123
+#: .\library\views.py:133
 #, python-format
 msgid "The book has been successfully removed from the library of %(owners)s."
 msgstr "Le livre a bien été retiré de la bibliothèque de %(owners)s."
 
-#: .\library\views.py:127
+#: .\library\views.py:137
 msgid "You are going to remove the book from someone's library."
 msgstr ""
 "Vous allez retirer (peut-être) le livre de la bibliothèque de quelqu'un "
 "d'autre !"
 
-#: .\library\views.py:188
+#: .\library\views.py:198
 msgid "copies"
 msgstr "exemplaires"
 
-#: .\library\views.py:198
+#: .\library\views.py:208
 #, python-format
 msgid ""
 "You already had this book in your library so your previous ownership was "
@@ -249,47 +249,47 @@ msgstr ""
 "donc été mise-à-jour. Plus précisément, les champs - %(fields)s - ont été "
 "changés."
 
-#: .\library\views.py:213
+#: .\library\views.py:223
 #, python-format
 msgid "%(book)s was added successfully to your library"
 msgstr "%(book)s a bien été ajouté à votre bibliothèque."
 
-#: .\library\views.py:223
+#: .\library\views.py:233
 #, python-format
 msgid "%(book)s from your library was modified successfully."
 msgstr "%(book)s a bien été mis-à-jour !"
 
-#: .\library\views.py:234
+#: .\library\views.py:244
 #, python-format
 msgid "%(book)s was deleted successfully from your library"
 msgstr "%(book)s a bien été supprimé de votre bibliothèque."
 
-#: .\library\views.py:270
+#: .\library\views.py:280
 #, python-format
 msgid "The author %(firstname)s %(lastname)s was added successfully"
 msgstr "L'auteur %(firstname)s %(lastname)s a bien été créé !"
 
-#: .\library\views.py:276
+#: .\library\views.py:286
 #, python-format
 msgid "%(firstname)s %(lastname)s was updated successfully"
 msgstr "L'auteur %(firstname)s %(lastname)s a bien été mis-à-jour !"
 
-#: .\library\views.py:295
+#: .\library\views.py:305
 #, python-format
 msgid "%(name)s was created successfully"
 msgstr "%(name)s a bien été créé !"
 
-#: .\library\views.py:301 .\library\views.py:326 .\library\views.py:351
+#: .\library\views.py:311 .\library\views.py:336 .\library\views.py:361
 #, python-format
 msgid "%(name)s was updated successfully"
 msgstr "%(name)s a bien été mis-à-jour !"
 
-#: .\library\views.py:320 .\library\views.py:345
+#: .\library\views.py:330 .\library\views.py:355
 #, python-format
 msgid "%(name)s was added successfully"
 msgstr "%(name)s a bien été créé !"
 
-#: .\library\views.py:373
+#: .\library\views.py:383
 msgid "The research was not successfully done."
 msgstr "La recherche a échoué."
 
@@ -301,7 +301,7 @@ msgstr "Français"
 msgid "English"
 msgstr "Anglais"
 
-#: .\sharing\forms.py:22 .\sharing\models.py:45
+#: .\sharing\forms.py:22 .\sharing\models.py:47
 msgid "The end date must be after the beginning date."
 msgstr "La date de fin de prêt doit être après celle de début."
 
@@ -317,16 +317,16 @@ msgstr "Mot de passe"
 msgid "Confirm password"
 msgstr "Confirmation du mot de passe"
 
-#: .\sharing\models.py:13 .\templates\sharing\borrower_list.html:13
+#: .\sharing\models.py:14 .\templates\sharing\borrower_list.html:13
 #: .\templates\sharing\profile_show.html:5
 msgid "informations"
 msgstr "informations"
 
-#: .\sharing\models.py:14
+#: .\sharing\models.py:15
 msgid "picture"
 msgstr "image"
 
-#: .\sharing\models.py:15
+#: .\sharing\models.py:16
 msgid ""
 "Phone number must be entered in the format: '0123456789'. Up to 10 digits "
 "allowed."
@@ -334,107 +334,130 @@ msgstr ""
 "Le numéro de téléphone doit être entré avec le format : 0123456789.Vous "
 "pouvez utiliser jusqu'à 10 chiffres."
 
-#: .\sharing\models.py:16 .\templates\sharing\borrower_list.html:17
+#: .\sharing\models.py:17 .\templates\sharing\borrower_list.html:17
 #: .\templates\sharing\profile_show.html:8
 msgid "phone number"
 msgstr "numéro de téléphone"
 
-#: .\sharing\models.py:22 .\templates\sharing\profile_show.html:3
+#: .\sharing\models.py:18
+msgid "locale language"
+msgstr "changer la langue"
+
+#: .\sharing\models.py:24 .\templates\sharing\profile_show.html:3
 msgid "profile"
 msgstr "profil"
 
-#: .\sharing\models.py:23
+#: .\sharing\models.py:25
 msgid "profiles"
 msgstr "profils"
 
-#: .\sharing\models.py:34 .\sharing\models.py:62
+#: .\sharing\models.py:36 .\sharing\models.py:64
 #: .\templates\sharing\borrower_list.html:9
 #: .\templates\sharing\lending_list.html:25
 msgid "borrower"
 msgstr "emprunteur"
 
-#: .\sharing\models.py:35 .\sharing\models.py:63
+#: .\sharing\models.py:37 .\sharing\models.py:65
 msgid "book copy"
 msgstr "exemplaire"
 
-#: .\sharing\models.py:36
+#: .\sharing\models.py:38
 msgid "beginning date of the lending"
 msgstr "date de début du prêt"
 
-#: .\sharing\models.py:37
+#: .\sharing\models.py:39
 msgid "end date of the lending"
 msgstr "date de fin du prêt"
 
-#: .\sharing\models.py:51 .\sharing\models.py:66
+#: .\sharing\models.py:53 .\sharing\models.py:68
 msgid "lending"
 msgstr "prêts"
 
-#: .\sharing\models.py:52 .\templates\base\layout.html:58
+#: .\sharing\models.py:54 .\templates\base\layout.html:58
 #: .\templates\common\lendings.html:7
 msgid "lendings"
 msgstr "prêts"
 
-#: .\sharing\models.py:75 .\templates\library\book_detail.html:120
+#: .\sharing\models.py:77 .\templates\library\book_detail.html:123
 msgid "queue"
 msgstr "liste d'attente"
 
-#: .\sharing\models.py:76 .\templates\base\layout.html:60
+#: .\sharing\models.py:78 .\templates\base\layout.html:60
 #: .\templates\sharing\queue_list.html:3
 msgid "queues"
 msgstr "listes d'attente"
 
-#: .\sharing\views.py:41
+#: .\sharing\views.py:49
 #, python-format
 msgid "The lending of %(book_copy)s to %(borrower)s was created successfully"
 msgstr "Le prêt de %(book_copy)s à %(borrower)s a bien été créé !"
 
-#: .\sharing\views.py:53 .\sharing\views.py:66 .\sharing\views.py:81
+#: .\sharing\views.py:65 .\sharing\views.py:79 .\sharing\views.py:95
 msgid ""
 "This lending is not possible and you should have had errors on the form!"
 msgstr ""
 "Cet emprunt n'est pas possible et vous devriez avoir des erreurs sur le "
 "formulaire !"
 
-#: .\sharing\views.py:88
+#: .\sharing\views.py:102
 #, python-format
 msgid "The lending of %(book_copy)s to %(borrower)s was updated successfully"
 msgstr "Le prêt de %(book_copy)s à %(borrower)s a bien été mis-à-jour !"
 
-#: .\sharing\views.py:111
+#: .\sharing\views.py:125
 msgid "The new user has been successfully added !"
 msgstr "Le nouvel utilisateur a bien été créé !"
 
-#: .\sharing\views.py:115
+#: .\sharing\views.py:129
 msgid "The two passwords are different."
 msgstr "Les deux mots de passe sont différents."
 
-#: .\sharing\views.py:142
+#: .\sharing\views.py:162
+msgid "Your book is ready !"
+msgstr "Votre livre est prêt !"
+
+#: .\sharing\views.py:167
 #, python-format
 msgid "The lending has been updated and the new end date is now %s."
 msgstr "L'emprunt a été mis-à-jour et la nouvelle date de fin est %s."
 
-#: .\sharing\views.py:210
+#: .\sharing\views.py:242
 msgid "Your profile has been successfully updated !"
 msgstr "Votre profil a bien été mis-à-jour !"
 
-#: .\sharing\views.py:213
+#: .\sharing\views.py:245
 msgid "The two passwords are different or you forgot one."
 msgstr "Les deux mots de passe sont différents ou vous en avez oublié un."
 
-#: .\sharing\views.py:264 .\sharing\views.py:270
+#: .\sharing\views.py:296 .\sharing\views.py:310
 #, python-format
-#| msgid "%(name)s was added successfully"
 msgid "%(book_copy)s was added successfully"
 msgstr "%(book_copy)s a bien été ajouté !"
 
-#: .\sharing\views.py:277
+#: .\sharing\views.py:301 .\sharing\views.py:317
+msgid ""
+"You are already waiting for this book. Delete your previous demand before "
+"doing a new one!"
+msgstr ""
+"Vous êtes déjà sur la liste d'attente de ce livre. Supprimez votre demande "
+"précédente avant d'en faire une nouvelle !"
+
+#: .\sharing\views.py:304 .\sharing\views.py:320
 msgid "You have been successfully added to the queue for this book!"
 msgstr "Vous avez bien été ajouté dans la liste d'attente pour cet ouvrage !"
 
-#: .\sharing\views.py:283
+#: .\sharing\views.py:326
 #, python-format
 msgid "%(book_copy)s was updated successfully"
 msgstr "%(book_copy)s a bien été mis-à-jour !"
+
+#: .\templates\base\convention.html:3 .\templates\base\index.html:3
+msgid "Welcome !"
+msgstr "Bienvenue !"
+
+#: .\templates\base\convention.html:6
+msgid "Again !"
+msgstr "Encore !"
 
 #: .\templates\base\howto.html:3
 msgid "How to use this online library"
@@ -615,19 +638,19 @@ msgid "borrowings"
 msgstr "emprunts"
 
 #: .\templates\common\borrowings.html:11 .\templates\common\lendings.html:11
-#: .\templates\library\book_detail.html:9
-#: .\templates\library\book_detail.html:15
-#: .\templates\library\book_detail.html:18
-#: .\templates\library\book_detail.html:86
+#: .\templates\library\book_detail.html:10
+#: .\templates\library\book_detail.html:16
+#: .\templates\library\book_detail.html:19
 #: .\templates\library\book_detail.html:87
 #: .\templates\library\book_detail.html:88
-#: .\templates\library\book_detail.html:124
-#: .\templates\library\book_detail.html:147
-#: .\templates\library\book_embed_list.html:35
-#: .\templates\library\book_embed_list.html:39
-#: .\templates\library\book_embed_list.html:40
+#: .\templates\library\book_detail.html:89
+#: .\templates\library\book_detail.html:127
+#: .\templates\library\book_detail.html:150
+#: .\templates\library\book_embed_list.html:38
+#: .\templates\library\book_embed_list.html:42
 #: .\templates\library\book_embed_list.html:43
-#: .\templates\library\book_embed_list.html:45
+#: .\templates\library\book_embed_list.html:46
+#: .\templates\library\book_embed_list.html:48
 #: .\templates\sharing\borrower_list.html:28
 #: .\templates\sharing\dashboard.html:7
 #: .\templates\sharing\lending_list.html:51
@@ -651,10 +674,10 @@ msgstr "rendre"
 #: .\templates\discussion\discussion_list.html:44
 #: .\templates\library\author_detail.html:9
 #: .\templates\library\author_list.html:44
-#: .\templates\library\book_detail.html:63
-#: .\templates\library\book_detail.html:106
-#: .\templates\library\book_detail.html:127
-#: .\templates\library\book_embed_list.html:55
+#: .\templates\library\book_detail.html:64
+#: .\templates\library\book_detail.html:109
+#: .\templates\library\book_detail.html:130
+#: .\templates\library\book_embed_list.html:60
 #: .\templates\library\editor_list.html:26
 #: .\templates\library\period_list.html:25
 #: .\templates\library\theme_list.html:25
@@ -670,10 +693,10 @@ msgstr "modifier"
 #: .\templates\discussion\discussion_list.html:47
 #: .\templates\library\author_detail.html:12
 #: .\templates\library\author_list.html:47
-#: .\templates\library\book_detail.html:66
-#: .\templates\library\book_detail.html:109
-#: .\templates\library\book_detail.html:130
-#: .\templates\library\book_embed_list.html:68
+#: .\templates\library\book_detail.html:67
+#: .\templates\library\book_detail.html:112
+#: .\templates\library\book_detail.html:133
+#: .\templates\library\book_embed_list.html:73
 #: .\templates\library\editor_list.html:29
 #: .\templates\library\period_list.html:28
 #: .\templates\library\theme_list.html:28
@@ -694,9 +717,9 @@ msgstr "pas d'emprunts en cours !"
 #: .\templates\discussion\discussion_detail.html:34
 #: .\templates\discussion\discussion_list.html:57
 #: .\templates\library\author_list.html:57
-#: .\templates\library\book_detail.html:75
-#: .\templates\library\book_detail.html:144
-#: .\templates\library\book_detail.html:149
+#: .\templates\library\book_detail.html:76
+#: .\templates\library\book_detail.html:147
+#: .\templates\library\book_detail.html:152
 #: .\templates\library\editor_list.html:39
 #: .\templates\library\period_list.html:38
 #: .\templates\library\theme_list.html:38
@@ -707,7 +730,7 @@ msgid "new"
 msgstr "ajouter"
 
 #: .\templates\common\lendings.html:11
-#: .\templates\library\book_detail.html:124
+#: .\templates\library\book_detail.html:127
 #, python-format
 msgid "<strong>%(book)s</strong> to <em>%(borrower)s</em>"
 msgstr "<strong>%(book)s</strong> à <em>%(borrower)s</em>"
@@ -747,73 +770,73 @@ msgstr "dernière modification : "
 msgid "detail"
 msgstr "détails"
 
-#: .\templates\library\book_detail.html:16
-#: .\templates\library\book_embed_list.html:17
+#: .\templates\library\book_detail.html:17
+#: .\templates\library\book_embed_list.html:18
 msgid "published"
 msgstr "publié"
 
-#: .\templates\library\book_detail.html:28
-#: .\templates\library\book_detail.html:40
+#: .\templates\library\book_detail.html:29
+#: .\templates\library\book_detail.html:41
 #: .\templates\sharing\borrower_list.html:27
 msgid "empty"
 msgstr "vide"
 
-#: .\templates\library\book_detail.html:45
+#: .\templates\library\book_detail.html:46
 msgid "not filled yet"
 msgstr "pas encore rempli"
 
-#: .\templates\library\book_detail.html:46
+#: .\templates\library\book_detail.html:47
 msgid "owned by"
 msgstr "détenu par"
 
-#: .\templates\library\book_detail.html:49
+#: .\templates\library\book_detail.html:50
 msgid "options"
 msgstr "options"
 
-#: .\templates\library\book_detail.html:53
-#: .\templates\library\book_detail.html:55
-#: .\templates\library\book_embed_list.html:59
-#: .\templates\library\book_embed_list.html:61
+#: .\templates\library\book_detail.html:54
+#: .\templates\library\book_detail.html:56
+#: .\templates\library\book_embed_list.html:64
+#: .\templates\library\book_embed_list.html:66
 msgid "remove"
 msgstr "retirer"
 
-#: .\templates\library\book_detail.html:59
-#: .\templates\library\book_embed_list.html:65
+#: .\templates\library\book_detail.html:60
+#: .\templates\library\book_embed_list.html:70
 msgid "add"
 msgstr "ajouter"
 
-#: .\templates\library\book_detail.html:88
+#: .\templates\library\book_detail.html:89
 #, python-format
 msgid "%(owner)s (%(nbcopies)s)"
 msgstr "%(owner)s (%(nbcopies)s)"
 
-#: .\templates\library\book_detail.html:95
+#: .\templates\library\book_detail.html:96
 msgid "no comment on this book"
 msgstr "pas de commentaire sur ce livre"
 
-#: .\templates\library\book_detail.html:101
+#: .\templates\library\book_detail.html:103
 msgid "add to queue"
 msgstr "ajouter à la liste d'attente"
 
-#: .\templates\library\book_detail.html:103
+#: .\templates\library\book_detail.html:106
 msgid "borrow"
 msgstr "emprunter"
 
-#: .\templates\library\book_detail.html:135
+#: .\templates\library\book_detail.html:138
 msgid "no queue ongoing !"
 msgstr "pas de liste d'attente !"
 
-#: .\templates\library\book_embed_list.html:4
-#: .\templates\library\book_embed_list.html:80
+#: .\templates\library\book_embed_list.html:5
+#: .\templates\library\book_embed_list.html:87
 msgid "new book"
 msgstr "nouveau livre"
 
-#: .\templates\library\book_embed_list.html:5
-#: .\templates\library\book_embed_list.html:81
+#: .\templates\library\book_embed_list.html:6
+#: .\templates\library\book_embed_list.html:88
 msgid "add to my library"
 msgstr "ajouter à ma bibliothèque"
 
-#: .\templates\library\book_embed_list.html:74
+#: .\templates\library\book_embed_list.html:80
 #: .\templates\sharing\dashboard.html:22
 #: .\templates\sharing\profile_show.html:24
 msgid "no book in this library !"
@@ -825,13 +848,12 @@ msgstr "bonjour !"
 
 #: .\templates\mails\sharing\queue_book_ready.html:9
 #, python-format
-#| msgid "<strong>%(book)s</strong> from <em>%(owner)s</em>"
 msgid ""
 "Your book, <strong>%(book)s</strong>, from <strong>%(owner)s</strong>, is "
 "available !"
 msgstr ""
-"Votre livre, <strong>%(book)s</strong>, appartenant à <strong>%(owner)s</strong>"
-", est disponible !"
+"Votre livre, <strong>%(book)s</strong>, appartenant à <strong>%(owner)s</"
+"strong>, est disponible !"
 
 #: .\templates\sharing\dashboard.html:11
 msgid "lend"

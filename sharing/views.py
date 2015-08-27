@@ -9,7 +9,7 @@ from django.shortcuts import get_object_or_404
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import permission_required, login_required
-from django.utils.translation import ugettext_lazy as _, activate as translation_activate, LANGUAGE_SESSION_KEY
+from django.utils.translation import ugettext_lazy as _, activate as translation_activate, LANGUAGE_SESSION_KEY, to_locale, get_language
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from django.core.mail import send_mail
@@ -145,12 +145,24 @@ def lending_end(request, lending_id):
             if len(queues) > 0:
                 # send an email to queue 0
                 if queues[0].borrower.email:
+                    current_locale = to_locale(get_language())
                     
+                    # Tries to switch to the receiver locale.
+                    try:
+                        profile = Profile.objects.get(user=lending.borrower)
+                        translation_activate(profile.locale)
+                    except Profile.DoesNotExist:
+                        pass
+
+                    # Creates the mail body.
                     d = Context({ 'book_copy': lending.book_copy })
                     plaintext_mail = get_template('mails/sharing/queue_book_ready.txt').render(d)
                     html_mail = get_template('mails/sharing/queue_book_ready.html').render(d)
-
-                    send_mail('Your book is ready !','no-reply@bibl-io.fr',plaintext_mail.replace("\n",""),[queues[0].borrower.email],html_message=html_mail, fail_silently=False)
+                    # Sends it with the locale translation.
+                    send_mail(_('Your book is ready !'),'no-reply@bibl-io.fr',plaintext_mail.replace("\n",""),[queues[0].borrower.email],html_message=html_mail, fail_silently=False)
+                    
+                    # Sets locale back to current user preferences.
+                    translation_activate(current_locale)
             form.save()
             messages.add_message(request, messages.SUCCESS, _('The lending has been updated and the new end date is now %s.' % lending.end_date))
             return redirect('book_detail',book_id=lending.book_copy.book.id)

@@ -81,7 +81,7 @@ TODO
 
     * *People should appear only once in the queue.*
 
-    * Send mail in user locale.
+    * *Send mail in user locale.*
 
 * Security:
 

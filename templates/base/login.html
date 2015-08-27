@@ -14,5 +14,6 @@
     {{ form.as_p }}
     <input type="submit" class="pure-button pure-button-primary" value="{% trans "login" %}" />
 </form>
+<p><a href="{% url "password_reset" %}">{% trans "reset your password"|capfirst %}</a></p>
 {% endif %}
 {% endblock %}

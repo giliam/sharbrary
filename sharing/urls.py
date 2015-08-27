@@ -2,6 +2,7 @@
 from django.conf.urls import patterns, url
 from django.contrib.auth.decorators import permission_required, login_required
 from django.views.generic import TemplateView 
+from django.contrib.auth import views as auth_views
 
 from sharing import views
 
@@ -35,4 +36,8 @@ urlpatterns = patterns('',
 
   url(r'^login/$', views.log_in, name='login'),
   url(r'^logout/$', views.log_out, name='logout'),
+  url(r'^password_reset/$', auth_views.password_reset,{'template_name': 'base/password_reset.html'}, name='password_reset'),
+  url(r'^password_reset/confirm/(?P<uidb64>[0-9A-Za-z]+)-(?P<token>.+)/$', auth_views.password_reset_confirm,{'template_name': 'base/password_reset.html'}, name='password_reset_confirm'),
+  url(r'^password_reset/done/$', auth_views.password_reset_done, {'template_name': 'base/password_reset_done.html'}, name='password_reset_done'),
+  url(r'^password_reset/complete/$', auth_views.password_reset_complete,{'template_name': 'base/password_reset_complete.html'}, name='password_reset_complete'),
 )

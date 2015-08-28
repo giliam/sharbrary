@@ -28,6 +28,7 @@ class Author(models.Model):
             ("author_new", "Add an author"),
             ("author_detail", "Show an author details"),
             ("author_edit", "Edit an author"),
+            ("author_moderate", "Moderate an author"),
             ("author_delete", "Delete an author"),
             ("author_list", "Show the list of authors"),
         )
@@ -48,6 +49,7 @@ class Editor(models.Model):
         permissions = (
             ("editor_new", "Add an editor"),
             ("editor_edit", "Edit an editor"),
+            ("editor_moderate", "Moderate an editor"),
             ("editor_delete", "Delete an editor"),
             ("editor_list", "Show the list of editors"),
         )
@@ -68,6 +70,7 @@ class Theme(models.Model):
         permissions = (
             ("theme_new", "Add a theme"),
             ("theme_edit", "Edit a theme"),
+            ("theme_moderate", "Moderate a theme"),
             ("theme_delete", "Delete a theme"),
             ("theme_list", "Show the list of themes"),
         )
@@ -89,6 +92,7 @@ class Period(models.Model):
         permissions = (
             ("period_new", "Add a period"),
             ("period_edit", "Edit a period"),
+            ("period_moderate", "Moderate a period"),
             ("period_delete", "Delete a period"),
             ("period_list", "Show the list of periods"),
         )
@@ -120,6 +124,7 @@ class Book(models.Model):
             ("book_new", "Add a book"),
             ("book_detail", "Show a book page"),
             ("book_edit", "Edit a book"),
+            ("book_moderate", "Moderate a book"),
             ("book_delete", "Delete a book"),
             ("book_remove_from_library", "Remove a book from your library"),
             ("book_remove_from_all_libraries", "Remove a book from all libraries"),
@@ -150,6 +155,7 @@ class Ownership(models.Model):
         permissions = (
             ("ownership_new", "Have a book"),
             ("ownership_edit", "Edit a ownership"),
+            ("ownership_moderate", "Moderate a ownership"),
             ("ownership_delete", "Delete a ownership"),
         )
         default_permissions = []

@@ -26,6 +26,7 @@ class Profile(models.Model):
         permissions = (
             ("profile_new", "Add a profile"),
             ("profile_edit", "Edit a profile"),
+            ("profile_moderate", "Moderate a profile"),
             ("profile_delete", "Delete a profile"),
             ("profile_list", "Show the list of profiles"),
             ("profile_show", "Show a profile"),
@@ -55,6 +56,7 @@ class Lending(models.Model):
         permissions = (
             ("lending_new", "Add a lending"),
             ("lending_edit", "Edit a lending"),
+            ("lending_moderate", "Moderate a lending"),
             ("lending_delete", "Delete a lending"),
             ("lending_list", "Show the list of lendings"),
         )
@@ -79,6 +81,7 @@ class Queue(models.Model):
         permissions = (
             ("queue_new", "Add a queue"),
             ("queue_edit", "Edit a queue"),
+            ("queue_moderate", "Moderate a queue"),
             ("queue_delete", "Delete a queue"),
             ("queue_list", "Show the list of queues"),
         )

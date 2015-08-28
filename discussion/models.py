@@ -36,6 +36,7 @@ class Discussion(models.Model):
             ("discussion_new", "Add an discussion"),
             ("discussion_detail", "Show a discussion details"),
             ("discussion_edit", "Edit a discussion"),
+            ("discussion_moderate", "Moderate a discussion"),
             ("discussion_delete", "Delete a discussion"),
             ("discussion_list", "Show the list of discussions"),
         )
@@ -61,6 +62,7 @@ class Message(models.Model):
             ("message_new", "Add an message"),
             ("message_detail", "Show a message details"),
             ("message_edit", "Edit a message"),
+            ("message_moderate", "Moderate a message"),
             ("message_delete", "Delete a message"),
             ("message_list", "Show the list of messages"),
         )

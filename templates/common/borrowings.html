@@ -8,7 +8,7 @@
 <ul>
 {% for borrowing in borrowings %}
     <li>
-        {% blocktrans with book=borrowing.book owner=borrowing.book.owner|default:_("unknown")|capfirst %}<strong>{{ book }}</strong> from <em>{{ owner }}</em>{% endblocktrans %}
+        {% blocktrans with book=borrowing.book_copy.book owner=borrowing.book_copy.owner|default:_("unknown")|capfirst %}<strong>{{ book }}</strong> from <em>{{ owner }}</em>{% endblocktrans %}
     {% if perms.library.lending_edit or perms.library.lending_delete %}
     <br />
         {% if perms.sharing.lending_end %}

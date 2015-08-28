@@ -748,8 +748,8 @@ msgstr "ajouter"
 #: .\templates\common\lendings.html:11
 #: .\templates\library\book_detail.html:127
 #, python-format
-msgid "<strong>%(book)s</strong> to <em>%(borrower)s</em>"
-msgstr "<strong>%(book)s</strong> à <em>%(borrower)s</em>"
+msgid "<strong>%(book)s</strong> to <em>%(borrower)s</em> since %(beginning_date)s"
+msgstr "<strong>%(book)s</strong> à <em>%(borrower)s</em> depuis le %(beginning_date)s"
 
 #: .\templates\common\lendings.html:25
 msgid "no lendings ongoing !"

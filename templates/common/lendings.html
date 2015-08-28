@@ -8,7 +8,7 @@
 <ul>
 {% for lending in lendings %}
     <li>
-        {% blocktrans with book=lending.book borrower=lending.borrower|default:_("unknown")|capfirst %}<strong>{{ book }}</strong> to <em>{{ borrower }}</em>{% endblocktrans %}
+        {% blocktrans with book=lending.book_copy.book beginning_date=lending.beginning_date borrower=lending.borrower|default:_("unknown")|capfirst %}<strong>{{ book }}</strong> to <em>{{ borrower }}</em> since {{beginning_date}}{% endblocktrans %}
     {% if perms.sharing.lending_edit or perms.sharing.lending_delete %}
         {% if perms.sharing.lending_end %}
             <a class="pure-button pure-button-xsmall pure-button-primary" href="{% url "lending_end" lending.id %}">{% trans "give back"|capfirst %}</a>

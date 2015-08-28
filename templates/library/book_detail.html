@@ -121,7 +121,7 @@
         </div>
         <div class="pure-u-1-6 font_smaller">
             <h3>{% trans "queue"|capfirst %}</h3>
-            <ul>
+            <ol>
                 {% for queue in queues_ordered|keyvalue:ownership.id %}
                     <li>
                         {% blocktrans with book=queue.book borrower=queue.borrower|default:_("unknown")|capfirst %}<strong>{{ book }}</strong> to <em>{{ borrower }}</em>{% endblocktrans %}
@@ -138,7 +138,7 @@
                 <p>{% trans "no queue ongoing !"|capfirst %}</p>
                 {% endfor %}
 
-            </ul>
+            </ol>
         </div>
     </div>
     {% endfor %}

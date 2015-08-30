@@ -50,12 +50,12 @@
         </p>
 
         {% if not display_only_list %}
-            {% if perms.library.book_edit or perms.library.book_delete or perms.sharing.lending_new or perms.library.book_remove_from_all_libraries or perms.library.book_remove_from_library or perms.library.ownership_new %}
+            {% if perms.library.book_moderate or perms.library.book_edit or perms.library.book_delete or perms.sharing.lending_new or perms.library.book_remove_from_all_libraries or perms.library.book_remove_from_library or perms.library.ownership_new %}
             <p class="buttons">
                 {% comment %}{% if perms.sharing.lending_new %}
                 <a class="pure-button pure-button-xsmall" href="{% url "borrowing_this_book_create" book.id %}">{% trans "borrow"|capfirst %}</a>
                 {% endif %}{% endcomment %}
-                {% if perms.library.book_edit %}
+                {% if perms.library.book_moderate or perms.library.book_edit and request.user in book.owners.all %}
                 <a class="pure-button pure-button-xsmall pure-button-secondary" href="{% url "book_edit" book.id %}">{% trans "edit"|capfirst %}</a>
                 {% endif %}
                 {% if book.owners.all %}
@@ -68,7 +68,7 @@
                 {% if perms.library.ownership_new and not request.user in book.owners.all %}
                     <a class="pure-button pure-button-xsmall pure-button-success" href="{% url "book_add_this_to_my_library" book.id %}">{% trans "add"|capfirst %}</a> 
                 {% endif %}
-                {% if perms.library.book_delete %}
+                {% if perms.library.book_moderate or perms.library.book_delete and request.user in book.owners.all %}
                 <a class="pure-button pure-button-xsmall pure-button-error" href="{% url "book_delete" book.id %}">{% trans "delete"|capfirst %}</a>
                 {% endif %}
             </p>

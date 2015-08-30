@@ -83,6 +83,6 @@ TODO
 
     * *Send mail in user locale.*
 
-* Security:
+* **Security:**
 
-    * Display and allow actions only for your books/ownerships/lendings unless certain permission.
+    * **Display and allow actions only for your books/ownerships/lendings unless certain permission.**

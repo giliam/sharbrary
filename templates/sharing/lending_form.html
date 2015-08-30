@@ -4,4 +4,10 @@
     {{ form.as_p }}
     <input type="submit" class="pure-button pure-button-primary" value="Submit" />
 </fieldset></form>
+<script>
+$(function() {
+	$( "#id_beginning_date" ).datepicker( $.datepicker.regional[ "fr" ] );
+	$( "#id_end_date" ).datepicker( $.datepicker.regional[ "fr" ] );
+});
+</script>
 {% endblock %}

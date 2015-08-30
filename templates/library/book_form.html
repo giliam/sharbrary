@@ -10,4 +10,9 @@
     {% wysiwyg_editor "id_summary" %}
     <input type="submit" class="pure-button pure-button-primary" value="Submit" />
 </fieldset></form>
+<script>
+$(function() {
+	$( "#id_publishing_date" ).datepicker( $.datepicker.regional[ "fr" ] );
+});
+</script>
 {% endblock %}

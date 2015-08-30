@@ -186,7 +186,8 @@ def log_in(request):
                 login(request, user)
 
                 profile = Profile.objects.get(user=user)
-                translation_activate(profile.locale)
+                if profile.locale and profile.locale != "":
+                    translation_activate(profile.locale)
                 request.session[LANGUAGE_SESSION_KEY] = profile.locale
 
                 redirect_url = request.GET.get('next')

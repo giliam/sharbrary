@@ -13,12 +13,12 @@
             {% if message.updated_date != message.added_date %}
                 <p>{% trans "last update: "|capfirst %}{{ message.updated_date|naturalday:"DATE_FORMAT"|default:"?" }}</p>
             {% endif %}
-            {% if perms.discussion.message_edit or perms.discussion.message_delete %}
+            {% if perms.discussion.message_edit or perms.discussion.message_moderate or perms.discussion.message_delete %}
             <p>
-                {% if perms.discussion.message_edit %}
+                {% if perms.discussion.message_moderate or perms.discussion.message_edit and message.author == request.user %}
                 <a class="pure-button pure-button-secondary" href="{% url "message_edit" message.id %}">{% trans "edit"|capfirst %}</a>
                 {% endif %}
-                {% if perms.discussion.message_delete %}
+                {% if perms.discussion.message_moderate or perms.discussion.message_delete and message.author == request.user %}
                 <a class="pure-button pure-button-error" href="{% url "message_delete" message.id %}">{% trans "delete"|capfirst %}</a>
                 {% endif %}
             </p>

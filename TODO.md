@@ -63,7 +63,7 @@ TODO
 
 * *Rules and CGV pages*
 
-* Add Time widget for date fields.
+* *Add Time widget for date fields.*
 
 * **Add a waiting list.**
 

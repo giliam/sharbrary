@@ -6,6 +6,8 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.core.urlresolvers import reverse_lazy
 from django.utils.translation import ugettext_lazy as _
 from django.shortcuts import get_object_or_404
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 from utils.models.sortmixin import SortMixin
 

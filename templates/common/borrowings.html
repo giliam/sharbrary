@@ -9,15 +9,15 @@
 {% for borrowing in borrowings %}
     <li>
         {% blocktrans with book=borrowing.book_copy.book owner=borrowing.book_copy.owner|default:_("unknown")|capfirst %}<strong>{{ book }}</strong> from <em>{{ owner }}</em>{% endblocktrans %}
-    {% if perms.library.lending_edit or perms.library.lending_delete %}
+    {% if perms.sharing.lending_edit or perms.sharing.lending_moderate or perms.sharing.lending_delete %}
     <br />
-        {% if perms.sharing.lending_end %}
+        {% if perms.sharing.lending_moderate or perms.sharing.lending_end and request.user == borrwing.borrower or perms.sharing.lending_end and request.user == borrwing.book_copy.owner %}
             <a class="pure-button pure-button-xsmall pure-button-primary" href="{% url "lending_end" borrowing.id %}">{% trans "give back"|capfirst %}</a>
         {% endif %}
-        {% if perms.library.lending_edit %}
+        {% if perms.sharing.lending_moderate or perms.sharing.lending_edit and request.user == borrwing.borrower or perms.sharing.lending_edit and request.user == borrwing.book_copy.owner %}
         <a class="pure-button pure-button-xsmall pure-button-secondary" href="{% url "lending_edit" borrowing.id %}">{% trans "edit"|capfirst %}</a>
         {% endif %}
-        {% if perms.library.lending_delete %}
+        {% if perms.sharing.lending_moderate or perms.sharing.lending_delete and request.user == borrwing.borrower or perms.sharing.lending_delete and request.user == borrwing.book_copy.owner %}
         <a class="pure-button-xsmall pure-button pure-button-error" href="{% url "lending_delete" borrowing.id %}">{% trans "delete"|capfirst %}</a>
         {% endif %}
     {% endif %}

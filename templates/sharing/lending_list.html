@@ -56,12 +56,12 @@
         {% if perms.sharing.lending_end %}
             <td><a class="pure-button pure-button-primary" href="{% url "lending_end" lending.id %}">{% trans "give back"|capfirst %}</a></td>
         {% endif %}
-        {% if perms.sharing.lending_edit or perms.sharing.lending_delete %}
+        {% if perms.sharing.lending_edit or perms.sharing.lending_moderate or perms.sharing.lending_delete %}
         <td>
-            {% if perms.sharing.lending_edit %}
+            {% if perms.sharing.lending_moderate or perms.sharing.lending_edit and request.user == lending.borrower or perms.sharing.lending_edit and request.user == lending.book_copy.owner %}
             <a class="pure-button pure-button-secondary" href="{% url "lending_edit" lending.id %}">{% trans "edit"|capfirst %}</a>
             {% endif %}
-            {% if perms.sharing.lending_delete %}
+            {% if perms.sharing.lending_moderate or perms.sharing.lending_delete and request.user == lending.borrower or perms.sharing.lending_delete and request.user == lending.book_copy.owner %}
             <a class="pure-button pure-button-error" href="{% url "lending_delete" lending.id %}">{% trans "delete"|capfirst %}</a>
             {% endif %}
         </td>

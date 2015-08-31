@@ -24,6 +24,8 @@ from utils.models.sortmixin import SortMixin
 from utils.models.conditions import actual_lending
 from utils.models.availability import is_lending_possible, is_queueing_possible
 
+from utils.models.authorizations import CheckOwner
+
 def remove_from_queue(book_copy,borrower,lending=None):
     queues = Queue.objects.filter(book_copy=book_copy,borrower=borrower,fulfilled=0)
     for queue in queues.all():
@@ -96,16 +98,18 @@ class BorrowingBookCreate(LendingCreate):
 
         return redirect('book_detail',book_id=lending.book_copy.book.id)
 
-class LendingUpdate(SuccessMessageMixin, UpdateView):
+class LendingUpdate(SuccessMessageMixin, UpdateView, CheckOwner):
     model = Lending
     success_url = reverse_lazy('lending_list')
     success_message = _("The lending of %(book_copy)s to %(borrower)s was updated successfully")
     fields = ['book_copy','borrower','beginning_date','end_date']
+    owner_field = ('borrower','owner',)
 
-class LendingDelete(DeleteView):
+class LendingDelete(DeleteView, CheckOwner):
     model = Lending
     template_name="sharing/lending_confirm_delete.html"
     success_url = reverse_lazy('lending_list')
+    owner_field = ('borrower','owner',)
 
 @permission_required('add_user')
 def member_add(request):

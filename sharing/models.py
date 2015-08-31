@@ -47,6 +47,9 @@ class Lending(models.Model):
         else:
             raise Exception, _("The end date must be after the beginning date.")
 
+    def owner(self):
+        return self.book_copy.owner
+
     def __unicode__(self):
         return unicode(self.borrower) + u" borrowed " + unicode(self.book_copy.book)
 

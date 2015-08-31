@@ -16,6 +16,7 @@ from sharing.models import Lending, Queue
 
 from utils.models.sortmixin import SortMixin
 from utils.models.conditions import actual_lending
+from utils.models.authorizations import CheckOwner
 
 class HomePageView(TemplateView):
     template_name = "base/index.html"
@@ -227,21 +228,23 @@ class OwnershipCreate(SuccessMessageMixin, CreateView):
         add_book_to_library(self.request,ownership)
         return redirect('book_detail',book_id=ownership.book.id)
 
-class OwnershipUpdate(SuccessMessageMixin, UpdateView):
+class OwnershipUpdate(SuccessMessageMixin, UpdateView, CheckOwner):
     model = Ownership
     success_url = reverse_lazy('book_list')
     success_message = _("%(book)s from your library was modified successfully.")
     fields = ['copies', 'editor', 'comments', 'cover']
+    owner_field = 'owner'
     def form_valid(self, form):
         ownership = form.save(commit=False)
         ownership.book = self.get_object().book
         update_book_of_library(self.request,ownership)
         return redirect('book_detail',book_id=ownership.book.id)
 
-class OwnershipDelete(SuccessMessageMixin, DeleteView):
+class OwnershipDelete(SuccessMessageMixin, DeleteView, CheckOwner):
     model = Ownership
     success_url = reverse_lazy('book_list')
     success_message = _("%(book)s was deleted successfully from your library")
+    owner_field = 'owner'
 
 class BookOwnershipCreate(OwnershipCreate):
     fields = ['copies', 'editor', 'comments', 'cover']

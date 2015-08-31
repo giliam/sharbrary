@@ -8,10 +8,13 @@ from django.utils.translation import ugettext_lazy as _
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from django.core.exceptions import PermissionDenied
 
 from utils.models.sortmixin import SortMixin
 
 from discussion.models import Discussion, Message
+
+from utils.models.authorizations import CheckOwner
 
 def discussion_detail(request, discussion_id):
     """
@@ -35,11 +38,18 @@ class DiscussionCreate(SuccessMessageMixin, CreateView):
     success_message = _("%(title)s was added successfully")
     fields = ['title']
 
-class DiscussionUpdate(SuccessMessageMixin, UpdateView):
+    def form_valid(self, form):
+        discussion = form.save(commit=False)
+        discussion.author = self.request.user
+        discussion.save()
+        return redirect('discussion_detail',discussion_id=discussion.id)
+
+class DiscussionUpdate(SuccessMessageMixin, UpdateView, CheckOwner):
     model = Discussion
     success_url = reverse_lazy('discussion_list')
     success_message = _("%(title)s was updated successfully")
     fields = ['title']
+    owner_field = 'author'
 
 class DiscussionDelete(DeleteView):
     model = Discussion
@@ -59,13 +69,15 @@ class MessageCreate(SuccessMessageMixin, CreateView):
         message.save()
         return redirect('discussion_detail',discussion_id=message.discussion.id)
 
-class MessageUpdate(SuccessMessageMixin, UpdateView):
+class MessageUpdate(SuccessMessageMixin, UpdateView, CheckOwner):
     model = Message
     success_url = reverse_lazy('discussion_list')
     success_message = _("The message was updated successfully")
     fields = ['message']
+    owner_field = 'author'    
 
-class MessageDelete(DeleteView):
+class MessageDelete(DeleteView, CheckOwner):
     model = Message
     template_name="discussion/discussion_confirm_delete.html"
     success_url = reverse_lazy('discussion_list')
+    owner_field = 'author'

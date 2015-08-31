@@ -35,15 +35,15 @@
         </td>
         <td>{{ discussion.added_date|naturalday:"DATE_FORMAT"|default:"?" }}</td>
         <td>{{ discussion.updated_date|naturalday:"DATE_FORMAT"|default:"?" }}</td>
-        {% if perms.discussion.discussion_edit or perms.discussion.discussion_delete %}
+        {% if perms.discussion.discussion_edit or perms.discussion.discussion_moderate or perms.discussion.discussion_delete %}
         <td>
             {% if perms.discussion.discussion_detail %}
             <a class="pure-button pure-button-primary" href="{% url "discussion_detail" discussion.id %}">{% trans "detail"|capfirst %}</a>
             {% endif %}
-            {% if perms.discussion.discussion_edit %}
+            {% if perms.discussion.discussion_moderate or perms.discussion.discussion_edit and request.user == discussion.author %}
             <a class="pure-button pure-button-secondary" href="{% url "discussion_edit" discussion.id %}">{% trans "edit"|capfirst %}</a>
             {% endif %}
-            {% if perms.discussion.discussion_delete %}
+            {% if perms.discussion.discussion_moderate or perms.discussion.discussion_delete and request.user == discussion.author %}
             <a class="pure-button pure-button-error" href="{% url "discussion_delete" discussion.id %}">{% trans "delete"|capfirst %}</a>
             {% endif %}
         </td>

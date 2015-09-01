@@ -71,9 +71,11 @@ TODO
 
         * *Author: birthdate before deathdate.*
 
-    * **Discussion**
+    * *Discussion*
 
-        * **Test CRUD on library.**
+        * *Test CRUD on messages.*
+
+        * *Test CRUD on discussion.*
 
     * Lendings:
 

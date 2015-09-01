@@ -10,7 +10,7 @@ class CommonTestCase(TestCase):
     def setUp(self):
         translation.activate("en")
 
-        perms = Permission.objects.filter(Q(content_type__app_label='library')|Q(content_type__app_label='sharing'))
+        perms = Permission.objects.filter(Q(content_type__app_label='library')|Q(content_type__app_label='discussion')|Q(content_type__app_label='sharing'))
         self.bob = User.objects.create_superuser('bob', 'bob@test.fr', 'bob')
         self.bib = User.objects.create_user('bib', 'bib@test.fr', 'bib')
         self.bab = User.objects.create_user('bab', 'bab@test.fr', 'bab')

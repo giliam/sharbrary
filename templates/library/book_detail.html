@@ -45,6 +45,11 @@
         <blockquote>
 			{{ book.summary|default:_("not filled yet")|capfirst|safe }}</blockquote>
         <p><strong>{% trans "owned by"|capfirst %}</strong></p>
+        <p>
+            {% for i in "012345" %}
+                <a class="rates" id="rate_{{i}}" >{{i}}</a>
+            {% endfor %}
+        </p>
     </div>
     <div class="pure-u-1-2">
     <h2>{% trans "options"|capfirst %}</h2>
@@ -151,4 +156,12 @@
         <p><a class="pure-button pure-button-primary" href="{% url "book_add_this_to_my_library" book.id %}">{% trans "new"|capfirst %}</a></p>
     {% endif %}
 {% endif %}
+
+<script type="text/javascript">
+$('.rates').click(function(){
+    var catid;
+    catid = $(this).attr("id").replace('rate_','');
+    $.get("{% url "book_rate" book.id 0 %}".replace('/0/',"/" + catid + "/"), function(data){});
+});
+</script>
 {% endblock %}

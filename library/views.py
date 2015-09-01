@@ -1,4 +1,6 @@
 # coding: utf-8
+import json
+
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView,ListView, DetailView
 from django.contrib.messages.views import SuccessMessageMixin
@@ -7,10 +9,10 @@ from django.core.urlresolvers import reverse_lazy
 from django.utils.translation import ugettext_lazy as _
 from django.shortcuts import get_object_or_404
 from django.contrib import messages
-from django.http import Http404
+from django.http import Http404, HttpResponse
 from django.db.models import Q
 
-from library.models import Book, Author, Editor, Theme, Period, Ownership
+from library.models import Book, Author, Editor, Theme, Period, Ownership, Opinion
 from library.forms import SelectOwnerForm, ResearchForm
 from sharing.models import Lending, Queue
 
@@ -393,4 +395,21 @@ def book_research(request):
         books = books.reverse()
     return render(request, 'library/book_list.html', {'form':form,'books':books})
 
+def book_rate(request, book_id, value):
+    """
+    Sets the notation of a book for a specific user.
+    """
+    value = int(value)
+    book = get_object_or_404(Book, pk=book_id)
+    if value not in range(0,6):
+        raise Exception, _("Value not available !")
 
+    try:
+        opinion = Opinion.objects.get(book=book,author=request.user)
+    except Opinion.DoesNotExist:
+        opinion = Opinion()
+        opinion.book = book
+        opinion.author = request.user
+    opinion.value = value
+    opinion.save()
+    return HttpResponse(json.dumps({"value":value}),content_type="application/json")

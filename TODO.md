@@ -33,39 +33,11 @@ TODO
 
 * *Set lending depending on ownership and not book anymore.*
 
-* **Write unit tests:**
-
-	* **Library**
-
-		* *Test determine_new_ownership_necessary*
-
-        * **Test ownership creation**
-
-		* *Remove book from library.*
-
-        * *Test CRUD on library.*
-
-        * *Author: birthdate before deathdate.*
-
-    * **Discussion**
-
-        * **Test CRUD on library.**
-
-    * Lendings:
-
-        * Availability of book copies.
-
-        * End date before beginning date ?
-    
-* **Add discussion system. Discussion forum, by theme and by book: one topic is created each time a book or a theme is added. Not deleted when the element is removed.**
-
-* **Homepage**
+* *Add discussion system. Discussion forum, by theme and by book for example. Not deleted when the element is removed.*
 
 * *Rules and CGV pages*
 
 * *Add Time widget for date fields.*
-
-* Add a borrowing button on book list that display different copies existing.
 
 * **Queue:**
     
@@ -81,6 +53,38 @@ TODO
 
     * *Send mail in user locale.*
 
-* **Security:**
+* *Security:*
 
-    * **Display and allow actions only for your books/ownerships/lendings unless certain permission.**
+    * *Display and allow actions only for your books/ownerships/lendings unless certain permission.*
+
+* **Write unit tests:**
+
+    * **Library**
+
+        * *Test determine_new_ownership_necessary*
+
+        * **Test ownership creation**
+
+        * *Remove book from library.*
+
+        * *Test CRUD on library.*
+
+        * *Author: birthdate before deathdate.*
+
+    * **Discussion**
+
+        * **Test CRUD on library.**
+
+    * Lendings:
+
+        * Availability of book copies.
+
+        * End date before beginning date ?
+
+    * Security
+
+* **Notation on books : adds notation system with grades from 0 to 5.**
+
+* **Homepage**
+
+* Add a borrowing button on book list that display different copies existing.

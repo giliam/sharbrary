@@ -25,6 +25,7 @@ class HomePageView(TemplateView):
         context = super(HomePageView, self).get_context_data(**kwargs)
         context['latest_books'] = Book.objects.order_by('-added_date').all()[:5]
         context['best_books'] = Book.objects.order_by('-added_date').all()[:5]
+        # context['best_books'] = Book.objects.raw('SELECT * FROM library_book LEFT JOIN library').all()[:5]
         return context
 
 

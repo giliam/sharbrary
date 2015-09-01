@@ -4,6 +4,16 @@ from datetime import datetime
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 
+# Opinion values
+OPINION_NOTATION_VALUES = (
+    (0, _('DO NOT READ IT')),
+    (1, _('Humpf')),
+    (2, _('Why not?')),
+    (3, _('Not so bad')),
+    (4, _('Liked it!')),
+    (5, _('READ IT')),
+)
+
 class Author(models.Model):
     firstname = models.CharField(verbose_name=_('firstname'),max_length=200)
     lastname = models.CharField(verbose_name=_('lastname'),max_length=200)
@@ -160,3 +170,25 @@ class Ownership(models.Model):
         )
         default_permissions = []
         ordering = ['book__title','owner__username']
+
+
+class Opinion(models.Model):
+    book = models.ForeignKey(Book,verbose_name=_('book'))
+    author = models.ForeignKey(User,verbose_name=_('author'))
+    
+    added_date = models.DateTimeField(_('date added'),auto_now_add=True)
+    updated_date = models.DateTimeField(_('date updated to the database'),auto_now=True)
+
+    value = models.PositiveIntegerField(choices=OPINION_NOTATION_VALUES)
+
+    class Meta:
+        verbose_name = _("opinion")
+        verbose_name_plural = _("opinions")
+        permissions = (
+            ("opinion_new", "Have an opinion"),
+            ("opinion_edit", "Edit an opinion"),
+            ("opinion_moderate", "Moderate an opinion"),
+            ("opinion_delete", "Delete an opinion"),
+        )
+        default_permissions = []
+        ordering = ['book__title','author__username']

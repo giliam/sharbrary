@@ -479,7 +479,7 @@ class OwnershipTestCase(CommonTestCase):
 
         response = self.client.get(reverse('book_remove_from_library',kwargs={'book_id':book.id}))
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "Are you sure you want to delete \"%(object)s\" ?" % {'object':book.title})
+        self.assertContains(response, "Êtes-vous certain que vous souhaitez supprimer \"%(object)s\" ?" % {'object':book.title})
 
         self.client.logout()
 

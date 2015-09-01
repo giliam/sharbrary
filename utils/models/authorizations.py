@@ -4,10 +4,12 @@ from django.core.exceptions import PermissionDenied
 
 class CheckOwner(View):
     def dispatch(self, request, *args, **kwargs):
+        # Checks that the class at least has the owner_field or it is bad configured.
         if not hasattr(self,'owner_field'):
             raise Exception, "No owner field specified in " + self.__class__.__name__ + " class."
-
-        if not is_related_to_object(request.user,self.get_object(),self.owner_field):
+        
+        # Gets the moderation permission from the table name. Could be wrong.
+        if not request.user.has_perm(self.get_object()._meta.db_table.replace('_','.') + "_moderate") and not is_related_to_object(request.user,self.get_object(),self.owner_field):
             raise PermissionDenied
 
         return super(CheckOwner, self).dispatch(request, *args, **kwargs)

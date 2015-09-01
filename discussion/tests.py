@@ -18,7 +18,7 @@ class DiscussionTestCase(CommonTestCase):
 
         response = self.client.post(reverse('discussion_new'), data)
         self.assertEqual(response.status_code, 302)
-        self.assertRedirects(response, reverse('discussion_list'))
+        self.assertRedirects(response, reverse('discussion_detail',args=[1]))
 
         try:
             discussion = Discussion.objects.get(**data)

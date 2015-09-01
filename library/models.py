@@ -7,8 +7,8 @@ from django.utils.translation import ugettext_lazy as _
 # Opinion values
 OPINION_NOTATION_VALUES = (
     (0, _('DO NOT READ IT')),
-    (1, _('Humpf')),
-    (2, _('Why not?')),
+    (1, _('This is bad.')),
+    (2, _('Humpf')),
     (3, _('Not so bad')),
     (4, _('Liked it!')),
     (5, _('READ IT')),

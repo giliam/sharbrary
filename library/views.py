@@ -25,10 +25,10 @@ class HomePageView(TemplateView):
     template_name = "base/index.html"
 
     def get_context_data(self, **kwargs):
+        number_of_books = 3
         context = super(HomePageView, self).get_context_data(**kwargs)
-        context['latest_books'] = Book.objects.order_by('-added_date').all()[:5]
-        context['best_books'] = Book.objects.order_by('-added_date').all()[:5]
-        # context['best_books'] = Book.objects.raw('SELECT * FROM library_book LEFT JOIN library').all()[:5]
+        context['latest_books'] = Book.objects.order_by('-added_date').all()[:number_of_books]
+        context['best_books'] = Book.objects.raw('SELECT lb.*, AVG(COALESCE(lo.value,0)) AS value_avg FROM library_book AS lb LEFT JOIN library_opinion AS lo ON lo.book_id = lb.id GROUP BY lb.id ORDER BY value_avg DESC')[:number_of_books]
         return context
 
 

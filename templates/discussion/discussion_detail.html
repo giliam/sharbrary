@@ -27,6 +27,8 @@
         <div class="pure-u-4-5 discussion_message">
             {{ message.message|safe }}
         </div>
+        {% empty %}
+        <div class="pure-u-1-1">{% trans "empty"|capfirst %}</div>
         {% endfor %}
 </div>
 {% include "common/pagination.html" %}

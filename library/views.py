@@ -15,6 +15,7 @@ from django.db.models import Q
 from library.models import Book, Author, Editor, Theme, Period, Ownership, Opinion
 from library.forms import SelectOwnerForm, ResearchForm
 from sharing.models import Lending, Queue
+from discussion.models import Discussion
 
 from utils.models.sortmixin import SortMixin
 from utils.models.conditions import actual_lending
@@ -79,6 +80,16 @@ class BookCreate(SuccessMessageMixin, CreateView):
             ownership.book = book
             ownership.owner = owner
             ownership.save()
+
+        # Create a discussion onto forum.
+        discussion = Discussion()
+        if book.author:
+            discussion.title = _("Discussion on %(book)s (%(author)s)") % {'author':book.author,'book':book.title}
+        else:
+            discussion.title = _("Discussion on %(book)s") % {'book':book.title}
+        discussion.author = self.request.user
+        discussion.save()
+
         return redirect('book_detail',book_id=book.id)
 
 

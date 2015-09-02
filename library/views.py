@@ -41,6 +41,12 @@ def book_detail(request, book_id):
     queues = Queue.objects.filter(book_copy__book__id=book_id,fulfilled=False).order_by('added_date')
     lendings = Lending.objects.filter(actual_lending(),book_copy__book__id=book_id)
     
+    try:
+        opinion = Opinion.objects.get(book__id=book_id,author=request.user)
+        rating_user = opinion.value
+    except Opinion.DoesNotExist:
+        rating_user = None
+    print rating_user
     queues_ordered = {ownership.id:[] for ownership in ownerships}
     # copy is not enough here, because of lists probably
     lendings_ordered = {ownership.id:[] for ownership in ownerships}
@@ -49,7 +55,7 @@ def book_detail(request, book_id):
         queues_ordered[queue.book_copy.id].append(queue)
     for lending in lendings.all():
         lendings_ordered[lending.book_copy.id].append(lending)
-    return render(request, 'library/book_detail.html', {'book':book,'lendings':lendings,'lendings_ordered':lendings_ordered,'queues_ordered':queues_ordered,'ownerships':ownerships})
+    return render(request, 'library/book_detail.html', {'book':book,'lendings':lendings,'lendings_ordered':lendings_ordered,'queues_ordered':queues_ordered,'ownerships':ownerships,'rating_user':rating_user})
 
 class BookEmbedList(SortMixin):
     context_object_name = "books"

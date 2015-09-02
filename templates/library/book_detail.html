@@ -44,10 +44,20 @@
         <p><strong>{% trans "summary"|capfirst %}</strong></p>
         <blockquote>
 			{{ book.summary|default:_("not filled yet")|capfirst|safe }}</blockquote>
-        <p><strong>{% trans "owned by"|capfirst %}</strong></p>
         <p>
-            {% for i in "012345" %}
-                <a class="rates" id="rate_{{i}}" >{{i}}</a>
+            <a class="rates" id="rate_0">
+                <img id="rate_star_0" class="rating_stars" src="{% static 'img/star_remove.png' %}" />
+            </a>
+            {% comment %}Makes a "range" loop{% endcomment %}
+            {% for i in "12345" %}
+                <a class="rates" id="rate_{{i}}">
+                    {% comment %}We use forloop counter here because i is a string and not an integer, thus can not be compared with rating_user{% endcomment %}
+                    {% if rating_user and forloop.counter <= rating_user %}
+                        <img id="rate_star_{{i}}" class="rating_stars" src="{% static 'img/star_full.png' %}" />
+                    {% else %}
+                        <img id="rate_star_{{i}}" class="rating_stars" src="{% static 'img/star_empty.png' %}" />
+                    {% endif %}
+                </a>
             {% endfor %}
         </p>
     </div>
@@ -162,6 +172,29 @@ $('.rates').click(function(){
     var catid;
     catid = $(this).attr("id").replace('rate_','');
     $.get("{% url "book_rate" book.id 0 %}".replace('/0/',"/" + catid + "/"), function(data){});
+});
+
+$('.rating_stars').hover(function(){
+    var catid;
+    catid = $(this).attr("id").replace('rate_star_','');
+    for (var i = 1; i <= 5; i++) {
+        if(i<=catid){
+            $('#rate_star_' + i).attr("src", "{% static 'img/star_full.png' %}");
+        }else{
+            $('#rate_star_' + i).attr("src","{% static 'img/star_empty.png' %}");
+        }
+    }
+});
+
+$('.rates').hover(function(){},function(){
+    var current_value = {% if rating_user %}{{rating_user}}{% else %}0{% endif %};
+    for (var i = 1; i <= 5; i++) {
+        if(i<=current_value){
+            $('#rate_star_' + i).attr("src", "{% static 'img/star_full.png' %}");
+        }else{
+            $('#rate_star_' + i).attr("src","{% static 'img/star_empty.png' %}");
+        }
+    }
 });
 </script>
 {% endblock %}

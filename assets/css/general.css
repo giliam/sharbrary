@@ -159,3 +159,7 @@ div .picture {
 .font_smaller{
     font-size: 0.7em;
 }
+
+.rating_stars {
+    width:25px;
+}

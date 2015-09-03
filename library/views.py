@@ -12,7 +12,7 @@ from django.contrib import messages
 from django.http import Http404, HttpResponse
 from django.db.models import Q
 
-from library.models import Book, Author, Editor, Theme, Period, Ownership, Opinion
+from library.models import Book, Author, Editor, Theme, Period, Ownership, Opinion, OPINION_NOTATION_VALUES
 from library.forms import SelectOwnerForm, ResearchForm
 from sharing.models import Lending, Queue
 from discussion.models import Discussion
@@ -55,7 +55,8 @@ def book_detail(request, book_id):
         queues_ordered[queue.book_copy.id].append(queue)
     for lending in lendings.all():
         lendings_ordered[lending.book_copy.id].append(lending)
-    return render(request, 'library/book_detail.html', {'book':book,'lendings':lendings,'lendings_ordered':lendings_ordered,'queues_ordered':queues_ordered,'ownerships':ownerships,'rating_user':rating_user})
+
+    return render(request, 'library/book_detail.html', {'book':book,'lendings':lendings,'lendings_ordered':lendings_ordered,'queues_ordered':queues_ordered,'ownerships':ownerships,'rating_user':rating_user, 'opinion_notation_values':OPINION_NOTATION_VALUES})
 
 class BookEmbedList(SortMixin):
     context_object_name = "books"

@@ -163,3 +163,29 @@ div .picture {
 .rating_stars {
     width:25px;
 }
+#rating_global #before_rating_informations {
+    width:180px;
+    display:inline-block;
+    float:left;
+}
+
+#rating_global #rating_information {
+    height:37px;
+    width:180px;
+    margin-top:9px;
+    vertical-align: middle;
+    padding-top:3px;
+    line-height: 37px;
+    text-align: center;
+    display:inline-block;
+
+    background-color: #FFFF99;
+    border: solid 2px #FFD203;
+    color: #FBB800;
+}
+
+@media (max-width: 1050px) {
+    #rating_global #rating_information {
+        margin-top: -15px;
+    }
+}

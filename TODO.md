@@ -85,7 +85,7 @@ TODO
 
     * Security
 
-* **Notation on books : adds notation system with grades from 0 to 5.**
+* *Notation on books : adds notation system with grades from 0 to 5.*
 
 * **Homepage**
 

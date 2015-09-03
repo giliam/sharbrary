@@ -46,7 +46,6 @@ def book_detail(request, book_id):
         rating_user = opinion.value
     except Opinion.DoesNotExist:
         rating_user = None
-    print rating_user
     queues_ordered = {ownership.id:[] for ownership in ownerships}
     # copy is not enough here, because of lists probably
     lendings_ordered = {ownership.id:[] for ownership in ownerships}
@@ -178,15 +177,12 @@ def determine_new_ownership_necessary(new_ownership,existing_ownership):
     if existing_ownership and existing_ownership.owner == new_ownership.owner:
         # an existing ownership with a different editor than the new one
         if existing_ownership.editor and new_ownership.editor and new_ownership.editor != existing_ownership.editor:
-            print "New editor"
             return True
         # an existing ownership without editor
         if existing_ownership.editor and not new_ownership.editor:
-            print "No editor specified"
             return True
         # an existing ownership with a different cover
         if new_ownership.cover and existing_ownership.cover and new_ownership.cover != existing_ownership.cover:            
-            print "New cover"
             return True
         return False
     else:

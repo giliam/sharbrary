@@ -11,6 +11,6 @@
     {{ form_user.as_p }}
     {{ form_profile.as_p }}
     {% wysiwyg_editor "id_informations" %}
-    <input type="submit" class="pure-button pure-button-primary" value="Submit" />
+    <input type="submit" class="pure-button pure-button-primary" value="{% trans "Submit"|capfirst %}" />
 </fieldset></form>
 {% endblock %}

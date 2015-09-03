@@ -2,7 +2,7 @@
 {% block body %} 
 <form class="pure-form pure-form-stacked" method="post"><fieldset>{% csrf_token %}
     {{ form.as_p }}
-    <input type="submit" class="pure-button pure-button-primary" value="Submit" />
+    <input type="submit" class="pure-button pure-button-primary" value="{% trans "Submit"|capfirst %}" />
 </fieldset></form>
 <script>
 $(function() {

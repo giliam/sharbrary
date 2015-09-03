@@ -86,8 +86,7 @@ class DiscussionTestCase(CommonTestCase):
 class MessageTestCase(CommonTestCase):
     def setUp(self):
         super(MessageTestCase,self).setUp()
-        self.client.login(username='bib', password='bib')
-        self.discussion = Discussion.objects.create(title='La vie et le reste')
+        self.discussion = Discussion.objects.create(title='La vie et le reste',author=self.bib)
 
     def test_creation(self):
         self.client.login(username='bob', password='bob')

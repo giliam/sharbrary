@@ -12,7 +12,7 @@ urlpatterns = patterns('',
   url(r'^lending/new$', permission_required('sharing.lending_new')(views.LendingCreate.as_view()), name='lending_new'),
   url(r'^lending/edit/(?P<pk>\d+)$', permission_required('sharing.lending_edit')(views.LendingUpdate.as_view()), name='lending_edit'),
   url(r'^lending/delete/(?P<pk>\d+)$', permission_required('sharing.lending_delete')(views.LendingDelete.as_view()), name='lending_delete'),
-  url(r'^lending/end/(?P<lending_id>\d+)$', permission_required('sharing.lending_end')(views.lending_end), name='lending_end'),
+  url(r'^lending/end/(?P<lending_id>\d+)$', permission_required('sharing.lending_edit')(views.lending_end), name='lending_end'),
 
   url(r'^new/member$', permission_required('add_user')(views.member_add), name='member_add'),
   

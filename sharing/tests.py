@@ -4,6 +4,7 @@ from django.contrib.auth.models import User, Permission
 from django.utils import timezone
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import Group
+from django.forms import ValidationError
 
 from utils.tests.common_test_case import CommonTestCase
 
@@ -37,6 +38,31 @@ class LendingTestCase(CommonTestCase):
         # Then check if the book has been created
         response = self.client.get(reverse('book_detail',args=[self.book.id]))
         self.assertQuerysetEqual(response.context['lendings'].all(),[repr(lending)])
+        self.client.logout()
+
+    def test_creation_not_available(self):
+        self.client.login(username='bob', password='bob')
+        data = {
+            'borrower': self.bib.id,
+            'beginning_date': '2015-09-03 11:43',
+        }
+        # Create one lending which borrows all copies.
+        lending = Lending.objects.create(beginning_date="2015-09-03",book_copy=self.book_copy,borrower=self.bob)
+
+        # Tries to borrow the book anyway.
+        try:
+            response = self.client.post(reverse('lend_book',args=[self.book_copy.id]), data)
+        except Exception:
+            self.assertRaises(ValidationError)
+            response = None
+        self.assertIsNone(response)
+
+        try:
+            lending = Lending.objects.get(book_copy=self.book_copy.id,**data)
+        except Lending.DoesNotExist:
+            lending = None    
+        self.assertIsNone(lending)
+        
         self.client.logout()
 
     def test_creation_no_right(self):
@@ -84,7 +110,6 @@ class LendingTestCase(CommonTestCase):
 
     def test_end_lending(self):
         self.client.login(username='bib', password='bib')
-        print self.bib.has_perm('sharing.lending_end')
         lending = Lending.objects.create(beginning_date="2015-09-03",book_copy=self.book_copy,borrower=self.bib)
         data = {
             'end_date':'2015-09-04',
@@ -98,6 +123,22 @@ class LendingTestCase(CommonTestCase):
         except Lending.DoesNotExist:
             lending = None    
         self.assertIsNotNone(lending)
+        self.client.logout()
+
+    def test_end_lending_before_beginning(self):
+        self.client.login(username='bib', password='bib')
+        lending = Lending.objects.create(beginning_date="2015-09-03",book_copy=self.book_copy,borrower=self.bib)
+        data = {
+            'end_date':'2015-08-04',
+        }
+       
+        response = self.client.post(reverse('lending_end',args=[lending.id]),data)
+        self.assertEqual(response.status_code, 200)
+        try:
+            lending = Lending.objects.get(**data)
+        except Lending.DoesNotExist:
+            lending = None    
+        self.assertIsNone(lending)
         self.client.logout()
 
     def test_end_not_my_lending(self):

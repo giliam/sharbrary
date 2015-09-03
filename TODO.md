@@ -57,6 +57,8 @@ TODO
 
     * *Display and allow actions only for your books/ownerships/lendings unless certain permission.*
 
+* *Notation on books : adds notation system with grades from 0 to 5.*
+
 * **Write unit tests:**
 
     * **Library**
@@ -77,15 +79,13 @@ TODO
 
         * *Test CRUD on discussion.*
 
-    * Lendings:
+    * **Lendings:**
 
-        * Availability of book copies.
+        * *Availability of book copies.*
 
-        * End date before beginning date ?
+        * *End date before beginning date ?*
 
-    * Security
-
-* *Notation on books : adds notation system with grades from 0 to 5.*
+    * **Security**
 
 * **Homepage**
 

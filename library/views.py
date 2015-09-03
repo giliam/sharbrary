@@ -1,6 +1,7 @@
 # coding: utf-8
 import json
 
+from django.contrib.auth.decorators import permission_required
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView,ListView, DetailView
 from django.contrib.messages.views import SuccessMessageMixin
@@ -12,8 +13,8 @@ from django.contrib import messages
 from django.http import Http404, HttpResponse
 from django.db.models import Q
 
-from library.models import Book, Author, Editor, Theme, Period, Ownership, Opinion, OPINION_NOTATION_VALUES
-from library.forms import SelectOwnerForm, ResearchForm
+from library.models import Book, Page, Author, Editor, Theme, Period, Ownership, Opinion, OPINION_NOTATION_VALUES
+from library.forms import SelectOwnerForm, ResearchForm, PageForm
 from sharing.models import Lending, Queue
 from discussion.models import Discussion
 
@@ -27,11 +28,16 @@ class HomePageView(TemplateView):
     def get_context_data(self, **kwargs):
         number_of_books = 3
         context = super(HomePageView, self).get_context_data(**kwargs)
+        try:
+            context['homepage_message'] = Page.objects.get(name='homepage')
+        except Page.DoesNotExist:
+            context['homepage_message'] = None
         context['latest_books'] = Book.objects.order_by('-added_date').all()[:number_of_books]
         context['best_books'] = Book.objects.raw('SELECT lb.*, AVG(COALESCE(lo.value,0)) AS value_avg FROM library_book AS lb LEFT JOIN library_opinion AS lo ON lo.book_id = lb.id GROUP BY lb.id ORDER BY value_avg DESC')[:number_of_books]
         return context
 
 
+@permission_required('library.book_detail')
 def book_detail(request, book_id):
     """
     Shows book details.
@@ -110,6 +116,7 @@ class BookDelete(DeleteView):
     template_name="library/book_confirm_delete.html"
     success_url = reverse_lazy('book_list')
 
+@permission_required('library.book_remove_from_library')
 def book_remove_from_my_library(request, book):
     """
     Removes a book from my own library.
@@ -124,7 +131,7 @@ def book_remove_from_my_library(request, book):
         return redirect('book_list')
     return None
 
-
+@permission_required('library.book_remove_from_library')
 def book_remove_from_library(request, book_id):
     """
     Removes a book from someone's library.
@@ -387,6 +394,7 @@ class PeriodDelete(DeleteView):
     success_url = reverse_lazy('period_list')
 
 
+@permission_required('library.book_list')
 def book_research(request):
     """
     Looks for something in the library
@@ -409,6 +417,7 @@ def book_research(request):
         books = books.reverse()
     return render(request, 'library/book_list.html', {'form':form,'books':books})
 
+@permission_required('library.book_rate')
 def book_rate(request, book_id, value):
     """
     Sets the notation of a book for a specific user.
@@ -427,3 +436,24 @@ def book_rate(request, book_id, value):
     opinion.value = value
     opinion.save()
     return HttpResponse(json.dumps({"value":value}),content_type="application/json")
+
+@permission_required('library.page_edit')
+def homepage_edit(request):
+    """
+    Edit the home page
+    """
+    try:
+        homepage = Page.objects.get(name="homepage")
+    except Page.DoesNotExist:
+        homepage = Page()
+        homepage.name = 'homepage'
+
+    if request.method == "POST":
+        form_homepage = PageForm(request.POST,instance=homepage)
+        if form_homepage.is_valid():
+            form_homepage.save()
+            messages.add_message(request, messages.SUCCESS, _("The new user has been successfully added !"))
+            form_homepage = PageForm(instance=homepage)
+    else:
+        form_homepage = PageForm(instance=homepage)
+    return render(request, 'library/page_form.html', {'form':form_homepage})

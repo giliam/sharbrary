@@ -2,7 +2,7 @@
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 
-from library.models import Book, Ownership
+from library.models import Book, Ownership, Page
 
 class SelectOwnerForm(forms.Form):
     owners = forms.ModelMultipleChoiceField(queryset=Ownership.objects.all())
@@ -16,3 +16,8 @@ class SelectOwnerForm(forms.Form):
 
 class ResearchForm(forms.Form):
     research = forms.CharField(max_length=100)
+
+class PageForm(forms.ModelForm):
+    class Meta:
+        model = Page
+        fields = ('content',)

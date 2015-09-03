@@ -77,8 +77,15 @@
                     <li class="pure-menu-item"><a href="{% url "login" %}" class="pure-menu-link">{% trans "log in"|capfirst %}</a></li>
                     {% endif %}
                 </ul>
-                <a class="pure-menu-heading" href="{% url "admin:index" %}">{% trans "admin"|capfirst %}</a>
-                <li class="pure-menu-item"><a href="{% url "member_add" %}" class="pure-menu-link">{% trans "add user"|capfirst %}</a></li>
+                {% if user.is_authenticated and user.is_staff %}
+                    <a class="pure-menu-heading" href="{% url "admin:index" %}">{% trans "admin"|capfirst %}</a>
+                    {% if 'add_user' in perms %}
+                        <li class="pure-menu-item"><a href="{% url "member_add" %}" class="pure-menu-link">{% trans "add user"|capfirst %}</a></li>
+                    {% endif %}
+                    {% if perms.library.page_edit %}
+                        <li class="pure-menu-item"><a href="{% url "homepage_edit" %}" class="pure-menu-link">{% trans "edit homepage"|capfirst %}</a></li>
+                    {% endif %}
+                {% endif %}
             </div>
         </div>
 

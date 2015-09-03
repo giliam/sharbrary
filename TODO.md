@@ -59,6 +59,8 @@ TODO
 
 * *Notation on books : adds notation system with grades from 0 to 5.*
 
+* *Homepage*
+
 * **Write unit tests:**
 
     * **Library**
@@ -86,7 +88,5 @@ TODO
         * *End date before beginning date ?*
 
     * **Security**
-
-* **Homepage**
 
 * Add a borrowing button on book list that display different copies existing.

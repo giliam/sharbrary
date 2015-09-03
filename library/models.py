@@ -181,6 +181,9 @@ class Opinion(models.Model):
 
     value = models.PositiveIntegerField(choices=OPINION_NOTATION_VALUES)
 
+    def __unicode__(self):
+        return _("%(author)s rated %(book)s of %(value)s") % {'book':self.book, 'author':self.author.username, 'value':self.value}
+
     class Meta:
         verbose_name = _("opinion")
         verbose_name_plural = _("opinions")
@@ -192,3 +195,22 @@ class Opinion(models.Model):
         )
         default_permissions = []
         ordering = ['book__title','author__username']
+
+class Page(models.Model):
+    name = models.CharField(max_length=200,verbose_name=_('name of the page'))
+    content = models.TextField(verbose_name=_('content of the page'),default="")
+
+    def __unicode__(self):
+        return _("Page %(name)s") % {'name':self.name}
+
+    class Meta:
+        verbose_name = _("page")
+        verbose_name_plural = _("pages")
+        permissions = (
+            ("page_new", "Create a page"),
+            ("page_edit", "Edit a page"),
+            ("page_moderate", "Moderate a page"),
+            ("page_delete", "Delete a page"),
+        )
+        default_permissions = []
+        ordering = ['name']

@@ -19,6 +19,8 @@ urlpatterns = patterns('',
   url(r'^ownership/delete/(?P<pk>\d+)$', permission_required('library.owernship_delete')(views.OwnershipDelete.as_view()), name='ownership_delete'),
 
   url(r'^research/$', permission_required('library.book_list')(views.book_research), name='book_research'),
+
+  url(r'^homepage/edit/$', permission_required('library.page_edit')(views.homepage_edit), name='homepage_edit'),
  
   url(r'^author/$', permission_required('library.author_list')(views.AuthorList.as_view()), name='author_list'),
   url(r'^author/detail/(?P<author_id>\d+)$', permission_required('library.author_detail')(views.author_detail), name='author_detail'),

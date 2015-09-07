@@ -19,3 +19,18 @@ class CommonTestCase(TestCase):
         add_perms_to_person(self.bib,perms,AUTHORIZED_STANDARD_MODELS)
         add_perms_to_person(self.bab,perms,AUTHORIZED_STANDARD_MODELS)
         add_perms_to_person(self.bub,perms,AUTHORIZED_READONLY_MODELS)
+
+# Creates a decorator for functions.
+def with_login_user(username_="bob",password_=False):
+    def wrapper_creator(func):
+        def wrapped(self, *args, **kwargs):
+            # Default password is the username
+            if not password_ or password_ is None:
+                password = username_
+            else:
+                password = password_
+            # Login
+            self.client.login(username=username_,password=password)
+            return func(self, *args, **kwargs)
+        return wrapped
+    return wrapper_creator

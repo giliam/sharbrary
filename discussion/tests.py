@@ -5,13 +5,13 @@ from django.utils import timezone
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import Group
 
-from utils.tests.common_test_case import CommonTestCase
+from utils.tests.common_test_case import CommonTestCase, with_login_user
 
 from discussion.models import Discussion, Message
 
 class DiscussionTestCase(CommonTestCase):
+    @with_login_user()
     def test_creation(self):
-        self.client.login(username='bob', password='bob')
         data = {
             'title': 'Sujet de conversation',
         }
@@ -28,17 +28,15 @@ class DiscussionTestCase(CommonTestCase):
         # Then check if the book has been created
         response = self.client.get(reverse('discussion_list'))
         self.assertQuerysetEqual(response.context['discussions'].all(),[repr(discussion)])
-        self.client.logout()
 
+    @with_login_user('bub')
     def test_creation_no_right(self):
-        self.client.login(username='bub', password='bub')
         response = self.client.post(reverse('discussion_new'))
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, '/sharing/login/?next=/discussion/discussion/new')
-        self.client.logout()
 
+    @with_login_user()
     def test_deletion(self):
-        self.client.login(username='bob', password='bob')
         discussion = Discussion.objects.create(title='La vie et le reste')
         
         response = self.client.get(reverse('discussion_list'))
@@ -55,18 +53,16 @@ class DiscussionTestCase(CommonTestCase):
         # Then check if the book has been created
         response = self.client.get(reverse('discussion_list'))
         self.assertQuerysetEqual(response.context['discussions'].all(),[])
-        self.client.logout()
 
+    @with_login_user('bub')
     def test_deletion_no_right(self):
-        self.client.login(username='bub', password='bub')
         discussion = Discussion.objects.create(title='La vie et le reste')
         response = self.client.post(reverse('discussion_delete',args=[discussion.id]),{})
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, '/sharing/login/?next=' + reverse('discussion_delete',args=[discussion.id]))
-        self.client.logout()
 
+    @with_login_user()
     def test_update(self):
-        self.client.login(username='bob', password='bob')
         discussion = Discussion.objects.create(title='La vie et le reste')
         data = {
             'title': 'Les etoiles',
@@ -80,7 +76,6 @@ class DiscussionTestCase(CommonTestCase):
         except Discussion.DoesNotExist:
             discussion = None    
         self.assertIsNotNone(discussion)
-        self.client.logout()
 
 
 class MessageTestCase(CommonTestCase):
@@ -88,8 +83,8 @@ class MessageTestCase(CommonTestCase):
         super(MessageTestCase,self).setUp()
         self.discussion = Discussion.objects.create(title='La vie et le reste',author=self.bib)
 
+    @with_login_user()
     def test_creation(self):
-        self.client.login(username='bob', password='bob')
         data = {
             'message': 'Lorem ipsum lala bobium rasam est nivudae.',
         }
@@ -106,17 +101,15 @@ class MessageTestCase(CommonTestCase):
         # Then check if the book has been created
         response = self.client.get(reverse('discussion_detail',args=[self.discussion.id]))
         self.assertQuerysetEqual(response.context['messages_discussion'].all(),[repr(message)])
-        self.client.logout()
 
+    @with_login_user('bub')
     def test_creation_no_right(self):
-        self.client.login(username='bub', password='bub')
         response = self.client.post(reverse('message_new',args=[self.discussion.id]))
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, '/sharing/login/?next=' + reverse('message_new',args=[self.discussion.id]))
-        self.client.logout()
 
+    @with_login_user()
     def test_deletion(self):
-        self.client.login(username='bob', password='bob')
         message = Message.objects.create(discussion=self.discussion,message='Les pommes de terre sont cuites.')
         
         response = self.client.get(reverse('discussion_detail',args=[self.discussion.id]))
@@ -133,26 +126,23 @@ class MessageTestCase(CommonTestCase):
         # Then check if the book has been created
         response = self.client.get(reverse('discussion_detail',args=[self.discussion.id]))
         self.assertQuerysetEqual(response.context['messages_discussion'].all(),[])
-        self.client.logout()
-
+    
+    @with_login_user('bub')
     def test_deletion_no_right(self):
-        self.client.login(username='bub', password='bub')
         message = Message.objects.create(discussion=self.discussion,message='Tout va bien ici !')
         response = self.client.post(reverse('message_delete',args=[message.id]),{})
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, '/sharing/login/?next=' + reverse('message_delete',args=[message.id]))
-        self.client.logout()
 
+    @with_login_user('bib')
     def test_deletion_not_my_message(self):
-        self.client.login(username='bib', password='bib')
         message = Message.objects.create(discussion=self.discussion,message='Yoplait !',author=self.bob)
         response = self.client.post(reverse('message_delete',args=[message.id]),{})
         # only moderators can delete messages
         self.assertEqual(response.status_code, 403)
-        self.client.logout()
 
+    @with_login_user('bib')
     def test_update(self):
-        self.client.login(username='bib', password='bib')
         message = Message.objects.create(discussion=self.discussion,message='La vie et le reste',author=self.bib)
         data = {
             'message': 'Les etoiles',
@@ -166,10 +156,9 @@ class MessageTestCase(CommonTestCase):
         except Message.DoesNotExist:
             message = None    
         self.assertIsNotNone(message)
-        self.client.logout()
 
+    @with_login_user('bib')
     def test_update_not_my_message(self):
-        self.client.login(username='bib', password='bib')
         message = Message.objects.create(discussion=self.discussion,message='Yoplait !',author=self.bob)
         data = {
             'message': 'Salut les amis, ça ne passera jamais de toute façon...',
@@ -182,4 +171,3 @@ class MessageTestCase(CommonTestCase):
         except Message.DoesNotExist:
             message = None    
         self.assertIsNone(message)
-        self.client.logout()

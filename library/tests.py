@@ -7,7 +7,7 @@ from django.db.models import Q
 from library.models import Book, Author, Ownership, Editor, Theme, Period
 from library.views import determine_new_ownership_necessary
 
-from utils.tests.common_test_case import CommonTestCase
+from utils.tests.common_test_case import CommonTestCase, with_login_user
 
 import datetime
 
@@ -38,8 +38,8 @@ class AuthorTestCase(CommonTestCase):
         author.deathdate = None
         self.assertRaises(Exception, author.save())
 
+    @with_login_user('bob')
     def test_creation(self):
-        self.client.login(username='bob', password='bob')
         data = {
             'firstname': 'Robert',
             'lastname': 'Dure',
@@ -61,8 +61,8 @@ class AuthorTestCase(CommonTestCase):
         self.assertQuerysetEqual(response.context['authors'].all(),[repr(author), repr(self.author_keats), repr(self.author_zola)])
         self.client.logout()
 
+    @with_login_user('bob')
     def test_deletion(self):
-        self.client.login(username='bob', password='bob')
         data = {
             'firstname': 'Robert',
             'lastname': 'Dure',
@@ -87,8 +87,8 @@ class AuthorTestCase(CommonTestCase):
         self.assertQuerysetEqual(response.context['authors'].all(),[repr(self.author_keats), repr(self.author_zola)])
         self.client.logout()
 
+    @with_login_user('bob')
     def test_update(self):
-        self.client.login(username='bob', password='bob')
         data = {
             'firstname': 'Robert',
             'lastname': 'Dure',
@@ -106,16 +106,16 @@ class AuthorTestCase(CommonTestCase):
         self.assertIsNotNone(author)
         self.client.logout()
 
+    @with_login_user('bub')
     def test_creation_no_right(self):
-        self.client.login(username='bub', password='bub')
         response = self.client.post(reverse('author_new'))
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, '/sharing/login/?next=/library/author/new')
         self.client.logout()
 
 class EditorTestCase(CommonTestCase):
+    @with_login_user('bob')
     def test_creation(self):
-        self.client.login(username='bob', password='bob')
         data = {
             'name': 'Gallimard',
         }
@@ -134,8 +134,8 @@ class EditorTestCase(CommonTestCase):
         self.assertQuerysetEqual(response.context['editors'].all(),[repr(editor)])
         self.client.logout()
 
+    @with_login_user('bob')
     def test_deletion(self):
-        self.client.login(username='bob', password='bob')
         editor = Editor.objects.create(name='Dargaud')
         
         response = self.client.get(reverse('editor_list'))
@@ -154,8 +154,8 @@ class EditorTestCase(CommonTestCase):
         self.assertQuerysetEqual(response.context['editors'].all(),[])
         self.client.logout()
 
+    @with_login_user('bob')
     def test_update(self):
-        self.client.login(username='bob', password='bob')
         editor = Editor.objects.create(name='Dargaud')
         data = {
             'name': 'La pleiade',
@@ -171,8 +171,8 @@ class EditorTestCase(CommonTestCase):
         self.assertIsNotNone(editor)
         self.client.logout()
 
+    @with_login_user('bub')
     def test_creation_no_right(self):
-        self.client.login(username='bub', password='bub')
         response = self.client.post(reverse('editor_new'))
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, '/sharing/login/?next=/library/editor/new')
@@ -180,8 +180,8 @@ class EditorTestCase(CommonTestCase):
 
 
 class ThemeTestCase(CommonTestCase):
+    @with_login_user('bob')
     def test_creation(self):
-        self.client.login(username='bob', password='bob')
         data = {
             'name': 'Romantisme',
         }
@@ -200,8 +200,8 @@ class ThemeTestCase(CommonTestCase):
         self.assertQuerysetEqual(response.context['themes'].all(),[repr(theme)])
         self.client.logout()
 
+    @with_login_user('bob')
     def test_deletion(self):
-        self.client.login(username='bob', password='bob')
         theme = Theme.objects.create(name='Romantisme')
         
         response = self.client.get(reverse('theme_list'))
@@ -220,8 +220,8 @@ class ThemeTestCase(CommonTestCase):
         self.assertQuerysetEqual(response.context['themes'].all(),[])
         self.client.logout()
 
+    @with_login_user('bob')
     def test_update(self):
-        self.client.login(username='bob', password='bob')
         theme = Theme.objects.create(name='Romantisme')
         data = {
             'name': 'Les Lumieres',
@@ -237,8 +237,8 @@ class ThemeTestCase(CommonTestCase):
         self.assertIsNotNone(theme)
         self.client.logout()
 
+    @with_login_user('bub')
     def test_creation_no_right(self):
-        self.client.login(username='bub', password='bub')
         response = self.client.post(reverse('theme_new'))
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, '/sharing/login/?next=/library/theme/new')
@@ -247,8 +247,8 @@ class ThemeTestCase(CommonTestCase):
 
 
 class PeriodTestCase(CommonTestCase):
+    @with_login_user('bob')
     def test_creation(self):
-        self.client.login(username='bob', password='bob')
         data = {
             'name': 'Romantisme',
         }
@@ -267,8 +267,8 @@ class PeriodTestCase(CommonTestCase):
         self.assertQuerysetEqual(response.context['periods'].all(),[repr(period)])
         self.client.logout()
 
+    @with_login_user('bob')
     def test_deletion(self):
-        self.client.login(username='bob', password='bob')
         period = Period.objects.create(name='Romantisme')
         
         response = self.client.get(reverse('period_list'))
@@ -287,8 +287,8 @@ class PeriodTestCase(CommonTestCase):
         self.assertQuerysetEqual(response.context['periods'].all(),[])
         self.client.logout()
 
+    @with_login_user('bob')
     def test_update(self):
-        self.client.login(username='bob', password='bob')
         period = Period.objects.create(name='Romantisme')
         data = {
             'name': 'Les Lumieres',
@@ -304,8 +304,8 @@ class PeriodTestCase(CommonTestCase):
         self.assertIsNotNone(period)
         self.client.logout()
 
+    @with_login_user('bub')
     def test_creation_no_right(self):
-        self.client.login(username='bub', password='bub')
         response = self.client.post(reverse('period_new'))
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, '/sharing/login/?next=/library/period/new')
@@ -314,9 +314,9 @@ class PeriodTestCase(CommonTestCase):
 
 
 class OwnershipTestCase(CommonTestCase):
+    @with_login_user('bob')
     def test_book_new_owners(self):
         """Test if the creation of a book creates the ownerships associated"""
-        self.client.login(username='bob', password='bob')
         data = {
             'title': 'An interesting test book',
             'owners': {
@@ -365,9 +365,9 @@ class OwnershipTestCase(CommonTestCase):
         existing_ownership.save()
         self.assertFalse(determine_new_ownership_necessary(ownership,existing_ownership))
 
+    @with_login_user('bib')
     def test_add_book_no_ownership(self):
         """Test the view adding a book to a library"""
-        self.client.login(username='bib', password='bib')
         book = Book(title="Some really annoying book")
         book.save()
 
@@ -389,9 +389,9 @@ class OwnershipTestCase(CommonTestCase):
 
         self.client.logout()
 
+    @with_login_user('bib')
     def test_add_book_other_ownership_someone_else(self):
         """Test the view adding a book to a library"""
-        self.client.login(username='bib', password='bib')
         book = Book(title="Some really annoying book")
         book.save()
         existing_ownership = Ownership(owner=self.bob,book=book,copies=10)
@@ -419,9 +419,9 @@ class OwnershipTestCase(CommonTestCase):
         
         self.client.logout()
 
+    @with_login_user('bib')
     def test_add_book_new_other_ownership(self):
         """Test the view adding a book to a library"""
-        self.client.login(username='bib', password='bib')
         book = Book(title="Some really annoying book")
         book.save()
         existing_ownership = Ownership(owner=self.bib,book=book,copies=10)
@@ -450,8 +450,8 @@ class OwnershipTestCase(CommonTestCase):
         self.client.logout()
 
 
+    @with_login_user('bib')
     def test_book_remove_from_my_library_not_mine(self):
-        self.client.login(username='bib', password='bib')
         
         book = Book(title="The Hitchhikers guide to Django Unit Tests without special caracter")
         book.save()
@@ -466,8 +466,8 @@ class OwnershipTestCase(CommonTestCase):
 
         self.client.logout()
 
+    @with_login_user('bib')
     def test_book_remove_from_my_library(self):
-        self.client.login(username='bib', password='bib')
         
         book = Book(title="The Hitchhikers guide to bloblob Tests without special caracter")
         book.save()
@@ -483,8 +483,8 @@ class OwnershipTestCase(CommonTestCase):
 
         self.client.logout()
 
+    @with_login_user('bib')
     def test_book_no_owners(self):
-        self.client.login(username='bib', password='bib')
         
         book = Book(title="The Bloubiboulga's guide to bloblob Tests")
         book.save()

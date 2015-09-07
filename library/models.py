@@ -198,6 +198,7 @@ class Opinion(models.Model):
 
 class Page(models.Model):
     name = models.CharField(max_length=200,verbose_name=_('name of the page'))
+    title = models.CharField(max_length=200,verbose_name=_('title of the page'))
     content = models.TextField(verbose_name=_('content of the page'),default="")
 
     def __unicode__(self):

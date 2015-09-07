@@ -81,6 +81,7 @@ TEMPLATES = [
                 'library.context_processors.urls_processor',
                 'library.context_processors.profiles_processor',
                 'library.context_processors.research_form_processor',
+                'library.context_processors.header_processor',
             ],
         },
     },

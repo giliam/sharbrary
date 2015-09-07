@@ -5,6 +5,7 @@
 {% endblock %}
 {% block body %} 
 {% load wysiwyg %}
+<p><a href="{% url "homepage_edit" %}">{% trans "edit homepage"|capfirst %}</a> or <a href="{% url "header_edit" %}">{% trans "edit header"|capfirst %}</a></p>
 <form class="pure-form pure-form-stacked" method="post"><fieldset>{% csrf_token %}
     {{ form.as_p }}
     {% wysiwyg_editor "id_content" %}

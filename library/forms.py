@@ -20,4 +20,4 @@ class ResearchForm(forms.Form):
 class PageForm(forms.ModelForm):
     class Meta:
         model = Page
-        fields = ('content',)
+        fields = ('title', 'content',)

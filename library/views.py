@@ -438,15 +438,15 @@ def book_rate(request, book_id, value):
     return HttpResponse(json.dumps({"value":value}),content_type="application/json")
 
 @permission_required('library.page_edit')
-def homepage_edit(request):
+def homepage_edit(request,page_name="homepage"):
     """
     Edit the home page
     """
     try:
-        homepage = Page.objects.get(name="homepage")
+        homepage = Page.objects.get(name=page_name)
     except Page.DoesNotExist:
         homepage = Page()
-        homepage.name = 'homepage'
+        homepage.name = page_name
 
     if request.method == "POST":
         form_homepage = PageForm(request.POST,instance=homepage)

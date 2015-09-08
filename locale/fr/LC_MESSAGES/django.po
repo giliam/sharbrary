@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-03 17:02+0200\n"
+"POT-Creation-Date: 2015-09-08 13:37+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -76,6 +76,10 @@ msgstr "%(title)s a bien été mis-à-jour !"
 #: .\discussion\views.py:74
 msgid "The message was updated successfully"
 msgstr "Le message a bien été mis-à-jour !"
+
+#: .\library\context_processors.py:30
+msgid "A library online for sharing books between friends."
+msgstr "Une bibliothèque en ligne pour partager ses livres entre amis."
 
 #: .\library\models.py:9
 msgid "DO NOT READ IT"
@@ -250,19 +254,23 @@ msgid "name of the page"
 msgstr "nom de la page"
 
 #: .\library\models.py:201
+msgid "title of the page"
+msgstr "titre de la page"
+
+#: .\library\models.py:202
 msgid "content of the page"
 msgstr "contenu de la page"
 
-#: .\library\models.py:204
+#: .\library\models.py:205
 #, python-format
 msgid "Page %(name)s"
 msgstr "Page %(name)s"
 
-#: .\library\models.py:207
+#: .\library\models.py:208
 msgid "page"
 msgstr "page"
 
-#: .\library\models.py:208
+#: .\library\models.py:209
 msgid "pages"
 msgstr "pages"
 
@@ -370,11 +378,11 @@ msgstr "Valeur impossible !"
 msgid "The new user has been successfully added !"
 msgstr "Le nouvel utilisateur a bien été créé !"
 
-#: .\sharbrary\settings.py:127
+#: .\sharbrary\settings.py:128
 msgid "Français"
 msgstr "Français"
 
-#: .\sharbrary\settings.py:128
+#: .\sharbrary\settings.py:129
 msgid "English"
 msgstr "Anglais"
 
@@ -677,7 +685,7 @@ msgstr "changer la langue"
 #: .\templates\library\editor_form.html:5
 #: .\templates\library\ownership_confirm_delete.html:5
 #: .\templates\library\ownership_form.html:11
-#: .\templates\library\page_form.html:11
+#: .\templates\library\page_form.html:12
 #: .\templates\library\period_confirm_delete.html:5
 #: .\templates\library\period_form.html:5
 #: .\templates\library\theme_confirm_delete.html:5
@@ -739,13 +747,9 @@ msgstr "admin"
 msgid "add user"
 msgstr "ajouter un utilisateur"
 
-#: .\templates\base\layout.html:86
+#: .\templates\base\layout.html:86 .\templates\library\page_form.html:8
 msgid "edit homepage"
 msgstr "modifier la page d'accueil"
-
-#: .\templates\base\layout.html:95
-msgid "A library online for sharing books between friends."
-msgstr "Une bibliothèque en ligne pour partager ses livres entre amis."
 
 #: .\templates\base\login.html:6
 msgid "unknown user or wrong password. "
@@ -1001,6 +1005,10 @@ msgstr "ajouter à ma bibliothèque"
 #: .\templates\sharing\profile_show.html:24
 msgid "no book in this library !"
 msgstr "pas de livre dans cette bibliothèque"
+
+#: .\templates\library\page_form.html:8
+msgid "edit header"
+msgstr "modifier les entêtes"
 
 #: .\templates\mails\sharing\queue_book_ready.html:8
 msgid "hello !"

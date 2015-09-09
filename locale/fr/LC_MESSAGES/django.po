@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-08 13:37+0200\n"
+"POT-Creation-Date: 2015-09-09 09:32+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -585,10 +585,10 @@ msgid ""
 "little bit tricky but once explained, you will find it naturally simple."
 msgstr ""
 "Cette bibliothèque est séparée en deux parties : la bibliothèque et le "
-"système de partage. Les deux parties interagissent ensemble et vous ne "
+"système de partage. Les deux parties interagissent entre elles et vous ne "
 "pourrez probablement pas utiliser l'une sans l'autre. Le système de "
 "possession de livre peut paraître un peu étrange au premier abord mais une "
-"fois expliqué, vous devriez le trouver naturel et simple."
+"fois expliqué, vous devriez le trouver naturel et simple !"
 
 #: .\templates\base\howto.html:8
 msgid "The library"
@@ -605,23 +605,30 @@ msgid ""
 "list</a>, you can see different options (depending on your permission "
 "level). You can edit a book or delete it.</p>"
 msgstr ""
-"<p>La bibliothèque contient des livres (ouf). Ceux-ci ont un titre<span "
-"class=\"required_symbol\">*</span>, une date de publication, un auteur. Vous "
-"pouvez aussi relier le livre à des thèmes généraux ou à des mouvements "
-"littéraires. Chaque livre peut être possédé par plusieurs personnes et "
-"chaque personne peut disposer de plusieurs copies du même bouquin, avec "
-"différentes éditions ou couvertures. Quand vous allez sur <a href=\"%"
-"(book_list_url)s\">la liste des livres</a>, vous pouvez voir différentes "
-"options (selon vos permissions). Vous pouvez par exemple modifier ou "
-"supprimer un livre..</p>"
+"<p>La bibliothèque contient des livres (ouf). Ceux-ci peuvent être retrouvés "
+"par leur titre<span class=\"required_symbol\">*</span>, leur date de "
+"publication, le nom de leur auteur ainsi que par des thèmes généraux ou "
+"mouvements littéraires. Chaque livre peut être mis à disposition par "
+"plusieurs personnes qui elles-mêmes peuvent disposer de plusieurs "
+"exemplaires du même bouquin, avec différentes éditions ou couvertures. C'est "
+"en cliquant sur <a href=\"%(book_list_url)s\">la liste des livres</a>, que "
+"vous pourrez voir différentes options comme modifier ou supprimer un livre.</"
+"p>"
 
 #: .\templates\base\howto.html:13
 msgid ""
 "When you delete a book, you also delete all the ownerships and the lendings "
-"linked to a book, so do it carefully !"
+"linked to a book, so do it carefully ! If you want to <strong>remove it</"
+"strong> from your library without deleting the book in the database, you can "
+"use the <span class=\"pure-button pure-button-xsmall pure-button-warning"
+"\">remove</span> button. If you have enough privileges, you will be then "
+"also allowed to remove it from others libraries."
 msgstr ""
-"Quand vous supprimez un livre, vous supprimez aussi tous les exemplaires et "
-"les prêts qui lui sont liés, alors attention !"
+"Attention !  Supprimer un livre  supprime aussi tous les exemplaires et les prêts "
+"qui lui sont liés ! Si vous voulez <strong>l'enlever</strong> sans supprimer "
+"l'ouvrage de référence, vous pouvez utiliser le bouton <span class=\"pure-button pure-"
+"button-xsmall pure-button-warning\">enlever</span>. Si vous avez les bons "
+"privilèges, vous pourrez aussi le retirer d'autres bibliothèques.</p>"
 
 #: .\templates\base\howto.html:15
 msgid ""
@@ -632,25 +639,18 @@ msgid ""
 "You will then have the chance to specify how many copies you have. If you "
 "want, you can also add a specific editor, a specific cover or insert some "
 "comments. This way, the book is added to your own library and everyone now "
-"knows that you have one copy of it.</p><p>If you want to <strong>remove it</"
-"strong> from your library without deleting the book in the database, you can "
-"use the <span class=\"pure-button pure-button-xsmall pure-button-warning"
-"\">remove</span> button. If you have enough privileges, you will be then "
-"also allowed to remove it from others libraries.</p>"
+"knows that you have one copy of it.</p>"
 msgstr ""
-"<p>Vous pouvez aussi <strong>ajouter des livres</strong> à votre propre, "
-"bibliothèque : ces livres, appartenant à d'autres bibliothèques, ont déjà "
-"été ajoutés à la base de données. Vous n'avez donc pas besoin de les créer "
-"il vous suffit d'appuyer sur <span class=\"pure-button pure-button-xsmall "
+"<p>Voilà qui vous concerne si vous possédez un livre déjà présenté sur le site. "
+"Vous pouvez aussi <strong>ajouter des livres</strong> à votre propre, "
+"bibliothèque : ces livres, appartenant à la bibliothèque d'autres internautes "
+", ont déjà été ajoutés à la base de données. Vous n'avez donc pas besoin de les "
+"créer il vous suffit d'appuyer sur <span class=\"pure-button pure-button-xsmall "
 "pure-button-success\">ajouter</span> à votre bibliothèque. Vous aurez alors "
-"la possibilité d'indiquer de combien de copies vous disposez. Vous pourrez "
-"aussi spécifier un éditeur, une couverture différente ou ajouter des "
+"la possibilité d'indiquer de combien d'exemplaires vous disposez. Vous pourrez "
+"aussi spécifier un nom d'éditeur, une couverture différente ou ajouter des "
 "commentaires. De cette façon, le livre aura été ajouté à votre propre "
-"bibliothèque et tout le monde verra les informations que vous avez rentrées. "
-"</p><p>Si vous voulez <strong>l'enlever</strong> sans supprimer l'ouvrage de "
-"référence, vous pouvez utiliser le bouton <span class=\"pure-button pure-"
-"button-xsmall pure-button-warning\">enlever</span>. Si vous avez les bons "
-"privilèges, vous pourrez aussi le retirer d'autres bibliothèques.</p>"
+"bibliothèque et tout le monde verra les informations que vous aurez ajoutées.</p>"
 
 #: .\templates\base\howto.html:17
 msgid "The sharing system"
@@ -837,7 +837,7 @@ msgstr "rendre"
 #: .\templates\library\book_detail.html:84
 #: .\templates\library\book_detail.html:129
 #: .\templates\library\book_detail.html:150
-#: .\templates\library\book_embed_list.html:60
+#: .\templates\library\book_embed_list.html:61
 #: .\templates\library\editor_list.html:26
 #: .\templates\library\period_list.html:25
 #: .\templates\library\theme_list.html:25
@@ -856,7 +856,7 @@ msgstr "modifier"
 #: .\templates\library\book_detail.html:87
 #: .\templates\library\book_detail.html:132
 #: .\templates\library\book_detail.html:153
-#: .\templates\library\book_embed_list.html:73
+#: .\templates\library\book_embed_list.html:74
 #: .\templates\library\editor_list.html:29
 #: .\templates\library\period_list.html:28
 #: .\templates\library\theme_list.html:28
@@ -954,13 +954,13 @@ msgstr "options"
 
 #: .\templates\library\book_detail.html:74
 #: .\templates\library\book_detail.html:76
-#: .\templates\library\book_embed_list.html:64
-#: .\templates\library\book_embed_list.html:66
+#: .\templates\library\book_embed_list.html:65
+#: .\templates\library\book_embed_list.html:67
 msgid "remove"
 msgstr "retirer"
 
 #: .\templates\library\book_detail.html:80
-#: .\templates\library\book_embed_list.html:70
+#: .\templates\library\book_embed_list.html:71
 msgid "add"
 msgstr "ajouter"
 
@@ -991,16 +991,16 @@ msgid "no queue ongoing !"
 msgstr "pas de liste d'attente !"
 
 #: .\templates\library\book_embed_list.html:5
-#: .\templates\library\book_embed_list.html:87
+#: .\templates\library\book_embed_list.html:88
 msgid "new book"
 msgstr "nouveau livre"
 
 #: .\templates\library\book_embed_list.html:6
-#: .\templates\library\book_embed_list.html:88
+#: .\templates\library\book_embed_list.html:89
 msgid "add to my library"
 msgstr "ajouter à ma bibliothèque"
 
-#: .\templates\library\book_embed_list.html:80
+#: .\templates\library\book_embed_list.html:81
 #: .\templates\sharing\dashboard.html:22
 #: .\templates\sharing\profile_show.html:24
 msgid "no book in this library !"
@@ -1055,6 +1055,13 @@ msgid ""
 msgstr ""
 "Vous avez choisi une date passée alors que cet exemplaire est déjà prêté (ou "
 "sera prêté) à %(lendings)s !"
+
+#~ msgid ""
+#~ "When you delete a book, you also delete all the ownerships and the "
+#~ "lendings linked to a book, so do it carefully !"
+#~ msgstr ""
+#~ "Quand vous supprimez un livre, vous supprimez aussi tous les exemplaires "
+#~ "et les prêts qui lui sont liés, alors attention !"
 
 #~ msgid "owned by"
 #~ msgstr "détenu par"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-09 09:32+0200\n"
+"POT-Creation-Date: 2015-09-10 11:18+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,27 +17,27 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: .\discussion\models.py:20 .\library\models.py:113
-#: .\templates\discussion\discussion_list.html:9
+#: .\templates\discussion\discussion_list.html:10
 #: .\templates\library\book_embed_list.html:9
-#: .\templates\sharing\queue_list.html:9
+#: .\templates\sharing\queue_list.html:10
 msgid "title"
 msgstr "titre"
 
 #: .\discussion\models.py:22 .\discussion\models.py:50 .\library\models.py:179
-#: .\templates\discussion\discussion_list.html:14
-#: .\templates\sharing\queue_list.html:14
+#: .\templates\discussion\discussion_list.html:15
+#: .\templates\sharing\queue_list.html:15
 msgid "date added"
 msgstr "date d'ajout"
 
 #: .\discussion\models.py:23 .\discussion\models.py:51
-#: .\templates\discussion\discussion_list.html:19
-#: .\templates\sharing\queue_list.html:19
+#: .\templates\discussion\discussion_list.html:20
+#: .\templates\sharing\queue_list.html:20
 msgid "date updated"
 msgstr "dernière modification"
 
 #: .\discussion\models.py:25 .\discussion\models.py:53 .\library\models.py:35
 #: .\library\models.py:117 .\library\models.py:177
-#: .\templates\library\book_detail.html:8
+#: .\templates\library\book_detail.html:9
 #: .\templates\library\book_embed_list.html:12
 msgid "author"
 msgstr "auteur"
@@ -46,12 +46,13 @@ msgstr "auteur"
 msgid "status of the topic"
 msgstr "statut du fil de discussion"
 
-#: .\discussion\models.py:33 .\templates\discussion\discussion_detail.html:3
+#: .\discussion\models.py:33 .\templates\discussion\discussion_detail.html:2
+#: .\templates\discussion\discussion_detail.html:4
 msgid "discussion"
 msgstr "discussion"
 
 #: .\discussion\models.py:34 .\templates\base\layout.html:63
-#: .\templates\discussion\discussion_list.html:3
+#: .\templates\discussion\discussion_list.html:4
 msgid "discussions"
 msgstr "discussions"
 
@@ -113,11 +114,11 @@ msgstr "prénom"
 msgid "lastname"
 msgstr "nom"
 
-#: .\library\models.py:20 .\templates\library\author_list.html:14
+#: .\library\models.py:20 .\templates\library\author_list.html:15
 msgid "birthdate"
 msgstr "date de naissance"
 
-#: .\library\models.py:21 .\templates\library\author_list.html:19
+#: .\library\models.py:21 .\templates\library\author_list.html:20
 msgid "date of death"
 msgstr "date de mort"
 
@@ -137,27 +138,27 @@ msgid "Death date should be greater than birthdate"
 msgstr "La mort de la personne se passe après sa naissance !"
 
 #: .\library\models.py:36 .\templates\base\layout.html:53
-#: .\templates\library\author_list.html:3
+#: .\templates\library\author_list.html:4
 msgid "authors"
 msgstr "auteurs"
 
 #: .\library\models.py:49 .\library\models.py:70 .\library\models.py:92
-#: .\templates\library\author_list.html:9
-#: .\templates\library\period_list.html:9
-#: .\templates\library\theme_list.html:9
+#: .\templates\library\author_list.html:10
+#: .\templates\library\period_list.html:10
+#: .\templates\library\theme_list.html:10
 msgid "name"
 msgstr "nom"
 
 #: .\library\models.py:54 .\library\models.py:57 .\library\models.py:121
 #: .\library\models.py:155 .\library\views.py:229
-#: .\templates\library\book_detail.html:14
+#: .\templates\library\book_detail.html:15
 #: .\templates\library\book_embed_list.html:15
-#: .\templates\library\editor_list.html:9
+#: .\templates\library\editor_list.html:10
 msgid "editor"
 msgstr "editeur"
 
 #: .\library\models.py:58 .\templates\base\layout.html:54
-#: .\templates\library\editor_list.html:3
+#: .\templates\library\editor_list.html:4
 msgid "editors"
 msgstr "editeurs"
 
@@ -166,8 +167,8 @@ msgid "theme"
 msgstr "thème"
 
 #: .\library\models.py:79 .\library\models.py:118
-#: .\templates\base\layout.html:55 .\templates\library\book_detail.html:20
-#: .\templates\library\theme_list.html:3
+#: .\templates\base\layout.html:55 .\templates\library\book_detail.html:21
+#: .\templates\library\theme_list.html:4
 msgid "themes"
 msgstr "thème"
 
@@ -176,8 +177,8 @@ msgid "period"
 msgstr "période"
 
 #: .\library\models.py:101 .\library\models.py:119
-#: .\templates\base\layout.html:56 .\templates\library\book_detail.html:32
-#: .\templates\library\period_list.html:3
+#: .\templates\base\layout.html:56 .\templates\library\book_detail.html:33
+#: .\templates\library\period_list.html:4
 msgid "periods"
 msgstr "périodes"
 
@@ -190,28 +191,28 @@ msgid "date added to the library"
 msgstr "date d'ajout à la bibliothèque"
 
 #: .\library\models.py:122 .\library\models.py:157 .\library\views.py:232
-#: .\templates\library\book_detail.html:11
+#: .\templates\library\book_detail.html:12
 msgid "cover"
 msgstr "couverture"
 
-#: .\library\models.py:123 .\templates\library\book_detail.html:44
+#: .\library\models.py:123 .\templates\library\book_detail.html:45
 msgid "summary"
 msgstr "résumé"
 
 #: .\library\models.py:125 .\library\models.py:149
-#: .\templates\sharing\lending_list.html:20
+#: .\templates\sharing\lending_list.html:21
 msgid "owner"
 msgstr "propriétaire"
 
 #: .\library\models.py:131 .\library\models.py:148 .\library\models.py:176
-#: .\templates\sharing\lending_list.html:15
+#: .\templates\sharing\lending_list.html:16
 msgid "book"
 msgstr "livre"
 
 #: .\library\models.py:132 .\templates\base\layout.html:40
 #: .\templates\library\book_embed_list.html:2
-#: .\templates\sharing\dashboard.html:4
-#: .\templates\sharing\profile_show.html:9
+#: .\templates\sharing\dashboard.html:5
+#: .\templates\sharing\profile_show.html:10
 msgid "books"
 msgstr "livres"
 
@@ -402,8 +403,8 @@ msgstr "Mot de passe"
 msgid "Confirm password"
 msgstr "Confirmation du mot de passe"
 
-#: .\sharing\models.py:14 .\templates\sharing\borrower_list.html:13
-#: .\templates\sharing\profile_show.html:5
+#: .\sharing\models.py:14 .\templates\sharing\borrower_list.html:14
+#: .\templates\sharing\profile_show.html:6
 msgid "informations"
 msgstr "informations"
 
@@ -419,8 +420,8 @@ msgstr ""
 "Le numéro de téléphone doit être entré avec le format : 0123456789.Vous "
 "pouvez utiliser jusqu'à 10 chiffres."
 
-#: .\sharing\models.py:17 .\templates\sharing\borrower_list.html:17
-#: .\templates\sharing\profile_show.html:8
+#: .\sharing\models.py:17 .\templates\sharing\borrower_list.html:18
+#: .\templates\sharing\profile_show.html:9
 msgid "phone number"
 msgstr "numéro de téléphone"
 
@@ -428,7 +429,8 @@ msgstr "numéro de téléphone"
 msgid "locale language"
 msgstr "changer la langue"
 
-#: .\sharing\models.py:24 .\templates\sharing\profile_show.html:3
+#: .\sharing\models.py:24 .\templates\sharing\profile_show.html:2
+#: .\templates\sharing\profile_show.html:4
 msgid "profile"
 msgstr "profil"
 
@@ -437,8 +439,8 @@ msgid "profiles"
 msgstr "profils"
 
 #: .\sharing\models.py:37 .\sharing\models.py:69
-#: .\templates\sharing\borrower_list.html:9
-#: .\templates\sharing\lending_list.html:25
+#: .\templates\sharing\borrower_list.html:10
+#: .\templates\sharing\lending_list.html:26
 msgid "borrower"
 msgstr "emprunteur"
 
@@ -463,12 +465,12 @@ msgstr "prêts"
 msgid "lendings"
 msgstr "prêts"
 
-#: .\sharing\models.py:82 .\templates\library\book_detail.html:143
+#: .\sharing\models.py:82 .\templates\library\book_detail.html:144
 msgid "queue"
 msgstr "liste d'attente"
 
 #: .\sharing\models.py:83 .\templates\base\layout.html:64
-#: .\templates\sharing\queue_list.html:3
+#: .\templates\sharing\queue_list.html:4
 msgid "queues"
 msgstr "listes d'attente"
 
@@ -532,11 +534,15 @@ msgstr "Vous avez bien été ajouté dans la liste d'attente pour cet ouvrage !"
 msgid "%(book_copy)s was updated successfully"
 msgstr "%(book_copy)s a bien été mis-à-jour !"
 
-#: .\templates\403.html:3
+#: .\templates\403.html:2
+msgid "403 error"
+msgstr "erreur 403"
+
+#: .\templates\403.html:4
 msgid "403 - outfit not fit!"
 msgstr "403 - pas le droit du droit !"
 
-#: .\templates\403.html:5
+#: .\templates\403.html:6
 msgid ""
 "This is totally forbidden...or maybe the link was obsolete or misplaced. "
 "Please tell the admins. Please. What did I do wrong ?"
@@ -545,39 +551,55 @@ msgstr ""
 "bien vous avez triché ! Envoyez un mail aux admins. Dites-leur. Pas que vous "
 "avez triché mais que vous êtes arrivé ici. S'il vous plait."
 
-#: .\templates\404.html:3
+#: .\templates\404.html:2
+msgid "404 not found"
+msgstr "404 page introuvable"
+
+#: .\templates\404.html:4
 msgid "404 - coffey machine not found!"
 msgstr "404 - machine à café introuvable !"
 
-#: .\templates\404.html:5
+#: .\templates\404.html:6
 msgid "You probably got lost. I'm sorry for you !"
 msgstr "Vous vous êtes probablement perdu. Désolé !"
 
-#: .\templates\500.html:3
+#: .\templates\500.html:2
+msgid "500 error"
+msgstr "erreur 500"
+
+#: .\templates\500.html:4
 msgid "500 - server mood not allowing!"
 msgstr "500 - le serveur n'est pas d'humeur !"
 
-#: .\templates\500.html:5
+#: .\templates\500.html:6
 msgid "The server seems to be mad at someone. What did you do?"
 msgstr "Le serveur semble être en colère contre quelqu'un. Qu'avez-vous fait ?"
 
-#: .\templates\base\convention.html:3 .\templates\base\index.html:3
+#: .\templates\base\convention.html:2
+msgid "convention"
+msgstr "accord"
+
+#: .\templates\base\convention.html:4 .\templates\base\index.html:4
 msgid "Welcome !"
 msgstr "Bienvenue !"
 
-#: .\templates\base\convention.html:6
+#: .\templates\base\convention.html:7
 msgid "Again !"
 msgstr "Encore !"
 
-#: .\templates\base\howto.html:3
+#: .\templates\base\howto.html:2
+msgid "how-to"
+msgstr "tutoriel"
+
+#: .\templates\base\howto.html:4
 msgid "How to use this online library"
 msgstr "Comment utiliser cette bibliothèque en ligne"
 
-#: .\templates\base\howto.html:4
+#: .\templates\base\howto.html:5
 msgid "General informations"
 msgstr "Informations générales"
 
-#: .\templates\base\howto.html:6
+#: .\templates\base\howto.html:7
 msgid ""
 "This library is divided in two parts: the real library on the one hand and "
 "the sharing system on the other hand. Both part do interact and you probably "
@@ -590,11 +612,11 @@ msgstr ""
 "possession de livre peut paraître un peu étrange au premier abord mais une "
 "fois expliqué, vous devriez le trouver naturel et simple !"
 
-#: .\templates\base\howto.html:8
+#: .\templates\base\howto.html:9
 msgid "The library"
 msgstr "La bibliothèque"
 
-#: .\templates\base\howto.html:11
+#: .\templates\base\howto.html:12
 #, python-format
 msgid ""
 "<p>The library contains books. These books have a title<span class="
@@ -615,7 +637,7 @@ msgstr ""
 "vous pourrez voir différentes options comme modifier ou supprimer un livre.</"
 "p>"
 
-#: .\templates\base\howto.html:13
+#: .\templates\base\howto.html:14
 msgid ""
 "When you delete a book, you also delete all the ownerships and the lendings "
 "linked to a book, so do it carefully ! If you want to <strong>remove it</"
@@ -624,13 +646,14 @@ msgid ""
 "\">remove</span> button. If you have enough privileges, you will be then "
 "also allowed to remove it from others libraries."
 msgstr ""
-"Attention !  Supprimer un livre  supprime aussi tous les exemplaires et les prêts "
-"qui lui sont liés ! Si vous voulez <strong>l'enlever</strong> sans supprimer "
-"l'ouvrage de référence, vous pouvez utiliser le bouton <span class=\"pure-button pure-"
-"button-xsmall pure-button-warning\">enlever</span>. Si vous avez les bons "
-"privilèges, vous pourrez aussi le retirer d'autres bibliothèques.</p>"
+"Attention !  Supprimer un livre  supprime aussi tous les exemplaires et les "
+"prêts qui lui sont liés ! Si vous voulez <strong>l'enlever</strong> sans "
+"supprimer l'ouvrage de référence, vous pouvez utiliser le bouton <span class="
+"\"pure-button pure-button-xsmall pure-button-warning\">enlever</span>. Si "
+"vous avez les bons privilèges, vous pourrez aussi le retirer d'autres "
+"bibliothèques.</p>"
 
-#: .\templates\base\howto.html:15
+#: .\templates\base\howto.html:16
 msgid ""
 "<p>You can also <strong>add books</strong> to your own library: these books, "
 "that belongs to other libraries, have already been added to the database. "
@@ -641,60 +664,66 @@ msgid ""
 "comments. This way, the book is added to your own library and everyone now "
 "knows that you have one copy of it.</p>"
 msgstr ""
-"<p>Voilà qui vous concerne si vous possédez un livre déjà présenté sur le site. "
-"Vous pouvez aussi <strong>ajouter des livres</strong> à votre propre, "
-"bibliothèque : ces livres, appartenant à la bibliothèque d'autres internautes "
-", ont déjà été ajoutés à la base de données. Vous n'avez donc pas besoin de les "
-"créer il vous suffit d'appuyer sur <span class=\"pure-button pure-button-xsmall "
-"pure-button-success\">ajouter</span> à votre bibliothèque. Vous aurez alors "
-"la possibilité d'indiquer de combien d'exemplaires vous disposez. Vous pourrez "
-"aussi spécifier un nom d'éditeur, une couverture différente ou ajouter des "
-"commentaires. De cette façon, le livre aura été ajouté à votre propre "
-"bibliothèque et tout le monde verra les informations que vous aurez ajoutées.</p>"
+"<p>Voilà qui vous concerne si vous possédez un livre déjà présenté sur le "
+"site. Vous pouvez aussi <strong>ajouter des livres</strong> à votre propre, "
+"bibliothèque : ces livres, appartenant à la bibliothèque d'autres "
+"internautes , ont déjà été ajoutés à la base de données. Vous n'avez donc "
+"pas besoin de les créer il vous suffit d'appuyer sur <span class=\"pure-"
+"button pure-button-xsmall pure-button-success\">ajouter</span> à votre "
+"bibliothèque. Vous aurez alors la possibilité d'indiquer de combien "
+"d'exemplaires vous disposez. Vous pourrez aussi spécifier un nom d'éditeur, "
+"une couverture différente ou ajouter des commentaires. De cette façon, le "
+"livre aura été ajouté à votre propre bibliothèque et tout le monde verra les "
+"informations que vous aurez ajoutées.</p>"
 
-#: .\templates\base\howto.html:17
+#: .\templates\base\howto.html:18
 msgid "The sharing system"
 msgstr "Le système de partage"
 
-#: .\templates\base\howto.html:19
+#: .\templates\base\howto.html:20
 msgid "<p>Sharing books is pretty simple. .</p>"
 msgstr "<p>Partager des livres est très simple.</p>"
 
-#: .\templates\base\index.html:12
+#: .\templates\base\index.html:2
+msgid "homepage"
+msgstr "page d'accueil"
+
+#: .\templates\base\index.html:13
 msgid "last books added"
 msgstr "derniers livres ajoutés"
 
-#: .\templates\base\index.html:18
+#: .\templates\base\index.html:19
 msgid "best books"
 msgstr "meilleurs livres"
 
-#: .\templates\base\lang_change.html:3 .\templates\base\layout.html:35
+#: .\templates\base\lang_change.html:2 .\templates\base\lang_change.html:4
+#: .\templates\base\layout.html:35
 msgid "change the language"
 msgstr "changer la langue"
 
-#: .\templates\base\lang_change.html:12
-#: .\templates\discussion\discussion_confirm_delete.html:5
-#: .\templates\discussion\discussion_form.html:5
-#: .\templates\discussion\message_form.html:11
-#: .\templates\library\author_confirm_delete.html:5
-#: .\templates\library\author_form.html:5
-#: .\templates\library\book_confirm_delete.html:5
-#: .\templates\library\book_form.html:11 .\templates\library\book_list.html:5
-#: .\templates\library\book_remove_from_library.html:6
-#: .\templates\library\editor_confirm_delete.html:5
-#: .\templates\library\editor_form.html:5
-#: .\templates\library\ownership_confirm_delete.html:5
-#: .\templates\library\ownership_form.html:11
-#: .\templates\library\page_form.html:12
-#: .\templates\library\period_confirm_delete.html:5
-#: .\templates\library\period_form.html:5
-#: .\templates\library\theme_confirm_delete.html:5
-#: .\templates\library\theme_form.html:5
-#: .\templates\sharing\lending_confirm_delete.html:5
-#: .\templates\sharing\lending_form.html:5
-#: .\templates\sharing\member_form.html:14
-#: .\templates\sharing\queue_confirm_delete.html:5
-#: .\templates\sharing\queue_form.html:5
+#: .\templates\base\lang_change.html:13
+#: .\templates\discussion\discussion_confirm_delete.html:6
+#: .\templates\discussion\discussion_form.html:6
+#: .\templates\discussion\message_form.html:12
+#: .\templates\library\author_confirm_delete.html:6
+#: .\templates\library\author_form.html:6
+#: .\templates\library\book_confirm_delete.html:6
+#: .\templates\library\book_form.html:12 .\templates\library\book_list.html:6
+#: .\templates\library\book_remove_from_library.html:7
+#: .\templates\library\editor_confirm_delete.html:6
+#: .\templates\library\editor_form.html:6
+#: .\templates\library\ownership_confirm_delete.html:6
+#: .\templates\library\ownership_form.html:12
+#: .\templates\library\page_form.html:13
+#: .\templates\library\period_confirm_delete.html:6
+#: .\templates\library\period_form.html:6
+#: .\templates\library\theme_confirm_delete.html:6
+#: .\templates\library\theme_form.html:6
+#: .\templates\sharing\lending_confirm_delete.html:6
+#: .\templates\sharing\lending_form.html:6
+#: .\templates\sharing\member_form.html:15
+#: .\templates\sharing\queue_confirm_delete.html:6
+#: .\templates\sharing\queue_form.html:6
 msgid "Submit"
 msgstr "Valider"
 
@@ -710,7 +739,7 @@ msgstr "bibliothèque"
 msgid "sharing"
 msgstr "partage"
 
-#: .\templates\base\layout.html:65 .\templates\sharing\borrower_list.html:3
+#: .\templates\base\layout.html:65 .\templates\sharing\borrower_list.html:4
 msgid "borrowers"
 msgstr "emprunteurs"
 
@@ -723,11 +752,12 @@ msgstr "utilisateur"
 msgid "Connected as %(username)s"
 msgstr "Connecté en tant que %(username)s"
 
-#: .\templates\base\layout.html:73 .\templates\sharing\dashboard.html:3
+#: .\templates\base\layout.html:73 .\templates\sharing\dashboard.html:2
+#: .\templates\sharing\dashboard.html:4
 msgid "dashboard"
 msgstr "tableau de bord"
 
-#: .\templates\base\layout.html:74
+#: .\templates\base\layout.html:74 .\templates\sharing\member_form.html:2
 msgid "edit profile"
 msgstr "modifier le profil"
 
@@ -735,7 +765,7 @@ msgstr "modifier le profil"
 msgid "log out"
 msgstr "se déconnecter"
 
-#: .\templates\base\layout.html:77 .\templates\base\login.html:3
+#: .\templates\base\layout.html:77 .\templates\base\login.html:4
 msgid "log in"
 msgstr "se connecter"
 
@@ -747,28 +777,32 @@ msgstr "admin"
 msgid "add user"
 msgstr "ajouter un utilisateur"
 
-#: .\templates\base\layout.html:86 .\templates\library\page_form.html:8
+#: .\templates\base\layout.html:86 .\templates\library\page_form.html:9
 msgid "edit homepage"
 msgstr "modifier la page d'accueil"
 
-#: .\templates\base\login.html:6
+#: .\templates\base\login.html:2 .\templates\base\login.html.py:16
+#: .\templates\base\password_reset.html:12
+msgid "login"
+msgstr "connexion"
+
+#: .\templates\base\login.html:7
 msgid "unknown user or wrong password. "
 msgstr "utilisateur inconnu ou mot de passe incorrect."
 
-#: .\templates\base\login.html:10 .\templates\base\password_reset.html:6
-#: .\templates\base\password_reset_complete.html:6
-#: .\templates\base\password_reset_done.html:6
+#: .\templates\base\login.html:11 .\templates\base\password_reset.html:7
+#: .\templates\base\password_reset_complete.html:7
+#: .\templates\base\password_reset_done.html:7
 #, python-format
 msgid "You are successfully connected, %(username)s !"
 msgstr "Vous êtes bien connecté, %(username)s !"
 
-#: .\templates\base\login.html:15 .\templates\base\password_reset.html:11
-msgid "login"
-msgstr "connexion"
-
-#: .\templates\base\login.html:17 .\templates\base\password_reset.html:4
-#: .\templates\base\password_reset_complete.html:4
-#: .\templates\base\password_reset_done.html:4
+#: .\templates\base\login.html:18 .\templates\base\password_reset.html:2
+#: .\templates\base\password_reset.html:5
+#: .\templates\base\password_reset_complete.html:2
+#: .\templates\base\password_reset_complete.html:5
+#: .\templates\base\password_reset_done.html:2
+#: .\templates\base\password_reset_done.html:5
 msgid "reset your password"
 msgstr "Mot de passe oublié ?"
 
@@ -785,11 +819,11 @@ msgstr "Page %(page_number)s sur %(num_pages)s"
 msgid "next"
 msgstr "suivante"
 
-#: .\templates\base\password_reset_complete.html:8
+#: .\templates\base\password_reset_complete.html:9
 msgid "Your password has successfully been changed! You can now log in!"
 msgstr "Votre mot de passe a bien été modifié ! Vous pouvez vous connecter !"
 
-#: .\templates\base\password_reset_done.html:8
+#: .\templates\base\password_reset_done.html:9
 msgid "An email has been sent to you with all the instructions!"
 msgstr "Un message vous a été envoyé pour changer votre mot de passe !"
 
@@ -798,24 +832,24 @@ msgid "borrowings"
 msgstr "emprunts"
 
 #: .\templates\common\borrowings.html:11 .\templates\common\lendings.html:11
-#: .\templates\library\book_detail.html:10
-#: .\templates\library\book_detail.html:16
-#: .\templates\library\book_detail.html:19
-#: .\templates\library\book_detail.html:107
+#: .\templates\library\book_detail.html:11
+#: .\templates\library\book_detail.html:17
+#: .\templates\library\book_detail.html:20
 #: .\templates\library\book_detail.html:108
 #: .\templates\library\book_detail.html:109
-#: .\templates\library\book_detail.html:147
-#: .\templates\library\book_detail.html:169
+#: .\templates\library\book_detail.html:110
+#: .\templates\library\book_detail.html:148
+#: .\templates\library\book_detail.html:170
 #: .\templates\library\book_embed_list.html:38
 #: .\templates\library\book_embed_list.html:42
 #: .\templates\library\book_embed_list.html:43
 #: .\templates\library\book_embed_list.html:46
 #: .\templates\library\book_embed_list.html:48
-#: .\templates\sharing\borrower_list.html:28
-#: .\templates\sharing\dashboard.html:7
-#: .\templates\sharing\lending_list.html:51
+#: .\templates\sharing\borrower_list.html:29
+#: .\templates\sharing\dashboard.html:8
 #: .\templates\sharing\lending_list.html:52
-#: .\templates\sharing\profile_show.html:12
+#: .\templates\sharing\lending_list.html:53
+#: .\templates\sharing\profile_show.html:13
 msgid "unknown"
 msgstr "inconnu"
 
@@ -825,45 +859,45 @@ msgid "<strong>%(book)s</strong> from <em>%(owner)s</em>"
 msgstr "<strong>%(book)s</strong> appartenant à <em>%(owner)s</em>"
 
 #: .\templates\common\borrowings.html:15 .\templates\common\lendings.html:14
-#: .\templates\sharing\lending_list.html:57
+#: .\templates\sharing\lending_list.html:58
 msgid "give back"
 msgstr "rendre"
 
 #: .\templates\common\borrowings.html:18 .\templates\common\lendings.html:17
-#: .\templates\discussion\discussion_detail.html:19
-#: .\templates\discussion\discussion_list.html:44
-#: .\templates\library\author_detail.html:9
-#: .\templates\library\author_list.html:44
-#: .\templates\library\book_detail.html:84
-#: .\templates\library\book_detail.html:129
-#: .\templates\library\book_detail.html:150
+#: .\templates\discussion\discussion_detail.html:20
+#: .\templates\discussion\discussion_list.html:45
+#: .\templates\library\author_detail.html:10
+#: .\templates\library\author_list.html:45
+#: .\templates\library\book_detail.html:85
+#: .\templates\library\book_detail.html:130
+#: .\templates\library\book_detail.html:151
 #: .\templates\library\book_embed_list.html:61
-#: .\templates\library\editor_list.html:26
-#: .\templates\library\period_list.html:25
-#: .\templates\library\theme_list.html:25
-#: .\templates\sharing\dashboard.html:14
-#: .\templates\sharing\lending_list.html:62
-#: .\templates\sharing\profile_show.html:16
-#: .\templates\sharing\queue_list.html:39
+#: .\templates\library\editor_list.html:27
+#: .\templates\library\period_list.html:26
+#: .\templates\library\theme_list.html:26
+#: .\templates\sharing\dashboard.html:15
+#: .\templates\sharing\lending_list.html:63
+#: .\templates\sharing\profile_show.html:17
+#: .\templates\sharing\queue_list.html:40
 msgid "edit"
 msgstr "modifier"
 
 #: .\templates\common\borrowings.html:21 .\templates\common\lendings.html:20
-#: .\templates\discussion\discussion_detail.html:22
-#: .\templates\discussion\discussion_list.html:47
-#: .\templates\library\author_detail.html:12
-#: .\templates\library\author_list.html:47
-#: .\templates\library\book_detail.html:87
-#: .\templates\library\book_detail.html:132
-#: .\templates\library\book_detail.html:153
+#: .\templates\discussion\discussion_detail.html:23
+#: .\templates\discussion\discussion_list.html:48
+#: .\templates\library\author_detail.html:13
+#: .\templates\library\author_list.html:48
+#: .\templates\library\book_detail.html:88
+#: .\templates\library\book_detail.html:133
+#: .\templates\library\book_detail.html:154
 #: .\templates\library\book_embed_list.html:74
-#: .\templates\library\editor_list.html:29
-#: .\templates\library\period_list.html:28
-#: .\templates\library\theme_list.html:28
-#: .\templates\sharing\dashboard.html:17
-#: .\templates\sharing\lending_list.html:65
-#: .\templates\sharing\profile_show.html:19
-#: .\templates\sharing\queue_list.html:42
+#: .\templates\library\editor_list.html:30
+#: .\templates\library\period_list.html:29
+#: .\templates\library\theme_list.html:29
+#: .\templates\sharing\dashboard.html:18
+#: .\templates\sharing\lending_list.html:66
+#: .\templates\sharing\profile_show.html:20
+#: .\templates\sharing\queue_list.html:43
 msgid "delete"
 msgstr "supprimer"
 
@@ -873,19 +907,19 @@ msgstr "pas d'emprunts en cours !"
 
 #: .\templates\common\borrowings.html:30 .\templates\common\lendings.html:30
 #: .\templates\common\lendings.html:32
-#: .\templates\discussion\discussion_detail.html:5
-#: .\templates\discussion\discussion_detail.html:36
-#: .\templates\discussion\discussion_list.html:57
-#: .\templates\library\author_list.html:57
-#: .\templates\library\book_detail.html:96
-#: .\templates\library\book_detail.html:166
-#: .\templates\library\book_detail.html:171
-#: .\templates\library\editor_list.html:39
-#: .\templates\library\period_list.html:38
-#: .\templates\library\theme_list.html:38
-#: .\templates\sharing\dashboard.html:26
-#: .\templates\sharing\lending_list.html:75
-#: .\templates\sharing\queue_list.html:52
+#: .\templates\discussion\discussion_detail.html:6
+#: .\templates\discussion\discussion_detail.html:37
+#: .\templates\discussion\discussion_list.html:58
+#: .\templates\library\author_list.html:58
+#: .\templates\library\book_detail.html:97
+#: .\templates\library\book_detail.html:167
+#: .\templates\library\book_detail.html:172
+#: .\templates\library\editor_list.html:40
+#: .\templates\library\period_list.html:39
+#: .\templates\library\theme_list.html:39
+#: .\templates\sharing\dashboard.html:27
+#: .\templates\sharing\lending_list.html:76
+#: .\templates\sharing\queue_list.html:53
 msgid "new"
 msgstr "ajouter"
 
@@ -901,114 +935,206 @@ msgstr ""
 msgid "no lendings ongoing !"
 msgstr "pas de prêts en cours !"
 
-#: .\templates\discussion\discussion_confirm_delete.html:4
-#: .\templates\library\author_confirm_delete.html:4
-#: .\templates\library\book_confirm_delete.html:4
-#: .\templates\library\book_remove_from_library.html:4
-#: .\templates\library\editor_confirm_delete.html:4
-#: .\templates\library\ownership_confirm_delete.html:4
-#: .\templates\library\period_confirm_delete.html:4
-#: .\templates\library\theme_confirm_delete.html:4
-#: .\templates\sharing\lending_confirm_delete.html:4
-#: .\templates\sharing\queue_confirm_delete.html:4
+#: .\templates\discussion\discussion_confirm_delete.html:2
+msgid "delete a discussion"
+msgstr "supprimer une discussion"
+
+#: .\templates\discussion\discussion_confirm_delete.html:5
+#: .\templates\library\author_confirm_delete.html:5
+#: .\templates\library\book_confirm_delete.html:5
+#: .\templates\library\book_remove_from_library.html:5
+#: .\templates\library\editor_confirm_delete.html:5
+#: .\templates\library\ownership_confirm_delete.html:5
+#: .\templates\library\period_confirm_delete.html:5
+#: .\templates\library\theme_confirm_delete.html:5
+#: .\templates\sharing\lending_confirm_delete.html:5
+#: .\templates\sharing\queue_confirm_delete.html:5
 #, python-format
 msgid "Are you sure you want to delete \"%(object)s\" ?"
 msgstr "Êtes-vous certain que vous souhaitez supprimer \"%(object)s\" ?"
 
-#: .\templates\discussion\discussion_detail.html:11
+#: .\templates\discussion\discussion_detail.html:12
 msgid "written by: "
 msgstr "écrit par : "
 
-#: .\templates\discussion\discussion_detail.html:12
+#: .\templates\discussion\discussion_detail.html:13
 msgid "at: "
 msgstr "à : "
 
-#: .\templates\discussion\discussion_detail.html:14
+#: .\templates\discussion\discussion_detail.html:15
 msgid "last update: "
 msgstr "dernière modification : "
 
-#: .\templates\discussion\discussion_detail.html:31
-#: .\templates\library\book_detail.html:29
-#: .\templates\library\book_detail.html:41
-#: .\templates\sharing\borrower_list.html:27
+#: .\templates\discussion\discussion_detail.html:32
+#: .\templates\library\book_detail.html:30
+#: .\templates\library\book_detail.html:42
+#: .\templates\sharing\borrower_list.html:28
 msgid "empty"
 msgstr "vide"
 
-#: .\templates\discussion\discussion_list.html:41
-#: .\templates\library\author_list.html:41
+#: .\templates\discussion\discussion_form.html:2
+msgid "discussion form"
+msgstr "discussion - formulaire"
+
+#: .\templates\discussion\discussion_list.html:2
+msgid "discussion list"
+msgstr "discussions"
+
+#: .\templates\discussion\discussion_list.html:42
+#: .\templates\library\author_list.html:42
 msgid "detail"
 msgstr "détails"
 
-#: .\templates\library\book_detail.html:17
+#: .\templates\discussion\message_form.html:2
+msgid "message form"
+msgstr "message - formulaire"
+
+#: .\templates\library\author_confirm_delete.html:2
+msgid "delete an author"
+msgstr "supprimer un auteur"
+
+#: .\templates\library\author_form.html:2
+msgid "author form"
+msgstr "auteur - formulaire"
+
+#: .\templates\library\author_list.html:2
+msgid "author list"
+msgstr "auteurs"
+
+#: .\templates\library\book_confirm_delete.html:2
+msgid "delete a book"
+msgstr "supprimer un livre"
+
+#: .\templates\library\book_detail.html:18
 #: .\templates\library\book_embed_list.html:18
 msgid "published"
 msgstr "publié"
 
-#: .\templates\library\book_detail.html:46
+#: .\templates\library\book_detail.html:47
 msgid "not filled yet"
 msgstr "pas encore rempli"
 
-#: .\templates\library\book_detail.html:70
+#: .\templates\library\book_detail.html:71
 msgid "options"
 msgstr "options"
 
-#: .\templates\library\book_detail.html:74
-#: .\templates\library\book_detail.html:76
+#: .\templates\library\book_detail.html:75
+#: .\templates\library\book_detail.html:77
 #: .\templates\library\book_embed_list.html:65
 #: .\templates\library\book_embed_list.html:67
 msgid "remove"
 msgstr "retirer"
 
-#: .\templates\library\book_detail.html:80
+#: .\templates\library\book_detail.html:81
 #: .\templates\library\book_embed_list.html:71
 msgid "add"
 msgstr "ajouter"
 
-#: .\templates\library\book_detail.html:109
+#: .\templates\library\book_detail.html:110
 #, python-format
 msgid "%(owner)s (%(nbcopies)s)"
 msgstr "%(owner)s (%(nbcopies)s)"
 
-#: .\templates\library\book_detail.html:116
+#: .\templates\library\book_detail.html:117
 msgid "no comment on this book"
 msgstr "pas de commentaire sur ce livre"
 
-#: .\templates\library\book_detail.html:123
+#: .\templates\library\book_detail.html:124
 msgid "add to queue"
 msgstr "ajouter à la liste d'attente"
 
-#: .\templates\library\book_detail.html:126
+#: .\templates\library\book_detail.html:127
 msgid "borrow"
 msgstr "emprunter"
 
-#: .\templates\library\book_detail.html:147
+#: .\templates\library\book_detail.html:148
 #, python-format
 msgid "<strong>%(book)s</strong> to <em>%(borrower)s</em>"
 msgstr "<strong>%(book)s</strong> à <em>%(borrower)s</em>"
 
-#: .\templates\library\book_detail.html:158
+#: .\templates\library\book_detail.html:159
 msgid "no queue ongoing !"
 msgstr "pas de liste d'attente !"
 
 #: .\templates\library\book_embed_list.html:5
-#: .\templates\library\book_embed_list.html:88
+#: .\templates\library\book_embed_list.html:89
 msgid "new book"
 msgstr "nouveau livre"
 
 #: .\templates\library\book_embed_list.html:6
-#: .\templates\library\book_embed_list.html:89
+#: .\templates\library\book_embed_list.html:90
 msgid "add to my library"
 msgstr "ajouter à ma bibliothèque"
 
-#: .\templates\library\book_embed_list.html:81
-#: .\templates\sharing\dashboard.html:22
-#: .\templates\sharing\profile_show.html:24
+#: .\templates\library\book_embed_list.html:83
+#: .\templates\sharing\dashboard.html:23
+#: .\templates\sharing\profile_show.html:25
 msgid "no book in this library !"
 msgstr "pas de livre dans cette bibliothèque"
 
-#: .\templates\library\page_form.html:8
+#: .\templates\library\book_form.html:2
+msgid "book form"
+msgstr "livre - formulaire"
+
+#: .\templates\library\book_list.html:2
+msgid "book list"
+msgstr "livres"
+
+#: .\templates\library\book_remove_from_library.html:2
+msgid "remove a book from library"
+msgstr "retirer le livre d'une bibliothèque"
+
+#: .\templates\library\editor_confirm_delete.html:2
+msgid "delete an editor"
+msgstr "supprimer un éditeur"
+
+#: .\templates\library\editor_form.html:2
+msgid "editor form"
+msgstr "editeur - formulaire"
+
+#: .\templates\library\editor_list.html:2
+msgid "editor list"
+msgstr "editeurs"
+
+#: .\templates\library\ownership_confirm_delete.html:2
+msgid "delete a copy"
+msgstr "supprimer un exemplaire"
+
+#: .\templates\library\ownership_form.html:2
+msgid "ownership form"
+msgstr "exemplaire - formulaire"
+
+#: .\templates\library\page_form.html:2
+msgid "page form"
+msgstr "page - formulaire"
+
+#: .\templates\library\page_form.html:9
 msgid "edit header"
 msgstr "modifier les entêtes"
+
+#: .\templates\library\period_confirm_delete.html:2
+msgid "delete a period"
+msgstr "supprimer une période"
+
+#: .\templates\library\period_form.html:2
+msgid "period form"
+msgstr "période - formulaire"
+
+#: .\templates\library\period_list.html:2
+msgid "period list"
+msgstr "périodes"
+
+#: .\templates\library\theme_confirm_delete.html:2
+msgid "delete a theme"
+msgstr "supprimer un thème"
+
+#: .\templates\library\theme_form.html:2
+msgid "theme form"
+msgstr "thème - formulaire"
+
+#: .\templates\library\theme_list.html:2
+msgid "theme list"
+msgstr "thèmes"
 
 #: .\templates\mails\sharing\queue_book_ready.html:8
 msgid "hello !"
@@ -1023,24 +1149,52 @@ msgstr ""
 "Votre livre, <strong>%(book)s</strong>, appartenant à <strong>%(owner)s</"
 "strong>, est disponible !"
 
-#: .\templates\sharing\dashboard.html:11
+#: .\templates\sharing\borrower_list.html:2
+msgid "borrower list"
+msgstr "emprunteurs"
+
+#: .\templates\sharing\dashboard.html:12
 msgid "lend"
 msgstr "prêter"
 
-#: .\templates\sharing\lending_list.html:4
-#: .\templates\sharing\lending_list.html:8
+#: .\templates\sharing\lending_confirm_delete.html:2
+msgid "delete a lending"
+msgstr "supprimer un prêt"
+
+#: .\templates\sharing\lending_form.html:2
+msgid "lending form"
+msgstr "prêt - formulaire"
+
+#: .\templates\sharing\lending_list.html:2
+msgid "lending list"
+msgstr "prêts"
+
+#: .\templates\sharing\lending_list.html:5
+#: .\templates\sharing\lending_list.html:9
 msgid "lendings ongoing"
 msgstr "prêts en cours"
 
-#: .\templates\sharing\lending_list.html:5
-#: .\templates\sharing\lending_list.html:7
+#: .\templates\sharing\lending_list.html:6
+#: .\templates\sharing\lending_list.html:8
 msgid "all lendings"
 msgstr "tous les prêts"
 
-#: .\templates\sharing\lending_list.html:30
-#: .\templates\sharing\lending_list.html:35
+#: .\templates\sharing\lending_list.html:31
+#: .\templates\sharing\lending_list.html:36
 msgid "dates"
 msgstr "dates"
+
+#: .\templates\sharing\queue_confirm_delete.html:2
+msgid "delete a queue"
+msgstr "se retirer de la liste d'attente"
+
+#: .\templates\sharing\queue_form.html:2
+msgid "queue form"
+msgstr "liste d'attente - formulaire"
+
+#: .\templates\sharing\queue_list.html:2
+msgid "queue list"
+msgstr "listes d'attente"
 
 #: .\utils\models\availability.py:20
 #, python-format

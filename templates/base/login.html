@@ -1,4 +1,5 @@
 {% extends "layout.html" %}
+{% block title %}{{ block.super }} - {% trans "login"|capfirst %}{% endblock %}
 {% block body %} 
 <h1>{% trans "log in"|capfirst %}</h1>
 

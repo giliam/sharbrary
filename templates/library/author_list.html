@@ -1,4 +1,5 @@
 {% extends "layout.html" %}
+{% block title %}{{ block.super }} - {% trans "author list"|capfirst %}{% endblock %}
 {% block body %} 
 <h1>{% trans "authors"|capfirst %}</h1>
 <table class="pure-table pure-table-bordered">

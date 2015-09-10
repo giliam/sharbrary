@@ -1,4 +1,5 @@
 {% extends "layout.html" %}
+{% block title %}{{ block.super }} - {% trans "profile"|capfirst %} - {{ profile.user.username }}{% endblock %}
 {% block body %} 
 <h1>{% trans "profile"|capfirst %}</h1>
 <p>{{ profile.user.username }}</p>

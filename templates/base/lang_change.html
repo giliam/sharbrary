@@ -1,4 +1,5 @@
 {% extends "layout.html" %}
+{% block title %}{{ block.super }} - {% trans "change the language"|capfirst %}{% endblock %}
 {% block body %} 
 <h1>{% trans "change the language"|capfirst %}</h1>
 <form action="{% url 'set_language' %}" method="post">

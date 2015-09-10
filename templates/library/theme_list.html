@@ -1,4 +1,5 @@
 {% extends "layout.html" %}
+{% block title %}{{ block.super }} - {% trans "theme list"|capfirst %}{% endblock %}
 {% block body %} 
 <h1>{% trans "themes"|capfirst %}</h1>
 <table class="pure-table pure-table-bordered">

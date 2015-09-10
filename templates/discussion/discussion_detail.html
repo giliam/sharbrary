@@ -1,4 +1,5 @@
 {% extends "layout.html" %}
+{% block title %}{{ block.super }} - {% trans "discussion"|capfirst %} - {{ discussion.title }}{% endblock %}
 {% block body %} 
 <h1>{% trans "discussion"|capfirst %} - {{ discussion.title }}</h1>
 {% if perms.discussion.message_new %}

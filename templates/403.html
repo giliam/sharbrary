@@ -1,4 +1,5 @@
 {% extends "layout.html" %}
+{% block title %}{{ block.super }} - {% trans "403 error"|capfirst %}{% endblock %}
 {% block body %} 
 <h1>{% trans "403 - outfit not fit!" %}</h1>
 <p>

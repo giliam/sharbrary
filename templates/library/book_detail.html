@@ -1,4 +1,5 @@
 {% extends "layout.html" %}
+{% block title %}{{ block.super }} - {{ book.title }}{% endblock %}
 {% load utils_extras %}
 {% load available_extras %}
 {% block body %} 

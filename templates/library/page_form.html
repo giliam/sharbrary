@@ -1,4 +1,5 @@
 {% extends "layout.html" %}
+{% block title %}{{ block.super }} - {% trans "page form"|capfirst %}{% endblock %}
 {% block header_addons %}
     {% load wysiwyg %}
     {% wysiwyg_setup %}

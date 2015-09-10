@@ -1,4 +1,5 @@
 {% extends "layout.html" %}
+{% block title %}{{ block.super }} - {% trans "editor form"|capfirst %}{% endblock %}
 {% block body %} 
 <form class="pure-form pure-form-stacked" method="post"><fieldset>{% csrf_token %}
     {{ form.as_p }}

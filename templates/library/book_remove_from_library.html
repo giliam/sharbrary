@@ -1,4 +1,5 @@
 {% extends "layout.html" %}
+{% block title %}{{ block.super }} - {% trans "remove a book from library"|capfirst %}{% endblock %}
 {% block body %} 
 <form class="pure-form pure-form-stacked" method="post"><fieldset>{% csrf_token %}
     {% blocktrans %}Are you sure you want to delete "{{ object }}" ?{% endblocktrans %}

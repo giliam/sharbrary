@@ -1,4 +1,5 @@
 {% extends "layout.html" %}
+{% block title %}{{ block.super }} - {% trans "lending list"|capfirst %}{% endblock %}
 {% block body %} 
 {% if request.resolver_match.url_name == 'lending_list' %}
 <h1>{% trans "lendings ongoing"|capfirst %}</h1>

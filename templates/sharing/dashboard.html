@@ -1,4 +1,5 @@
 {% extends "layout.html" %}
+{% block title %}{{ block.super }} - {% trans "dashboard"|capfirst %}{% endblock %}
 {% block body %} 
 <h1>{% trans "dashboard"|capfirst %}</h1>
 <h3>{% trans "books"|capfirst %}</h3>

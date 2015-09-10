@@ -19,7 +19,7 @@
         <a href="?sort_by=publishing_date&order=desc" class="fa fa-sort-desc"></a></span>
     </p>
 {% endif %}
-
+{% if books|length > 0 %}
 <div class="book_collection pure-g">
     {% for book in books %}
     <div class="book pure-u-1-6">
@@ -76,10 +76,11 @@
             {% endif %}
         {% endif %}
     </div>
-    {% empty %}
-    <p>{% trans "no book in this library !"|capfirst %}</p>
     {% endfor %}
 </div>
+{% else %}
+    <p>{% trans "no book in this library !"|capfirst %}</p>
+{% endif %}
 <div style="clear: both;"></div>
 {% if not display_only_list %}
     {% include "common/pagination.html" %}

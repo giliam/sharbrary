@@ -189,3 +189,53 @@ div .picture {
         margin-top: -15px;
     }
 }
+
+#menu {
+    background: white;
+}
+
+#menu .pure-menu-heading {
+    background: #B70000;
+}
+
+#menu .pure-menu-item a.pure-menu-link {
+    color:black;
+}
+
+#menu .pure-menu-item:hover {
+    background: #FFD400;
+}
+
+#menu .pure-menu .pure-menu-item a.pure-menu-link:hover {
+    background: #FFD400;
+    color:black;
+}
+
+.header h2 {
+    color: #B70000;
+}
+
+body {
+    color:black;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffdd32+0,fff070+53,ffefc6+100 */
+    background: #ffdd32; /* Old browsers */
+    background: -moz-linear-gradient(left,  #ffdd32 0%, #fff070 53%, #ffefc6 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%,#ffdd32), color-stop(53%,#fff070), color-stop(100%,#ffefc6)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(left,  #ffdd32 0%,#fff070 53%,#ffefc6 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(left,  #ffdd32 0%,#fff070 53%,#ffefc6 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(left,  #ffdd32 0%,#fff070 53%,#ffefc6 100%); /* IE10+ */
+    background: linear-gradient(to right,  #ffdd32 0%,#fff070 53%,#ffefc6 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffdd32', endColorstr='#ffefc6',GradientType=1 ); /* IE6-9 */
+}
+
+#menu .pure-menu ul, #menu .pure-menu .menu-item-divided {
+    border-top: 1px solid #B70000;
+}
+
+.header {
+    border-bottom: 1px solid #
+}
+
+.pure-button-primary, .pure-button-selected, a.pure-button-primary, a.pure-button-selected {
+    background-color: #5132AF;
+}

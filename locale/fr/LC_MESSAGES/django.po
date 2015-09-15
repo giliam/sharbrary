@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-15 16:14+0200\n"
+"POT-Creation-Date: 2015-09-15 16:30+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,7 +24,7 @@ msgstr ""
 msgid "title"
 msgstr "titre"
 
-#: .\discussion\models.py:22 .\discussion\models.py:50 .\library\models.py:181
+#: .\discussion\models.py:22 .\discussion\models.py:50 .\library\models.py:183
 #: .\templates\discussion\discussion_list.html:15
 #: .\templates\sharing\queue_list.html:15
 msgid "date added"
@@ -37,7 +37,7 @@ msgid "date updated"
 msgstr "dernière modification"
 
 #: .\discussion\models.py:25 .\discussion\models.py:53 .\library\models.py:35
-#: .\library\models.py:117 .\library\models.py:179
+#: .\library\models.py:117 .\library\models.py:181
 #: .\templates\library\book_detail.html:9
 #: .\templates\library\book_embed_list.html:12
 #: .\templates\library\box_embed_list.html:11
@@ -130,8 +130,8 @@ msgid "date added to the database"
 msgstr "date d'ajout à la base de données"
 
 #: .\library\models.py:23 .\library\models.py:51 .\library\models.py:72
-#: .\library\models.py:94 .\library\models.py:116 .\library\models.py:155
-#: .\library\models.py:182 .\sharing\models.py:42 .\sharing\models.py:76
+#: .\library\models.py:94 .\library\models.py:116 .\library\models.py:157
+#: .\library\models.py:184 .\sharing\models.py:42 .\sharing\models.py:76
 msgid "date updated to the database"
 msgstr "date de mise-à-jour dans la base de données"
 
@@ -152,7 +152,7 @@ msgid "name"
 msgstr "nom"
 
 #: .\library\models.py:54 .\library\models.py:57 .\library\models.py:123
-#: .\library\models.py:157 .\library\views.py:252
+#: .\library\models.py:159 .\library\views.py:252
 #: .\templates\library\book_detail.html:15
 #: .\templates\library\book_embed_list.html:15
 #: .\templates\library\box_embed_list.html:14
@@ -189,11 +189,11 @@ msgstr "périodes"
 msgid "date published"
 msgstr "date de publication"
 
-#: .\library\models.py:115 .\library\models.py:154
+#: .\library\models.py:115 .\library\models.py:156
 msgid "date added to the library"
 msgstr "date d'ajout à la bibliothèque"
 
-#: .\library\models.py:124 .\library\models.py:159 .\library\views.py:255
+#: .\library\models.py:124 .\library\models.py:161 .\library\views.py:255
 #: .\templates\library\book_detail.html:12
 msgid "cover"
 msgstr "couverture"
@@ -202,79 +202,78 @@ msgstr "couverture"
 msgid "summary"
 msgstr "résumé"
 
-#: .\library\models.py:127 .\library\models.py:151
+#: .\library\models.py:127 .\library\models.py:153
 #: .\templates\sharing\lending_list.html:21
 msgid "owner"
 msgstr "propriétaire"
 
-#: .\library\models.py:133 .\library\models.py:150 .\library\models.py:178
+#: .\library\models.py:133 .\library\models.py:152 .\library\models.py:180
 #: .\templates\sharing\lending_list.html:16
 msgid "book"
 msgstr "livre"
 
-#: .\library\models.py:134 .\templates\base\layout.html:40
-#: .\templates\library\book_embed_list.html:2
+#: .\library\models.py:134 .\templates\library\book_embed_list.html:2
 #: .\templates\sharing\dashboard.html:5
 #: .\templates\sharing\profile_show.html:10
 msgid "books"
 msgstr "livres"
 
-#: .\library\models.py:152
+#: .\library\models.py:154
 msgid "number of copies"
 msgstr "nombre d'exemplaires"
 
-#: .\library\models.py:158 .\library\views.py:249
+#: .\library\models.py:160 .\library\views.py:249
 msgid "comments"
 msgstr "commentaires"
 
-#: .\library\models.py:162
+#: .\library\models.py:164
 #, python-format
 msgid "%(book)s owned by %(owner)s"
 msgstr "%(book)s appartenant à %(owner)s"
 
-#: .\library\models.py:165
+#: .\library\models.py:167
 msgid "ownership"
 msgstr "propriété"
 
-#: .\library\models.py:166
+#: .\library\models.py:168
 msgid "ownerships"
 msgstr "propriétés"
 
-#: .\library\models.py:187
+#: .\library\models.py:189
 #, python-format
 msgid "%(author)s rated %(book)s of %(value)s"
 msgstr "%(author)s a noté %(book)s : %(value)s"
 
-#: .\library\models.py:190
+#: .\library\models.py:192
 msgid "opinion"
 msgstr "avis"
 
-#: .\library\models.py:191
+#: .\library\models.py:193
 msgid "opinions"
 msgstr "avis"
 
-#: .\library\models.py:202
+#: .\library\models.py:204
 msgid "name of the page"
 msgstr "nom de la page"
 
-#: .\library\models.py:203
+#: .\library\models.py:205
 msgid "title of the page"
 msgstr "titre de la page"
 
-#: .\library\models.py:204
+#: .\library\models.py:206
 msgid "content of the page"
 msgstr "contenu de la page"
 
-#: .\library\models.py:207
+#: .\library\models.py:209
 #, python-format
 msgid "Page %(name)s"
 msgstr "Page %(name)s"
 
-#: .\library\models.py:210
+#: .\library\models.py:212
 msgid "page"
 msgstr "page"
 
-#: .\library\models.py:211
+#: .\library\models.py:213
 msgid "pages"
 msgstr "pages"
 
@@ -742,9 +741,13 @@ msgstr "tutoriel"
 msgid "library"
 msgstr "bibliothèque"
 
+#: .\templates\base\layout.html:40 .\templates\library\book_list.html:2
+msgid "books shelfs"
+msgstr "étagères à livres"
+
 #: .\templates\base\layout.html:41 .\templates\library\box_embed_list.html:2
 msgid "books box"
-msgstr "boîte à livres"
+msgstr "caisse à livres"
 
 #: .\templates\base\layout.html:60
 msgid "sharing"
@@ -1095,10 +1098,6 @@ msgstr "pas de livre dans cette bibliothèque"
 msgid "book form"
 msgstr "livre - formulaire"
 
-#: .\templates\library\book_list.html:2 .\templates\library\box_list.html:2
-msgid "book list"
-msgstr "livres"
-
 #: .\templates\library\book_remove_from_library.html:2
 msgid "remove a book from library"
 msgstr "retirer le livre d'une bibliothèque"
@@ -1106,6 +1105,10 @@ msgstr "retirer le livre d'une bibliothèque"
 #: .\templates\library\box_embed_list.html:24
 msgid "no book in this box !"
 msgstr "pas de livre dans cette boîte !"
+
+#: .\templates\library\box_list.html:2
+msgid "book list"
+msgstr "livres"
 
 #: .\templates\library\editor_confirm_delete.html:2
 msgid "delete an editor"

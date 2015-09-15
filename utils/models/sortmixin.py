@@ -8,7 +8,9 @@ class SortMixin(ListView):
     default_sort_params = None
     allowed_sort_params = None
 
-    def sort_queryset(self, qs, sort_by, order):
+    def sort_queryset(self, qs, sort_by=False, order=False):
+        if not sort_by or not order:
+            sort_by,order = self.get_sort_params()
         qs = qs.order_by(sort_by)
         if order == 'desc':
             qs = qs.reverse()

@@ -72,7 +72,7 @@ class BookEmbedList(SortMixin):
     paginate_by = 20
 
     def get_queryset(self):
-        return Book.objects.filter(on_shelf=True)
+        return self.sort_queryset(Book.objects.filter(on_shelf=True))
 
 
 class BookList(BookEmbedList):
@@ -82,7 +82,13 @@ class BookList(BookEmbedList):
         context['form'] = ResearchForm()
         return context
 
-class BookCreate(SuccessMessageMixin, CreateView):
+class BoxList(BookEmbedList):
+    template_name="library/box_list.html"
+    paginate_by = 100
+    def get_queryset(self):
+        return self.sort_queryset(Book.objects.filter(on_shelf=False))
+
+class BookCreate(CreateView):
     model = Book
     success_url = reverse_lazy('book_list')
     success_message = _("%(title)s was created successfully")
@@ -90,6 +96,7 @@ class BookCreate(SuccessMessageMixin, CreateView):
 
     def form_valid(self, form):
         book = form.save(commit=False)
+        book.on_shelf = self.kwargs.get('on_shelf',True)
         book.save()
         for owner in form.cleaned_data['owners']:
             ownership = Ownership()
@@ -106,14 +113,26 @@ class BookCreate(SuccessMessageMixin, CreateView):
         discussion.author = self.request.user
         discussion.save()
 
-        return redirect('book_detail',book_id=book.id)
+        messages.add_message(self.request, messages.SUCCESS, self.success_message % {'title':book.title})
+        if book.on_shelf:
+            return redirect('book_detail',book_id=book.id)
+        else:
+            return redirect('book_box_list')
 
 
-class BookUpdate(SuccessMessageMixin, UpdateView):
+class BookUpdate(UpdateView):
     model = Book
     success_url = reverse_lazy('book_list')
     success_message = _("%(title)s was updated successfully")
     fields = ['title', 'publishing_date', 'author', 'themes', 'periods', 'summary', 'cover']
+    def form_valid(self, form):
+        book = form.save()
+
+        messages.add_message(self.request, messages.SUCCESS, self.success_message % {'title':book.title})
+        if book.on_shelf:
+            return redirect('book_detail',book_id=book.id)
+        else:
+            return redirect('book_box_list')
 
 class BookDelete(DeleteView):
     model = Book

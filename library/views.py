@@ -273,7 +273,7 @@ class OwnershipCreate(SuccessMessageMixin, CreateView):
     def form_valid(self, form):
         ownership = form.save(commit=False)    
         if not ownership.book.on_shelf:
-            raise Http404(_("Book does not exist on the shelf!"))
+            raise Http404(_("Book does not exist on the shelf! (maybe in the box?)"))
         add_book_to_library(self.request,ownership)
         return redirect('book_detail',book_id=ownership.book.id)
 

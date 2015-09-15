@@ -15,6 +15,10 @@ urlpatterns = patterns('',
   url(r'^book/remove/from/library/(?P<book_id>\d+)$', permission_required('library.book_remove_from_library')(views.book_remove_from_library), name='book_remove_from_library'),
   url(r'^book/rate/(?P<book_id>\d+)/(?P<value>\d+)/$', permission_required('library.book_rate')(views.book_rate), name='book_rate'),
 
+  url(r'^box/book/new$', permission_required('library.book_box_new')(views.BookCreate.as_view()), {'on_shelf':False}, name='book_box_new'),
+  url(r'^box$', permission_required('library.book_box_list')(views.BoxList.as_view()), {'on_shelf':False}, name='book_box_list'),
+
+
   url(r'^ownership/edit/(?P<pk>\d+)$', permission_required('library.owernship_edit')(views.OwnershipUpdate.as_view()), name='ownership_edit'),
   url(r'^ownership/delete/(?P<pk>\d+)$', permission_required('library.owernship_delete')(views.OwnershipDelete.as_view()), name='ownership_delete'),
 

@@ -42,7 +42,7 @@ def book_detail(request, book_id):
     """
     Shows book details.
     """
-    book = get_object_or_404(Book, pk=book_id)
+    book = get_object_or_404(Book, pk=book_id, on_shelf=True)
     ownerships = Ownership.objects.filter(book__id=book_id)
     queues = Queue.objects.filter(book_copy__book__id=book_id,fulfilled=False).order_by('added_date')
     lendings = Lending.objects.filter(actual_lending(),book_copy__book__id=book_id)
@@ -71,6 +71,10 @@ class BookEmbedList(SortMixin):
     template_name="library/book_embed_list.html"
     paginate_by = 20
 
+    def get_queryset(self):
+        return self.sort_queryset(Book.objects.filter(on_shelf=True))
+
+
 class BookList(BookEmbedList):
     template_name="library/book_list.html"
     def get_context_data(self, **kwargs):
@@ -78,7 +82,13 @@ class BookList(BookEmbedList):
         context['form'] = ResearchForm()
         return context
 
-class BookCreate(SuccessMessageMixin, CreateView):
+class BoxList(BookEmbedList):
+    template_name="library/box_list.html"
+    paginate_by = 100
+    def get_queryset(self):
+        return self.sort_queryset(Book.objects.filter(on_shelf=False))
+
+class BookCreate(CreateView):
     model = Book
     success_url = reverse_lazy('book_list')
     success_message = _("%(title)s was created successfully")
@@ -86,6 +96,7 @@ class BookCreate(SuccessMessageMixin, CreateView):
 
     def form_valid(self, form):
         book = form.save(commit=False)
+        book.on_shelf = self.kwargs.get('on_shelf',True)
         book.save()
         for owner in form.cleaned_data['owners']:
             ownership = Ownership()
@@ -102,14 +113,26 @@ class BookCreate(SuccessMessageMixin, CreateView):
         discussion.author = self.request.user
         discussion.save()
 
-        return redirect('book_detail',book_id=book.id)
+        messages.add_message(self.request, messages.SUCCESS, self.success_message % {'title':book.title})
+        if book.on_shelf:
+            return redirect('book_detail',book_id=book.id)
+        else:
+            return redirect('book_box_list')
 
 
-class BookUpdate(SuccessMessageMixin, UpdateView):
+class BookUpdate(UpdateView):
     model = Book
     success_url = reverse_lazy('book_list')
     success_message = _("%(title)s was updated successfully")
     fields = ['title', 'publishing_date', 'author', 'themes', 'periods', 'summary', 'cover']
+    def form_valid(self, form):
+        book = form.save()
+
+        messages.add_message(self.request, messages.SUCCESS, self.success_message % {'title':book.title})
+        if book.on_shelf:
+            return redirect('book_detail',book_id=book.id)
+        else:
+            return redirect('book_box_list')
 
 class BookDelete(DeleteView):
     model = Book
@@ -137,7 +160,7 @@ def book_remove_from_library(request, book_id):
     Removes a book from someone's library.
     """
     # First get the book.
-    book = get_object_or_404(Book, pk=book_id)
+    book = get_object_or_404(Book, pk=book_id, on_shelf=True)
     
     # If not owners at all, no need to remove anyone
     if not book.owners.all(): 
@@ -248,7 +271,9 @@ class OwnershipCreate(SuccessMessageMixin, CreateView):
     success_message = _("%(book)s was added successfully to your library")
     fields = ['book', 'copies', 'editor', 'comments', 'cover']
     def form_valid(self, form):
-        ownership = form.save(commit=False)       
+        ownership = form.save(commit=False)    
+        if not ownership.book.on_shelf:
+            raise Http404(_("Book does not exist on the shelf! (maybe in the box?)"))
         add_book_to_library(self.request,ownership)
         return redirect('book_detail',book_id=ownership.book.id)
 
@@ -275,7 +300,7 @@ class BookOwnershipCreate(OwnershipCreate):
     def form_valid(self, form):
         ownership = form.save(commit=False)
         ownership.owner = self.request.user
-        ownership.book = get_object_or_404(Book,pk=self.kwargs['book_id'])
+        ownership.book = get_object_or_404(Book,pk=self.kwargs['book_id'], on_shelf=True)
         add_book_to_library(self.request,ownership)
         return redirect('book_detail',book_id=ownership.book.id)
 
@@ -288,7 +313,7 @@ def author_detail(request, author_id):
     order = request.GET.get('order', "asc")
 
     author = get_object_or_404(Author, pk=author_id)
-    books = Book.objects.filter(author=author).order_by(sort_by)
+    books = Book.objects.filter(author=author, on_shelf=True).order_by(sort_by)
     if order == 'desc':
         books = books.reverse()
     return render(request, 'library/author_detail.html', {'author':author,'books':books})
@@ -423,7 +448,7 @@ def book_rate(request, book_id, value):
     Sets the notation of a book for a specific user.
     """
     value = int(value)
-    book = get_object_or_404(Book, pk=book_id)
+    book = get_object_or_404(Book, pk=book_id, on_shelf=True)
     if value not in range(0,6):
         raise Exception, _("Value not available !")
 

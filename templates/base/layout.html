@@ -37,7 +37,7 @@
 
                 <a class="pure-menu-heading" href="{% url "book_list" %}">{% trans "library"|capfirst %}</a>
                 <ul class="pure-menu-list">
-                    <li class="pure-menu-item"><a href="{% url "book_list" %}" class="pure-menu-link">{% trans "books"|capfirst %}</a></li>
+                    <li class="pure-menu-item"><a href="{% url "book_list" %}" class="pure-menu-link">{% trans "books shelfs"|capfirst %}</a></li>
                     <li class="pure-menu-item"><a href="{% url "book_box_list" %}" class="pure-menu-link">{% trans "books box"|capfirst %}</a></li>
                     <li class="pure-menu-item">
                         <form method="post" action="{% url "book_research" %}">

@@ -192,11 +192,11 @@ div .picture {
 
 #menu {
     background: #ffdd32;
-    border-right: 4px solid #B70000;
+    border-right: 4px solid #FF4900;
 }
 
 #menu .pure-menu-heading {
-    background: #B70000;
+    background: #FF4900;
 }
 
 #menu .pure-menu-item a.pure-menu-link {
@@ -204,12 +204,12 @@ div .picture {
 }
 
 #menu .pure-menu-item:hover, #menu .pure-menu .pure-menu-item .pure-menu-link:hover {
-    background: #FF6B15;
+    background: #FF7E07;
     color:white;
 }
 
 .header h2 {
-    color: #B70000;
+    color: #FF4900;
 }
 
 .header {
@@ -235,11 +235,11 @@ body a {
 }
 
 body a:visited  {
-    color: #B70000;
+    color: #FF4900;
 }
 
 #menu .pure-menu ul, #menu .pure-menu .menu-item-divided {
-    border-top: 1px solid #B70000;
+    border-top: 1px solid #FF4900;
 }
 
 .header {

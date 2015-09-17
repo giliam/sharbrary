@@ -98,13 +98,11 @@ class BorrowingCopyCreate(LendingCreate):
 class BorrowingBookCreate(LendingCreate):
     form_class = None
     fields = ['beginning_date','book_copy']
-    
-    def get_initial(self):
-        initial = super(BorrowingBookCreate, self).get_initial().copy()
-        copies = Ownership.objects.filter(book_id=self.kwargs['book_id'])
-        initial['book_copy'] = copies
-        initial['beginning_date'] = "2015-06-12 11:11:11"
-        return initial
+
+    def get_form(self):
+        form = super(BorrowingBookCreate, self).get_form()
+        form.fields['book_copy'].queryset = Ownership.objects.filter(book_id=self.kwargs['book_id'])
+        return form
 
     def form_valid(self, form):
         lending = form.save(commit=False)

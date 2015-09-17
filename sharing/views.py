@@ -15,6 +15,7 @@ from django.contrib.auth import authenticate
 from django.core.mail import send_mail
 from django.template.loader import get_template
 from django.template import Context
+from django.utils import timezone
 
 from sharing.models import Lending, Profile, Queue
 from sharing.forms import LendingEndForm, LogInForm, LendingForm, ProfileForm, UserForm,UserEditForm
@@ -187,7 +188,7 @@ def lending_end(request, lending_id):
             messages.add_message(request, messages.SUCCESS, _('The lending has been updated and the new end date is now %s.' % lending.end_date))
             return redirect('book_detail',book_id=lending.book_copy.book.id)
     else:
-        form = LendingEndForm(instance=lending)
+        form = LendingEndForm(instance=lending,initial={'end_date':timezone.now()})
     return render(request, 'sharing/lending_form.html', {'form':form})
 
 

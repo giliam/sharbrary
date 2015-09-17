@@ -1,5 +1,5 @@
 {% extends "layout.html" %}
-{% block title %}{{ block.super }} - {% trans "books shelfs"|capfirst %}{% endblock %}
+{% block title %}{{ block.super }} - {% trans "books shelves"|capfirst %}{% endblock %}
 {% block body %} 
 <form class="pure-form pure-form-stacked" method="post" action="{% url "book_research" %}"><fieldset>{% csrf_token %}
     {{ form.as_p }}

@@ -15,6 +15,7 @@ from django.contrib.auth import authenticate
 from django.core.mail import send_mail
 from django.template.loader import get_template
 from django.template import Context
+from django.utils import timezone
 
 from sharing.models import Lending, Profile, Queue
 from sharing.forms import LendingEndForm, LogInForm, LendingForm, ProfileForm, UserForm,UserEditForm
@@ -65,7 +66,6 @@ class LendingBookCreate(LendingCreate):
             remove_from_queue(lending.book_copy,lending.borrower,lending)
         else:
             messages.add_message(self.request,messages.ERROR,_("This lending is not possible and you should have had errors on the form!"))
-
         return redirect('book_detail',book_id=lending.book_copy.book.id)
 
 class BorrowingCreate(LendingCreate):
@@ -79,23 +79,40 @@ class BorrowingCreate(LendingCreate):
             remove_from_queue(lending.book_copy,lending.borrower,lending)
         else:
             messages.add_message(self.request,messages.ERROR,_("This lending is not possible and you should have had errors on the form!"))
-
         return redirect('book_detail',book_id=lending.book_copy.book.id)
 
-class BorrowingBookCreate(LendingCreate):
+class BorrowingCopyCreate(LendingCreate):
     form_class = None
     fields = ['beginning_date']
     
     def form_valid(self, form):
         lending = form.save(commit=False)
         lending.borrower = self.request.user
-        lending.book_copy = get_object_or_404(Ownership,pk=self.kwargs['book_id'])
+        lending.book_copy = get_object_or_404(Ownership,pk=self.kwargs['copy_id'])
         if is_lending_possible(lending.beginning_date,lending.book_copy):
             lending.save()
             remove_from_queue(lending.book_copy,lending.borrower,lending)
         else:
             messages.add_message(self.request,messages.ERROR,_("This lending is not possible and you should have had errors on the form!"))
+        return redirect('book_detail',book_id=lending.book_copy.book.id)
 
+class BorrowingBookCreate(LendingCreate):
+    form_class = None
+    fields = ['beginning_date','book_copy']
+
+    def get_form(self):
+        form = super(BorrowingBookCreate, self).get_form()
+        form.fields['book_copy'].queryset = Ownership.objects.filter(book_id=self.kwargs['book_id'])
+        return form
+
+    def form_valid(self, form):
+        lending = form.save(commit=False)
+        lending.borrower = self.request.user
+        if is_lending_possible(lending.beginning_date,lending.book_copy):
+            lending.save()
+            remove_from_queue(lending.book_copy,lending.borrower,lending)
+        else:
+            messages.add_message(self.request,messages.ERROR,_("This lending is not possible and you should have had errors on the form!"))
         return redirect('book_detail',book_id=lending.book_copy.book.id)
 
 class LendingUpdate(SuccessMessageMixin, UpdateView, CheckOwner):
@@ -171,7 +188,7 @@ def lending_end(request, lending_id):
             messages.add_message(request, messages.SUCCESS, _('The lending has been updated and the new end date is now %s.' % lending.end_date))
             return redirect('book_detail',book_id=lending.book_copy.book.id)
     else:
-        form = LendingEndForm(instance=lending)
+        form = LendingEndForm(instance=lending,initial={'end_date':timezone.now()})
     return render(request, 'sharing/lending_form.html', {'form':form})
 
 

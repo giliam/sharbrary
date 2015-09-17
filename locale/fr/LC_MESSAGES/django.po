@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-15 16:30+0200\n"
+"POT-Creation-Date: 2015-09-17 17:15+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -71,7 +71,7 @@ msgstr "messages"
 msgid "%(title)s was added successfully"
 msgstr "%(title)s a bien été créé !"
 
-#: .\discussion\views.py:49 .\library\views.py:126
+#: .\discussion\views.py:49 .\library\views.py:128
 #, python-format
 msgid "%(title)s was updated successfully"
 msgstr "%(title)s a bien été mis-à-jour !"
@@ -152,7 +152,7 @@ msgid "name"
 msgstr "nom"
 
 #: .\library\models.py:54 .\library\models.py:57 .\library\models.py:123
-#: .\library\models.py:159 .\library\views.py:252
+#: .\library\models.py:159 .\library\views.py:254
 #: .\templates\library\book_detail.html:15
 #: .\templates\library\book_embed_list.html:15
 #: .\templates\library\box_embed_list.html:14
@@ -193,7 +193,7 @@ msgstr "date de publication"
 msgid "date added to the library"
 msgstr "date d'ajout à la bibliothèque"
 
-#: .\library\models.py:124 .\library\models.py:161 .\library\views.py:255
+#: .\library\models.py:124 .\library\models.py:161 .\library\views.py:257
 #: .\templates\library\book_detail.html:12
 msgid "cover"
 msgstr "couverture"
@@ -222,7 +222,7 @@ msgstr "livres"
 msgid "number of copies"
 msgstr "nombre d'exemplaires"
 
-#: .\library\models.py:160 .\library\views.py:249
+#: .\library\models.py:160 .\library\views.py:251
 msgid "comments"
 msgstr "commentaires"
 
@@ -277,22 +277,22 @@ msgstr "page"
 msgid "pages"
 msgstr "pages"
 
-#: .\library\views.py:94
+#: .\library\views.py:96
 #, python-format
 msgid "%(title)s was created successfully"
 msgstr "%(title)s a bien été créé !"
 
-#: .\library\views.py:110
+#: .\library\views.py:112
 #, python-format
 msgid "Discussion on %(book)s (%(author)s)"
 msgstr "Discussion sur %(book)s (%(author)s)"
 
-#: .\library\views.py:112
+#: .\library\views.py:114
 #, python-format
 msgid "Discussion on %(book)s"
 msgstr "Discussion sur %(book)s"
 
-#: .\library\views.py:149
+#: .\library\views.py:151
 msgid ""
 "This book is not in your library and you have no right to remove it from "
 "someone else library."
@@ -300,26 +300,26 @@ msgstr ""
 "Ce livre n'est pas dans votre bibliothèque et vous n'avez pas le droit de le "
 "retirer d'une autre bibliothèque."
 
-#: .\library\views.py:153
+#: .\library\views.py:155
 msgid "The book has been successfully removed from your library."
 msgstr "Le livre a bien été retiré de votre bibliothèque."
 
-#: .\library\views.py:184
+#: .\library\views.py:186
 #, python-format
 msgid "The book has been successfully removed from the library of %(owners)s."
 msgstr "Le livre a bien été retiré de la bibliothèque de %(owners)s."
 
-#: .\library\views.py:188
+#: .\library\views.py:190
 msgid "You are going to remove the book from someone's library."
 msgstr ""
 "Vous allez retirer (peut-être) le livre de la bibliothèque de quelqu'un "
 "d'autre !"
 
-#: .\library\views.py:246
+#: .\library\views.py:248
 msgid "copies"
 msgstr "exemplaires"
 
-#: .\library\views.py:256
+#: .\library\views.py:258
 #, python-format
 msgid ""
 "You already had this book in your library so your previous ownership was "
@@ -329,59 +329,59 @@ msgstr ""
 "donc été mise-à-jour. Plus précisément, les champs - %(fields)s - ont été "
 "changés."
 
-#: .\library\views.py:271
+#: .\library\views.py:273
 #, python-format
 msgid "%(book)s was added successfully to your library"
 msgstr "%(book)s a bien été ajouté à votre bibliothèque."
 
-#: .\library\views.py:276
+#: .\library\views.py:278
 msgid "Book does not exist on the shelf! (maybe in the box?)"
 msgstr "Ce livre n'existe pas dans les étagères ! (peut-être dans la boîte ?)"
 
-#: .\library\views.py:283
+#: .\library\views.py:285
 #, python-format
 msgid "%(book)s from your library was modified successfully."
 msgstr "%(book)s a bien été mis-à-jour !"
 
-#: .\library\views.py:295
+#: .\library\views.py:297
 #, python-format
 msgid "%(book)s was deleted successfully from your library"
 msgstr "%(book)s a bien été supprimé de votre bibliothèque."
 
-#: .\library\views.py:332
+#: .\library\views.py:334
 #, python-format
 msgid "The author %(firstname)s %(lastname)s was added successfully"
 msgstr "L'auteur %(firstname)s %(lastname)s a bien été créé !"
 
-#: .\library\views.py:338
+#: .\library\views.py:340
 #, python-format
 msgid "%(firstname)s %(lastname)s was updated successfully"
 msgstr "L'auteur %(firstname)s %(lastname)s a bien été mis-à-jour !"
 
-#: .\library\views.py:357
+#: .\library\views.py:359
 #, python-format
 msgid "%(name)s was created successfully"
 msgstr "%(name)s a bien été créé !"
 
-#: .\library\views.py:363 .\library\views.py:388 .\library\views.py:413
+#: .\library\views.py:365 .\library\views.py:390 .\library\views.py:415
 #, python-format
 msgid "%(name)s was updated successfully"
 msgstr "%(name)s a bien été mis-à-jour !"
 
-#: .\library\views.py:382 .\library\views.py:407
+#: .\library\views.py:384 .\library\views.py:409
 #, python-format
 msgid "%(name)s was added successfully"
 msgstr "%(name)s a bien été créé !"
 
-#: .\library\views.py:436
+#: .\library\views.py:438
 msgid "The research was not successfully done."
 msgstr "La recherche a échoué."
 
-#: .\library\views.py:453
+#: .\library\views.py:455
 msgid "Value not available !"
 msgstr "Valeur impossible !"
 
-#: .\library\views.py:480 .\sharing\views.py:129
+#: .\library\views.py:482 .\sharing\views.py:146
 msgid "The new user has been successfully added !"
 msgstr "Le nouvel utilisateur a bien été créé !"
 
@@ -480,50 +480,51 @@ msgstr "liste d'attente"
 msgid "queues"
 msgstr "listes d'attente"
 
-#: .\sharing\views.py:51
+#: .\sharing\views.py:52
 #, python-format
 msgid "The lending of %(book_copy)s to %(borrower)s was created successfully"
 msgstr "Le prêt de %(book_copy)s à %(borrower)s a bien été créé !"
 
-#: .\sharing\views.py:67 .\sharing\views.py:81 .\sharing\views.py:97
+#: .\sharing\views.py:68 .\sharing\views.py:81 .\sharing\views.py:96
+#: .\sharing\views.py:115
 msgid ""
 "This lending is not possible and you should have had errors on the form!"
 msgstr ""
 "Cet emprunt n'est pas possible et vous devriez avoir des erreurs sur le "
 "formulaire !"
 
-#: .\sharing\views.py:104
+#: .\sharing\views.py:121
 #, python-format
 msgid "The lending of %(book_copy)s to %(borrower)s was updated successfully"
 msgstr "Le prêt de %(book_copy)s à %(borrower)s a bien été mis-à-jour !"
 
-#: .\sharing\views.py:133
+#: .\sharing\views.py:150
 msgid "The two passwords are different."
 msgstr "Les deux mots de passe sont différents."
 
-#: .\sharing\views.py:166
+#: .\sharing\views.py:183
 msgid "Your book is ready !"
 msgstr "Votre livre est prêt !"
 
-#: .\sharing\views.py:171
+#: .\sharing\views.py:188
 #, python-format
 msgid "The lending has been updated and the new end date is now %s."
 msgstr "L'emprunt a été mis-à-jour et la nouvelle date de fin est %s."
 
-#: .\sharing\views.py:247
+#: .\sharing\views.py:264
 msgid "Your profile has been successfully updated !"
 msgstr "Votre profil a bien été mis-à-jour !"
 
-#: .\sharing\views.py:250
+#: .\sharing\views.py:267
 msgid "The two passwords are different or you forgot one."
 msgstr "Les deux mots de passe sont différents ou vous en avez oublié un."
 
-#: .\sharing\views.py:301 .\sharing\views.py:315
+#: .\sharing\views.py:318 .\sharing\views.py:332
 #, python-format
 msgid "%(book_copy)s was added successfully"
 msgstr "%(book_copy)s a bien été ajouté !"
 
-#: .\sharing\views.py:306 .\sharing\views.py:322
+#: .\sharing\views.py:323 .\sharing\views.py:339
 msgid ""
 "You are already waiting for this book. Delete your previous demand before "
 "doing a new one!"
@@ -531,11 +532,11 @@ msgstr ""
 "Vous êtes déjà sur la liste d'attente de ce livre. Supprimez votre demande "
 "précédente avant d'en faire une nouvelle !"
 
-#: .\sharing\views.py:309 .\sharing\views.py:325
+#: .\sharing\views.py:326 .\sharing\views.py:342
 msgid "You have been successfully added to the queue for this book!"
 msgstr "Vous avez bien été ajouté dans la liste d'attente pour cet ouvrage !"
 
-#: .\sharing\views.py:331
+#: .\sharing\views.py:348
 #, python-format
 msgid "%(book_copy)s was updated successfully"
 msgstr "%(book_copy)s a bien été mis-à-jour !"
@@ -619,8 +620,8 @@ msgstr ""
 "fois expliqué, vous devriez le trouver naturel et simple !"
 
 #: .\templates\base\howto.html:9
-msgid "The library"
-msgstr "La bibliothèque"
+msgid "The library or book shelves"
+msgstr "La bibliothèque ou les étagères à livres"
 
 #: .\templates\base\howto.html:12
 #, python-format
@@ -687,8 +688,42 @@ msgid "The sharing system"
 msgstr "Le système de partage"
 
 #: .\templates\base\howto.html:20
-msgid "<p>Sharing books is pretty simple. .</p>"
-msgstr "<p>Partager des livres est très simple.</p>"
+msgid ""
+"<p>Sharing books is pretty simple. When there are books in the library, you "
+"only need to choose the person you want to borrow it from and you are done. "
+"If the book is available, you will be able to borrow it from book list or "
+"from the book page. You have to select a beginning date for the borrowing "
+"and the copy you have (or will soon have). Once you have finished the book, "
+"give it back to the person who lent it to you and go to the book page or "
+"your dashboard to end your lending. Thus, people in the queue will be able "
+"to borrow the book!</p>"
+msgstr ""
+"<p>Emprunter un livre est très simple. S'il y a des livres dans la bibliothèque, "
+"il vous suffit de choisir la personne à qui vous souhaitez l'emprunter ! "
+"Si cet exemplaire est disponible, vous pourrez alors le choisir dans la liste " 
+"ou sur sa page. Il vous faudra alors sélectionner une date pour le début de l'emprunt "
+"et l'exemplaire que vous prenez (ou comptez prendre !). Une fois que vous avez terminé le "
+"livre, rendez-le à la personne qui vous l'a prêté (eh oui) et allez sur la page "
+"du livre ou sur votre tableau de bord pour terminer le prêt du livre. Les personnes dans "
+"la file d'attente pourront enfin le lire à leur tour !</p>"
+
+#: .\templates\base\howto.html:22
+msgid "The books box"
+msgstr "La caisse de livres"
+
+#: .\templates\base\howto.html:24
+msgid ""
+"<p>If you don't have time to add a full book to the system or not enough "
+"informations about it and you don't want to scamp the description, you can "
+"just put the book in the book box. This is way easier and do not have any "
+"ownership or borrowing system but makes it possible for to know which books "
+"are available in your library.</p>"
+msgstr ""
+"<p>Si vous n'avez pas le temps d'ajouter une description détaillée ou pas "
+"suffisamment d'informations sur un livre et que vous ne voulez pas bâcler "
+"la présentation, n'hésitez pas à l'ajouter dans la caisse de livres. Ainsi, "
+"les autres membres pourront tout de même voir le livre et vous l'emprunter..."
+"ou bien vous demander d'en faire une vraie fiche !</p>"
 
 #: .\templates\base\index.html:2
 msgid "homepage"
@@ -742,7 +777,7 @@ msgid "library"
 msgstr "bibliothèque"
 
 #: .\templates\base\layout.html:40 .\templates\library\book_list.html:2
-msgid "books shelfs"
+msgid "books shelves"
 msgstr "étagères à livres"
 
 #: .\templates\base\layout.html:41 .\templates\library\box_embed_list.html:2
@@ -854,11 +889,11 @@ msgstr "emprunts"
 #: .\templates\library\book_detail.html:110
 #: .\templates\library\book_detail.html:148
 #: .\templates\library\book_detail.html:170
-#: .\templates\library\book_one_book.html:14
-#: .\templates\library\book_one_book.html:18
+#: .\templates\library\book_one_book.html:15
 #: .\templates\library\book_one_book.html:19
-#: .\templates\library\book_one_book.html:22
-#: .\templates\library\book_one_book.html:24
+#: .\templates\library\book_one_book.html:20
+#: .\templates\library\book_one_book.html:23
+#: .\templates\library\book_one_book.html:25
 #: .\templates\library\box_one_book.html:7
 #: .\templates\library\box_one_book.html:9
 #: .\templates\library\box_one_book.html:10
@@ -889,7 +924,7 @@ msgstr "rendre"
 #: .\templates\library\book_detail.html:130
 #: .\templates\library\book_detail.html:151
 #: .\templates\library\book_one_book.html:37
-#: .\templates\library\box_one_book.html:18
+#: .\templates\library\box_one_book.html:14
 #: .\templates\library\editor_list.html:27
 #: .\templates\library\period_list.html:26
 #: .\templates\library\theme_list.html:26
@@ -909,7 +944,7 @@ msgstr "modifier"
 #: .\templates\library\book_detail.html:133
 #: .\templates\library\book_detail.html:154
 #: .\templates\library\book_one_book.html:50
-#: .\templates\library\box_one_book.html:21
+#: .\templates\library\box_one_book.html:17
 #: .\templates\library\editor_list.html:30
 #: .\templates\library\period_list.html:29
 #: .\templates\library\theme_list.html:29
@@ -1064,6 +1099,7 @@ msgid "add to queue"
 msgstr "ajouter à la liste d'attente"
 
 #: .\templates\library\book_detail.html:127
+#: .\templates\library\book_one_book.html:34
 msgid "borrow"
 msgstr "emprunter"
 
@@ -1235,6 +1271,12 @@ msgid ""
 msgstr ""
 "Vous avez choisi une date passée alors que cet exemplaire est déjà prêté (ou "
 "sera prêté) à %(lendings)s !"
+
+#~ msgid "The library"
+#~ msgstr "La bibliothèque"
+
+#~ msgid "<p>Sharing books is pretty simple. .</p>"
+#~ msgstr "<p>Partager des livres est très simple.</p>"
 
 #~ msgid ""
 #~ "When you delete a book, you also delete all the ownerships and the "

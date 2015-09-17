@@ -65,7 +65,6 @@ class LendingBookCreate(LendingCreate):
             remove_from_queue(lending.book_copy,lending.borrower,lending)
         else:
             messages.add_message(self.request,messages.ERROR,_("This lending is not possible and you should have had errors on the form!"))
-
         return redirect('book_detail',book_id=lending.book_copy.book.id)
 
 class BorrowingCreate(LendingCreate):
@@ -79,23 +78,42 @@ class BorrowingCreate(LendingCreate):
             remove_from_queue(lending.book_copy,lending.borrower,lending)
         else:
             messages.add_message(self.request,messages.ERROR,_("This lending is not possible and you should have had errors on the form!"))
-
         return redirect('book_detail',book_id=lending.book_copy.book.id)
 
-class BorrowingBookCreate(LendingCreate):
+class BorrowingCopyCreate(LendingCreate):
     form_class = None
     fields = ['beginning_date']
     
     def form_valid(self, form):
         lending = form.save(commit=False)
         lending.borrower = self.request.user
-        lending.book_copy = get_object_or_404(Ownership,pk=self.kwargs['book_id'])
+        lending.book_copy = get_object_or_404(Ownership,pk=self.kwargs['copy_id'])
         if is_lending_possible(lending.beginning_date,lending.book_copy):
             lending.save()
             remove_from_queue(lending.book_copy,lending.borrower,lending)
         else:
             messages.add_message(self.request,messages.ERROR,_("This lending is not possible and you should have had errors on the form!"))
+        return redirect('book_detail',book_id=lending.book_copy.book.id)
 
+class BorrowingBookCreate(LendingCreate):
+    form_class = None
+    fields = ['beginning_date','book_copy']
+    
+    def get_initial(self):
+        initial = super(BorrowingBookCreate, self).get_initial().copy()
+        copies = Ownership.objects.filter(book_id=self.kwargs['book_id'])
+        initial['book_copy'] = copies
+        initial['beginning_date'] = "2015-06-12 11:11:11"
+        return initial
+
+    def form_valid(self, form):
+        lending = form.save(commit=False)
+        lending.borrower = self.request.user
+        if is_lending_possible(lending.beginning_date,lending.book_copy):
+            lending.save()
+            remove_from_queue(lending.book_copy,lending.borrower,lending)
+        else:
+            messages.add_message(self.request,messages.ERROR,_("This lending is not possible and you should have had errors on the form!"))
         return redirect('book_detail',book_id=lending.book_copy.book.id)
 
 class LendingUpdate(SuccessMessageMixin, UpdateView, CheckOwner):

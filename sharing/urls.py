@@ -24,6 +24,7 @@ urlpatterns = patterns('',
   
   url(r'^lend/book/(?P<book_id>\d+)$', permission_required('sharing.lending_new')(views.LendingBookCreate.as_view()), name='lend_book'),
   url(r'^borrow/a/book/$', permission_required('sharing.lending_new')(views.BorrowingCreate.as_view()), name='borrowing_create'),
+  url(r'^borrow/this/copy/(?P<copy_id>\d+)$', permission_required('sharing.lending_new')(views.BorrowingCopyCreate.as_view()), name='borrowing_this_copy_create'),
   url(r'^borrow/this/book/(?P<book_id>\d+)$', permission_required('sharing.lending_new')(views.BorrowingBookCreate.as_view()), name='borrowing_this_book_create'),
 
 

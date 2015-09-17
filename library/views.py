@@ -19,7 +19,7 @@ from sharing.models import Lending, Queue
 from discussion.models import Discussion
 
 from utils.models.sortmixin import SortMixin
-from utils.models.conditions import actual_lending
+from utils.models.conditions import actual_lending, one_of_these_books
 from utils.models.authorizations import CheckOwner
 
 class HomePageView(TemplateView):
@@ -79,7 +79,9 @@ class BookList(BookEmbedList):
     template_name="library/book_list.html"
     def get_context_data(self, **kwargs):
         context = super(BookList, self).get_context_data(**kwargs)
+        books_owned = Book.objects.raw("SELECT DISTINCT lb.id FROM library_book AS lb INNER JOIN library_ownership AS lo ON lo.book_id = lb.id")
         context['form'] = ResearchForm()
+        context['books_owned'] = {book.id:True for book in books_owned}
         return context
 
 class BoxList(BookEmbedList):

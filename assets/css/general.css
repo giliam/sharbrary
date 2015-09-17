@@ -192,11 +192,12 @@ div .picture {
 
 #menu {
     background: #ffdd32;
-    border-right: 4px solid #FF4900;
+    border-right: 4px solid #fff;
+    color: black;
 }
 
 #menu .pure-menu-heading {
-    background: #FF4900;
+    background-color: #fff;
 }
 
 #menu .pure-menu-item a.pure-menu-link {

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-17 17:06+0200\n"
+"POT-Creation-Date: 2015-09-17 17:15+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -381,7 +381,7 @@ msgstr "La recherche a échoué."
 msgid "Value not available !"
 msgstr "Valeur impossible !"
 
-#: .\library\views.py:482 .\sharing\views.py:145
+#: .\library\views.py:482 .\sharing\views.py:146
 msgid "The new user has been successfully added !"
 msgstr "Le nouvel utilisateur a bien été créé !"
 
@@ -480,51 +480,51 @@ msgstr "liste d'attente"
 msgid "queues"
 msgstr "listes d'attente"
 
-#: .\sharing\views.py:51
+#: .\sharing\views.py:52
 #, python-format
 msgid "The lending of %(book_copy)s to %(borrower)s was created successfully"
 msgstr "Le prêt de %(book_copy)s à %(borrower)s a bien été créé !"
 
-#: .\sharing\views.py:67 .\sharing\views.py:80 .\sharing\views.py:95
-#: .\sharing\views.py:114
+#: .\sharing\views.py:68 .\sharing\views.py:81 .\sharing\views.py:96
+#: .\sharing\views.py:115
 msgid ""
 "This lending is not possible and you should have had errors on the form!"
 msgstr ""
 "Cet emprunt n'est pas possible et vous devriez avoir des erreurs sur le "
 "formulaire !"
 
-#: .\sharing\views.py:120
+#: .\sharing\views.py:121
 #, python-format
 msgid "The lending of %(book_copy)s to %(borrower)s was updated successfully"
 msgstr "Le prêt de %(book_copy)s à %(borrower)s a bien été mis-à-jour !"
 
-#: .\sharing\views.py:149
+#: .\sharing\views.py:150
 msgid "The two passwords are different."
 msgstr "Les deux mots de passe sont différents."
 
-#: .\sharing\views.py:182
+#: .\sharing\views.py:183
 msgid "Your book is ready !"
 msgstr "Votre livre est prêt !"
 
-#: .\sharing\views.py:187
+#: .\sharing\views.py:188
 #, python-format
 msgid "The lending has been updated and the new end date is now %s."
 msgstr "L'emprunt a été mis-à-jour et la nouvelle date de fin est %s."
 
-#: .\sharing\views.py:263
+#: .\sharing\views.py:264
 msgid "Your profile has been successfully updated !"
 msgstr "Votre profil a bien été mis-à-jour !"
 
-#: .\sharing\views.py:266
+#: .\sharing\views.py:267
 msgid "The two passwords are different or you forgot one."
 msgstr "Les deux mots de passe sont différents ou vous en avez oublié un."
 
-#: .\sharing\views.py:317 .\sharing\views.py:331
+#: .\sharing\views.py:318 .\sharing\views.py:332
 #, python-format
 msgid "%(book_copy)s was added successfully"
 msgstr "%(book_copy)s a bien été ajouté !"
 
-#: .\sharing\views.py:322 .\sharing\views.py:338
+#: .\sharing\views.py:323 .\sharing\views.py:339
 msgid ""
 "You are already waiting for this book. Delete your previous demand before "
 "doing a new one!"
@@ -532,11 +532,11 @@ msgstr ""
 "Vous êtes déjà sur la liste d'attente de ce livre. Supprimez votre demande "
 "précédente avant d'en faire une nouvelle !"
 
-#: .\sharing\views.py:325 .\sharing\views.py:341
+#: .\sharing\views.py:326 .\sharing\views.py:342
 msgid "You have been successfully added to the queue for this book!"
 msgstr "Vous avez bien été ajouté dans la liste d'attente pour cet ouvrage !"
 
-#: .\sharing\views.py:347
+#: .\sharing\views.py:348
 #, python-format
 msgid "%(book_copy)s was updated successfully"
 msgstr "%(book_copy)s a bien été mis-à-jour !"
@@ -689,11 +689,23 @@ msgstr "Le système de partage"
 
 #: .\templates\base\howto.html:20
 msgid ""
-"<p>Sharing books is pretty simple. Once there are books in the library, you "
+"<p>Sharing books is pretty simple. When there are books in the library, you "
 "only need to choose the person you want to borrow it from and you are done. "
 "If the book is available, you will be able to borrow it from book list or "
-"from .</p>"
+"from the book page. You have to select a beginning date for the borrowing "
+"and the copy you have (or will soon have). Once you have finished the book, "
+"give it back to the person who lent it to you and go to the book page or "
+"your dashboard to end your lending. Thus, people in the queue will be able "
+"to borrow the book!</p>"
 msgstr ""
+"<p>Emprunter un livre est très simple. S'il y a des livres dans la bibliothèque, "
+"il vous suffit de choisir la personne à qui vous souhaitez l'emprunter ! "
+"Si cet exemplaire est disponible, vous pourrez alors le choisir dans la liste " 
+"ou sur sa page. Il vous faudra alors sélectionner une date pour le début de l'emprunt "
+"et l'exemplaire que vous prenez (ou comptez prendre !). Une fois que vous avez terminé le "
+"livre, rendez-le à la personne qui vous l'a prêté (eh oui) et allez sur la page "
+"du livre ou sur votre tableau de bord pour terminer le prêt du livre. Les personnes dans "
+"la file d'attente pourront enfin le lire à leur tour !</p>"
 
 #: .\templates\base\howto.html:22
 msgid "The books box"
@@ -707,6 +719,11 @@ msgid ""
 "ownership or borrowing system but makes it possible for to know which books "
 "are available in your library.</p>"
 msgstr ""
+"<p>Si vous n'avez pas le temps d'ajouter une description détaillée ou pas "
+"suffisamment d'informations sur un livre et que vous ne voulez pas bâcler "
+"la présentation, n'hésitez pas à l'ajouter dans la caisse de livres. Ainsi, "
+"les autres membres pourront tout de même voir le livre et vous l'emprunter..."
+"ou bien vous demander d'en faire une vraie fiche !</p>"
 
 #: .\templates\base\index.html:2
 msgid "homepage"

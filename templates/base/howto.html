@@ -6,7 +6,7 @@
 <p>
     {% blocktrans %}This library is divided in two parts: the real library on the one hand and the sharing system on the other hand. Both part do interact and you probably can not use one without the other one. The ownership system could seem a little bit tricky but once explained, you will find it naturally simple.{% endblocktrans %}
 </p>
-<h2 class="content-subhead">{% trans "The library" %}</h2>
+<h2 class="content-subhead">{% trans "The library or book shelves" %}</h2>
 <p>
 	{% url "book_list" as book_list_url %}
     {% blocktrans %}<p>The library contains books. These books have a title<span class="required_symbol">*</span>, a published date, an author. You can also link the book with general themes or with periods of literature history. Each book can be possessed by many people and each people can have several copies of a same book. When you go onto <a href="{{ book_list_url }}">the book list</a>, you can see different options (depending on your permission level). You can edit a book or delete it.</p>{% endblocktrans %}
@@ -17,6 +17,10 @@
 </p>
 <h2 class="content-subhead">{% trans "The sharing system" %}</h2>
 <p>
-    {% blocktrans %}<p>Sharing books is pretty simple. .</p>{% endblocktrans %}
+    {% blocktrans %}<p>Sharing books is pretty simple. When there are books in the library, you only need to choose the person you want to borrow it from and you are done. If the book is available, you will be able to borrow it from book list or from the book page. You have to select a beginning date for the borrowing and the copy you have (or will soon have). Once you have finished the book, give it back to the person who lent it to you and go to the book page or your dashboard to end your lending. Thus, people in the queue will be able to borrow the book!</p>{% endblocktrans %}
+</p>
+<h2 class="content-subhead">{% trans "The books box" %}</h2>
+<p>
+    {% blocktrans %}<p>If you don't have time to add a full book to the system or not enough informations about it and you don't want to scamp the description, you can just put the book in the book box. This is way easier and do not have any ownership or borrowing system but makes it possible for to know which books are available in your library.</p>{% endblocktrans %}
 </p>
 {% endblock %}

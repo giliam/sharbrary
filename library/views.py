@@ -479,7 +479,7 @@ def homepage_edit(request,page_name="homepage"):
         form_homepage = PageForm(request.POST,instance=homepage)
         if form_homepage.is_valid():
             form_homepage.save()
-            messages.add_message(request, messages.SUCCESS, _("The new user has been successfully added !"))
+            messages.add_message(request, messages.SUCCESS, _("The page has been successfully edited!"))
             form_homepage = PageForm(instance=homepage)
     else:
         form_homepage = PageForm(instance=homepage)

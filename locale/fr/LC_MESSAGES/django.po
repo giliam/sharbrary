@@ -381,9 +381,13 @@ msgstr "La recherche a échoué."
 msgid "Value not available !"
 msgstr "Valeur impossible !"
 
-#: .\library\views.py:482 .\sharing\views.py:146
+#: .\sharing\views.py:146
 msgid "The new user has been successfully added !"
 msgstr "Le nouvel utilisateur a bien été créé !"
+
+#: .\library\views.py:482
+msgid "The page has been successfully edited!"
+msgstr "La page a bien été modifiée !"
 
 #: .\sharbrary\settings.py:128
 msgid "Français"

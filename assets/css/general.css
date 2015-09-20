@@ -18,19 +18,19 @@ a.black_link {
 }
 
 .pure-button-success {
-    background: rgb(28, 184, 65); /* this is a green */
+    background: rgb(140, 221, 47);
 }
 
 .pure-button-error {
-    background: rgb(202, 60, 60); /* this is a maroon */
+    background: rgb(236, 96, 61);
 }
 
 .pure-button-warning {
-    background: rgb(223, 117, 20); /* this is an orange */
+    background: rgb(255, 170, 0);
 }
 
 .pure-button-secondary {
-    background: rgb(66, 184, 221); /* this is a light blue */
+    background: rgb(81, 219, 221);
 }
 
 .pure-button-xsmall {
@@ -180,8 +180,8 @@ div .picture {
     display:inline-block;
 
     background-color: #FFFF99;
-    border: solid 2px #FFD203;
-    color: #FBB800;
+    border: solid 2px #5132AF;
+    color: #5132AF;
 }
 
 @media (max-width: 1050px) {
@@ -249,5 +249,5 @@ body a:visited  {
 }
 
 .pure-button-primary, .pure-button-selected, a.pure-button-primary, a.pure-button-selected {
-    background-color: #5132AF;
+    background-color: #846BFF;
 }

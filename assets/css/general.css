@@ -171,8 +171,9 @@ div .picture {
 
 #rating_global #rating_information {
     height:37px;
-    width:180px;
+    width:280px;
     margin-top:9px;
+    margin-left:9px;
     vertical-align: middle;
     padding-top:3px;
     line-height: 37px;
@@ -187,6 +188,7 @@ div .picture {
 @media (max-width: 1050px) {
     #rating_global #rating_information {
         margin-top: -15px;
+        margin-left:0px;
     }
 }
 

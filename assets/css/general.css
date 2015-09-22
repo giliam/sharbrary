@@ -223,6 +223,9 @@ div .picture {
 
 .header h1 {
     color: #FF4900;
+    font-family: "Gabriola", "Georgia", "Times New Roman", Serif;
+    font-size: 4.5em;
+    line-height: 0.9em;
 }
 
 body {

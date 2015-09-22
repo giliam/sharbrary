@@ -221,6 +221,10 @@ div .picture {
     border-bottom: 0px solid #FFF36A;
 }
 
+.header h1 {
+    color: #FF4900;
+}
+
 body {
     color:black;
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffdd32+0,ffdd32+23,fff070+63,ffefc6+100 */

@@ -1,7 +1,6 @@
 {% extends "layout.html" %}
 {% block title %}{{ block.super }} - {% trans "homepage"|capfirst %}{% endblock %}
 {% block body %} 
-<h1>{% trans "Welcome !" %}</h1>
 {% if homepage_message %}
     {{homepage_message.content|safe}}
 {% else %}

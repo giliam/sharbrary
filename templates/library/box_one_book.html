@@ -1,3 +1,8 @@
+{% if False and not display_only_list %}
+    <p class="cover">
+        <img src="{% static 'img/box_o_books.gif' %}" class="cover" />
+    </p>
+{% endif %}
 <p>
     <strong>
         {{ book.title }}

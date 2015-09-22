@@ -1,0 +1,16 @@
+{% if books|length > 0 %}
+<div class="book_collection pure-g">
+    {% for book in books %}
+        <div class="pure-u-1-1">
+        {% if book.on_shelf %}
+            {% include "library/book_one_book.html" %}
+        {% else %}
+                {% include "library/box_one_book.html" %}
+        {% endif %}
+        </div>
+    {% endfor %}
+</div>
+{% else %}
+    <p>{% trans "no book in this library !"|capfirst %}</p>
+{% endif %}
+<div style="clear: both;"></div>

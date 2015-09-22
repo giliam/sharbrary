@@ -1,3 +1,9 @@
+<div class="book pure-u-1-1">
+{% if display_box_cover %}
+    <p class="cover">
+        <img src="{% static 'img/box_o_books.gif' %}" class="cover" />
+    </p>
+{% endif %}
 <p>
     <strong>
         {{ book.title }}
@@ -19,3 +25,4 @@
         {% endif %}
     {% endif %}
 </p>
+</div>

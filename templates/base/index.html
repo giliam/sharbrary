@@ -10,14 +10,14 @@
 <div class="pure-g">
     <div class="pure-u-1-2">
         <h2>{% trans "last books added"|capfirst %}</h2>
-        {% with books=latest_books display_only_list=True %}
-            {% include "library/book_embed_list.html" %}
+        {% with books=latest_books display_only_list=True display_box_cover=True %}
+            {% include "library/book_lines_list.html" %}
         {% endwith %}
     </div>
     <div class="pure-u-1-2">
         <h2>{% trans "best books"|capfirst %}</h2>
-        {% with books=best_books display_only_list=True %}
-            {% include "library/book_embed_list.html" %}
+        {% with books=best_books display_only_list=True display_box_cover=True %}
+            {% include "library/book_lines_list.html" %}
         {% endwith %}
     </div>
 </div>

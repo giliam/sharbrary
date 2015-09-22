@@ -1,5 +1,5 @@
 {% load utils_extras %}
-<div class="book pure-u-1-6">
+<div class="book pure-u-1-{% if not display_only_list %}6{% else %}1{% endif %}">
     <p class="cover">
         {% if perms.library.book_detail %}<a href="{% url "book_detail" book.id %}">{% endif %}
             {% if book.cover %}<img src="{{ book.cover.url }}" class="cover" />{% else %}<img src="{% static 'img/book_cover.png' %}" class="cover" />{% endif %}

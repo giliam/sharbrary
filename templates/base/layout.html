@@ -31,7 +31,7 @@
 
         <div id="menu">
             <div class="pure-menu">
-                <a class="pure-menu-heading" href="{% url "homepage" %}">{{header_title.title|upper}}</a>
+                <a class="pure-menu-heading" href="{% url "homepage" %}"><img id="logo" src="{% static "img/logominiature.png" %}" /></a>
                 <li class="pure-menu-item"><a href="{% url "lang_change" %}" class="pure-menu-link">{% trans "change the language"|capfirst %}</a></li>
                 <li class="pure-menu-item"><a href="{% url "how_to" %}" class="pure-menu-link">{% trans "how to"|capfirst %}</a></li>
 

@@ -260,3 +260,7 @@ body a:visited  {
 .pure-button-primary, .pure-button-selected, a.pure-button-primary, a.pure-button-selected {
     background-color: #846BFF;
 }
+
+#logo {
+    margin-left: 25px;
+}

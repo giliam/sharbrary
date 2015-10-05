@@ -212,6 +212,10 @@ div .picture {
     color:white;
 }
 
+#menu .pure-menu-item:hover input, #menu .pure-menu .pure-menu-item .pure-menu-link:hover input {
+    color:black;
+}
+
 .header h2 {
     color: #FF4900;
 }
@@ -261,6 +265,10 @@ body a:visited  {
     background-color: #846BFF;
 }
 
-#logo {
+img.logo {
     margin-left: 25px;
+}
+
+#menu a.logo{
+    background-color: #ffdd32;
 }

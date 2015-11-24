@@ -20,7 +20,7 @@
          ({{ book.publishing_date|naturalday:"DATE_FORMAT"|default:_("unknown") }})</p>
     <p>
         {% for owner in book.owners.distinct.all %}
-            <a href="{% url "profile_show" owner.id %}">{{ owner.first_name|capfirst }} {{ owner.last_name|upper|default:_("unknown")|capfirst }}</a>
+            <a href="{% url "profile_show" owner.id %}">{{ owner.first_name|capfirst }} {{ owner.last_name|upper }}</a>
         {% empty %}
             {% trans "unknown"|capfirst %}
         {% endfor %}

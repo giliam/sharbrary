@@ -94,7 +94,7 @@ class BookCreate(CreateView):
     model = Book
     success_url = reverse_lazy('book_list')
     success_message = _("%(title)s was created successfully")
-    fields = ['title', 'publishing_date', 'author', 'owners', 'themes', 'periods', 'summary', 'cover']
+    fields = ['title', 'publishing_date', 'author', 'owners', 'themes', 'summary', 'cover']
 
     def form_valid(self, form):
         book = form.save(commit=False)

@@ -15,7 +15,7 @@ OPINION_NOTATION_VALUES = (
 )
 
 class Author(models.Model):
-    firstname = models.CharField(verbose_name=_('firstname'),max_length=200)
+    firstname = models.CharField(verbose_name=_('firstname'),blank=True,max_length=200)
     lastname = models.CharField(verbose_name=_('lastname'),max_length=200)
     birthdate = models.DateField(_('birthdate'),blank=True,null=True)
     death_date = models.DateField(_('date of death'),blank=True,null=True)

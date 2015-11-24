@@ -272,3 +272,11 @@ img.logo {
 #menu a.logo{
     background-color: #ffdd32;
 }
+
+p.smaller {
+    font-size: 0.85em;
+}
+
+p.very_smaller {
+    font-size: 0.7em;
+}

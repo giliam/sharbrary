@@ -17,8 +17,14 @@
     </p>
     {% if book.editor or book.publishing_date %}
     <p class="very_smaller">
-         {{ book.editor|default:_("unknown")|capfirst }}
-         ({{ book.publishing_date|naturalday:"DATE_FORMAT"|default:_("unknown") }})</p>
+         {% if book.editor %}
+            {{ book.editor|default:_("unknown")|capfirst }}(
+         {% endif %}
+         {{ book.publishing_date|naturalday:"DATE_FORMAT"|default:_("unknown") }}
+         {% if book.editor %}
+            )
+         {% endif %}
+         </p>
     {% endif %}
     <p class="very_smaller">
         {% for owner in book.owners.distinct.all %}

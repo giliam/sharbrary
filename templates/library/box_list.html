@@ -1,5 +1,10 @@
 {% extends "layout.html" %}
 {% block title %}{{ block.super }} - {% trans "book list"|capfirst %}{% endblock %}
+{% block header_addons %}
+<script type="text/javascript">
+    {% include "common/rating.js" %}
+</script>
+{% endblock %}
 {% block body %} 
 {% include "library/box_embed_list.html" %}
 {% endblock %}

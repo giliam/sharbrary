@@ -1,3 +1,5 @@
+{% load utils_extras %}
+{% load available_extras %}
 {% if not display_only_list %}
 <h1>{% trans "books box"|capfirst %}</h1>
     <p>
@@ -19,7 +21,13 @@
     </p>
 {% endif %}
 {% for book in books %}
-    {% include "library/box_one_book.html" %}
+    {% if opinions|keyvalue:book.id %}
+        {% with rating_user=opinions|keyvalue:book.id %}     
+            {% include "library/box_one_book.html" %}
+        {% endwith %}
+    {% else %}
+        {% include "library/box_one_book.html" %}
+    {% endif %}
 {% empty %}
     <p>{% trans "no book in this box !"|capfirst %}</p>
 {% endfor %}

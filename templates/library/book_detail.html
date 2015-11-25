@@ -2,6 +2,12 @@
 {% block title %}{{ block.super }} - {{ book.title }}{% endblock %}
 {% load utils_extras %}
 {% load available_extras %}
+{% block header_addons %}
+<script type="text/javascript">
+    {% include "common/rating.js" %}
+</script>
+{% endblock %}
+
 {% block body %} 
 <div class="pure-g">
     <div class="pure-u-1-2">
@@ -45,25 +51,7 @@
         <p><strong>{% trans "summary"|capfirst %}</strong></p>
         <blockquote>
 			{{ book.summary|default:_("not filled yet")|capfirst|safe }}</blockquote>
-        <div id="rating_global">
-            <p id="before_rating_informations">
-                <a class="rates" id="rate_0">
-                    <img id="rate_star_0" class="rating_stars" src="{% static 'img/star_remove.png' %}" />
-                </a>
-                {% comment %}Makes a "range" loop{% endcomment %}
-                {% for i in "12345" %}
-                    <a class="rates" id="rate_{{i}}">
-                        {% comment %}We use forloop counter here because i is a string and not an integer, thus can not be compared with rating_user{% endcomment %}
-                        {% if rating_user and forloop.counter <= rating_user %}
-                            <img id="rate_star_{{i}}" class="rating_stars" src="{% static 'img/star_full.png' %}" />
-                        {% else %}
-                            <img id="rate_star_{{i}}" class="rating_stars" src="{% static 'img/star_empty.png' %}" />
-                        {% endif %}
-                    </a>
-                {% endfor %}
-            </p>
-            <div id="rating_information"></div>
-        </div>
+        {% include "common/rating.html" %}
     </div>
     <div class="pure-u-1-2">
     <h2>{% trans "options"|capfirst %}</h2>
@@ -171,40 +159,4 @@
     {% endif %}
 {% endif %}
 
-<script type="text/javascript">
-var rating_informations = ["{{opinion_notation_values.0.1|safe}}","{{opinion_notation_values.1.1|safe}}","{{opinion_notation_values.2.1|safe}}","{{opinion_notation_values.3.1|safe}}","{{opinion_notation_values.4.1|safe}}","{{opinion_notation_values.5.1|safe}}"];
-var current_value = {% if rating_user %}{{rating_user}}{% else %}0{% endif %};
-$('#rating_information').text(rating_informations[current_value]);
-$('.rates').click(function(){
-    var catid;
-    catid = $(this).attr("id").replace('rate_','');
-    $.get("{% url "book_rate" book.id 0 %}".replace('/0/',"/" + catid + "/"), function(data){});
-    current_value = catid;
-    $('#rating_information').text(rating_informations[current_value]);
-});
-
-$('.rating_stars').hover(function(){
-    var catid;
-    catid = $(this).attr("id").replace('rate_star_','');
-    $('#rating_information').text(rating_informations[catid]);
-    for (var i = 1; i <= 5; i++) {
-        if(i<=catid){
-            $('#rate_star_' + i).attr("src", "{% static 'img/star_full.png' %}");
-        }else{
-            $('#rate_star_' + i).attr("src","{% static 'img/star_empty.png' %}");
-        }
-    }
-});
-
-$('.rates').hover(function(){},function(){
-    $('#rating_information').text(rating_informations[current_value]);
-    for (var i = 1; i <= 5; i++) {
-        if(i<=current_value){
-            $('#rate_star_' + i).attr("src", "{% static 'img/star_full.png' %}");
-        }else{
-            $('#rate_star_' + i).attr("src","{% static 'img/star_empty.png' %}");
-        }
-    }
-});
-</script>
 {% endblock %}

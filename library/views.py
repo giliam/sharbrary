@@ -90,6 +90,18 @@ class BoxList(BookEmbedList):
     def get_queryset(self):
         return self.sort_queryset(Book.objects.filter(on_shelf=False))
 
+    def get_context_data(self, **kwargs):
+        context = super(BoxList, self).get_context_data(**kwargs)
+        try:
+            opinions = Opinion.objects.filter(book__on_shelf=False,author=self.request.user)
+            context['opinions'] = {}
+            for opinion in opinions.all():
+                context['opinions'][opinion.book.id] = opinion.value
+        except Opinion.DoesNotExist:
+            pass
+        context['opinion_notation_values'] = OPINION_NOTATION_VALUES
+        return context
+
 class BookCreate(CreateView):
     model = Book
     success_url = reverse_lazy('book_list')
@@ -450,7 +462,7 @@ def book_rate(request, book_id, value):
     Sets the notation of a book for a specific user.
     """
     value = int(value)
-    book = get_object_or_404(Book, pk=book_id, on_shelf=True)
+    book = get_object_or_404(Book, pk=book_id)
     if value not in range(0,6):
         raise Exception, _("Value not available !")
 

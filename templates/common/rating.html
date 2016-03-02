@@ -16,6 +16,11 @@
         {% endfor %}
     </p>
     <div class="rating_information" id="rating_information_{{book.id}}"></div>
+    <p>
+        {% if rating_average %}
+        {% blocktrans with rating_average=rating_average %}Average: {{rating_average}}/5{% endblocktrans %}
+        {% endif %}
+    </p>
 </div>
 <script type="text/javascript">
     current_value[{{book.id}}] = {% if rating_user %}{{rating_user}}{% else %}0{% endif %};

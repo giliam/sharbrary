@@ -90,8 +90,7 @@
     	{% include "common/lendings.html" %}
     </div>
 </div>
-{% if perms.library.ownership_new %}
-    
+    {% if perms.library.ownership_new %}
         <p><a class="pure-button pure-button-primary" href="{% url "book_add_this_to_my_library" book.id %}">{% trans "new"|capfirst %}</a></p>
     {% endif %}
 {% if ownerships.all %}

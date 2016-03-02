@@ -27,4 +27,9 @@
         {% endif %}
     {% endif %}
 </p>
+{% if not display_only_list %}
+<p>
+    {% include "common/rating.html" %}
+</p>
+{% endif %}
 </div>

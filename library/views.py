@@ -11,7 +11,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.shortcuts import get_object_or_404
 from django.contrib import messages
 from django.http import Http404, HttpResponse
-from django.db.models import Q
+from django.db.models import Q, Avg
 
 from library.models import Book, Page, Author, Editor, Theme, Period, Ownership, Opinion, OPINION_NOTATION_VALUES
 from library.forms import SelectOwnerForm, ResearchForm, PageForm
@@ -50,8 +50,15 @@ def book_detail(request, book_id):
     try:
         opinion = Opinion.objects.get(book__id=book_id,author=request.user)
         rating_user = opinion.value
+        rating_average = Opinion.objects.filter(book__id=book_id).aggregate(Avg('value'))['value__avg']
+        if int(rating_average) == rating_average:
+            rating_average = int(rating_average)
     except Opinion.DoesNotExist:
         rating_user = None
+        rating_average = None
+    except:
+        rating_average = None
+    
     queues_ordered = {ownership.id:[] for ownership in ownerships}
     # copy is not enough here, because of lists probably
     lendings_ordered = {ownership.id:[] for ownership in ownerships}
@@ -61,7 +68,7 @@ def book_detail(request, book_id):
     for lending in lendings.all():
         lendings_ordered[lending.book_copy.id].append(lending)
 
-    return render(request, 'library/book_detail.html', {'book':book,'lendings':lendings,'lendings_ordered':lendings_ordered,'queues_ordered':queues_ordered,'ownerships':ownerships,'rating_user':rating_user, 'opinion_notation_values':OPINION_NOTATION_VALUES})
+    return render(request, 'library/book_detail.html', {'book':book,'lendings':lendings,'lendings_ordered':lendings_ordered,'queues_ordered':queues_ordered,'ownerships':ownerships,'rating_user':rating_user, 'opinion_notation_values':OPINION_NOTATION_VALUES, 'rating_average':rating_average})
 
 class BookEmbedList(SortMixin):
     context_object_name = "books"

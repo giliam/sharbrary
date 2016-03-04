@@ -50,7 +50,9 @@ def book_detail(request, book_id):
     try:
         opinion = Opinion.objects.get(book__id=book_id,author=request.user)
         rating_user = opinion.value
-        rating_average = Opinion.objects.filter(book__id=book_id).aggregate(Avg('value'))['value__avg']
+        query = Opinion.objects.filter(book__id=book_id)
+        rating_number = query.count()
+        rating_average = query.aggregate(Avg('value'))['value__avg']
         if int(rating_average) == rating_average:
             rating_average = int(rating_average)
     except Opinion.DoesNotExist:
@@ -68,7 +70,7 @@ def book_detail(request, book_id):
     for lending in lendings.all():
         lendings_ordered[lending.book_copy.id].append(lending)
 
-    return render(request, 'library/book_detail.html', {'book':book,'lendings':lendings,'lendings_ordered':lendings_ordered,'queues_ordered':queues_ordered,'ownerships':ownerships,'rating_user':rating_user, 'opinion_notation_values':OPINION_NOTATION_VALUES, 'rating_average':rating_average})
+    return render(request, 'library/book_detail.html', {'book':book,'lendings':lendings,'lendings_ordered':lendings_ordered,'queues_ordered':queues_ordered,'ownerships':ownerships,'rating_user':rating_user, 'opinion_notation_values':OPINION_NOTATION_VALUES, 'rating_average':rating_average, 'rating_number':rating_number})
 
 class BookEmbedList(SortMixin):
     context_object_name = "books"

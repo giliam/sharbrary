@@ -45,25 +45,7 @@
         <p><strong>{% trans "summary"|capfirst %}</strong></p>
         <blockquote>
 			{{ book.summary|default:_("not filled yet")|capfirst|safe }}</blockquote>
-        <div id="rating_global">
-            <p id="before_rating_informations">
-                <a class="rates" id="rate_0">
-                    <img id="rate_star_0" class="rating_stars" src="{% static 'img/star_remove.png' %}" />
-                </a>
-                {% comment %}Makes a "range" loop{% endcomment %}
-                {% for i in "12345" %}
-                    <a class="rates" id="rate_{{i}}">
-                        {% comment %}We use forloop counter here because i is a string and not an integer, thus can not be compared with rating_user{% endcomment %}
-                        {% if rating_user and forloop.counter <= rating_user %}
-                            <img id="rate_star_{{i}}" class="rating_stars" src="{% static 'img/star_full.png' %}" />
-                        {% else %}
-                            <img id="rate_star_{{i}}" class="rating_stars" src="{% static 'img/star_empty.png' %}" />
-                        {% endif %}
-                    </a>
-                {% endfor %}
-            </p>
-            <div id="rating_information"></div>
-        </div>
+        {% include "common/rating.html" %}
     </div>
     <div class="pure-u-1-2">
     <h2>{% trans "options"|capfirst %}</h2>

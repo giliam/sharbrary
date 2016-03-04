@@ -18,7 +18,7 @@
     <div class="rating_information" id="rating_information_{{book.id}}"></div>
     <p>
         {% if rating_average %}
-        {% blocktrans with rating_average=rating_average %}Average: {{rating_average}}/5{% endblocktrans %}
+        {% blocktrans with rating_average=rating_average rating_number=rating_number %}Average: {{rating_average}}/5 ({{rating_number}} vote(s)){% endblocktrans %}
         {% endif %}
     </p>
 </div>

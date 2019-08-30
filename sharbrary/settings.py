@@ -178,4 +178,5 @@ EMAIL_HOST_PASSWORD = 'TOPSECRET'
 # DO NOT FORGET TO ADD PASSWORD
 
 #Loads local settings that rewrite the settings SECRET_KEY, DATABASES, LOCALE_PATHS and EMAIL_HOST_PASSWORD.
-from settings_local import *
+if os.path.isfile('sharbrary/settings_local.py'):
+    from settings_local import *

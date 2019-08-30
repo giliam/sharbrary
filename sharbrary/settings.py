@@ -13,7 +13,10 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-import parameters
+if os.path.isfile('sharbrary/parameters.py'):
+    import parameters
+else:
+    parameters = {}
 
 from django.template.base import add_to_builtins
 
@@ -70,7 +73,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'APP_DIRS': True,
-        'DIRS': parameters.TEMPLATES_DIRS if parameters.TEMPLATES_DIRS else ["C:/Users/Dev/Documents/divers/wamp/www/15reservation/GitPortable/Data/home/biblib/sharbrary/templates"],
+        'DIRS': parameters.TEMPLATES_DIRS if hasattr(parameters, "TEMPLATES_DIRS") else ["templates"],
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -153,7 +156,7 @@ CKEDITOR_JQUERY_URL = '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.j
 STATIC_URL = FORCE_SCRIPT_NAME + "/static/"
 STATIC_ROOT = BASE_DIR + '/static/'
 
-STATICFILES_DIRS = parameters.STATICFILES_DIRS if parameters.STATICFILES_DIRS else (
+STATICFILES_DIRS = parameters.STATICFILES_DIRS if hasattr(parameters, "STATICFILES_DIRS") else (
     "assets/",
 )
 

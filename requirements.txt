@@ -1,9 +1,9 @@
 Django==1.8.3
-Pillow==2.9.0
+Pillow
 argparse==1.2.1
 django-ckeditor==4.5.1
 django-tinymce==2.0.2
 django-wysiwyg==0.7.1
-gunicorn==19.3.0
+gunicorn
 pytz==2015.4
 wsgiref==0.1.2

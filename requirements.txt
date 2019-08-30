@@ -5,6 +5,5 @@ django-ckeditor==4.5.1
 django-tinymce==2.0.2
 django-wysiwyg==0.7.1
 gunicorn==19.3.0
-psycopg2==2.6.1
 pytz==2015.4
 wsgiref==0.1.2

@@ -91,7 +91,7 @@ msgstr "PAS D'ACCORD"
 
 #: library/models.py:10
 msgid "This is bad."
-msgstr "C'est nul."
+msgstr "Je n'ai pas été touché."
 
 #: library/models.py:11
 msgid "Humpf"

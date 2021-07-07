@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="A shared library to help you and your friends share books and reading notes.">
     <title>{% block title %}{{header_title.title}}{% endblock %}</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'img/favicon.ico' %}">
     <link rel="stylesheet" href="//yui.yahooapis.com/pure/0.6.0/pure-min.css">
     <!--[if gt IE 8]><!-->
         <link href="{% static 'css/side-menu.css' %}" rel="stylesheet">
@@ -31,9 +32,7 @@
 
         <div id="menu">
             <div class="pure-menu">
-                <a class="pure-menu-heading" href="{% url "homepage" %}">{{header_title.title|upper}}</a>
-                <li class="pure-menu-item"><a href="{% url "lang_change" %}" class="pure-menu-link">{% trans "change the language"|capfirst %}</a></li>
-                <li class="pure-menu-item"><a href="{% url "how_to" %}" class="pure-menu-link">{% trans "how to"|capfirst %}</a></li>
+                <a class="pure-menu-heading logo" href="{% url "homepage" %}"><img class="logo" src="{% static "img/logominiature.png" %}" /></a>
 
                 <a class="pure-menu-heading" href="{% url "book_list" %}">{% trans "library"|capfirst %}</a>
                 <ul class="pure-menu-list">
@@ -54,7 +53,6 @@
                     <li class="pure-menu-item"><a href="{% url "author_list" %}" class="pure-menu-link">{% trans "authors"|capfirst %}</a></li>
                     <li class="pure-menu-item"><a href="{% url "editor_list" %}" class="pure-menu-link">{% trans "editors"|capfirst %}</a></li>
                     <li class="pure-menu-item"><a href="{% url "theme_list" %}" class="pure-menu-link">{% trans "themes"|capfirst %}</a></li>
-                    <li class="pure-menu-item"><a href="{% url "period_list" %}" class="pure-menu-link">{% trans "periods"|capfirst %}</a></li>
                 </ul>
 
                 <a class="pure-menu-heading" href="{% url "lending_list" %}">{% trans "sharing"|capfirst %}</a>
@@ -77,6 +75,8 @@
                     {% else %}
                     <li class="pure-menu-item"><a href="{% url "login" %}" class="pure-menu-link">{% trans "log in"|capfirst %}</a></li>
                     {% endif %}
+                    <li class="pure-menu-item"><a href="{% url "lang_change" %}" class="pure-menu-link">{% trans "change the language"|capfirst %}</a></li>
+                <li class="pure-menu-item"><a href="{% url "how_to" %}" class="pure-menu-link">{% trans "how to"|capfirst %}</a></li>
                 </ul>
                 {% if user.is_authenticated and user.is_staff %}
                     <a class="pure-menu-heading" href="{% url "admin:index" %}">{% trans "admin"|capfirst %}</a>

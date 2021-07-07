@@ -14,7 +14,7 @@
         {% if book.author and perms.library.author_detail %}</a>{% endif %}
     , {{ book.editor|default:_("unknown")|capfirst }}
           - {{ book.publishing_date|naturalday:"DATE_FORMAT"|default:_("unknown") }}) - {% for owner in book.owners.distinct.all %}
-            <a href="{% url "profile_show" owner.id %}">{{ owner|default:_("unknown")|capfirst }}</a>
+            <a href="{% url "profile_show" owner.id %}">{{ owner.first_name|capfirst }} {{ owner.last_name|upper }}</a>
         {% endfor %}
     {% if not display_only_list %}
         {% if perms.library.book_moderate or perms.library.book_edit or perms.library.book_delete or perms.sharing.lending_new or perms.library.book_remove_from_all_libraries or perms.library.book_remove_from_library or perms.library.ownership_new %}

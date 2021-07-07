@@ -15,10 +15,10 @@ OPINION_NOTATION_VALUES = (
 )
 
 class Author(models.Model):
-    firstname = models.CharField(verbose_name=_('firstname'),max_length=200)
+    firstname = models.CharField(verbose_name=_('firstname'),blank=True,max_length=200)
     lastname = models.CharField(verbose_name=_('lastname'),max_length=200)
-    birthdate = models.DateTimeField(_('birthdate'),blank=True,null=True)
-    death_date = models.DateTimeField(_('date of death'),blank=True,null=True)
+    birthdate = models.DateField(_('birthdate'),blank=True,null=True)
+    death_date = models.DateField(_('date of death'),blank=True,null=True)
     added_date = models.DateTimeField(_('date added to the database'),auto_now_add=True)
     updated_date = models.DateTimeField(_('date updated to the database'),auto_now=True)
 
@@ -111,7 +111,7 @@ class Period(models.Model):
 
 class Book(models.Model):
     title = models.CharField(verbose_name=_('title'),max_length=200)
-    publishing_date = models.DateTimeField(_('date published'),blank=True,null=True)
+    publishing_date = models.DateField(_('date published'),blank=True,null=True)
     added_date = models.DateTimeField(_('date added to the library'),auto_now_add=True)
     updated_date = models.DateTimeField(_('date updated to the database'),auto_now=True)
     author = models.ForeignKey(Author,blank=True,null=True,verbose_name=_('author'))

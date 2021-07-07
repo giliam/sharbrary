@@ -10,17 +10,25 @@
         {{ book.title }}
         {% if perms.library.book_detail %}</a>{% endif %}
     </p>
-    <p> 
+    <p class="smaller"> 
         {% if book.author and perms.library.author_detail %}<a class="black_link" href="{% url "author_detail" book.author.id %}">{% endif %}
         {{ book.author|default:_("unknown")|capfirst }}
         {% if book.author and perms.library.author_detail %}</a>{% endif %}
     </p>
-    <p>
-         {{ book.editor|default:_("unknown")|capfirst }}
-         ({{ book.publishing_date|naturalday:"DATE_FORMAT"|default:_("unknown") }})</p>
-    <p>
+    {% if book.editor or book.publishing_date %}
+    <p class="very_smaller">
+         {% if book.editor %}
+            {{ book.editor|default:_("unknown")|capfirst }}(
+         {% endif %}
+         {{ book.publishing_date|naturalday:"DATE_FORMAT"|default:_("unknown") }}
+         {% if book.editor %}
+            )
+         {% endif %}
+         </p>
+    {% endif %}
+    <p class="very_smaller">
         {% for owner in book.owners.distinct.all %}
-            <a href="{% url "profile_show" owner.id %}">{{ owner|default:_("unknown")|capfirst }}</a>
+            <a href="{% url "profile_show" owner.id %}">{{ owner.first_name|capfirst }} {{ owner.last_name|upper }}</a>
         {% empty %}
             {% trans "unknown"|capfirst %}
         {% endfor %}

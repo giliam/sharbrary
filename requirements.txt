@@ -1,4 +1,4 @@
-Django==2.2.24
+Django==2.2.28
 Pillow
 argparse==1.2.1
 django-ckeditor==4.5.1

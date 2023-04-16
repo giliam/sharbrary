@@ -2,7 +2,7 @@ Django==2.2.24
 Pillow
 argparse==1.2.1
 django-ckeditor==4.5.1
-django-tinymce==2.0.2
+django-tinymce==3.4.0
 django-wysiwyg==0.7.1
 gunicorn
 pytz==2015.4
